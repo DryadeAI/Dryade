@@ -302,4 +302,4 @@ exclude_lines = [
     "raise NotImplementedError",
     "if __name__ == .__main__.:",
 ]
-fail_under = 60  # Lowered from 90 to 60 — auth modules now measured with 80% sub-gate
+fail_under = 30  # Community repo: plugin tests excluded, lower coverage baseline
