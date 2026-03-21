@@ -432,6 +432,14 @@ class TestWorkflowRoutes:
 class TestPluginRoutes:
     """Unit tests for core/api/routes/plugins.py."""
 
+    def _get_plugins_patch_target(self):
+        """Return the correct patch target for get_plugin_manager."""
+        try:
+            import core.plugins  # noqa: F401
+            return "core.plugins.get_plugin_manager"
+        except (ImportError, ModuleNotFoundError):
+            return "core.ee.plugins_ee.get_plugin_manager"
+
     def test_list_plugins(self):
         """GET /api/plugins returns plugin list (mocked plugin manager)."""
         from core.api.main import app
@@ -444,7 +452,7 @@ class TestPluginRoutes:
         def mock_user():
             return {"sub": "u1", "email": "u@example.com", "role": "member"}
 
-        with patch("core.plugins.get_plugin_manager", return_value=mock_pm):
+        with patch(self._get_plugins_patch_target(), return_value=mock_pm):
             app.dependency_overrides[get_current_user] = mock_user
             client = TestClient(app, raise_server_exceptions=False)
             resp = client.get("/api/plugins")
@@ -463,7 +471,7 @@ class TestPluginRoutes:
         def mock_user():
             return {"sub": "u1", "email": "u@example.com", "role": "member"}
 
-        with patch("core.plugins.get_plugin_manager", return_value=mock_pm):
+        with patch(self._get_plugins_patch_target(), return_value=mock_pm):
             app.dependency_overrides[get_current_user] = mock_user
             client = TestClient(app, raise_server_exceptions=False)
             resp = client.get("/api/plugins/nonexistent-plugin")

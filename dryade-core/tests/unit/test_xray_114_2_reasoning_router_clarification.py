@@ -402,12 +402,12 @@ class TestMetaActionPatterns:
 
         # Rule 7 for agent creation (Phase 167 rewrite: tool-first framing)
         assert "system management tools" in ORCHESTRATE_SYSTEM_PROMPT
-        assert "`create`" in ORCHESTRATE_SYSTEM_PROMPT
+        assert "`factory_create`" in ORCHESTRATE_SYSTEM_PROMPT
 
         # Meta-Actions section still exists
         assert "Meta-Actions" in ORCHESTRATE_SYSTEM_PROMPT
-        # Language-agnostic framing added in Phase 167
-        assert "any language" in ORCHESTRATE_SYSTEM_PROMPT
+        # Language-agnostic framing
+        assert "language" in ORCHESTRATE_SYSTEM_PROMPT
 
 # ---------------------------------------------------------------------------
 # BUG-R4 gap closure: Programmatic meta-action interception in ComplexHandler

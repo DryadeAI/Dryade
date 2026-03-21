@@ -16,6 +16,8 @@ from core.knowledge.vector_store import VectorStoreBackend
 # PgvectorStore tests
 # =============================================================================
 
+psycopg2 = pytest.importorskip("psycopg2", reason="psycopg2 not installed")
+
 class TestPgvectorStore:
     """Tests for PgvectorStore with mocked psycopg2."""
 

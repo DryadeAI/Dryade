@@ -412,30 +412,45 @@ class TestLogAudit:
 
     @pytest.mark.asyncio
     async def test_log_audit_success(self):
-        """log_audit creates AuditLog entry."""
+        """log_audit creates AuditLog entry via its own session."""
+        from unittest.mock import patch
+
         from core.auth.audit import log_audit
 
-        mock_db = MagicMock()
-        await log_audit(
-            db=mock_db,
-            user_id="user-1",
-            action="login",
-            resource_type="session",
-            resource_id="123",
-            ip_address="127.0.0.1",
-            metadata={"browser": "chrome"},
-        )
-        mock_db.add.assert_called_once()
-        mock_db.commit.assert_called_once()
+        mock_session = MagicMock()
+        mock_session.execute.return_value.scalar.return_value = 999
+
+        with patch("core.database.session.get_session") as mock_get_session:
+            mock_get_session.return_value.__enter__ = MagicMock(return_value=mock_session)
+            mock_get_session.return_value.__exit__ = MagicMock(return_value=False)
+
+            await log_audit(
+                db=MagicMock(),
+                user_id="user-1",
+                action="login",
+                resource_type="session",
+                resource_id="123",
+                ip_address="127.0.0.1",
+                metadata={"browser": "chrome"},
+            )
+        mock_session.add.assert_called_once()
 
     @pytest.mark.asyncio
     async def test_log_audit_no_optional_fields(self):
         """log_audit works with minimal fields."""
+        from unittest.mock import patch
+
         from core.auth.audit import log_audit
 
-        mock_db = MagicMock()
-        await log_audit(db=mock_db, user_id="user-1", action="create")
-        mock_db.add.assert_called_once()
+        mock_session = MagicMock()
+        mock_session.execute.return_value.scalar.return_value = 999
+
+        with patch("core.database.session.get_session") as mock_get_session:
+            mock_get_session.return_value.__enter__ = MagicMock(return_value=mock_session)
+            mock_get_session.return_value.__exit__ = MagicMock(return_value=False)
+
+            await log_audit(db=MagicMock(), user_id="user-1", action="create")
+        mock_session.add.assert_called_once()
 
     @pytest.mark.asyncio
     async def test_log_audit_exception_swallowed(self):
@@ -448,19 +463,26 @@ class TestLogAudit:
         await log_audit(db=mock_db, user_id="user-1", action="delete")
 
     def test_log_audit_sync_success(self):
-        """log_audit_sync creates AuditLog entry synchronously."""
+        """log_audit_sync creates AuditLog entry via its own session."""
+        from unittest.mock import patch
+
         from core.auth.audit import log_audit_sync
 
-        mock_db = MagicMock()
-        log_audit_sync(
-            db=mock_db,
-            user_id="user-1",
-            action="update",
-            resource_type="workflow",
-            resource_id="42",
-        )
-        mock_db.add.assert_called_once()
-        mock_db.commit.assert_called_once()
+        mock_session = MagicMock()
+        mock_session.execute.return_value.scalar.return_value = 999
+
+        with patch("core.database.session.get_session") as mock_get_session:
+            mock_get_session.return_value.__enter__ = MagicMock(return_value=mock_session)
+            mock_get_session.return_value.__exit__ = MagicMock(return_value=False)
+
+            log_audit_sync(
+                db=MagicMock(),
+                user_id="user-1",
+                action="update",
+                resource_type="workflow",
+                resource_id="42",
+            )
+        mock_session.add.assert_called_once()
 
     def test_log_audit_sync_exception_swallowed(self):
         """log_audit_sync does not raise on database error."""

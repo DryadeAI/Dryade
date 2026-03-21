@@ -76,7 +76,7 @@ class TestListPlans:
 
         from core.api.routes.plans import list_plans
 
-        result = await list_plans(user=_TEST_USER, db=db)
+        result = await list_plans(offset=0, limit=50, user=_TEST_USER, db=db)
 
         assert result["total"] == 0
         assert result["plans"] == []
@@ -92,7 +92,7 @@ class TestListPlans:
 
         from core.api.routes.plans import list_plans
 
-        result = await list_plans(user=_TEST_USER, db=db)
+        result = await list_plans(offset=0, limit=50, user=_TEST_USER, db=db)
 
         assert result["total"] == 1
         assert len(result["plans"]) == 1
@@ -109,7 +109,7 @@ class TestListPlans:
 
         from core.api.routes.plans import list_plans
 
-        result = await list_plans(user=_TEST_ADMIN, db=db)
+        result = await list_plans(offset=0, limit=50, user=_TEST_ADMIN, db=db)
         assert result["total"] == 0
 
     @pytest.mark.asyncio
@@ -124,7 +124,7 @@ class TestListPlans:
 
         from core.api.routes.plans import list_plans
 
-        result = await list_plans(conversation_id=conv_id, user=_TEST_USER, db=db)
+        result = await list_plans(conversation_id=conv_id, offset=0, limit=50, user=_TEST_USER, db=db)
 
         # filter should have been called (at least for user_id and conversation_id)
         assert db.query.return_value.filter.call_count >= 1
@@ -139,7 +139,7 @@ class TestListPlans:
 
         from core.api.routes.plans import list_plans
 
-        result = await list_plans(status="completed", user=_TEST_USER, db=db)
+        result = await list_plans(status="completed", offset=0, limit=50, user=_TEST_USER, db=db)
         assert result["total"] == 0
 
 # ===========================================================================

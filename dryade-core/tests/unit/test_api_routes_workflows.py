@@ -180,7 +180,7 @@ class TestListWorkflows:
         ):
             from core.api.routes.workflows import list_workflows
 
-            result = await list_workflows(user=_TEST_USER, db=db)
+            result = await list_workflows(status=None, tags=None, offset=0, limit=50, user=_TEST_USER, db=db)
 
         assert result["total"] == 0
         assert result["workflows"] == []
@@ -204,7 +204,7 @@ class TestListWorkflows:
         ):
             from core.api.routes.workflows import list_workflows
 
-            result = await list_workflows(user=_TEST_USER, db=db)
+            result = await list_workflows(status=None, tags=None, offset=0, limit=50, user=_TEST_USER, db=db)
 
         assert result["total"] == 1
         assert len(result["workflows"]) == 1
@@ -225,7 +225,7 @@ class TestListWorkflows:
         ):
             from core.api.routes.workflows import list_workflows
 
-            result = await list_workflows(status="published", user=_TEST_USER, db=db)
+            result = await list_workflows(status="published", tags=None, offset=0, limit=50, user=_TEST_USER, db=db)
 
         # filter should have been called for status
         mock_query.filter.assert_called()

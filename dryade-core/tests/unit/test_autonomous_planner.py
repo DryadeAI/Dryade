@@ -321,6 +321,8 @@ class TestProactiveScheduler:
     @pytest.mark.asyncio
     async def test_schedule_heartbeat(self):
         scheduler = self._make_scheduler()
+        # Mock add_job to avoid APScheduler serialization of instance methods
+        scheduler._scheduler.add_job = MagicMock()
         scheduler.start()
         try:
             job_id = scheduler.schedule_heartbeat("health_check", interval_minutes=60)
@@ -335,6 +337,7 @@ class TestProactiveScheduler:
     @pytest.mark.asyncio
     async def test_schedule_cron(self):
         scheduler = self._make_scheduler()
+        scheduler._scheduler.add_job = MagicMock()
         scheduler.start()
         try:
             job_id = scheduler.schedule_cron("daily_report", "0 7 * * *")
@@ -348,6 +351,7 @@ class TestProactiveScheduler:
     @pytest.mark.asyncio
     async def test_schedule_oneshot(self):
         scheduler = self._make_scheduler()
+        scheduler._scheduler.add_job = MagicMock()
         scheduler.start()
         try:
             run_at = datetime.now(UTC) + timedelta(hours=1)
@@ -362,6 +366,8 @@ class TestProactiveScheduler:
     @pytest.mark.asyncio
     async def test_remove_job(self):
         scheduler = self._make_scheduler()
+        scheduler._scheduler.add_job = MagicMock()
+        scheduler._scheduler.remove_job = MagicMock()
         scheduler.start()
         try:
             job_id = scheduler.schedule_heartbeat("check", interval_minutes=30)
@@ -382,6 +388,9 @@ class TestProactiveScheduler:
     @pytest.mark.asyncio
     async def test_pause_and_resume_job(self):
         scheduler = self._make_scheduler()
+        scheduler._scheduler.add_job = MagicMock()
+        scheduler._scheduler.pause_job = MagicMock()
+        scheduler._scheduler.resume_job = MagicMock()
         scheduler.start()
         try:
             job_id = scheduler.schedule_heartbeat("check", interval_minutes=30)

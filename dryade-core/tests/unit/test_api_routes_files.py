@@ -37,7 +37,7 @@ class TestScanFile:
         clamav_result = _make_scan_result(safe=True, scanner="clamav")
         yara_result = _make_scan_result(safe=True, scanner="yara", scan_time=0.05)
 
-        with patch("core.api.routes.files.scan_file_combined", new_callable=AsyncMock) as mock_scan:
+        with patch("core.extensions.scan_file_combined", new_callable=AsyncMock) as mock_scan:
             mock_scan.return_value = (clamav_result, yara_result)
             from core.api.routes.files import scan_file
 
@@ -58,7 +58,7 @@ class TestScanFile:
         clamav_result = _make_scan_result(safe=False, threats=["Win.Trojan.X"], scanner="clamav")
         yara_result = _make_scan_result(safe=False, threats=["YARA_Rule1"], scanner="yara")
 
-        with patch("core.api.routes.files.scan_file_combined", new_callable=AsyncMock) as mock_scan:
+        with patch("core.extensions.scan_file_combined", new_callable=AsyncMock) as mock_scan:
             mock_scan.return_value = (clamav_result, yara_result)
             from core.api.routes.files import scan_file
 
@@ -87,7 +87,7 @@ class TestScanFile:
 
         from fastapi import HTTPException
 
-        with patch("core.api.routes.files.scan_file_combined", new_callable=AsyncMock) as mock_scan:
+        with patch("core.extensions.scan_file_combined", new_callable=AsyncMock) as mock_scan:
             mock_scan.side_effect = RuntimeError("Scanner unavailable")
             from core.api.routes.files import scan_file
 
@@ -108,7 +108,7 @@ class TestUploadAndScan:
         mock_file.filename = "clean.txt"
         mock_file.read = AsyncMock(return_value=b"hello world")
 
-        with patch("core.api.routes.files.is_file_safe", new_callable=AsyncMock) as mock_safe:
+        with patch("core.extensions.is_file_safe", new_callable=AsyncMock) as mock_safe:
             mock_safe.return_value = (True, [])
             from core.api.routes.files import upload_and_scan
 
@@ -125,7 +125,7 @@ class TestUploadAndScan:
         mock_file.filename = "bad.exe"
         mock_file.read = AsyncMock(return_value=b"malware payload")
 
-        with patch("core.api.routes.files.is_file_safe", new_callable=AsyncMock) as mock_safe:
+        with patch("core.extensions.is_file_safe", new_callable=AsyncMock) as mock_safe:
             mock_safe.return_value = (False, ["Win.Trojan.Generic"])
             from core.api.routes.files import upload_and_scan
 
@@ -162,7 +162,7 @@ class TestListQuarantine:
         mock_scanner = MagicMock()
         mock_scanner._quarantine_dir = Path("/nonexistent/quarantine")
 
-        with patch("core.api.routes.files.get_clamav_scanner", return_value=mock_scanner):
+        with patch("core.extensions.get_clamav_scanner", return_value=mock_scanner):
             from core.api.routes.files import list_quarantine
 
             result = await list_quarantine()
@@ -190,7 +190,7 @@ class TestListQuarantine:
         mock_scanner = MagicMock()
         mock_scanner._quarantine_dir = quarantine_dir
 
-        with patch("core.api.routes.files.get_clamav_scanner", return_value=mock_scanner):
+        with patch("core.extensions.get_clamav_scanner", return_value=mock_scanner):
             from core.api.routes.files import list_quarantine
 
             result = await list_quarantine()
@@ -206,7 +206,7 @@ class TestListQuarantine:
         from fastapi import HTTPException
 
         with patch(
-            "core.api.routes.files.get_clamav_scanner", side_effect=RuntimeError("No scanner")
+            "core.extensions.get_clamav_scanner", side_effect=RuntimeError("No scanner")
         ):
             from core.api.routes.files import list_quarantine
 
@@ -231,7 +231,7 @@ class TestReleaseQuarantined:
 
         from fastapi import HTTPException
 
-        with patch("core.api.routes.files.get_clamav_scanner", return_value=mock_scanner):
+        with patch("core.extensions.get_clamav_scanner", return_value=mock_scanner):
             from core.api.routes.files import release_quarantined
 
             with pytest.raises(HTTPException) as exc_info:
@@ -255,7 +255,7 @@ class TestReleaseQuarantined:
         mock_scanner = MagicMock()
         mock_scanner._quarantine_dir = quarantine_dir
 
-        with patch("core.api.routes.files.get_clamav_scanner", return_value=mock_scanner):
+        with patch("core.extensions.get_clamav_scanner", return_value=mock_scanner):
             from core.api.routes.files import release_quarantined
 
             result = await release_quarantined(file_id="document.pdf")
@@ -276,7 +276,7 @@ class TestReleaseQuarantined:
 
         from fastapi import HTTPException
 
-        with patch("core.api.routes.files.get_clamav_scanner", return_value=mock_scanner):
+        with patch("core.extensions.get_clamav_scanner", return_value=mock_scanner):
             from core.api.routes.files import release_quarantined
 
             with pytest.raises(HTTPException) as exc_info:
@@ -300,7 +300,7 @@ class TestDeleteQuarantined:
 
         from fastapi import HTTPException
 
-        with patch("core.api.routes.files.get_clamav_scanner", return_value=mock_scanner):
+        with patch("core.extensions.get_clamav_scanner", return_value=mock_scanner):
             from core.api.routes.files import delete_quarantined
 
             with pytest.raises(HTTPException) as exc_info:
@@ -320,7 +320,7 @@ class TestDeleteQuarantined:
         mock_scanner = MagicMock()
         mock_scanner._quarantine_dir = quarantine_dir
 
-        with patch("core.api.routes.files.get_clamav_scanner", return_value=mock_scanner):
+        with patch("core.extensions.get_clamav_scanner", return_value=mock_scanner):
             from core.api.routes.files import delete_quarantined
 
             result = await delete_quarantined(file_id="virus.exe")

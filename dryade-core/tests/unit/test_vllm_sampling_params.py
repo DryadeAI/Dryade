@@ -36,7 +36,7 @@ def _create_vllm(settings, inference_params=None, **kwargs):
 class TestVLLMExtraSampling:
     """Test _extra_sampling dict on VLLMBaseLLM instances."""
 
-    @patch("core.extensions.VLLMBaseLLM")
+    @patch("core.providers.vllm_llm.VLLMBaseLLM")
     def test_vllm_receives_extra_sampling(self, mock_vllm, mock_settings):
         """VLLMBaseLLM instance gets _extra_sampling with top_p, top_k, repetition_penalty."""
         instance = MagicMock()
@@ -60,7 +60,7 @@ class TestVLLMExtraSampling:
         assert extra["frequency_penalty"] == 0.3
         assert extra["presence_penalty"] == 0.1
 
-    @patch("core.extensions.VLLMBaseLLM")
+    @patch("core.providers.vllm_llm.VLLMBaseLLM")
     def test_vllm_extra_sampling_excludes_constructor_params(self, mock_vllm, mock_settings):
         """_extra_sampling does NOT contain temperature, max_tokens, timeout, planner_timeout, stop."""
         instance = MagicMock()
@@ -72,7 +72,7 @@ class TestVLLMExtraSampling:
         for excluded in ("temperature", "max_tokens", "timeout", "planner_timeout", "stop"):
             assert excluded not in extra, f"{excluded} should not be in _extra_sampling"
 
-    @patch("core.extensions.VLLMBaseLLM")
+    @patch("core.providers.vllm_llm.VLLMBaseLLM")
     def test_vllm_sampling_params_from_user_config(self, mock_vllm, mock_settings):
         """User-configured top_k=50 and repetition_penalty=1.2 propagate to _extra_sampling."""
         instance = MagicMock()
@@ -87,7 +87,7 @@ class TestVLLMExtraSampling:
         assert extra["top_k"] == 50
         assert extra["repetition_penalty"] == 1.2
 
-    @patch("core.extensions.VLLMBaseLLM")
+    @patch("core.providers.vllm_llm.VLLMBaseLLM")
     def test_vllm_empty_extra_sampling_when_no_extra_params(self, mock_vllm, mock_settings):
         """When only constructor params are present, _extra_sampling is empty or has defaults only."""
         instance = MagicMock()

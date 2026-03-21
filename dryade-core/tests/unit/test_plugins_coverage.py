@@ -610,7 +610,7 @@ class TestPluginManager:
         plugin1 = ConcretePlugin()
         plugin2 = ConcretePlugin()
 
-        with patch("core.plugins.discover_all_plugins", return_value=[plugin1, plugin2]):
+        with patch("core.ee.plugins_ee.discover_all_plugins", return_value=[plugin1, plugin2]):
             with pytest.raises(PluginConflictError):
                 manager.discover()
 

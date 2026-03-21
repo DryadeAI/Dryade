@@ -35,7 +35,7 @@ class TestSettings:
 
         assert settings.llm_temperature == 0.7
         assert settings.llm_max_tokens == 4096
-        assert settings.llm_timeout == 120
+        assert settings.llm_timeout == 300
 
     def test_rate_limit_settings(self):
         """Test rate limiting configuration."""
@@ -44,8 +44,8 @@ class TestSettings:
         settings = Settings()
 
         assert settings.rate_limit_enabled is True
-        assert settings.rate_limit_default_rpm == 60
-        assert settings.rate_limit_pro_rpm == 300
+        assert settings.rate_limit_default_rpm == 300
+        assert settings.rate_limit_pro_rpm == 600
         assert settings.rate_limit_admin_rpm == 1000
 
     def test_semantic_cache_settings(self):

@@ -49,7 +49,7 @@ def _call_create(settings, provider="vllm", inference_params=None, **kwargs):
 class TestFallbackChain:
     """Test the parameter resolution chain: defaults -> env -> user DB -> kwargs."""
 
-    @patch("core.extensions.VLLMBaseLLM")
+    @patch("core.providers.vllm_llm.VLLMBaseLLM")
     def test_fallback_chain_user_db_wins(self, mock_vllm, mock_settings):
         """User DB temperature=0.3 wins over env default 0.5."""
         instance = MagicMock()
@@ -63,7 +63,7 @@ class TestFallbackChain:
             call_kwargs.kwargs.get("temperature") == 0.3 or call_kwargs[1].get("temperature") == 0.3
         )
 
-    @patch("core.extensions.VLLMBaseLLM")
+    @patch("core.providers.vllm_llm.VLLMBaseLLM")
     def test_fallback_chain_env_wins_over_hardcoded(self, mock_vllm, mock_settings):
         """Env llm_temperature=0.5 wins over hardcoded default 0.7."""
         instance = MagicMock()
@@ -76,7 +76,7 @@ class TestFallbackChain:
             call_kwargs.kwargs.get("temperature") == 0.5 or call_kwargs[1].get("temperature") == 0.5
         )
 
-    @patch("core.extensions.VLLMBaseLLM")
+    @patch("core.providers.vllm_llm.VLLMBaseLLM")
     def test_fallback_chain_hardcoded_default(self, mock_vllm):
         """When no env override and no user params, hardcoded default 0.7 is used."""
         instance = MagicMock()
@@ -95,7 +95,7 @@ class TestFallbackChain:
             call_kwargs.kwargs.get("temperature") == 0.7 or call_kwargs[1].get("temperature") == 0.7
         )
 
-    @patch("core.extensions.VLLMBaseLLM")
+    @patch("core.providers.vllm_llm.VLLMBaseLLM")
     def test_explicit_kwargs_override_all(self, mock_vllm, mock_settings):
         """Explicit kwargs temperature=0.1 overrides user DB temperature=0.5."""
         instance = MagicMock()
@@ -116,7 +116,7 @@ class TestFallbackChain:
 class TestProviderFiltering:
     """Test that unsupported params are filtered per provider."""
 
-    @patch("core.extensions.VLLMBaseLLM")
+    @patch("core.providers.vllm_llm.VLLMBaseLLM")
     def test_provider_filtering_vllm(self, mock_vllm, mock_settings):
         """vLLM supports repetition_penalty and frequency_penalty."""
         instance = MagicMock()
