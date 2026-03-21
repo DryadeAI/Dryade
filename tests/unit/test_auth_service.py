@@ -64,6 +64,8 @@ class TestAuthServiceRegister:
         mock_settings.return_value.jwt_secret = "test_secret_key_at_least_32_chars_long"
 
         auth = AuthService(db_session)
+        # First user gets auto-promoted to admin; create a seed user first
+        auth.register("seed@example.com", "password123", "Seed User")
         user = auth.register("test@example.com", "password123", "Test User")
 
         assert user.email == "test@example.com"
