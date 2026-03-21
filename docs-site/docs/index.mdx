@@ -1,0 +1,108 @@
+---
+slug: /
+title: What is Dryade?
+sidebar_position: 1
+---
+
+import FeatureCard from '@site/src/components/FeatureCard';
+
+<div className="hero-section">
+
+# Dryade
+
+**Self-hosted AI orchestration with full data sovereignty.**
+
+Dryade is a platform for teams and developers who need AI capabilities
+without giving up control of their data. Connect your own models, build
+workflows, extend with plugins -- all running on your infrastructure.
+
+</div>
+
+<div className="quick-links">
+  <a href="/getting-started/installation">Get Started</a>
+  <a className="secondary" href="/developer-guide/authentication">API Reference</a>
+  <a className="secondary" href="/plugin-development/structure">Build Plugins</a>
+</div>
+
+## Workspace
+
+![Dryade workspace — chat interface with sidebar navigation, conversation history, model selector, and tool integration](/img/screenshots/workspace-chat.png)
+
+## Architecture Overview
+
+## Core Capabilities
+
+<div className="feature-grid">
+  <FeatureCard
+    icon="&#x1F4AC;"
+    title="AI Chat and Agents"
+    description="Natural language conversations that translate into actions. Create agents that can use tools, access knowledge, and complete multi-step tasks autonomously."
+    link="/using-dryade/chat"
+  />
+  <FeatureCard
+    icon="&#x1F3A8;"
+    title="Visual Workflow Builder"
+    description="Design automation flows with a drag-and-drop canvas. Chain AI steps, approvals, conditionals, and integrations into repeatable workflows."
+    link="/using-dryade/workflows"
+  />
+  <FeatureCard
+    icon="&#x1F50C;"
+    title="MCP Integration"
+    description="Connect any tool via the Model Context Protocol. Dryade discovers and routes to MCP servers automatically, giving your AI access to databases, APIs, and local tools."
+    link="/using-dryade/mcp"
+  />
+  <FeatureCard
+    icon="&#x1F4DA;"
+    title="Knowledge Base"
+    description="Retrieval-augmented generation with your documents. Upload files, build vector indexes, and let your AI ground responses in your actual data."
+    link="/using-dryade/knowledge"
+  />
+  <FeatureCard
+    icon="&#x1F512;"
+    title="Full Data Sovereignty"
+    description="Self-hosted on your infrastructure. Your data never leaves your network. Bring your own models, your own storage, your own rules."
+  />
+  <FeatureCard
+    icon="&#x1F9E9;"
+    title="Plugin Ecosystem"
+    description="Extend Dryade with starter, team, and enterprise plugins. Build your own with the plugin SDK, or install from the marketplace."
+    link="/plugin-development/structure"
+  />
+</div>
+
+<h2 className="section-heading">Who is Dryade for?</h2>
+
+**Development teams** who want AI-assisted workflows without sending proprietary
+code to third-party services. Dryade connects to your local models (vLLM,
+Ollama) or cloud providers -- your choice.
+
+**Organizations with data sovereignty requirements** in regulated industries
+(finance, healthcare, government) where data must stay on-premises. Dryade
+runs entirely on your infrastructure with no external telemetry.
+
+**Platform engineers** building internal AI tools. The plugin system, MCP
+integration, and workflow engine provide the building blocks for
+domain-specific AI applications.
+
+<h2 className="section-heading">Next Steps</h2>
+
+<div className="feature-grid">
+  <FeatureCard
+    icon="&#x1F680;"
+    title="Installation"
+    description="Set up Dryade on your machine or server in under 10 minutes."
+    link="/getting-started/installation"
+  />
+  <FeatureCard
+    icon="&#x26A1;"
+    title="Quick Start"
+    description="Your first conversation, agent, and workflow in 5 minutes."
+    link="/getting-started/quick-start"
+  />
+  <FeatureCard
+    icon="&#x1F4D6;"
+    title="Onboarding Guide"
+    description="A guided walkthrough of every major feature."
+    link="/getting-started/onboarding-guide"
+  />
+</div>

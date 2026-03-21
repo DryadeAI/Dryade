@@ -1,0 +1,30 @@
+{
+  "title": "Santé du système",
+  "subtitle": "Surveiller les dépendances du système et l'état opérationnel",
+  "status": {
+    "healthy": "Système opérationnel",
+    "degraded": "Système dégradé",
+    "unhealthy": "Système défaillant"
+  },
+  "uptime": "Disponibilité : {{time}}",
+  "updatedAgo": "Mis à jour il y a {{seconds}}s",
+  "refresh": "Actualiser",
+  "refreshCooldown": "{{seconds}}s",
+  "errorTitle": "Échec du chargement de l'état de santé",
+  "retry": "Réessayer",
+  "componentStatus": {
+    "healthy": "opérationnel",
+    "degraded": "dégradé",
+    "unhealthy": "défaillant"
+  },
+  "latency": "Latence : {{value}}",
+  "attentionBanner": {
+    "singular": "{{count}} composant nécessite votre attention",
+    "plural": "{{count}} composants nécessitent votre attention"
+  },
+  "categories": {
+    "critical": "Critique",
+    "important": "Important",
+    "optional": "Optionnel"
+  }
+}

@@ -1,0 +1,139 @@
+servers:
+  web-research:
+    enabled: true
+    command:
+    - python
+    - core/mcp/servers/web_research.py
+    description: Web search (DuckDuckGo) and page fetching for agent research — free, no API key
+    timeout: 60.0
+    auto_restart: true
+    max_restarts: 3
+  filesystem:
+    enabled: true
+    command:
+    - npx
+    - --silent
+    - -y
+    - '@modelcontextprotocol/server-filesystem'
+    - /tmp
+    description: Secure file operations with directory access control
+    timeout: 120.0
+    auto_restart: true
+    max_restarts: 3
+  git:
+    enabled: true
+    command:
+    - uvx
+    - mcp-server-git
+    - --repository
+    - .
+    description: Git repository operations (status, diff, commit, branch)
+    auto_restart: true
+    max_restarts: 3
+  memory:
+    enabled: true
+    command:
+    - npx
+    - --silent
+    - -y
+    - '@modelcontextprotocol/server-memory'
+    description: Knowledge graph operations for persistent agent memory
+    auto_restart: true
+    max_restarts: 3
+  github:
+    enabled: false
+    command:
+    - npx
+    - --silent
+    - -y
+    - '@modelcontextprotocol/server-github'
+    env:
+      GITHUB_PERSONAL_ACCESS_TOKEN: ${GITHUB_TOKEN}
+    description: GitHub integration for repositories, issues, pull requests
+    auto_restart: true
+    max_restarts: 3
+    timeout: 60.0
+  context7:
+    enabled: false
+    command:
+    - npx
+    - --silent
+    - -y
+    - '@anthropic/mcp-server-context7'
+    description: Library documentation lookup for up-to-date API references
+    auto_restart: true
+    max_restarts: 3
+    timeout: 30.0
+  playwright:
+    enabled: true
+    command:
+    - npx
+    - --silent
+    - -y
+    - '@playwright/mcp@latest'
+    description: Browser automation for testing, screenshots, web interactions
+    auto_restart: true
+    max_restarts: 3
+    timeout: 120.0
+  linear:
+    enabled: false
+    command:
+    - npx
+    - --silent
+    - -y
+    - '@anthropic/mcp-server-linear'
+    env:
+      LINEAR_API_KEY: ${LINEAR_API_KEY}
+    description: Issue tracking and project management with Linear
+    auto_restart: true
+    max_restarts: 3
+    timeout: 30.0
+  dbhub:
+    enabled: false
+    command:
+    - npx
+    - --silent
+    - -y
+    - '@bytebase/dbhub'
+    env:
+      DSN: ${DBHUB_DSN}
+    description: Database operations for Postgres, MySQL, SQLite, SQL Server, MariaDB
+    auto_restart: true
+    max_restarts: 3
+    timeout: 60.0
+  grafana:
+    enabled: false
+    command:
+    - npx
+    - --silent
+    - -y
+    - '@anthropic/mcp-server-grafana'
+    env:
+      GRAFANA_URL: ${GRAFANA_URL}
+      GRAFANA_API_KEY: ${GRAFANA_API_KEY}
+    description: Observability integration (dashboards, alerts, queries)
+    auto_restart: true
+    max_restarts: 3
+    timeout: 30.0
+  pdf-reader:
+    enabled: true
+    command:
+    - npx
+    - --silent
+    - -y
+    - '@shtse8/pdf-reader-mcp'
+    description: PDF extraction (text, tables, images, structure)
+    auto_restart: true
+    max_restarts: 3
+    timeout: 60.0
+  document-ops:
+    enabled: true
+    command:
+    - npx
+    - --silent
+    - -y
+    - '@negokaz/excel-mcp-server'
+    description: Excel file operations (read, write, create sheets)
+    auto_restart: true
+    max_restarts: 3
+    timeout: 60.0

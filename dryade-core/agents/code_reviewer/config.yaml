@@ -1,0 +1,42 @@
+# Code Reviewer Agent Configuration
+# CrewAI-based agent for code review automation
+
+name: code_reviewer
+version: "1.0.0"
+description: "Analyzes code changes and provides review feedback"
+
+# Framework type - CrewAI multi-tool agent
+framework: crewai
+
+# Required MCP servers for operation
+mcp_servers:
+  - github
+  - context7
+  - git
+
+# Agent persona configuration
+persona:
+  role: "Senior Code Reviewer"
+  goal: "Provide thorough, constructive code reviews focusing on correctness, maintainability, and best practices"
+  backstory: "Expert developer with 15+ years experience reviewing enterprise code"
+
+# Capabilities exposed by this agent
+capabilities:
+  - Review pull requests
+  - Check code against library best practices
+  - Identify potential issues and improvements
+  - Suggest refactoring opportunities
+  - Verify security best practices
+
+# Tool routing keywords
+routing:
+  get_pull_request:
+    keywords: ["pr", "pull request", "review pr", "check pr"]
+  get_library_docs:
+    keywords: ["docs", "documentation", "best practices", "how to"]
+  git_diff:
+    keywords: ["diff", "changes", "modified", "what changed"]
+
+# Default context values
+defaults:
+  repo_path: "."

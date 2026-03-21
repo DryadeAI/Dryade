@@ -1,0 +1,211 @@
+/**
+ * Dryade Documentation Theme
+ * Emerald forest brand colors and custom component styles
+ */
+
+:root {
+  --ifm-color-primary: #5ACD66;
+  --ifm-color-primary-dark: #3DB84A;
+  --ifm-color-primary-darker: #2FA03C;
+  --ifm-color-primary-darkest: #1E7A28;
+  --ifm-color-primary-light: #7DDC86;
+  --ifm-color-primary-lighter: #9DE8A4;
+  --ifm-color-primary-lightest: #BAF0B6;
+  --ifm-code-font-size: 95%;
+  --ifm-font-family-base: 'Inter', system-ui, -apple-system, sans-serif;
+  --docusaurus-highlighted-code-line-bg: rgba(90, 205, 102, 0.1);
+
+  --dryade-bg-light: #f6f9f6;
+  --dryade-card-bg: #ffffff;
+  --dryade-card-border: #d4e5d6;
+  --dryade-text-muted: #5a6b5c;
+}
+
+[data-theme='dark'] {
+  --ifm-color-primary: #5ACD66;
+  --ifm-color-primary-dark: #3DB84A;
+  --ifm-color-primary-darker: #2FA03C;
+  --ifm-color-primary-darkest: #1E7A28;
+  --ifm-color-primary-light: #7DDC86;
+  --ifm-color-primary-lighter: #9DE8A4;
+  --ifm-color-primary-lightest: #BAF0B6;
+  --ifm-background-color: #04130E;
+  --ifm-background-surface-color: #091F13;
+  --docusaurus-highlighted-code-line-bg: rgba(90, 205, 102, 0.15);
+
+  --dryade-bg-light: #04130E;
+  --dryade-card-bg: #112D1A;
+  --dryade-card-border: #1A4025;
+  --dryade-text-muted: #8B9A87;
+}
+
+/* Footer forest background */
+.footer--dark {
+  --ifm-footer-background-color: #04130E;
+  --ifm-footer-color: #adb1a9;
+  --ifm-footer-link-color: #CBD0CA;
+  --ifm-footer-title-color: #BAF0B6;
+}
+
+/* Navbar forest tint in dark mode */
+[data-theme='dark'] .navbar {
+  background-color: #091F13;
+  border-bottom: 1px solid #1A4025;
+}
+
+/* Sidebar dark mode */
+[data-theme='dark'] .menu {
+  background-color: #091F13;
+}
+
+[data-theme='dark'] .menu__link--active:not(.menu__link--sublist) {
+  background-color: #112D1A;
+}
+
+/* Feature card grid */
+.feature-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin: 2rem 0;
+}
+
+.feature-card {
+  background: var(--dryade-card-bg);
+  border: 1px solid var(--dryade-card-border);
+  border-radius: 12px;
+  padding: 1.5rem;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.feature-card:hover {
+  border-color: var(--ifm-color-primary);
+  box-shadow: 0 4px 12px rgba(90, 205, 102, 0.1);
+}
+
+.feature-card__icon {
+  font-size: 2rem;
+  margin-bottom: 0.75rem;
+  line-height: 1;
+}
+
+.feature-card__title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: var(--ifm-heading-color);
+}
+
+.feature-card__description {
+  font-size: 0.925rem;
+  color: var(--dryade-text-muted);
+  line-height: 1.6;
+  margin: 0;
+}
+
+.feature-card a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Video container */
+.video-container {
+  margin: 1.5rem 0;
+}
+
+.video-container video {
+  width: 100%;
+  border-radius: 12px;
+  border: 1px solid var(--dryade-card-border);
+}
+
+.video-container figcaption {
+  text-align: center;
+  font-size: 0.875rem;
+  color: var(--dryade-text-muted);
+  margin-top: 0.5rem;
+}
+
+/* Hero section */
+.hero-section {
+  text-align: center;
+  padding: 3rem 0 2rem;
+}
+
+.hero-section h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.hero-section p {
+  font-size: 1.2rem;
+  color: var(--dryade-text-muted);
+  max-width: 640px;
+  margin: 0 auto 2rem;
+  line-height: 1.6;
+}
+
+/* Quick links section */
+.quick-links {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin: 2rem 0;
+}
+
+.quick-links a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  background: var(--ifm-color-primary);
+  color: #04130E;
+  font-weight: 500;
+  text-decoration: none;
+  transition: opacity 0.2s ease;
+}
+
+.quick-links a:hover {
+  opacity: 0.9;
+  color: #04130E;
+}
+
+.quick-links a.secondary {
+  background: var(--dryade-card-bg);
+  border: 1px solid var(--dryade-card-border);
+  color: var(--ifm-font-color-base);
+}
+
+.quick-links a.secondary:hover {
+  border-color: var(--ifm-color-primary);
+}
+
+/* Code block enhancements */
+.prism-code {
+  border-radius: 8px;
+}
+
+/* Section dividers */
+.section-heading {
+  margin-top: 3rem;
+  margin-bottom: 1rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .hero-section h1 {
+    font-size: 1.75rem;
+  }
+
+  .hero-section p {
+    font-size: 1rem;
+  }
+
+  .feature-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+}

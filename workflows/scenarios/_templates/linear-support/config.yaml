@@ -1,0 +1,25 @@
+name: _templates/linear-support
+display_name: "Linear Support Template"
+description: "Canonical template: start → intake → process → resolve → followup → end. Structural archetype for customer and discord support bots."
+domain: support
+difficulty: intermediate
+version: "1.0.0"
+
+triggers:
+  chat_command: "/template-linear-support"
+  api_endpoint: "/workflow-scenarios/_templates/linear-support/trigger"
+  ui_button:
+    label: "Linear Support"
+    location: "template_page"
+
+inputs: []
+
+outputs:
+  - name: response
+    type: markdown
+
+required_agents: []
+
+observability:
+  metrics_enabled: true
+  log_tool_calls: true

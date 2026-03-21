@@ -1,0 +1,68 @@
+{
+  "greeting": {
+    "morning": "Bonjour",
+    "afternoon": "Bon après-midi",
+    "evening": "Bonsoir"
+  },
+  "subtitle": "Voici ce qui se passe aujourd'hui",
+  "stats": {
+    "totalRequests": "Total des requêtes",
+    "successRate": "Taux de réussite",
+    "activeAgents": "Agents actifs",
+    "queueStatus": "État de la file",
+    "workflows": "Workflows"
+  },
+  "sections": {
+    "recentRequests": "Requêtes récentes",
+    "workflowTemplates": "Modèles de workflow",
+    "systemStatus": "État du système",
+    "quickAccess": "Accès rapide"
+  },
+  "status": {
+    "operational": "Opérationnel",
+    "degraded": "Dégradé",
+    "unhealthy": "Défaillant",
+    "disconnected": "Déconnecté",
+    "unknown": "Inconnu",
+    "registered": "Enregistrés",
+    "empty": "Vide",
+    "pending": "En attente",
+    "stable": "Stable"
+  },
+  "quickActions": {
+    "newChat": "Nouveau chat",
+    "newChatDesc": "Démarrer une conversation",
+    "createWorkflow": "Créer un workflow",
+    "createWorkflowDesc": "Construire une automatisation",
+    "newPlan": "Nouveau plan",
+    "newPlanDesc": "Plans générés par IA",
+    "upload": "Importer",
+    "uploadDesc": "Ajouter des documents",
+    "chatWithAgent": "Discuter avec un agent",
+    "newConversation": "Nouvelle conversation"
+  },
+  "disconnected": {
+    "title": "Backend injoignable",
+    "message": "Le serveur API ne répond pas. Le tableau de bord affichera des données vides jusqu'au rétablissement."
+  },
+  "empty": {
+    "noRequests": "Aucune activité récente",
+    "noRequestsDescription": "L'activité des requêtes apparaîtra ici une fois que vous utiliserez la plateforme.",
+    "noWorkflows": "Pas encore de workflows",
+    "noWorkflowsDescription": "Créez un plan depuis le chat ou construisez un workflow pour démarrer."
+  },
+  "labels": {
+    "api": "API",
+    "agents": "Agents",
+    "queue": "File",
+    "viewMetrics": "Voir les métriques",
+    "viewAllWorkflows": "Voir tous les workflows",
+    "viewSystemHealth": "Voir la santé du système →",
+    "fromTarget": "de l'objectif",
+    "recent": "récents",
+    "total": "Total",
+    "request": "requête",
+    "completed": "terminée",
+    "failed": "échouée"
+  }
+}

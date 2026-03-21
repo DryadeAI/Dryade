@@ -1,0 +1,37 @@
+# Project Manager Agent Configuration
+# Simple agent for task creation and escalation
+
+name: project_manager
+version: "1.0.0"
+description: "Creates tasks and manages escalations for review issues"
+
+# Framework type - MCP-native (no framework overhead)
+framework: mcp
+
+# Optional MCP servers for operation
+mcp_servers:
+  - github
+
+# Agent persona configuration
+persona:
+  role: "Project Manager"
+  goal: "Ensure issues and escalations are properly tracked and communicated"
+  backstory: "Experienced PM focused on process efficiency and clear communication"
+
+# Capabilities exposed by this agent
+capabilities:
+  - Create escalation tasks
+  - Post review comments
+  - Track issue status
+  - Notify team members
+
+# Tool routing keywords
+routing:
+  create_issue:
+    keywords: ["create task", "escalate", "create issue", "open ticket"]
+  comment:
+    keywords: ["comment", "notify", "post", "message"]
+
+# Default context values
+defaults:
+  priority: high

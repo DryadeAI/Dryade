@@ -1,0 +1,61 @@
+# DevOps Engineer Agent Configuration
+# MCP-native agent for DevOps automation
+
+name: devops_engineer
+version: "1.0.0"
+description: "DevOps automation via git, filesystem, and GitHub MCP tools"
+
+# Framework type - MCP native (no external framework)
+framework: mcp
+
+# Required MCP servers for basic operation
+required_servers:
+  - git
+  - filesystem
+
+# Optional MCP servers for extended functionality
+optional_servers:
+  - github
+
+# Capabilities exposed by this agent
+capabilities:
+  git_operations:
+    description: "Git repository operations"
+    tools:
+      - git_status
+      - git_diff
+      - git_log
+      - git_show
+
+  file_operations:
+    description: "File system read operations"
+    tools:
+      - read_file
+      - list_directory
+
+  github_operations:
+    description: "GitHub repository operations (requires authentication)"
+    tools:
+      - github_get_repo
+      - github_list_prs
+      - github_list_issues
+
+# Task routing keywords
+routing:
+  git_status:
+    keywords: ["status", "git status", "repo status"]
+  git_diff:
+    keywords: ["diff", "changes", "modified"]
+  git_log:
+    keywords: ["log", "history", "commits"]
+  read_file:
+    keywords: ["read file", "show file", "cat"]
+  list_directory:
+    keywords: ["list", "directory", "folder", "ls"]
+  deploy_check:
+    keywords: ["deploy", "deployment"]
+
+# Default context values
+defaults:
+  repo_path: "."
+  max_count: 10

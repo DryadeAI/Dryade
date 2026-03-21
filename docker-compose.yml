@@ -1,0 +1,148 @@
+# =============================================================================
+# Dryade Community Docker Compose
+# =============================================================================
+#
+# Default:   docker compose up
+# With GPU:  docker compose --profile gpu up
+#
+# Prerequisites:
+#   1. Copy .env.example to .env: cp .env.example .env
+#   2. Set DRYADE_JWT_SECRET in .env: openssl rand -hex 32
+#   3. Configure your LLM provider in .env
+#
+# Services:
+#   - dryade     Backend API (FastAPI)
+#   - frontend   Web UI (React + nginx)
+#   - postgres   PostgreSQL 16 database
+#   - vllm       Local LLM inference (GPU profile, optional)
+#
+# =============================================================================
+
+services:
+  # ---------------------------------------------------------------------------
+  # PostgreSQL — Primary Database
+  # ---------------------------------------------------------------------------
+  postgres:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: dryade
+      POSTGRES_USER: dryade
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-dryade}
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U dryade -d dryade"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+
+  # ---------------------------------------------------------------------------
+  # Dryade Backend — FastAPI application server
+  # ---------------------------------------------------------------------------
+  dryade:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    ports:
+      - "${DRYADE_PORT:-8080}:8080"
+      - "9471:9471"
+    env_file:
+      - .env
+    environment:
+      DRYADE_DATABASE_URL: "postgresql+psycopg://dryade:${POSTGRES_PASSWORD:-dryade}@postgres:5432/dryade"
+      DRYADE_ALLOWLIST_PATH: "/app/data/allowed-plugins.json"
+      DRYADE_TOFU_KEY_DIR: "/app/data"
+      DRYADE_PLUGINS_DIR: "/app/dryade-plugins"
+      DRYADE_QDRANT_URL: "http://172.17.0.1:6333"
+      DRYADE_INTERNAL_API_HOST: "0.0.0.0"
+    depends_on:
+      postgres:
+        condition: service_healthy
+    volumes:
+      - dryade-data:/app/data
+      - ./dryade-plugins:/app/dryade-plugins:ro
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/api/health"]
+      interval: 30s
+      timeout: 5s
+      retries: 5
+      start_period: 60s
+
+  # ---------------------------------------------------------------------------
+  # Frontend — React web interface served by nginx
+  # ---------------------------------------------------------------------------
+  frontend:
+    build:
+      context: .
+      dockerfile: dryade-workbench/Dockerfile
+      args:
+        VITE_API_BASE_URL: "/api"
+    restart: unless-stopped
+    ports:
+      - "${FRONTEND_PORT:-3000}:80"
+    depends_on:
+      dryade:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD-SHELL", "curl -fsS http://localhost:80/ >/dev/null"]
+      interval: 30s
+      timeout: 5s
+      retries: 5
+      start_period: 15s
+
+  # ---------------------------------------------------------------------------
+  # vLLM — Local GPU inference (optional, requires NVIDIA GPU)
+  #
+  # Start with: docker compose --profile gpu up
+  # Configure VLLM_MODEL in .env to change the model
+  # ---------------------------------------------------------------------------
+  vllm:
+    profiles: ["gpu"]
+    image: vllm/vllm-openai:latest
+    runtime: nvidia
+    ipc: host
+    ports:
+      - "127.0.0.1:8000:8000"
+    environment:
+      NVIDIA_VISIBLE_DEVICES: "all"
+      NVIDIA_DRIVER_CAPABILITIES: "compute,utility"
+      HF_HOME: /root/.cache/huggingface
+    volumes:
+      - vllm-cache:/root/.cache/huggingface
+    command:
+      - --model
+      - ${VLLM_MODEL:-Qwen/Qwen3-8B}
+      - --served-model-name
+      - local-llm
+      - --host
+      - "0.0.0.0"
+      - --port
+      - "8000"
+      - --gpu-memory-utilization
+      - "0.85"
+      - --max-model-len
+      - "8192"
+      - --enable-auto-tool-choice
+      - --tool-call-parser
+      - hermes
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f http://localhost:8000/v1/models || exit 1"]
+      interval: 30s
+      timeout: 5s
+      retries: 40
+      start_period: 300s
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
+
+volumes:
+  pgdata:
+  dryade-data:
+  vllm-cache:

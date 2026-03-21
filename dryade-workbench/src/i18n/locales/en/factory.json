@@ -1,0 +1,48 @@
+{
+  "title": "Factory",
+  "subtitle": "Manage factory-created agents, tools, and skills",
+  "createArtifact": "Create Artifact",
+  "searchPlaceholder": "Search artifacts...",
+  "typeFilter": {
+    "all": "All",
+    "agent": "Agent",
+    "tool": "Tool",
+    "skill": "Skill"
+  },
+  "statusFilter": {
+    "allStatuses": "All statuses"
+  },
+  "emptyState": {
+    "title": "No factory artifacts yet",
+    "description": "Create agents, tools, and skills from natural language goals.",
+    "noMatchTitle": "No artifacts match your filters",
+    "noMatchDescription": "Try different keywords or clear your filters",
+    "clearFilters": "Clear filters"
+  },
+  "toast": {
+    "loadFailed": "Failed to load factory artifacts",
+    "deleted": "Artifact \"{{name}}\" deleted",
+    "deleteFailed": "Failed to delete artifact",
+    "updated": "Artifact \"{{name}}\" updated",
+    "updateFailed": "Failed to update artifact",
+    "rolledBack": "Artifact \"{{name}}\" rolled back to v{{version}}",
+    "rollbackFailed": "Failed to rollback artifact"
+  },
+  "detail": {
+    "type": "Type",
+    "framework": "Framework",
+    "version": "Version",
+    "trigger": "Trigger",
+    "triggerManual": "manual",
+    "created": "Created",
+    "updated": "Updated",
+    "testResults": "Test Results",
+    "testPassed": "Passed",
+    "testFailed": "Failed",
+    "iteration": "{{count}} iteration",
+    "iterations": "{{count}} iterations",
+    "configuration": "Configuration",
+    "artifactPath": "Artifact Path",
+    "tags": "Tags"
+  }
+}

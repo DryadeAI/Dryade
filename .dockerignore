@@ -1,0 +1,46 @@
+# Git
+.git
+.gitmodules
+
+# Planning and internal docs
+.planning
+.claude
+internal-docs
+.sync
+
+# Submodules not needed for backend build
+dryade-plugins
+dryade-plugin-manager
+dryade-market
+
+# Frontend (built separately via its own Dockerfile)
+dryade-workbench/node_modules
+dryade-workbench/dist
+dryade-workbench/.next
+
+# Python artifacts
+__pycache__
+*.pyc
+.venv
+.mypy_cache
+.pytest_cache
+.ruff_cache
+
+# Test/dev artifacts
+playwright-report
+test-results
+.playwright-cli
+*.png
+*.jpg
+
+# Documentation site (not needed in runtime image)
+docs-site/node_modules
+docs-site/.docusaurus
+docs-site/build
+
+# Misc
+*.md
+!README.md
+LICENSE*
+.env
+.env.*

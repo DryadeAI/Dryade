@@ -1,0 +1,35 @@
+# Pre-commit configuration for Dryade (community)
+#
+# Install:
+#   pip install pre-commit
+#   pre-commit install
+#   pre-commit install --hook-type pre-push
+#
+# Run all:  pre-commit run --all-files
+
+repos:
+  # --- Python lint & format (pre-commit stage) ---
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.14.13
+    hooks:
+      - id: ruff
+        args: ["--fix"]
+      - id: ruff-format
+
+  # --- TypeScript lint (pre-commit stage) ---
+  - repo: local
+    hooks:
+      - id: eslint-workbench
+        name: ESLint (workbench)
+        entry: bash -c 'cd dryade-workbench && npx eslint . --fix'
+        language: system
+        pass_filenames: false
+        files: 'dryade-workbench/.*\.(ts|tsx)$'
+
+  # --- Secret scanning (pre-push stage) ---
+  - repo: https://github.com/gitleaks/gitleaks
+    rev: v8.24.2
+    hooks:
+      - id: gitleaks
+        stages: [pre-push]
+        args: ["--config", ".gitleaks.toml"]

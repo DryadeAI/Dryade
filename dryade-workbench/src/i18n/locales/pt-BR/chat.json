@@ -1,0 +1,78 @@
+{
+  "escalation": {
+    "needHelp": "**Preciso da sua ajuda:**",
+    "howToProceed": "Como você gostaria de prosseguir?",
+    "autoFixHint": "Responda **sim** para aplicar esta correção automaticamente, ou **não** para pular.",
+    "suggestedFix": "_Correção sugerida: {{description}}_"
+  },
+  "header": {
+    "thinkingEnabled": "Thinking enabled",
+    "enableReasoning": "Enable reasoning (for thinking models)",
+    "search": "Search (Ctrl+F)",
+    "exportConversation": "Export conversation",
+    "share": "Share",
+    "searchPlaceholder": "Search messages...",
+    "found": "{{count}} found",
+    "showAllDetails": "Show all details",
+    "hideDetails": "Hide details"
+  },
+  "messages": {
+    "thinking": "Thinking...",
+    "thinkingLabel": "Thinking",
+    "agentCount": "{{count}} agent",
+    "agentCount_other": "{{count}} agents",
+    "responseFailed": "Response failed",
+    "retry": "Retry",
+    "cancel": "Cancel",
+    "save": "Save",
+    "goodResponse": "Good response",
+    "badResponse": "Bad response",
+    "copied": "Copied!",
+    "copy": "Copy",
+    "edit": "Edit",
+    "regenerate": "Regenerate",
+    "delete": "Delete",
+    "renderedView": "Rendered view",
+    "rawView": "Raw view",
+    "toolOutput": "Tool Output",
+    "agent": "Agent",
+    "justNow": "just now"
+  },
+  "sidebar": {
+    "menu": "Menu",
+    "chat": "Chat",
+    "newChat": "New Chat",
+    "searchPlaceholder": "Search conversations...",
+    "today": "Today",
+    "yesterday": "Yesterday",
+    "thisWeek": "This Week",
+    "older": "Older",
+    "noConversationsFound": "No conversations found",
+    "noConversationsYet": "No conversations yet",
+    "messageCount": "{{count}} messages",
+    "theme": "Theme"
+  },
+  "input": {
+    "placeholder": "Message Dryade... (/ for commands)",
+    "defaultPlaceholder": "Type / for commands...",
+    "attachFile": "Attach file",
+    "fileAttachmentComingSoon": "File attachment coming soon",
+    "noCommandsFound": "No commands found",
+    "commandNotFound": "Command \"{{name}}\" not found",
+    "didYouMean": "Did you mean: {{suggestions}}?",
+    "typeSlashForCommands": "Type / to see available commands",
+    "tabComplete": "complete",
+    "enterSelect": "select",
+    "escCancel": "cancel"
+  },
+  "page": {
+    "howCanIHelp": "How can I help?",
+    "emptyStateDescription": "Build workflows, configure agents, analyze data, or ask questions.",
+    "scrollToLatest": "Scroll to latest",
+    "streamError": "Stream error",
+    "failedToSend": "Failed to send message",
+    "connectionError": "Please check your connection and try again.",
+    "userRole": "User",
+    "agentRole": "Agent"
+  }
+}

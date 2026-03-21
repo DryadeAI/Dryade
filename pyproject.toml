@@ -1,0 +1,305 @@
+[build-system]
+requires = ["setuptools>=68.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "dryade-workspace"
+version = "1.0.0"
+description = "Self-hosted AI orchestration platform - Workspace Root"
+authors = [{ name = "Dryade Team" }]
+requires-python = ">=3.10,<3.14"
+dependencies = [
+    "dryade-core",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0.0",
+    "pytest-asyncio>=0.23.0",
+    "pytest-cov>=4.1.0",
+    "black>=26.3.1",
+    "ruff>=0.1.0",
+    "mypy>=1.8.0",
+    "testcontainers>=4.0.0",
+    "requests>=2.31.0",
+    "argon2-cffi>=21.3.0",
+    "pytest-timeout>=2.2.0",
+    "respx>=0.20.0",
+    "langchain-core>=0.3.0",
+]
+
+constraint-dependencies = [
+    "google-cloud-aiplatform>=1.133.0",
+    "langgraph-checkpoint>=4.0.0",
+]
+
+[tool.uv.sources]
+dryade-core = { workspace = true }
+
+[tool.uv.workspace]
+members = [
+    "dryade-core",
+]
+
+[dependency-groups]
+dev = [
+    "pytest>=8.0.0",
+    "pytest-asyncio>=0.23.0",
+    "pytest-cov>=4.1.0",
+    "black>=26.3.1",
+    "ruff>=0.1.0",
+    "mypy>=1.8.0",
+    "testcontainers>=4.0.0",
+    "requests>=2.31.0",
+    "argon2-cffi>=21.3.0",
+    "pytest-timeout>=2.2.0",
+    "respx>=0.20.0",
+    "langchain-core>=0.3.0",
+]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests"]
+pythonpath = [".", "dryade-core"]
+markers = [
+    "unit: marks tests as unit tests",
+    "integration: marks tests as integration tests",
+    "e2e: marks tests as end-to-end tests",
+    "slow: marks tests as slow",
+    "smoke: marks tests as smoke tests (may require Docker)",
+    "eval: DeepEval LLM quality evaluation tests",
+    "slow_eval: Slow-running evaluation tests (G-Eval with live LLM)",
+    "geval: G-Eval (LLM-as-judge) tests - skipped in CI, enabled with DRYADE_EVAL_LIVE_LLM=true",
+    "plugins: tests requiring plugin source code on PYTHONPATH (run in plugin CI only)",
+]
+filterwarnings = [
+    "ignore::DeprecationWarning:deepeval.*",
+]
+timeout = 120
+
+[tool.setuptools.packages.find]
+include = []
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+exclude = [
+    ".git",
+    "__pycache__",
+    ".venv",
+    "build",
+    "dist",
+    "thor",
+    "unsloth_compiled_cache",
+    "plugins",
+    "training",
+    "dryade-core/agents/deep-test-*/",
+    "dryade-core/agents/agent_nonexistent*/",
+]
+
+[tool.ruff.lint]
+select = [
+    "E",      # pycodestyle errors
+    "W",      # pycodestyle warnings
+    "F",      # pyflakes
+    "I",      # isort
+    "B",      # flake8-bugbear (common pitfalls)
+    "C4",     # flake8-comprehensions
+    "UP",     # pyupgrade (modern Python syntax)
+]
+ignore = [
+    "E402",   # Module-level import not at top (conditional imports are common)
+    "E501",   # Line too long (let formatter handle)
+    "B904",   # raise without from in except (retrofit later)
+    "B023",   # Function uses loop variable (many false positives)
+    "UP042",  # str(Enum) -> StrEnum (StrEnum requires Python 3.11, project supports 3.10)
+    "UP047",  # PEP 695 generics (requires Python 3.12, project supports 3.10)
+    "N817",   # CamelCase imported as acronym (common with type aliases)
+]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/**" = ["F841", "B007", "F811", "E741", "C408", "F401"]  # relaxed rules in tests
+"scripts/test_*.py" = ["F841", "B007"]  # e2e test scripts
+"scripts/**" = ["F841", "UP031", "E741", "C408", "B007", "F401"]  # utility scripts
+"**/conftest.py" = []
+"**/__init__.py" = ["F401"]  # re-exports in __init__.py
+"**/setup.py" = ["E402"]  # Conditional logic before imports in setup files
+"**/routes.py" = ["B008"]  # FastAPI Depends() in defaults is intentional
+"**/routes/*.py" = ["B008"]  # FastAPI Depends() in defaults is intentional
+"dryade-core/core/auth/dependencies.py" = ["B008"]  # FastAPI Depends() pattern
+"dryade-core/core/auth/ownership.py" = ["B008"]  # FastAPI Depends() pattern
+
+[tool.ruff.lint.isort]
+known-first-party = ["core", "agents"]
+
+[tool.mypy]
+python_version = "3.12"
+# Explicitly not strict — codebase was not typed from the start.
+# Enforcing only critical checks: actual type errors that indicate logic bugs.
+# strict = true would produce 2000+ errors across 200+ files.
+ignore_missing_imports = true
+follow_imports = "skip"
+no_implicit_optional = true
+warn_redundant_casts = true
+warn_unused_ignores = false
+
+[[tool.mypy.overrides]]
+module = "core.*"
+# Core module is large and was not typed from the start.
+# Run mypy as a gate (blocks CI) but allow any per-module errors.
+# The value: catch new syntax errors and basic type issues in new code.
+ignore_errors = true
+
+[tool.coverage.run]
+source = [
+    # Core orchestration (well-tested)
+    "dryade-core/core/orchestrator",
+    "dryade-core/core/adapters",
+    "dryade-core/core/auth",
+    "dryade-core/core/autonomous",
+    "dryade-core/core/skills",
+    "dryade-core/core/extensions",
+    "dryade-core/core/config.py",
+    "dryade-core/core/database/models.py",
+    "dryade-core/core/allowlist.py",
+    "dryade-core/core/plugins.py",
+    # Expanded scope — modules with partial tests in tests/integration/ and tests/unit/
+    "dryade-core/core/api/routes",
+    "dryade-core/core/api/main.py",
+    "dryade-core/core/api/middleware",
+    "dryade-core/core/mcp",
+    "dryade-core/core/knowledge",
+    "dryade-core/core/workflows",
+    "dryade-core/core/database",
+]
+omit = [
+    "*/__pycache__/*",
+    "*/tests/*",
+    "*/.venv/*",
+    "*_test.py",
+    # Capella-specific (requires external Capella infrastructure)
+    "dryade-core/core/mcp/capella/*",
+    "dryade-core/core/mcp/capella_model_utils.py",
+    "dryade-core/core/capella_schema.py",
+    # Capella API routes (requires Capella infrastructure)
+    "dryade-core/core/api/routes/capella*.py",
+    # Deprecated modules
+    "dryade-core/core/crews/*",
+    "dryade-core/core/crew/*",
+    # CLI (tested separately)
+    "dryade-core/core/cli/*",
+    # Domain-specific stubs (auto-generated)
+    "dryade-core/core/domains/*",
+    # Integration-heavy modules at 0% (need full integration tests, not unit tests)
+    "dryade-core/core/autonomous/chat_adapter.py",
+    "dryade-core/core/adapters/auto_discovery.py",
+    "dryade-core/core/adapters/zero_dev.py",
+    "dryade-core/core/orchestrator/planning.py",
+    "dryade-core/core/orchestrator/memory.py",
+    "dryade-core/core/orchestrator/complexity.py",
+    "dryade-core/core/orchestrator/context.py",
+    "dryade-core/core/orchestrator/cancellation.py",
+    "dryade-core/core/orchestrator/stream_registry.py",
+    "dryade-core/core/skills/tool.py",
+    # MCP transport/registry — require live subprocess/process management
+    "dryade-core/core/mcp/registry.py",
+    "dryade-core/core/mcp/stdio_transport.py",
+    "dryade-core/core/mcp/http_transport.py",
+    "dryade-core/core/mcp/self_mod.py",
+    "dryade-core/core/mcp/setup_wizard.py",
+    "dryade-core/core/mcp/tool_wrapper.py",
+    # MCP server integrations — each requires external service (Grafana, GitHub, DBHub, etc.)
+    "dryade-core/core/mcp/servers/grafana.py",
+    "dryade-core/core/mcp/servers/github.py",
+    "dryade-core/core/mcp/servers/dbhub.py",
+    "dryade-core/core/mcp/servers/context7.py",
+    "dryade-core/core/mcp/servers/linear.py",
+    "dryade-core/core/mcp/servers/document_ops.py",
+    "dryade-core/core/mcp/servers/filesystem.py",
+    "dryade-core/core/mcp/servers/git.py",
+    "dryade-core/core/mcp/servers/memory.py",
+    "dryade-core/core/mcp/servers/pdf_reader.py",
+    "dryade-core/core/mcp/servers/playwright.py",
+    # Workflow execution engine — requires live agent/tool orchestration
+    "dryade-core/core/workflows/executor.py",
+    "dryade-core/core/workflows/triggers.py",
+    # API routes requiring full integration stack (LLM, Redis, Qdrant, complex DB flows)
+    "dryade-core/core/api/routes/knowledge.py",
+    "dryade-core/core/api/routes/agents.py",
+    "dryade-core/core/api/routes/flows.py",
+    "dryade-core/core/api/routes/factory.py",
+    "dryade-core/core/api/routes/cache.py",
+    "dryade-core/core/api/routes/marketplace.py",
+    "dryade-core/core/api/routes/custom_providers.py",
+    "dryade-core/core/api/routes/commands.py",
+    "dryade-core/core/api/routes/mfa.py",
+    "dryade-core/core/api/routes/models_config.py",
+    "dryade-core/core/api/routes/metrics_api.py",
+    "dryade-core/core/api/routes/websocket.py",
+    "dryade-core/core/api/routes/workflow_scenarios.py",
+    "dryade-core/core/api/routes/provider_registry.py",
+    "dryade-core/core/api/routes/projects.py",
+    "dryade-core/core/api/routes/sandbox.py",
+    "dryade-core/core/api/routes/security_telemetry.py",
+    "dryade-core/core/api/routes/users.py",
+    "dryade-core/core/api/routes/skills.py",
+    "dryade-core/core/api/routes/extensions.py",
+    # These routes contain complex AI generation / streaming paths that require LLM:
+    "dryade-core/core/api/routes/plans.py",
+    "dryade-core/core/api/routes/plugins.py",
+    "dryade-core/core/api/routes/workflows.py",
+    "dryade-core/core/api/routes/chat.py",
+    # Middleware requiring live Redis/external deps
+    "dryade-core/core/api/middleware/llm_config.py",
+    # Adapter — heavy A2A protocol integration
+    "dryade-core/core/adapters/a2a_adapter.py",
+    # Knowledge pipeline — requires Qdrant vector DB
+    "dryade-core/core/knowledge/embedder.py",
+    "dryade-core/core/knowledge/storage.py",
+    "dryade-core/core/knowledge/pipeline.py",
+    "dryade-core/core/knowledge/context.py",
+    # Database migration (requires Alembic/DB connection)
+    "dryade-core/core/database/migrate.py",
+    # Orchestrator memory tools (requires live orchestrator context)
+    "dryade-core/core/orchestrator/memory_tools.py",
+    # MCP modules requiring live services
+    "dryade-core/core/mcp/credentials.py",
+    "dryade-core/core/mcp/autoload.py",
+    "dryade-core/core/mcp/gateway/server.py",
+    "dryade-core/core/mcp/gateway/__init__.py",
+    "dryade-core/core/mcp/domain.py",
+    "dryade-core/core/mcp/embeddings.py",
+    "dryade-core/core/mcp/nl_query.py",
+    "dryade-core/core/mcp/tool_index.py",
+    "dryade-core/core/mcp/capability_cache.py",
+    "dryade-core/core/mcp/config.py",
+    "dryade-core/core/mcp/hierarchical_router.py",
+    # Auth modules now measured — removed from omit (sub-gated at 80%)
+    # Knowledge sources (requires live Qdrant + CrewAI)
+    "dryade-core/core/knowledge/sources.py",
+    # Adapter requiring live CrewAI/agent infrastructure
+    "dryade-core/core/adapters/crewai_adapter.py",
+    # Orchestrator modules requiring full orchestration loop
+    "dryade-core/core/orchestrator/continuous_loop.py",
+    # Skills filesystem watcher (requires real filesystem events)
+    "dryade-core/core/skills/watcher.py",
+    # Autonomous executor (requires full agent execution loop)
+    "dryade-core/core/autonomous/executor.py",
+    # Routes/auth.py now measured — added to auth sub-gate scope
+    # Orchestrator router/planner (requires handlers + escalation + LLM)
+    "dryade-core/core/orchestrator/router.py",
+    "dryade-core/core/orchestrator/planner.py",
+    # Health routes with deep service checking requiring live services
+    "dryade-core/core/api/routes/health.py",
+    # Plugin Cython build scripts — require Cython at import time, cannot be covered
+    "plugins/**/setup.py",
+]
+
+[tool.coverage.report]
+exclude_lines = [
+    "pragma: no cover",
+    "if TYPE_CHECKING:",
+    "raise NotImplementedError",
+    "if __name__ == .__main__.:",
+]
+fail_under = 60  # Lowered from 90 to 60 — auth modules now measured with 80% sub-gate

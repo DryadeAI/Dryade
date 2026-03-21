@@ -1,0 +1,39 @@
+name: workflow_example
+display_name: "Workflow Patterns Reference"
+description: "Developer reference template demonstrating Dryade workflow patterns: conditional branching, parallel execution, and error handling"
+domain: dev
+difficulty: intermediate
+version: "1.0.0"
+template_ref: "_templates/linear-support"
+
+triggers:
+  chat_command: "/workflow-demo"
+  api_endpoint: "/workflow-scenarios/workflow_example/trigger"
+  ui_button:
+    label: "Run Workflow Demo"
+    location: "developer_page"
+
+inputs:
+  - name: task_description
+    type: string
+    required: true
+    description: "Describe the task to process"
+  - name: priority
+    type: string
+    required: false
+    description: "Task priority level: low, normal, or high"
+    default: "normal"
+
+outputs:
+  - name: result
+    type: markdown
+  - name: execution_trace
+    type: json
+
+required_agents:
+  - research_assistant
+  - document_processor
+
+observability:
+  metrics_enabled: true
+  log_tool_calls: true

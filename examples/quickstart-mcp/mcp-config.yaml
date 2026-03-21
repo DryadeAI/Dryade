@@ -1,0 +1,21 @@
+# MCP Server Configuration
+#
+# Dryade connects to MCP servers defined here on startup.
+# Each server exposes tools that the AI can discover and use automatically.
+#
+# See https://dryade.ai/docs/using-dryade/mcp for full documentation.
+# See https://modelcontextprotocol.io/servers for available MCP servers.
+
+servers:
+  filesystem:
+    enabled: true
+    command:
+      - npx
+      - --silent
+      - -y
+      - "@modelcontextprotocol/server-filesystem"
+      - /workspace
+    description: "Secure file operations with directory access control"
+    timeout: 120.0
+    auto_restart: true
+    max_restarts: 3

@@ -1,0 +1,50 @@
+name: customer_onboarding
+display_name: "Customer Onboarding Workflow"
+description: "Structured onboarding with contract processing, account setup, integration verification, and training coordination"
+domain: sales
+version: "1.0.0"
+
+triggers:
+  chat_command: "/onboard-customer"
+  api_endpoint: "/workflow-scenarios/customer_onboarding/trigger"
+  ui_button:
+    label: "Start Onboarding"
+    location: "customers_page"
+
+inputs:
+  - name: contract_file
+    type: file
+    required: true
+    description: "Signed contract document (PDF)"
+  - name: customer_name
+    type: string
+    required: true
+    description: "Customer/company name"
+  - name: primary_contact_email
+    type: string
+    required: true
+    description: "Primary contact email address"
+  - name: subscription_tier
+    type: string
+    required: false
+    description: "Subscription tier (starter, professional, enterprise)"
+    default: "professional"
+
+outputs:
+  - name: onboarding_status
+    type: json
+  - name: account_details
+    type: json
+  - name: training_schedule
+    type: json
+
+required_agents:
+  - document_processor
+  - project_manager
+  - devops_engineer
+  - sales_intelligence
+
+observability:
+  metrics_enabled: true
+  log_tool_calls: true
+  track_costs: true

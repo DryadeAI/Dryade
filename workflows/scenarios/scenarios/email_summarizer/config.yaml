@@ -1,0 +1,33 @@
+name: email_summarizer
+display_name: "Email Daily Digest"
+description: "Summarize a batch of emails into a daily digest with action items"
+domain: productivity
+difficulty: beginner
+version: "1.0.0"
+template_ref: "_templates/linear-2task"
+
+triggers:
+  chat_command: "/summarize-emails"
+  api_endpoint: "/workflow-scenarios/email_summarizer/trigger"
+  ui_button:
+    label: "Summarize Emails"
+    location: "inbox_page"
+
+inputs:
+  - name: email_content
+    type: string
+    required: true
+    description: "Raw email text or pasted email batch"
+
+outputs:
+  - name: summary
+    type: markdown
+  - name: action_items
+    type: json
+
+required_agents:
+  - document_processor
+
+observability:
+  metrics_enabled: true
+  log_tool_calls: true

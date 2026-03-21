@@ -1,0 +1,11 @@
+{
+  "name": "security_incident_responder",
+  "framework": "crewai",
+  "description": "Automated security incident response agent that triages alerts from SIEM and EDR systems, correlates indicators of compromise, contains threats, and generates forensic timelines for post-incident review.",
+  "version": "1.0.0",
+  "factory_created": true,
+  "entry_point": "__init__.py",
+  "run_function": "run",
+  "mcp_servers": ["splunk-mcp-server", "crowdstrike-mcp-server", "jira-mcp-server", "slack-mcp-server"],
+  "capabilities": ["SIEM alert triage with automated severity classification and false-positive filtering", "Indicator of compromise (IOC) correlation across network logs, endpoint telemetry, and threat intel feeds", "Automated containment actions: isolate hosts, block IPs, disable compromised accounts, revoke tokens", "Forensic timeline generation with event sequencing from initial access through lateral movement", "Threat intelligence enrichment via MITRE ATT&CK mapping and known campaign attribution", "Incident documentation with auto-generated executive summaries and technical deep-dives", "Playbook execution for common incident types: phishing, ransomware, credential stuffing, data exfiltration", "Post-incident metrics tracking: MTTD, MTTR, blast radius, and remediation completeness"]
+}

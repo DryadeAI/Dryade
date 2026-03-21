@@ -1,0 +1,128 @@
+# Final Coverage Report - Phase 51 Plan 04
+# Generated: 2026-01-28
+# Test Coverage Improvement Phase Completion
+
+## Executive Summary
+
+Overall Coverage: 36% (7,593 covered / 21,174 total lines)
+Target Threshold: 40% (configured in pyproject.toml)
+
+Note: While overall coverage remains at 36%, significant improvements were made
+in targeted critical modules during Phase 51.
+
+## Targeted Module Improvements
+
+### Adapters (Plan 51-02) - EXCELLENT
+| Module                       | Coverage | Status |
+|------------------------------|----------|--------|
+| core/adapters/__init__.py    | 100%     | GREEN  |
+| core/adapters/a2a_adapter.py | 96%      | GREEN  |
+| core/adapters/adk_adapter.py | 80%      | GOOD   |
+| core/adapters/crewai_adapter.py | 94%   | GREEN  |
+| core/adapters/langchain_adapter.py | 100% | GREEN |
+| core/adapters/protocol.py    | 92%      | GREEN  |
+| core/adapters/registry.py    | 100%     | GREEN  |
+| **Average**                  | **94.6%**| GREEN  |
+
+### Extensions (Plan 51-03) - EXCELLENT
+| Module                         | Coverage | Status |
+|--------------------------------|----------|--------|
+| core/extensions/__init__.py    | 100%     | GREEN  |
+| core/extensions/classifier.py  | 87%      | GOOD   |
+| core/extensions/context.py     | 100%     | GREEN  |
+| core/extensions/events.py      | 97%      | GREEN  |
+| core/extensions/pipeline.py    | 99%      | GREEN  |
+| core/extensions/state.py       | 80%      | GOOD   |
+| core/extensions/latency_tracker.py | 52%  | FAIR   |
+| core/extensions/request_queue.py | 52%    | FAIR   |
+| core/extensions/decorator.py   | 19%      | POOR   |
+| **Average**                    | **76.2%**| GOOD   |
+
+### API Routes (Plan 51-04) - IMPROVED
+| Module                         | Coverage | Status |
+|--------------------------------|----------|--------|
+| core/api/routes/agents.py      | 97%      | GREEN  |
+| core/api/routes/extensions.py  | 75%      | GOOD   |
+| core/api/routes/workflows.py   | 56%      | FAIR   |
+| core/api/routes/auth.py        | 84%      | GOOD   |
+| core/api/routes/health.py      | 84%      | GOOD   |
+| core/api/routes/flows.py       | 71%      | GOOD   |
+| core/api/routes/knowledge.py   | 61%      | FAIR   |
+| core/api/routes/chat.py        | 24%      | POOR   |
+
+## Integration Test Summary
+
+New integration tests added in Plan 51-04:
+
+1. **test_api_agents.py** - 19 tests
+   - List agents (empty, multiple, framework filtering)
+   - Get agent details, tools, describe
+   - Agent invocation with error handling
+   - Capability and framework filtering
+
+2. **test_api_workflows.py** - 37 tests
+   - CRUD operations (create, read, update, delete)
+   - Pagination and filtering
+   - Workflow lifecycle (publish, clone, execute)
+   - Validation errors and not-found handling
+
+3. **test_api_extensions.py** - 20 tests
+   - Extension status with health checks
+   - Extension metrics with time windows
+   - Extension timeline with pagination
+   - Extension configuration
+   - Error handling and mocked registry
+
+## Bug Fixes
+
+During this phase, fixed:
+1. Rate limit middleware not respecting DRYADE_RATE_LIMIT_ENABLED env var
+   - File: core/api/middleware/rate_limit.py
+   - Change: Added os.getenv() check for environment variable
+
+## Test Counts
+
+| Test Suite                    | Tests | Pass | Fail |
+|-------------------------------|-------|------|------|
+| tests/integration/test_api_agents.py | 19 | 19 | 0 |
+| tests/integration/test_api_workflows.py | 37 | 37 | 0 |
+| tests/integration/test_api_extensions.py | 20 | 20 | 0 |
+| **New Integration Tests Total** | **76** | **76** | **0** |
+
+## Coverage Trend
+
+| Date       | Overall | Adapters | Extensions | Notes                    |
+|------------|---------|----------|------------|--------------------------|
+| 2026-01-28 | 36%     | 80-100%  | 52-74%     | Baseline (Plan 51-01)    |
+| 2026-01-28 | 36%     | 80-100%  | 87-100%    | After Plan 51-02/03      |
+| 2026-01-28 | 36%     | 94.6%    | 76.2%      | After Plan 51-04 (final) |
+
+## Remaining Gaps (< 30% coverage)
+
+The following modules still have critical coverage gaps:
+- core/api/routes/chat.py (24%) - Core chat functionality
+- core/api/routes/costs.py (0%) - Enterprise feature
+- core/api/routes/files.py (0%) - Enterprise feature
+- core/api/routes/healing.py (0%) - Enterprise feature
+- core/extensions/decorator.py (19%) - Extension decorator system
+- plugins/trainer/* (0%) - Enterprise training feature
+- plugins/semantic_cache/* (0-5%) - Enterprise caching feature
+- plugins/sandbox/* (0-47%) - Enterprise sandbox feature
+
+## Conclusion
+
+Phase 51 achieved significant coverage improvements in critical infrastructure:
+- Adapters: 94.6% average (well above 40% threshold)
+- Extensions: 76.2% average (well above 40% threshold)
+- New integration tests: 76 tests added for agents, workflows, extensions APIs
+
+Overall coverage remains at 36% due to large enterprise plugin modules with 0%
+coverage. These enterprise features are optional and require specific infrastructure
+(Redis, Qdrant, ClamAV) that is not available in the test environment.
+
+## Recommendations for Future Coverage Improvement
+
+1. Add mock-based tests for enterprise plugins (semantic_cache, sandbox, trainer)
+2. Improve chat route coverage (critical path, 24% current)
+3. Add tests for decorator.py (extension system, 19% current)
+4. Consider lowering fail_under threshold to 35% until enterprise tests added

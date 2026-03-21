@@ -1,0 +1,72 @@
+{
+  "deletePlan": {
+    "title": "Delete Plan",
+    "description": "Are you sure you want to delete \"{{name}}\"? This action cannot be undone and will permanently remove the plan from the database.",
+    "cancel": "Cancel",
+    "deleting": "Deleting...",
+    "delete": "Delete"
+  },
+  "createDialog": {
+    "title": "Create New Workflow",
+    "description": "Create a custom workflow with a visual canvas. You can add nodes and connections after creation.",
+    "nameLabel": "Name",
+    "namePlaceholder": "My Workflow",
+    "descriptionLabel": "Description (optional)",
+    "descriptionPlaceholder": "What does this workflow do?",
+    "cancel": "Cancel",
+    "creating": "Creating...",
+    "create": "Create"
+  },
+  "shareDialog": {
+    "title": "Share Workflow",
+    "description": "Share this workflow with other users. They can view or edit based on permission.",
+    "userIdLabel": "User ID",
+    "userIdPlaceholder": "Enter user ID...",
+    "permissionView": "View",
+    "permissionEdit": "Edit",
+    "shareButton": "Share",
+    "currentShares": "Current Shares",
+    "notSharedYet": "Not shared with anyone yet.",
+    "close": "Close"
+  },
+  "flowDetail": {
+    "flowNotFound": "Flow Not Found",
+    "flowNotFoundDescription": "The flow you're looking for doesn't exist.",
+    "backToWorkflows": "Back to Workflows",
+    "breadcrumbWorkflows": "Workflows",
+    "noDescription": "No description",
+    "stop": "Stop",
+    "execute": "Execute",
+    "configure": "Configure",
+    "executionInProgress": "Execution in progress...",
+    "nodesTab": "Nodes ({{count}})",
+    "executionsTab": "Executions",
+    "checkpointsTab": "Checkpoints",
+    "flowNodes": "Flow Nodes",
+    "stepsInFlow": "Steps in this flow",
+    "noNodes": "No nodes in this flow",
+    "executionHistory": "Execution History",
+    "recentExecutions": "Recent executions of this flow",
+    "duration": "Duration: {{seconds}}s",
+    "noExecutionsYet": "No executions yet",
+    "noExecutionsHint": "Click \"Execute\" above to run this flow for the first time.",
+    "checkpointsTitle": "Checkpoints",
+    "checkpointsDescription": "Saved states for recovery",
+    "restore": "Restore",
+    "noCheckpoints": "No checkpoints available",
+    "status": {
+      "complete": "Complete",
+      "running": "Running",
+      "error": "Error",
+      "pending": "Pending"
+    },
+    "toast": {
+      "loadFailed": "Failed to load flow",
+      "executeSuccess": "Flow execution started",
+      "executeFailed": "Failed to start flow",
+      "stopSuccess": "Execution stopped",
+      "stopFailed": "Failed to stop execution"
+    }
+  },
+  "defaultWorkflowName": "workflow"
+}

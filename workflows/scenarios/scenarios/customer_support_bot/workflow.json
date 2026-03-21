@@ -1,0 +1,57 @@
+{
+  "version": "1.0.0",
+  "metadata": {
+    "name": "customer_support_bot",
+    "description": "Automated customer support with FAQ lookup, ticket creation, and escalation routing",
+    "domain": "support",
+    "difficulty": "intermediate"
+  },
+  "nodes": [
+    {
+      "id": "start",
+      "type": "start",
+      "position": {"x": 0, "y": 100}
+    },
+    {
+      "id": "classify_intent",
+      "type": "task",
+      "data": {
+        "agent": "document_processor",
+        "task": "Classify the customer query into one of: FAQ, Bug Report, Feature Request, Account Issue, Billing, Other. Extract key entities and sentiment",
+        "context": {"output_format": "structured_json"}
+      },
+      "position": {"x": 200, "y": 100}
+    },
+    {
+      "id": "lookup_answer",
+      "type": "task",
+      "data": {
+        "agent": "research_assistant",
+        "task": "Search the knowledge base for relevant FAQ entries, documentation, and past resolved tickets matching the classified intent",
+        "context": {"requires": ["classify_intent.output"]}
+      },
+      "position": {"x": 400, "y": 100}
+    },
+    {
+      "id": "compose_response",
+      "type": "task",
+      "data": {
+        "agent": "document_processor",
+        "task": "Compose a helpful response using the FAQ/docs results. If no confident answer, flag for escalation with reason. If bug report, draft a ticket JSON with title, description, severity, and labels",
+        "context": {"requires": ["classify_intent.output", "lookup_answer.output"]}
+      },
+      "position": {"x": 600, "y": 100}
+    },
+    {
+      "id": "end",
+      "type": "end",
+      "position": {"x": 800, "y": 100}
+    }
+  ],
+  "edges": [
+    {"id": "e1", "source": "start", "target": "classify_intent"},
+    {"id": "e2", "source": "classify_intent", "target": "lookup_answer"},
+    {"id": "e3", "source": "lookup_answer", "target": "compose_response"},
+    {"id": "e4", "source": "compose_response", "target": "end"}
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "name": "meeting_summarizer",
+  "framework": "adk",
+  "description": "Meeting intelligence agent that processes audio transcripts, extracts key decisions and action items, identifies owners and deadlines, and distributes structured summaries to attendees via their preferred channels.",
+  "version": "1.0.0",
+  "factory_created": true,
+  "entry_point": "__init__.py",
+  "run_function": "run",
+  "mcp_servers": ["google-calendar-mcp-server", "slack-mcp-server", "notion-mcp-server"],
+  "capabilities": ["Transcript processing with speaker diarization and topic segmentation", "Decision extraction identifying explicit agreements, approvals, and commitments made during discussion", "Action item detection with automatic owner assignment based on speaker context and team roles", "Deadline inference from temporal references and follow-up scheduling", "Structured summary generation in multiple formats: executive brief, detailed notes, action-only digest", "Meeting series tracking with progress updates on previously assigned action items", "Sentiment and engagement analysis highlighting contentious topics or disengaged participants", "Multi-channel distribution to Slack, email, Notion, and calendar with attendee-specific formatting"]
+}

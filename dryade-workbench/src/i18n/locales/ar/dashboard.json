@@ -1,0 +1,68 @@
+{
+  "greeting": {
+    "morning": "صباح الخير",
+    "afternoon": "مساء الخير",
+    "evening": "مساء الخير"
+  },
+  "subtitle": "إليك ما يحدث اليوم",
+  "stats": {
+    "totalRequests": "إجمالي الطلبات",
+    "successRate": "معدل النجاح",
+    "activeAgents": "الوكلاء النشطون",
+    "queueStatus": "حالة قائمة الانتظار",
+    "workflows": "سير العمل"
+  },
+  "sections": {
+    "recentRequests": "الطلبات الأخيرة",
+    "workflowTemplates": "قوالب سير العمل",
+    "systemStatus": "حالة النظام",
+    "quickAccess": "وصول سريع"
+  },
+  "quickActions": {
+    "newChat": "محادثة جديدة",
+    "newChatDesc": "ابدأ محادثة",
+    "createWorkflow": "إنشاء سير عمل",
+    "createWorkflowDesc": "بناء الأتمتة",
+    "newPlan": "خطة جديدة",
+    "newPlanDesc": "خطط مولدة بالذكاء الاصطناعي",
+    "upload": "رفع",
+    "uploadDesc": "إضافة مستندات",
+    "chatWithAgent": "محادثة مع وكيل",
+    "newConversation": "محادثة جديدة"
+  },
+  "status": {
+    "operational": "تعمل بشكل طبيعي",
+    "degraded": "أداء منخفض",
+    "unhealthy": "غير سليم",
+    "disconnected": "منقطع",
+    "unknown": "غير معروف",
+    "registered": "مسجلون",
+    "empty": "فارغة",
+    "pending": "قيد الانتظار",
+    "stable": "مستقر"
+  },
+  "disconnected": {
+    "title": "لا يمكن الوصول للخادم الخلفي",
+    "message": "خادم API لا يستجيب. ستعرض لوحة القيادة بيانات فارغة حتى استعادة الاتصال."
+  },
+  "empty": {
+    "noRequests": "لا يوجد نشاط حديث",
+    "noWorkflows": "لا توجد سير عمل بعد. أنشئ خطة من المحادثة أو ابنِ سير عمل.",
+    "noRequestsDescription": "سيظهر نشاط الطلبات هنا بمجرد البدء في استخدام المنصة.",
+    "noWorkflowsDescription": "أنشئ خطة من المحادثة أو ابنِ سير عمل للبدء."
+  },
+  "labels": {
+    "api": "API",
+    "agents": "الوكلاء",
+    "queue": "قائمة الانتظار",
+    "viewMetrics": "عرض المقاييس",
+    "viewAllWorkflows": "عرض جميع سير العمل",
+    "viewSystemHealth": "عرض صحة النظام ←",
+    "fromTarget": "من الهدف",
+    "recent": "حديث",
+    "total": "الإجمالي",
+    "request": "طلب",
+    "completed": "مكتمل",
+    "failed": "فشل"
+  }
+}

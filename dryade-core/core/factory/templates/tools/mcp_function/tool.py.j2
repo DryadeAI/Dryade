@@ -1,0 +1,19 @@
+"""{{ name }} - {{ description }}"""
+
+from mcp.server.fastmcp import FastMCP
+
+mcp = FastMCP("{{ name }}")
+
+
+@mcp.tool()
+def {{ tool_name }}(
+{% for p in params %}
+    {{ p.name }}: {{ p.type }}{{ "," if not loop.last else "" }}
+{% endfor %}
+) -> {{ return_type | default("str") }}:
+    """{{ description }}"""
+{{ implementation | default('# TODO: Implement this tool\nreturn "Not yet implemented"') | indent(4, first=True) }}
+
+
+if __name__ == "__main__":
+    mcp.run()

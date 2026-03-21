@@ -1,0 +1,18 @@
+log_level: INFO
+
+service:
+  host: 0.0.0.0
+  http_port: 6333
+  # Uncomment to enable gRPC:
+  # grpc_port: 6334
+
+storage:
+  storage_path: /qdrant/storage
+  # Keep snapshots inside the storage volume so backups persist across restarts.
+  snapshots_path: /qdrant/storage/snapshots
+  snapshots_config:
+    snapshots_storage: local
+  on_disk_payload: true
+
+# Disable outbound telemetry for offline deployments.
+telemetry_disabled: true

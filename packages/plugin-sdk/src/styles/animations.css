@@ -1,0 +1,135 @@
+@layer utilities {
+  /* -------------------------------------------------------------------------
+     Keyframe Definitions
+     ------------------------------------------------------------------------- */
+
+  @keyframes fade-in {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  @keyframes fade-out {
+    from { opacity: 1; }
+    to { opacity: 0; }
+  }
+
+  @keyframes slide-up {
+    from {
+      opacity: 0;
+      transform: translateY(8px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes slide-down {
+    from {
+      opacity: 0;
+      transform: translateY(-8px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes scale-in {
+    from {
+      opacity: 0;
+      transform: scale(0.95);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  @keyframes shimmer {
+    0% {
+      background-position: -200% 0;
+    }
+    100% {
+      background-position: 200% 0;
+    }
+  }
+
+  @keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+  }
+
+  /* -------------------------------------------------------------------------
+     Animation Utility Classes
+     ------------------------------------------------------------------------- */
+
+  .animate-fade-in {
+    animation: fade-in var(--duration-normal, 250ms) ease-out;
+  }
+
+  .animate-fade-out {
+    animation: fade-out var(--duration-normal, 250ms) ease-out;
+  }
+
+  .animate-slide-up {
+    animation: slide-up var(--duration-normal, 250ms) ease-out;
+  }
+
+  .animate-slide-down {
+    animation: slide-down var(--duration-normal, 250ms) ease-out;
+  }
+
+  .animate-scale-in {
+    animation: scale-in var(--duration-fast, 150ms) ease-out;
+  }
+
+  .animate-shimmer {
+    background: linear-gradient(
+      90deg,
+      hsl(var(--muted)) 0%,
+      hsl(var(--muted-foreground) / 0.1) 50%,
+      hsl(var(--muted)) 100%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 1.5s ease-in-out infinite;
+  }
+
+  .animate-spin {
+    animation: spin 1s linear infinite;
+  }
+
+  .animate-pulse {
+    animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+
+  /* -------------------------------------------------------------------------
+     Reduced Motion
+     Users who prefer reduced motion get no animations.
+     ------------------------------------------------------------------------- */
+
+  @media (prefers-reduced-motion: reduce) {
+    .animate-fade-in,
+    .animate-fade-out,
+    .animate-slide-up,
+    .animate-slide-down,
+    .animate-scale-in,
+    .animate-shimmer,
+    .animate-spin,
+    .animate-pulse {
+      animation: none;
+    }
+
+    .transition-all,
+    .transition-colors,
+    .transition-opacity,
+    .transition-transform {
+      transition: none;
+    }
+  }
+}

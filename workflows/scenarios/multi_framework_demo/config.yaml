@@ -1,0 +1,49 @@
+name: multi_framework_demo
+display_name: "Multi-Framework Orchestration Demo"
+description: "Demonstrates seamless workflow orchestration across CrewAI, LangChain, and ADK frameworks"
+domain: cross-framework
+version: "1.0.0"
+
+triggers:
+  chat_command: "/demo-multi-framework"
+  api_endpoint: "/workflow-scenarios/multi_framework_demo/trigger"
+  ui_button:
+    label: "Run Multi-Framework Demo"
+    location: "demos_page"
+
+inputs:
+  - name: data_file
+    type: file
+    required: true
+    description: "Data file to analyze (CSV, Excel, or JSON)"
+  - name: monitoring_window
+    type: string
+    required: false
+    description: "Time window for metrics correlation (e.g., 1h, 24h)"
+    default: "1h"
+  - name: auto_create_tasks
+    type: boolean
+    required: false
+    description: "Automatically create tasks for anomalies"
+    default: true
+
+outputs:
+  - name: analysis_results
+    type: json
+  - name: metrics_correlation
+    type: json
+  - name: status_report
+    type: markdown
+  - name: created_tasks
+    type: json
+
+required_agents:
+  - excel_analyst
+  - kpi_monitor
+  - project_manager
+  - research_assistant
+
+observability:
+  metrics_enabled: true
+  log_tool_calls: true
+  track_costs: true

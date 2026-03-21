@@ -1,0 +1,68 @@
+{
+  "greeting": {
+    "morning": "Guten Morgen",
+    "afternoon": "Guten Tag",
+    "evening": "Guten Abend"
+  },
+  "subtitle": "Das passiert heute",
+  "stats": {
+    "totalRequests": "Gesamtanfragen",
+    "successRate": "Erfolgsrate",
+    "activeAgents": "Aktive Agenten",
+    "queueStatus": "Warteschlange",
+    "workflows": "Workflows"
+  },
+  "sections": {
+    "recentRequests": "Letzte Anfragen",
+    "workflowTemplates": "Workflow-Vorlagen",
+    "systemStatus": "Systemstatus",
+    "quickAccess": "Schnellzugriff"
+  },
+  "quickActions": {
+    "newChat": "Neuer Chat",
+    "newChatDesc": "Gespräch starten",
+    "createWorkflow": "Workflow erstellen",
+    "createWorkflowDesc": "Automatisierung erstellen",
+    "newPlan": "Neuer Plan",
+    "newPlanDesc": "KI-generierte Pläne",
+    "upload": "Hochladen",
+    "uploadDesc": "Dokumente hinzufügen",
+    "chatWithAgent": "Mit Agent chatten",
+    "newConversation": "Neues Gespräch"
+  },
+  "status": {
+    "operational": "Betriebsbereit",
+    "degraded": "Eingeschränkt",
+    "unhealthy": "Fehlerhaft",
+    "disconnected": "Getrennt",
+    "unknown": "Unbekannt",
+    "registered": "Registriert",
+    "empty": "Leer",
+    "pending": "Ausstehend",
+    "stable": "Stabil"
+  },
+  "disconnected": {
+    "title": "Backend nicht erreichbar",
+    "message": "Der API-Server antwortet nicht. Das Dashboard zeigt leere Daten an, bis die Verbindung wiederhergestellt ist."
+  },
+  "empty": {
+    "noRequests": "Keine aktuelle Aktivität",
+    "noWorkflows": "Noch keine Workflows vorhanden.",
+    "noRequestsDescription": "Anfrageaktivitäten werden hier angezeigt, sobald Sie die Plattform nutzen.",
+    "noWorkflowsDescription": "Erstellen Sie einen Plan aus dem Chat oder erstellen Sie einen Workflow, um loszulegen."
+  },
+  "labels": {
+    "api": "API",
+    "agents": "Agenten",
+    "queue": "Warteschlange",
+    "viewMetrics": "Metriken anzeigen",
+    "viewAllWorkflows": "Alle Workflows anzeigen",
+    "viewSystemHealth": "Systemstatus anzeigen →",
+    "fromTarget": "vom Ziel",
+    "recent": "kürzlich",
+    "total": "Gesamt",
+    "request": "Anfrage",
+    "completed": "abgeschlossen",
+    "failed": "fehlgeschlagen"
+  }
+}

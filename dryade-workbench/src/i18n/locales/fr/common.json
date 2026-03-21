@@ -1,0 +1,253 @@
+{
+  "app": {
+    "name": "DryadeApp",
+    "tagline": "Plateforme d'orchestration IA souveraine",
+    "airGapped": "Air-gapped • Standards natifs • Souverain"
+  },
+  "nav": {
+    "chat": "Chat",
+    "dashboard": "Tableau de bord",
+    "agents": "Agents",
+    "workflows": "Workflows",
+    "knowledge": "Connaissances",
+    "factory": "Fabrique",
+    "health": "Santé",
+    "metrics": "Métriques",
+    "plugins": "Plugins",
+    "settings": "Paramètres",
+    "loops": "Boucles",
+    "costTracker": "Suivi des coûts",
+    "clarifyPreferences": "Préférences"
+  },
+  "sections": {
+    "observability": "Observabilité",
+    "account": "Compte",
+    "plugins": "Plugins"
+  },
+  "actions": {
+    "signOut": "Déconnexion",
+    "save": "Enregistrer",
+    "cancel": "Annuler",
+    "delete": "Supprimer",
+    "confirm": "Confirmer",
+    "search": "Rechercher",
+    "close": "Fermer",
+    "retry": "Réessayer",
+    "refresh": "Actualiser",
+    "loading": "Chargement...",
+    "collapse": "Réduire la barre latérale",
+    "expand": "Développer la barre latérale",
+    "openMenu": "Ouvrir le menu",
+    "closeMenu": "Fermer le menu",
+    "tryAgain": "Réessayer",
+    "previous": "Précédent",
+    "next": "Suivant",
+    "edit": "Modifier"
+  },
+  "status": {
+    "loadingPlugins": "Chargement des plugins..."
+  },
+  "clarify": {
+    "title": "Préférences de clarification",
+    "subtitle": "Gérez les réponses sauvegardées pour les questions de clarification. Elles pré-remplissent les formulaires automatiquement.",
+    "includeGlobal": "Inclure les globales",
+    "preferenceCount": "{{count}} préférence(s)",
+    "stats": {
+      "total": "Total des préférences",
+      "global": "Globales",
+      "projectSpecific": "Par projet"
+    },
+    "empty": {
+      "noMatch": "Aucune préférence correspondante",
+      "noMatchDescription": "Essayez d'autres mots-clés ou effacez votre recherche.",
+      "noPreferences": "Aucune préférence enregistrée",
+      "noPreferencesDescription": "Les préférences seront enregistrées automatiquement lorsque vous répondrez aux questions de clarification."
+    },
+    "answer": "Réponse : ",
+    "usedCount": "Utilisé : {{count}}x",
+    "threshold": "Seuil :",
+    "deleteTitle": "Supprimer la préférence",
+    "deleteDescription": "Voulez-vous vraiment supprimer cette préférence ? Cette action est irréversible.",
+    "searchPlaceholder": "Rechercher des préférences...",
+    "toast": {
+      "deleted": "Préférence supprimée",
+      "deleteFailed": "Échec de la suppression de la préférence",
+      "thresholdFailed": "Échec de la mise à jour du seuil"
+    }
+  },
+  "costTracker": {
+    "title": "Suivi des coûts",
+    "subtitle": "Surveiller l'utilisation des LLM et les dépenses",
+    "stats": {
+      "totalCost": "Coût total",
+      "totalTokens": "Tokens totaux",
+      "requests": "Requêtes",
+      "avgPerRequest": "Moyenne par requête"
+    },
+    "live": "En direct",
+    "tabs": {
+      "overview": "Vue d'ensemble",
+      "byModel": "Par modèle",
+      "byAgent": "Par agent",
+      "records": "Historique",
+      "pricing": "Tarification"
+    },
+    "empty": {
+      "title": "Aucune donnée de coût",
+      "description": "Les enregistrements de coûts apparaîtront ici une fois que des requêtes LLM auront été effectuées via la plateforme.",
+      "noModelData": "Aucune donnée par modèle",
+      "noModelDataDescription": "La répartition des coûts par modèle apparaîtra après le traitement des requêtes.",
+      "noAgentData": "Aucune donnée par agent",
+      "noAgentDataDescription": "La répartition des coûts par agent apparaîtra après le traitement des requêtes.",
+      "noRecords": "Aucun enregistrement",
+      "noRecordsDescription": "Les enregistrements d'utilisation apparaîtront ici une fois que des requêtes LLM auront été effectuées.",
+      "noPricing": "Aucune donnée de tarification",
+      "noPricingDescription": "Cliquez sur « Actualiser depuis LiteLLM » pour charger la tarification des modèles."
+    },
+    "costByModel": "Coût par modèle",
+    "costByAgent": "Coût par agent",
+    "table": {
+      "model": "Modèle",
+      "totalCost": "Coût total",
+      "requests": "Requêtes",
+      "avgPerRequest": "Moy./requête",
+      "timestamp": "Horodatage",
+      "agent": "Agent",
+      "inputTokens": "Entrée",
+      "outputTokens": "Sortie",
+      "cost": "Coût",
+      "provider": "Fournisseur",
+      "inputPrice": "Entrée $/1M",
+      "outputPrice": "Sortie $/1M",
+      "source": "Source",
+      "updated": "Mis à jour"
+    },
+    "period": {
+      "last24h": "24 dernières heures",
+      "last7d": "7 derniers jours",
+      "last30d": "30 derniers jours",
+      "last90d": "90 derniers jours"
+    },
+    "refreshFromLitellm": "Actualiser depuis LiteLLM",
+    "addModel": "Ajouter un modèle",
+    "addModelPricing": "Ajouter la tarification du modèle",
+    "pricing": {
+      "modelName": "Nom du modèle",
+      "inputPrice": "Entrée $/1M tokens",
+      "outputPrice": "Sortie $/1M tokens"
+    },
+    "pagination": {
+      "showing": "Affichage de {{start}}-{{end}} sur {{total}}",
+      "previous": "Précédent",
+      "next": "Suivant"
+    },
+    "searchModelsPlaceholder": "Rechercher des modèles...",
+    "toast": {
+      "updateFailed": "Échec de la mise à jour de la tarification"
+    }
+  },
+  "loops": {
+    "title": "Boucles planifiées",
+    "subtitle": "Planifiez l'exécution automatique de workflows, agents, compétences et tâches.",
+    "newLoop": "Nouvelle boucle",
+    "empty": {
+      "title": "Aucune boucle planifiée",
+      "description": "Créez une boucle pour planifier l'exécution récurrente de workflows, agents, compétences ou tâches."
+    },
+    "deleteTitle": "Supprimer la boucle ?",
+    "deleteDescription": "Cela supprimera définitivement cette boucle et tout son historique d'exécution. Cette action est irréversible.",
+    "noExecutions": "Aucune exécution pour l'instant.",
+    "recentExecutions": "Exécutions récentes ({{total}} au total)",
+    "targetTypes": {
+      "all": "Tous les types",
+      "workflow": "Workflow",
+      "agent": "Agent",
+      "skill": "Compétence",
+      "orchestratorTask": "Tâche d'orchestrateur"
+    },
+    "enabledStates": {
+      "all": "Tous les états",
+      "active": "Active",
+      "paused": "En pause"
+    },
+    "tableHeaders": {
+      "name": "Nom",
+      "target": "Cible",
+      "schedule": "Planification",
+      "status": "Statut",
+      "actions": "Actions"
+    },
+    "actions": {
+      "triggerNow": "Déclencher maintenant",
+      "pause": "Mettre en pause",
+      "resume": "Reprendre"
+    },
+    "placeholders": {
+      "targetType": "Type de cible",
+      "state": "État"
+    },
+    "toast": {
+      "triggered": "Boucle « {{name}} » déclenchée.",
+      "triggerFailed": "Échec du déclenchement.",
+      "paused": "Boucle « {{name}} » mise en pause.",
+      "resumed": "Boucle « {{name}} » reprise.",
+      "failed": "Échec.",
+      "deleted": "Boucle « {{name}} » supprimée.",
+      "deleteFailed": "Échec de la suppression."
+    }
+  },
+  "notFound": {
+    "title": "Page introuvable",
+    "message": "La forêt n'a pas de chemin ici.",
+    "returnHome": "Retourner à l'accueil"
+  },
+  "errors": {
+    "forbidden": {
+      "title": "Accès refusé",
+      "message": "Vous n'avez pas la permission d'accéder à cette ressource.",
+      "hint": "Contactez votre administrateur si vous pensez qu'il s'agit d'une erreur.",
+      "resource": "Ressource :",
+      "requiredRole": "Rôle requis :",
+      "requestAccess": "Demander l'accès"
+    },
+    "unauthorized": {
+      "title": "Veuillez vous connecter",
+      "message": "Vous devez être connecté pour accéder à cette page.",
+      "sessionExpired": "Votre session a peut-être expiré.",
+      "logIn": "Se connecter",
+      "returnHome": "Retourner à l'accueil"
+    },
+    "server": {
+      "title": "Une erreur est survenue",
+      "message": "Nous rencontrons un problème lors du traitement de votre requête.",
+      "hint": "Notre équipe a été informée et travaille à la résolution.",
+      "errorDetails": "Détails de l'erreur",
+      "errorId": "ID de l'erreur :",
+      "timestamp": "Horodatage :",
+      "tryAgain": "Réessayer",
+      "reportIssue": "Signaler un problème",
+      "optionalDescription": "Description optionnelle",
+      "descriptionPlaceholder": "Que faisiez-vous lorsque cela s'est produit ?",
+      "submitReport": "Envoyer le signalement",
+      "reportSubmitted": "Signalement envoyé"
+    },
+    "network": {
+      "title": "Pas de connexion Internet",
+      "message": "Veuillez vérifier votre connexion et réessayer.",
+      "checking": "Vérification...",
+      "autoRecover": "Cette page se rétablira automatiquement lorsque la connexion sera restaurée.",
+      "connectionRestored": "Connexion rétablie !",
+      "stillOffline": "Toujours hors ligne"
+    },
+    "goToDashboard": "Aller au tableau de bord"
+  },
+  "timeAgo": {
+    "unknown": "inconnu",
+    "secondsAgo": "Il y a {{n}} s",
+    "minutesAgo": "Il y a {{n}} min",
+    "hoursAgo": "Il y a {{n}} h",
+    "daysAgo": "Il y a {{n}} j"
+  },
+  "theme": "Thème",
+  "language": "Langue"
+}

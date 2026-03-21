@@ -1,0 +1,85 @@
+{
+  "page": {
+    "title": "Plugins",
+    "subtitle": "Gérer les plugins installés et en découvrir de nouveaux",
+    "installPackage": "Installer un plugin"
+  },
+  "tabs": {
+    "plugins": "Plugins",
+    "marketplace": "Marketplace"
+  },
+  "search": {
+    "plugins": "Rechercher des plugins...",
+    "marketplace": "Rechercher sur le marketplace..."
+  },
+  "status": {
+    "active": "Actif",
+    "inactive": "Inactif",
+    "error": "Erreur",
+    "installed": "{{count}} installé(s)",
+    "loadingPlugins": "Chargement des plugins..."
+  },
+  "config": {
+    "pluginEnabled": "Plugin activé",
+    "configuration": "Configuration",
+    "autoRestart": "Redémarrage automatique en cas d'échec",
+    "debugLogging": "Journalisation de débogage",
+    "priority": "Priorité"
+  },
+  "actions": {
+    "restart": "Redémarrer",
+    "advanced": "Avancé",
+    "install": "Installer",
+    "installing": "Installation..."
+  },
+  "marketplace": {
+    "all": "Tous",
+    "installed": "Installés",
+    "requires": "Requiert {{tier}}",
+    "byAuthor": "par {{author}}",
+    "pluginCount": "{{count}} plugin",
+    "pluginCount_other": "{{count}} plugins",
+    "noPluginsFound": "Aucun plugin trouvé",
+    "noPluginsHint": "Essayez d'ajuster votre recherche ou le filtre de catégorie."
+  },
+  "empty": {
+    "noPluginsFound": "Aucun plugin ne correspond à votre recherche"
+  },
+  "toast": {
+    "loadFailed": "Échec du chargement des plugins",
+    "statusUpdated": "Statut du plugin mis à jour",
+    "statusUpdateFailed": "Échec de la mise à jour du statut du plugin",
+    "marketplaceLoadFailed": "Échec du chargement du catalogue marketplace",
+    "installFailed": "Échec de l'installation"
+  },
+  "shortcuts": {
+    "title": "Raccourcis clavier",
+    "toggleHintPrefix": "Appuyez sur",
+    "toggleHintSuffix": "pour basculer cette boîte de dialogue",
+    "groups": {
+      "global": "Global",
+      "chat": "Chat",
+      "workflow": "Workflow"
+    },
+    "actions": {
+      "commandPalette": "Palette de commandes",
+      "showKeyboardShortcuts": "Afficher les raccourcis clavier",
+      "toggleSidebar": "Basculer la barre latérale",
+      "searchMessages": "Rechercher des messages",
+      "sendMessage": "Envoyer un message",
+      "newLine": "Nouvelle ligne",
+      "runWorkflow": "Lancer le workflow",
+      "stopDeselect": "Arrêter / Désélectionner",
+      "saveWorkflow": "Enregistrer le workflow",
+      "undo": "Annuler",
+      "redo": "Rétablir",
+      "selectAllNodes": "Sélectionner tous les nœuds",
+      "copySelectedNodes": "Copier les nœuds sélectionnés",
+      "pasteNodes": "Coller les nœuds",
+      "duplicateNodes": "Dupliquer les nœuds",
+      "resetZoom": "Réinitialiser le zoom à 100%",
+      "fitView": "Ajuster la vue",
+      "deleteSelected": "Supprimer la sélection"
+    }
+  }
+}

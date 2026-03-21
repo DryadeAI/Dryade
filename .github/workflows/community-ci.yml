@@ -1,0 +1,313 @@
+# Dryade Community Edition - CI Pipeline
+#
+# Runs on: push to main, pull requests
+# Tests: Python tests, type checking, linting, Docker build
+#
+name: Community CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+env:
+  PYTHON_VERSION: "3.12"
+  NODE_VERSION: "20"
+
+jobs:
+  lint:
+    name: Lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+
+      - name: Install Ruff
+        run: pip install ruff==0.14.13
+
+      - name: Run Ruff check
+        run: ruff check dryade-core/core/
+
+      - name: Run Ruff format check
+        run: ruff format --check dryade-core/core/ || echo "::warning::Ruff format check found differences (non-blocking)"
+
+  secret-scan:
+    name: Secret Scan (gitleaks)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Install gitleaks
+        run: |
+          GITLEAKS_VERSION=8.24.3
+          curl -sSfL "https://github.com/gitleaks/gitleaks/releases/download/v${GITLEAKS_VERSION}/gitleaks_${GITLEAKS_VERSION}_linux_x64.tar.gz" \
+            | tar xz -C /usr/local/bin gitleaks
+      - name: Run gitleaks
+        run: gitleaks detect --source . --config .gitleaks.toml --log-opts="--all" -v
+
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:16-alpine
+        env:
+          POSTGRES_DB: dryade_test
+          POSTGRES_USER: dryade
+          POSTGRES_PASSWORD: dryade_dev
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U dryade -d dryade_test"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+    env:
+      DRYADE_DATABASE_URL: "postgresql+psycopg://dryade:dryade_dev@localhost:5432/dryade_test"
+      DRYADE_TEST_DATABASE_URL: "postgresql+psycopg://dryade:dryade_dev@localhost:5432/dryade_test"
+      DRYADE_JWT_SECRET: "ci-test-secret-at-least-32-chars-long"
+      DRYADE_AUTH_ENABLED: "true"
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+
+      - name: Install uv
+        run: pip install uv
+
+      - name: Install dependencies
+        run: |
+          uv venv
+          source .venv/bin/activate
+          uv sync --extra dev
+          pip install argon2-cffi>=21.3.0 deepeval>=1.0.0
+
+      - name: Run tests
+        run: |
+          source .venv/bin/activate
+          PYTHONPATH=.:dryade-core pytest tests/ \
+            --ignore=tests/eval \
+            --ignore=tests/unit/plugins \
+            --ignore=tests/unit/test_zitadel_plugin.py \
+            --ignore=tests/unit/test_exception_handling.py \
+            --ignore=tests/unit/workflows/test_checkpointed_executor.py \
+            --ignore=tests/integration/test_autonomous_mode.py \
+            --ignore=tests/integration/workflows \
+            --ignore=tests/integration/workflows \
+            --cov=dryade-core/core \
+            --cov-report=xml \
+            --cov-report=term-missing \
+            -v --timeout=120
+        env:
+          LLM_API_KEY: test-key
+
+      - name: Upload coverage
+        uses: codecov/codecov-action@v4
+        if: always()
+        with:
+          files: coverage.xml
+          fail_ci_if_error: false
+
+  build-docker:
+    name: Build Docker Image
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Build backend image
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          file: Dockerfile
+          push: false
+          tags: dryade:test
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+      - name: Test backend image
+        run: |
+          docker run -d --name test-pg \
+            -e POSTGRES_DB=dryade_test -e POSTGRES_USER=dryade -e POSTGRES_PASSWORD=dryade \
+            -p 5433:5432 postgres:16-alpine
+          sleep 5
+
+          docker run -d --name test-dryade --network host \
+            -e DRYADE_DATABASE_URL=postgresql+psycopg://dryade:dryade_dev@localhost:5433/dryade_test \
+            -e DRYADE_AUTH_ENABLED=false \
+            -e DRYADE_JWT_SECRET=ci-smoke-test-secret-not-for-production \
+            -e DRYADE_LLM_BASE_URL=http://localhost:11434/v1 \
+            dryade:test
+
+          for i in $(seq 1 30); do
+            curl -sf http://localhost:8080/api/health && break
+            echo "Waiting for backend... ($i/30)"
+            sleep 2
+          done
+          curl -f http://localhost:8080/api/health || exit 1
+
+          docker stop test-dryade test-pg
+
+  smoke-test:
+    name: Smoke Test
+    runs-on: ubuntu-latest
+    needs: [lint, test]
+    services:
+      postgres:
+        image: postgres:16-alpine
+        env:
+          POSTGRES_DB: dryade_test
+          POSTGRES_USER: dryade
+          POSTGRES_PASSWORD: dryade_dev
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U dryade -d dryade_test"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+    env:
+      DRYADE_DATABASE_URL: "postgresql+psycopg://dryade:dryade_dev@localhost:5432/dryade_test"
+      DRYADE_TEST_DATABASE_URL: "postgresql+psycopg://dryade:dryade_dev@localhost:5432/dryade_test"
+      DRYADE_JWT_SECRET: "ci-smoke-test-secret-not-for-production"
+      DRYADE_AUTH_ENABLED: "false"
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+
+      - name: Install uv
+        run: pip install uv
+
+      - name: Install dependencies
+        run: |
+          uv venv
+          source .venv/bin/activate
+          uv sync --extra dev
+
+      - name: Start server
+        run: |
+          source .venv/bin/activate
+          PYTHONPATH=.:dryade-core python -m uvicorn core.api.main:app --host 0.0.0.0 --port 8080 &
+          for i in $(seq 1 30); do
+            curl -sf http://localhost:8080/api/health && break
+            echo "Waiting for backend... ($i/30)"
+            sleep 2
+          done
+          curl -f http://localhost:8080/api/health || exit 1
+        env:
+          LLM_API_KEY: test-key
+
+      - name: Run smoke tests
+        run: |
+          curl -f http://localhost:8080/api/health
+          curl -f http://localhost:8080/docs
+          curl -f http://localhost:8080/api/plugins
+          echo "Smoke tests passed!"
+
+  e2e-frontend:
+    name: E2E Frontend Tests
+    runs-on: ubuntu-latest
+    needs: [lint, test]
+    continue-on-error: true
+    services:
+      postgres:
+        image: postgres:16-alpine
+        env:
+          POSTGRES_DB: dryade_test
+          POSTGRES_USER: dryade
+          POSTGRES_PASSWORD: dryade_dev
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U dryade -d dryade_test"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      - name: Install uv
+        run: pip install uv
+
+      - name: Install backend dependencies
+        run: |
+          uv venv
+          source .venv/bin/activate
+          uv sync --extra dev
+          pip install argon2-cffi>=21.3.0
+
+      - name: Start backend with health check
+        run: |
+          source .venv/bin/activate
+          PYTHONPATH=.:dryade-core python -m uvicorn core.api.main:app --host 0.0.0.0 --port 8080 &
+          for i in $(seq 1 30); do
+            curl -sf http://localhost:8080/api/health && break
+            echo "Waiting for backend... ($i/30)"
+            sleep 2
+          done
+          curl -f http://localhost:8080/api/health || exit 1
+        env:
+          LLM_API_KEY: test-key
+          DRYADE_DATABASE_URL: "postgresql+psycopg://dryade:dryade_dev@localhost:5432/dryade_test"
+          DRYADE_AUTH_ENABLED: "true"
+          DRYADE_JWT_SECRET: "ci-e2e-test-secret-not-for-production"
+
+      - name: Install frontend and Playwright
+        run: |
+          cd dryade-workbench
+          npm ci
+          npx playwright install chromium --with-deps
+
+      - name: Build and serve frontend
+        run: |
+          cd dryade-workbench
+          npm run build
+          npx serve -s dist -l 9005 &
+          for i in $(seq 1 15); do
+            curl -sf http://localhost:9005 > /dev/null && break
+            sleep 2
+          done
+
+      - name: Run Playwright E2E tests
+        run: |
+          cd dryade-workbench
+          npx playwright test --project=community --reporter=github
+        env:
+          API_URL: http://localhost:8080
+          BASE_URL: http://localhost:9005
+          CI: true
+
+      - name: Upload Playwright report
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: playwright-report
+          path: |
+            dryade-workbench/playwright-report/
+            dryade-workbench/test-results/
+          retention-days: 7

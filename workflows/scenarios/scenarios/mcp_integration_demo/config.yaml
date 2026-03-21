@@ -1,0 +1,38 @@
+name: mcp_integration_demo
+display_name: "MCP Integration Demo"
+description: "Demonstrate MCP server tool integration: browse the web, store findings, and save reports -- all through MCP tool calls with visible execution traces. Requires: playwright, memory, filesystem MCP servers"
+domain: dev
+difficulty: intermediate
+version: "1.0.0"
+template_ref: "_templates/linear-3task"
+
+triggers:
+  chat_command: "/mcp-demo"
+  api_endpoint: "/workflow-scenarios/mcp_integration_demo/trigger"
+
+inputs:
+  - name: url
+    type: string
+    required: true
+    description: "URL to browse and analyze"
+  - name: task
+    type: string
+    required: false
+    description: "What to look for on the page"
+    default: "Summarize the page content"
+
+outputs:
+  - name: summary
+    type: markdown
+  - name: findings
+    type: json
+  - name: report_path
+    type: file
+
+required_agents:
+  - research_assistant
+
+observability:
+  metrics_enabled: true
+  log_tool_calls: true
+  track_costs: true

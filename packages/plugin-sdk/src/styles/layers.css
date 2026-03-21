@@ -1,0 +1,14 @@
+/**
+ * CSS Layer order for @dryade/plugin-sdk
+ *
+ * Cascade priority (lowest to highest):
+ *   base     - CSS reset, typography, system defaults
+ *   tokens   - Theme CSS custom properties and semantic aliases
+ *   components - SDK component styles (dui-* classes)
+ *   utilities  - Utility classes, animations, transitions
+ *   plugin   - Plugin-specific overrides (highest priority)
+ *
+ * Plugin authors can use @layer plugin { ... } to ensure their
+ * styles always override SDK defaults.
+ */
+@layer base, tokens, components, utilities, plugin;

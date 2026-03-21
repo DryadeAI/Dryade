@@ -1,0 +1,45 @@
+name: multi_agent_research
+display_name: "Multi-Agent Research Report"
+description: "Autonomous research with web browsing, analysis, and report generation across 3 coordinated agents. The WOW showcase -- watch multiple agents collaborate in real-time to produce a comprehensive research report. Requires: playwright, memory, filesystem MCP servers"
+domain: dev
+difficulty: advanced
+version: "1.0.0"
+template_ref: "_templates/linear-3task"
+
+triggers:
+  chat_command: "/research"
+  api_endpoint: "/workflow-scenarios/multi_agent_research/trigger"
+
+inputs:
+  - name: topic
+    type: string
+    required: true
+    description: "What do you want to research?"
+  - name: depth
+    type: string
+    required: false
+    description: "Research depth: quick, standard, or deep"
+    default: "standard"
+  - name: output_path
+    type: string
+    required: false
+    description: "File path for the generated report"
+    default: "/tmp/research_report.md"
+
+outputs:
+  - name: report
+    type: markdown
+  - name: sources
+    type: json
+  - name: knowledge_graph
+    type: json
+
+required_agents:
+  - research_assistant
+  - analyst
+  - writer
+
+observability:
+  metrics_enabled: true
+  log_tool_calls: true
+  track_costs: true

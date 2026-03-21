@@ -1,0 +1,184 @@
+Dryade Source Use License (DSUL)
+Version 1.0, February 2026
+
+https://dryade.ai
+
+
+PREAMBLE
+
+The Dryade Source Use License (DSUL) is a source-available license. The
+source code of the Software is publicly available for inspection, but the
+Software is not open-source as defined by the Open Source Initiative (OSI).
+
+Unlike time-delayed conversion licenses (such as BSL 1.1), the DSUL does
+not automatically convert to an open-source license after a set period.
+This license is permanent and applies for the entire duration of copyright
+protection.
+
+This license is inspired by the Sustainable Use License v1.0 and the
+Elastic License v2 (ELv2). It is designed to allow broad non-commercial
+and development use while protecting the commercial interests of Dryade SAS.
+
+
+1. DEFINITIONS
+
+  "Software" means the Dryade software, including all source code,
+  documentation, configuration files, and associated materials made
+  available under this License.
+
+  "License Key" means a cryptographic key or token issued by Dryade SAS
+  (or an authorized reseller) that enables production use of the Software.
+
+  "Managed Service" means a service provided to third parties where the
+  service provides users with access to any substantial set of the features
+  or functionality of the Software.
+
+  "Production Use" means any use of the Software in a live environment
+  that serves end users, processes real data, or generates revenue, whether
+  directly or indirectly.
+
+  "You" (or "Your") means the individual or legal entity exercising
+  permissions granted by this License.
+
+  "Dryade SAS" means Dryade SAS, a French societe par actions simplifiee,
+  the copyright holder and licensor of the Software.
+
+
+2. GRANT OF RIGHTS
+
+  Subject to the terms and conditions of this License, Dryade SAS hereby
+  grants You a worldwide, non-exclusive, non-transferable, limited license
+  to:
+
+  (a) Use, copy, and modify the Software for development, testing,
+      evaluation, educational, and personal non-commercial purposes,
+      without a License Key.
+
+  (b) Use, copy, modify, and deploy the Software in Production Use,
+      provided that You have obtained a valid License Key from Dryade SAS.
+
+  (c) Create derivative works of the Software, provided that such
+      derivative works are used in accordance with this License.
+
+  (d) Distribute copies of the unmodified Software, provided that each
+      copy includes a complete copy of this License and all copyright
+      notices.
+
+
+3. RESTRICTIONS
+
+  (a) Managed Service Restriction. You may not provide the Software to
+      third parties as a hosted or managed service, where the service
+      provides users with access to any substantial set of the features or
+      functionality of the Software.
+
+  (b) License Key Requirement. You may use the Software in a Production
+      environment only with a valid License Key obtained from Dryade SAS.
+      Use of the Software in Production without a valid License Key is a
+      violation of this License.
+
+  (c) No Circumvention. You may not remove, disable, or circumvent any
+      license key verification, functionality limitation, or access control
+      mechanism in the Software.
+
+  (d) No Relicensing. You may not sublicense, sell, resell, or distribute
+      the Software or any derivative work under any license other than
+      this License, unless expressly authorized in writing by Dryade SAS.
+
+  (e) Notices. You must retain all copyright notices, license texts, and
+      attribution notices in all copies or substantial portions of the
+      Software.
+
+
+4. INTELLECTUAL PROPERTY
+
+  (a) Dryade SAS retains all right, title, and interest in and to the
+      Software, including all intellectual property rights therein.
+
+  (b) This License does not grant You any rights to use the trademarks,
+      service marks, trade names, or logos of Dryade SAS, except as
+      required for reasonable and customary use in describing the origin
+      of the Software.
+
+  (c) Any modifications or derivative works You create remain subject to
+      this License. You retain copyright in Your original contributions,
+      but the combined work (original Software plus Your modifications)
+      may only be used and distributed under this License.
+
+
+5. DISCLAIMER OF WARRANTY
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+  OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+  MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND NONINFRINGEMENT.
+  IN NO EVENT SHALL DRYADE SAS OR ITS CONTRIBUTORS BE LIABLE FOR ANY
+  CLAIM, DAMAGES, OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+  TORT, OR OTHERWISE, ARISING FROM, OUT OF, OR IN CONNECTION WITH THE
+  SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+
+6. LIMITATION OF LIABILITY
+
+  IN NO EVENT SHALL DRYADE SAS BE LIABLE TO YOU FOR ANY INDIRECT,
+  INCIDENTAL, SPECIAL, CONSEQUENTIAL, OR PUNITIVE DAMAGES, OR ANY LOSS
+  OF PROFITS OR REVENUE, WHETHER INCURRED DIRECTLY OR INDIRECTLY, OR ANY
+  LOSS OF DATA, USE, GOODWILL, OR OTHER INTANGIBLE LOSSES, RESULTING FROM
+  (A) YOUR USE OF OR INABILITY TO USE THE SOFTWARE; (B) ANY UNAUTHORIZED
+  ACCESS TO OR USE OF THE SOFTWARE; OR (C) ANY THIRD-PARTY CONDUCT
+  RELATED TO THE SOFTWARE.
+
+
+7. GOVERNING LAW
+
+  This License shall be governed by and construed in accordance with the
+  laws of France, without regard to its conflict of law provisions. Any
+  dispute arising out of or in connection with this License shall be
+  submitted to the exclusive jurisdiction of the competent courts of
+  Paris, France.
+
+
+8. TERMINATION
+
+  (a) This License is effective until terminated. Your rights under this
+      License will terminate automatically without notice if You fail to
+      comply with any of its terms.
+
+  (b) Upon termination, You must cease all use of the Software and destroy
+      all copies in Your possession or control.
+
+  (c) Sections 4, 5, 6, and 7 shall survive any termination of this
+      License.
+
+  (d) Dryade SAS may, at its sole discretion, offer reinstatement of
+      the License upon cure of the breach.
+
+
+9. ENTERPRISE EDITION CODE
+
+  Code in `ee/` directories and files with `_ee` or `.ee.` naming
+  convention (e.g., `.ee.py`, `.ee.ts`, `.ee.tsx`) is additionally
+  governed by LICENSE_EE.md at the repository root. Where LICENSE_EE.md
+  and this License conflict regarding Enterprise Edition code,
+  LICENSE_EE.md takes precedence. For all other code, this License
+  applies exclusively.
+
+
+10. GENERAL
+
+  (a) If any provision of this License is held to be unenforceable, such
+      provision shall be reformed only to the extent necessary to make it
+      enforceable, and the remaining provisions shall continue in full
+      force and effect.
+
+  (b) This License constitutes the entire agreement between You and
+      Dryade SAS regarding the Software and supersedes all prior
+      agreements and understandings.
+
+  (c) No waiver of any term of this License shall be deemed a further or
+      continuing waiver of such term or any other term.
+
+
+---
+
+For commercial licensing inquiries, contact: contact@dryade.ai
+For more information, visit: https://dryade.ai

@@ -1,0 +1,25 @@
+name: _tool_node_test
+display_name: "Tool Node Test (Synthetic)"
+description: "Synthetic workflow testing tool node dispatch to MCP registry"
+domain: testing
+difficulty: beginner
+version: "1.0.0"
+
+triggers:
+  chat_command: "/test-tool-node"
+  api_endpoint: "/workflow-scenarios/_tool_node_test/trigger"
+  ui_button:
+    label: "Test Tool Node"
+    location: "test_page"
+
+inputs: []
+outputs:
+  - name: result
+    type: json
+
+required_agents:
+  - developer
+
+observability:
+  metrics_enabled: true
+  log_tool_calls: true

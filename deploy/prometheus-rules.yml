@@ -1,0 +1,104 @@
+# Prometheus alert rules for Dryade compliance monitoring
+# SOC 2 requirement: automated alerting on anomalies and security events
+#
+# These rules integrate with AlertManager (deploy/alertmanager.yml) to
+# provide compliance-grade monitoring for production deployments.
+
+groups:
+  - name: dryade_compliance
+    rules:
+      # ---------------------------------------------------------------
+      # High Error Rate
+      # Fires when the HTTP error rate exceeds 5% over a 5-minute window.
+      # ---------------------------------------------------------------
+      - alert: HighErrorRate
+        expr: |
+          (
+            sum(rate(http_requests_total{job="dryade-backend", status=~"5.."}[5m]))
+            /
+            sum(rate(http_requests_total{job="dryade-backend"}[5m]))
+          ) > 0.05
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: "High HTTP error rate on Dryade backend"
+          description: "Error rate is {{ $value | humanizePercentage }} over the last 5 minutes (threshold: 5%)."
+          runbook_url: "docs/compliance/incident-response-policy.md#high-error-rate"
+
+      # ---------------------------------------------------------------
+      # Failed Authentication Attempts
+      # Fires when a single IP has more than 10 failed login attempts
+      # in 1 minute. Indicates brute-force or credential stuffing.
+      #
+      # TODO: The metric dryade_audit_events_total{event="login_fail"}
+      # must be instrumented in core/auth. Until then, this rule will
+      # not fire (absent metrics evaluate to no data, not to a value).
+      # ---------------------------------------------------------------
+      - alert: FailedAuthAttempts
+        expr: |
+          sum by (client_ip) (
+            rate(dryade_audit_events_total{event="login_fail"}[1m])
+          ) > 10
+        for: 1m
+        labels:
+          severity: critical
+        annotations:
+          summary: "Excessive failed auth attempts from {{ $labels.client_ip }}"
+          description: "IP {{ $labels.client_ip }} has {{ $value }} failed login attempts in the last minute. Possible brute-force attack."
+          runbook_url: "docs/compliance/incident-response-policy.md#failed-auth-attempts"
+
+      # ---------------------------------------------------------------
+      # Audit Chain Break
+      # Fires when the audit log integrity chain is broken.
+      #
+      # TODO: Requires a custom metric from a periodic verify-chain job:
+      #   dryade_audit_chain_valid{} = 1 (healthy) or 0 (broken)
+      # Until the verify-chain job is implemented, this rule is a
+      # placeholder and will not fire.
+      # ---------------------------------------------------------------
+      - alert: AuditChainBreak
+        expr: dryade_audit_chain_valid == 0
+        for: 1m
+        labels:
+          severity: critical
+        annotations:
+          summary: "Audit log integrity chain broken"
+          description: "The audit log hash chain verification has failed. This may indicate log tampering or data corruption. Immediate investigation required."
+          runbook_url: "docs/compliance/incident-response-policy.md#audit-chain-break"
+
+      # ---------------------------------------------------------------
+      # Health Endpoint Down
+      # Fires when the Dryade backend health endpoint is unreachable
+      # for more than 2 minutes.
+      # ---------------------------------------------------------------
+      - alert: HealthEndpointDown
+        expr: up{job="dryade-backend"} == 0
+        for: 2m
+        labels:
+          severity: critical
+        annotations:
+          summary: "Dryade backend health endpoint is down"
+          description: "The Dryade backend (job: dryade-backend) has been unreachable for more than 2 minutes."
+          runbook_url: "docs/compliance/incident-response-policy.md#health-endpoint-down"
+
+      # ---------------------------------------------------------------
+      # Backup Not Completed
+      # Fires when no backup completion event has been recorded in
+      # the last 24 hours.
+      #
+      # TODO: Requires a custom metric pushed by the backup script:
+      #   dryade_backup_last_success_timestamp_seconds = unix timestamp
+      # Until the backup script pushes this metric, this rule is a
+      # placeholder and will not fire.
+      # ---------------------------------------------------------------
+      - alert: BackupNotCompleted
+        expr: |
+          (time() - dryade_backup_last_success_timestamp_seconds) > 86400
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: "Dryade backup not completed in 24 hours"
+          description: "No successful backup has been recorded in the last 24 hours. Last backup was {{ $value | humanizeDuration }} ago."
+          runbook_url: "docs/compliance/incident-response-policy.md#backup-not-completed"

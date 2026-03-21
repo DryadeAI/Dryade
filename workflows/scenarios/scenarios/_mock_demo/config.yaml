@@ -1,0 +1,24 @@
+name: _mock_demo
+display_name: "Mock Demo (CI Fallback)"
+description: "Synthetic workflow for GPU-less CI testing — uses static outputs, no real LLM"
+domain: testing
+difficulty: beginner
+version: "1.0.0"
+
+triggers:
+  chat_command: "/mock-demo"
+  api_endpoint: "/workflow-scenarios/_mock_demo/trigger"
+  ui_button:
+    label: "Mock Demo"
+    location: "test_page"
+
+inputs: []
+outputs:
+  - name: result
+    type: json
+
+required_agents: []
+
+observability:
+  metrics_enabled: false
+  log_tool_calls: false

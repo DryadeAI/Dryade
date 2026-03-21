@@ -1,0 +1,39 @@
+name: discord_support_bot
+display_name: "Discord Support Bot Workflow"
+description: "AI-powered Discord support workflow: classify queries, search knowledge base, compose responses, and create tickets for unresolved issues. This is the Dryade workflow that powers the Discord support bot."
+domain: support
+difficulty: intermediate
+version: "1.0.0"
+template_ref: "_templates/linear-support"
+
+triggers:
+  chat_command: "/support-query"
+  api_endpoint: "/workflow-scenarios/discord_support_bot/trigger"
+
+inputs:
+  - name: query
+    type: string
+    required: true
+    description: "The support query to process"
+  - name: user_context
+    type: json
+    required: false
+    description: "User context: user ID, channel, previous interactions"
+    default: null
+
+outputs:
+  - name: response
+    type: markdown
+  - name: ticket
+    type: json
+  - name: escalation
+    type: json
+
+required_agents:
+  - support_agent
+  - document_processor
+
+observability:
+  metrics_enabled: true
+  log_tool_calls: true
+  track_costs: true

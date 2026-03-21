@@ -1,0 +1,41 @@
+name: customer_support_bot
+display_name: "Customer Support Bot"
+description: "Automated customer support with FAQ lookup, ticket creation, and escalation routing"
+domain: support
+difficulty: intermediate
+version: "1.0.0"
+template_ref: "_templates/linear-support"
+
+triggers:
+  chat_command: "/support"
+  api_endpoint: "/workflow-scenarios/customer_support_bot/trigger"
+  ui_button:
+    label: "Get Support"
+    location: "support_page"
+
+inputs:
+  - name: customer_query
+    type: string
+    required: true
+    description: "The customer's question or issue description"
+  - name: customer_id
+    type: string
+    required: false
+    description: "Optional customer ID for personalized context"
+    default: null
+
+outputs:
+  - name: response
+    type: markdown
+  - name: ticket
+    type: json
+  - name: escalation_needed
+    type: json
+
+required_agents:
+  - research_assistant
+  - document_processor
+
+observability:
+  metrics_enabled: true
+  log_tool_calls: true

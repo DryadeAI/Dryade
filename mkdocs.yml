@@ -1,0 +1,100 @@
+site_name: Dryade Documentation
+site_description: Multi-agent orchestration platform for MBSE
+docs_dir: docs_site
+
+theme:
+  name: material
+  palette:
+    - scheme: default
+      primary: teal
+      accent: cyan
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - scheme: slate
+      primary: teal
+      accent: cyan
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.expand
+    - navigation.top
+    - search.suggest
+    - search.highlight
+    - content.code.copy
+    - content.tabs.link
+
+plugins:
+  - search
+  - mkdocstrings:
+      handlers:
+        python:
+          options:
+            docstring_style: google
+            show_source: true
+            show_root_heading: true
+            show_root_full_path: false
+            show_symbol_type_heading: true
+            show_symbol_type_toc: true
+            members_order: source
+            heading_level: 2
+
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - toc:
+      permalink: true
+
+nav:
+  - Home: index.md
+  - Getting Started:
+    - Installation: getting-started/installation.md
+    - Quickstart: getting-started/quickstart.md
+    - Templates: getting-started/templates.md
+  - Architecture:
+    - Overview: architecture/overview.md
+    - Project Structure: architecture/structure.md
+    - Development History: architecture/phases.md
+  - API Reference:
+    - Complete Reference: api/reference.md
+    - OpenAPI Spec: api/openapi-spec.md
+    - Core: api/core.md
+    - Plugins: api/plugins.md
+    - Routes: api/routes.md
+  - Deployment:
+    - Overview: deployment/index.md
+    - Docker: deployment/docker.md
+    - Kubernetes: deployment/kubernetes.md
+    - Configuration: deployment/configuration.md
+  - Operations:
+    - Overview: operations/index.md
+    - Monitoring: operations/monitoring.md
+    - Troubleshooting: operations/troubleshooting.md
+    - Backup & Recovery: operations/backup.md
+    - Runbooks:
+      - P1 - System Down: operations/runbooks/p1-system-down.md
+      - P2 - High Latency: operations/runbooks/p2-high-latency.md
+      - P3 - Tool Failures: operations/runbooks/p3-tool-failures.md
+  - Plugins:
+    - Overview: plugins/index.md
+    - Reference: plugins/PLUGINS.md
+  - Development:
+    - Contributing: development/contributing.md
+    - Testing: development/testing.md

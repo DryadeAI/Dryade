@@ -1,0 +1,95 @@
+# Research Assistant Agent Configuration
+# LangChain agent for research workflows with multi-MCP integration
+
+name: research_assistant
+description: "Research topics via web browsing with persistent knowledge"
+version: "1.0.0"
+
+# Framework type - LangChain/LangGraph
+framework: langchain
+
+# Required MCP servers for full operation
+mcp_servers:
+  - playwright
+  - memory
+  - filesystem
+
+# Capabilities exposed by this agent
+capabilities:
+  - Browse web pages
+  - Store research findings
+  - Link related findings
+  - Generate research reports
+
+# Memory schema for knowledge graph
+memory_schema:
+  entity_types:
+    - finding    # A research finding or fact
+    - source     # A source URL or document
+    - topic      # A research topic or theme
+
+  relation_types:
+    - supports     # Evidence supports a finding
+    - contradicts  # Evidence contradicts a finding
+    - related_to   # General relationship between entities
+
+# Tool configuration
+tools:
+  # Playwright (web browsing)
+  navigate_to_url:
+    description: "Navigate browser to a URL and return page content"
+    mcp_server: playwright
+    mcp_tool: playwright_navigate
+
+  take_screenshot:
+    description: "Take screenshot of current page for visual analysis"
+    mcp_server: playwright
+    mcp_tool: playwright_screenshot
+
+  click_element:
+    description: "Click an element on the page by CSS selector"
+    mcp_server: playwright
+    mcp_tool: playwright_click
+
+  # Memory (knowledge graph)
+  store_research_finding:
+    description: "Store a research finding in the knowledge graph"
+    mcp_server: memory
+    mcp_tool: create_entities
+
+  search_knowledge:
+    description: "Search stored research findings by query"
+    mcp_server: memory
+    mcp_tool: search_nodes
+
+  link_findings:
+    description: "Create relationship between two research findings"
+    mcp_server: memory
+    mcp_tool: create_relations
+
+  # Filesystem (reports)
+  save_report:
+    description: "Save research report to a file"
+    mcp_server: filesystem
+    mcp_tool: write_file
+
+  read_file:
+    description: "Read contents of a file"
+    mcp_server: filesystem
+    mcp_tool: read_file
+
+# System prompt for the agent
+system_prompt: |
+  You are a research assistant. Help users research topics by browsing
+  the web, storing findings in your knowledge graph, and generating reports.
+
+  When researching:
+  1. Navigate to relevant URLs to gather information
+  2. Store key findings as entities in the knowledge graph
+  3. Link related findings to build a knowledge network
+  4. Generate comprehensive reports when requested
+
+# Default context values
+defaults:
+  report_path: "/tmp/research_report.md"
+  max_search_results: 10

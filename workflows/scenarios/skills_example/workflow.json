@@ -1,0 +1,57 @@
+{
+  "version": "1.0.0",
+  "metadata": {
+    "name": "skills_example",
+    "description": "Developer reference template demonstrating agent skill composition: file reading, analysis, and output formatting skills in sequence",
+    "domain": "dev",
+    "difficulty": "beginner"
+  },
+  "nodes": [
+    {
+      "id": "start",
+      "type": "start",
+      "position": {"x": 0, "y": 100}
+    },
+    {
+      "id": "read_and_parse",
+      "type": "task",
+      "data": {
+        "agent": "document_processor",
+        "task": "Read the input file using filesystem skills. Identify the file type and extract all content. Demonstrate: file reading skill, format detection skill",
+        "context": {"output_format": "structured_text"}
+      },
+      "position": {"x": 200, "y": 100}
+    },
+    {
+      "id": "analyze_content",
+      "type": "task",
+      "data": {
+        "agent": "document_processor",
+        "task": "Analyze the parsed content: extract key entities, summarize sections, identify structure. Demonstrate: text analysis skill, entity extraction skill, summarization skill",
+        "context": {"requires": ["read_and_parse.output"]}
+      },
+      "position": {"x": 400, "y": 100}
+    },
+    {
+      "id": "format_output",
+      "type": "task",
+      "data": {
+        "agent": "document_processor",
+        "task": "Transform the analysis into the requested output format. For markdown: structured report. For json: typed data. For table: columnar format. Demonstrate: format transformation skill, output composition skill. Include a skills_used manifest listing each skill invoked",
+        "context": {"requires": ["read_and_parse.output", "analyze_content.output"]}
+      },
+      "position": {"x": 600, "y": 100}
+    },
+    {
+      "id": "end",
+      "type": "end",
+      "position": {"x": 800, "y": 100}
+    }
+  ],
+  "edges": [
+    {"id": "e1", "source": "start", "target": "read_and_parse"},
+    {"id": "e2", "source": "read_and_parse", "target": "analyze_content"},
+    {"id": "e3", "source": "analyze_content", "target": "format_output"},
+    {"id": "e4", "source": "format_output", "target": "end"}
+  ]
+}

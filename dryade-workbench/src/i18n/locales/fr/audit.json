@@ -1,0 +1,39 @@
+{
+  "page": {
+    "back": "Retour",
+    "errorLoading": "Erreur lors du chargement de l'exécution",
+    "notFound": "Exécution introuvable",
+    "notFoundDescription": "Aucune exécution trouvée avec l'identifiant : {{id}}",
+    "retry": "Réessayer",
+    "inputs": "Entrées",
+    "finalResult": "Résultat final",
+    "executionError": "Erreur d'exécution"
+  },
+  "header": {
+    "breadcrumb": {
+      "dashboard": "Tableau de bord",
+      "executions": "Exécutions"
+    },
+    "viewTimeline": "Chronologie",
+    "viewGraph": "Graphique",
+    "runAgain": "Relancer",
+    "download": "Télécharger",
+    "downloadJSON": "JSON",
+    "downloadMarkdown": "Markdown",
+    "status": {
+      "running": "En cours",
+      "completed": "Terminé",
+      "failed": "Échoué",
+      "cancelled": "Annulé"
+    }
+  },
+  "timeline": {
+    "title": "Chronologie d'exécution",
+    "expandAll": "Tout développer",
+    "collapseAll": "Tout réduire",
+    "error": "Erreur"
+  },
+  "graph": {
+    "noNodes": "Aucun nœud d'exécution à afficher"
+  }
+}

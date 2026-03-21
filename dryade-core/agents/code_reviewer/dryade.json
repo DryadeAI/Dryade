@@ -1,0 +1,18 @@
+{
+  "manifest_version": "1.0",
+  "type": "agent",
+  "name": "code_reviewer",
+  "version": "1.0.0",
+  "description": "Analyzes code changes and provides review feedback",
+  "author": "Dryade",
+  "framework": "crewai",
+  "created_by": "manual",
+  "required_servers": ["github", "context7", "git"],
+  "capabilities": [
+    "Review pull requests",
+    "Check code against library best practices",
+    "Identify potential issues and improvements",
+    "Suggest refactoring opportunities",
+    "Verify security best practices"
+  ]
+}

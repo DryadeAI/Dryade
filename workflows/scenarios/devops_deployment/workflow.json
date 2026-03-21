@@ -1,0 +1,117 @@
+{
+  "version": "1.0.0",
+  "metadata": {
+    "name": "devops_deployment",
+    "description": "Deployment pipeline with pre-flight checks, staged rollout, and automatic rollback",
+    "domain": "operations"
+  },
+  "nodes": [
+    {
+      "id": "start",
+      "type": "start",
+      "position": {"x": 0, "y": 200}
+    },
+    {
+      "id": "preflight_checks",
+      "type": "task",
+      "data": {
+        "agent": "devops_engineer",
+        "task": "Run pre-flight checks: verify build artifacts exist, check target environment health, validate configuration, ensure no active incidents.",
+        "context": {}
+      },
+      "position": {"x": 200, "y": 200}
+    },
+    {
+      "id": "check_preflight",
+      "type": "router",
+      "data": {
+        "condition": "Pre-flight check results",
+        "branches": [
+          {"condition": "all checks pass", "target": "deploy_canary"},
+          {"condition": "any check fails", "target": "abort_deployment"}
+        ]
+      },
+      "position": {"x": 400, "y": 200}
+    },
+    {
+      "id": "abort_deployment",
+      "type": "task",
+      "data": {
+        "agent": "project_manager",
+        "task": "Abort deployment. Log failure reason, notify team, create incident ticket if environment issues detected.",
+        "context": {"requires": ["preflight_checks.output"]}
+      },
+      "position": {"x": 500, "y": 50}
+    },
+    {
+      "id": "deploy_canary",
+      "type": "task",
+      "data": {
+        "agent": "devops_engineer",
+        "task": "Deploy to canary instances (10% traffic). Monitor for 5 minutes. Collect error rates and latency metrics.",
+        "context": {"requires": ["preflight_checks.output"]}
+      },
+      "position": {"x": 600, "y": 200}
+    },
+    {
+      "id": "verify_canary",
+      "type": "router",
+      "data": {
+        "condition": "Canary deployment health",
+        "branches": [
+          {"condition": "error_rate < 1% AND latency_p99 within SLA", "target": "deploy_full"},
+          {"condition": "error_rate >= 1% OR latency_p99 exceeds SLA", "target": "rollback"}
+        ]
+      },
+      "position": {"x": 800, "y": 200}
+    },
+    {
+      "id": "rollback",
+      "type": "task",
+      "data": {
+        "agent": "devops_engineer",
+        "task": "Rollback canary deployment. Restore previous version. Create incident report with failure analysis.",
+        "context": {"requires": ["deploy_canary.output"]}
+      },
+      "position": {"x": 900, "y": 50}
+    },
+    {
+      "id": "deploy_full",
+      "type": "task",
+      "data": {
+        "agent": "devops_engineer",
+        "task": "Deploy to all instances. Use rolling deployment strategy. Monitor progress.",
+        "context": {"requires": ["deploy_canary.output"]}
+      },
+      "position": {"x": 1000, "y": 200}
+    },
+    {
+      "id": "post_deploy_monitoring",
+      "type": "task",
+      "data": {
+        "agent": "kpi_monitor",
+        "task": "Monitor post-deployment metrics for 15 minutes: error rates, latency, throughput, resource utilization. Generate deployment health report.",
+        "context": {"requires": ["deploy_full.output"]}
+      },
+      "position": {"x": 1200, "y": 200}
+    },
+    {
+      "id": "end",
+      "type": "end",
+      "position": {"x": 1400, "y": 200}
+    }
+  ],
+  "edges": [
+    {"id": "e1", "source": "start", "target": "preflight_checks"},
+    {"id": "e2", "source": "preflight_checks", "target": "check_preflight"},
+    {"id": "e3", "source": "check_preflight", "target": "deploy_canary", "data": {"condition": "pass"}},
+    {"id": "e4", "source": "check_preflight", "target": "abort_deployment", "data": {"condition": "fail"}},
+    {"id": "e5", "source": "abort_deployment", "target": "end"},
+    {"id": "e6", "source": "deploy_canary", "target": "verify_canary"},
+    {"id": "e7", "source": "verify_canary", "target": "deploy_full", "data": {"condition": "healthy"}},
+    {"id": "e8", "source": "verify_canary", "target": "rollback", "data": {"condition": "unhealthy"}},
+    {"id": "e9", "source": "rollback", "target": "end"},
+    {"id": "e10", "source": "deploy_full", "target": "post_deploy_monitoring"},
+    {"id": "e11", "source": "post_deploy_monitoring", "target": "end"}
+  ]
+}

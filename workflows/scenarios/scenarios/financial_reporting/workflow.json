@@ -1,0 +1,67 @@
+{
+  "version": "1.0.0",
+  "metadata": {
+    "name": "financial_reporting",
+    "description": "Analyze quarterly financial reports with KPI extraction and trend analysis",
+    "domain": "finance"
+  },
+  "nodes": [
+    {
+      "id": "start",
+      "type": "start",
+      "position": {"x": 0, "y": 100}
+    },
+    {
+      "id": "extract_metrics",
+      "type": "task",
+      "data": {
+        "agent": "document_processor",
+        "task": "Extract all financial metrics, KPIs, and key figures from the uploaded quarterly report. Output structured JSON with categories: revenue, expenses, margins, cash_flow, headcount.",
+        "context": {"output_format": "structured_json"}
+      },
+      "position": {"x": 200, "y": 100}
+    },
+    {
+      "id": "analyze_data",
+      "type": "task",
+      "data": {
+        "agent": "excel_analyst",
+        "task": "Analyze the extracted metrics. Calculate quarter-over-quarter changes, identify anomalies, flag any metrics outside normal ranges. Compare against provided previous quarter data if available.",
+        "context": {"requires": ["extract_metrics.output"]}
+      },
+      "position": {"x": 400, "y": 100}
+    },
+    {
+      "id": "query_historical",
+      "type": "task",
+      "data": {
+        "agent": "database_analyst",
+        "task": "Query historical performance data to provide 4-quarter trend context for the analyzed metrics. Generate trend analysis and YoY comparisons.",
+        "context": {"requires": ["analyze_data.output"]}
+      },
+      "position": {"x": 600, "y": 100}
+    },
+    {
+      "id": "generate_summary",
+      "type": "task",
+      "data": {
+        "agent": "database_analyst",
+        "task": "Generate executive summary combining all analysis. Include: key highlights (3-5 bullets), areas of concern, recommendations, and KPI dashboard data. Format as markdown suitable for board presentation.",
+        "context": {"requires": ["analyze_data.output", "query_historical.output", "extract_metrics.output"]}
+      },
+      "position": {"x": 800, "y": 100}
+    },
+    {
+      "id": "end",
+      "type": "end",
+      "position": {"x": 1000, "y": 100}
+    }
+  ],
+  "edges": [
+    {"id": "e1", "source": "start", "target": "extract_metrics"},
+    {"id": "e2", "source": "extract_metrics", "target": "analyze_data"},
+    {"id": "e3", "source": "analyze_data", "target": "query_historical"},
+    {"id": "e4", "source": "query_historical", "target": "generate_summary"},
+    {"id": "e5", "source": "generate_summary", "target": "end"}
+  ]
+}

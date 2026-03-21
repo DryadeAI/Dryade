@@ -1,0 +1,66 @@
+# Dryade Chat Quickstart
+#
+# Usage:
+#   cp .env.example .env
+#   # Edit .env with your LLM API key
+#   docker compose up -d
+#   # Open http://localhost:3000
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: dryade
+      POSTGRES_USER: dryade
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-dryade}
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U dryade -d dryade"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+
+  dryade:
+    image: ghcr.io/dryadecore/dryade:latest
+    restart: unless-stopped
+    ports:
+      - "${DRYADE_PORT:-8080}:8080"
+    env_file:
+      - .env
+    environment:
+      DRYADE_DATABASE_URL: "postgresql+psycopg://dryade:${POSTGRES_PASSWORD:-dryade}@postgres:5432/dryade"
+    depends_on:
+      postgres:
+        condition: service_healthy
+    volumes:
+      - dryade-data:/app/data
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/api/health"]
+      interval: 30s
+      timeout: 5s
+      retries: 5
+      start_period: 60s
+
+  frontend:
+    image: ghcr.io/dryadecore/dryade-workbench:latest
+    restart: unless-stopped
+    ports:
+      - "${FRONTEND_PORT:-3000}:80"
+    environment:
+      VITE_API_BASE_URL: "http://localhost:${DRYADE_PORT:-8080}"
+    depends_on:
+      dryade:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD-SHELL", "curl -fsS http://localhost:80/ >/dev/null"]
+      interval: 30s
+      timeout: 5s
+      retries: 5
+      start_period: 15s
+
+volumes:
+  pgdata:
+  dryade-data:

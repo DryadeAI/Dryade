@@ -1,0 +1,176 @@
+# Dryade Quickstart - Docker Compose
+# =============================================================================
+# The fastest way to run Dryade locally — zero API keys required.
+#
+# This compose file includes 3 services:
+#   1. ollama     — Local LLM server (no API key needed)
+#   2. dryade-api — Dryade backend
+#   3. dryade-frontend — Dryade Workbench UI
+#
+# Quick Start:
+#   cp .env.quickstart.example .env
+#   docker compose -f docker-compose.quickstart.yml up -d
+#   docker compose -f docker-compose.quickstart.yml exec ollama ollama pull llama3.2:3b
+#   open http://localhost:3000
+#
+# See the full guide at: https://dryade.ai/docs/getting-started/quickstart
+# =============================================================================
+
+services:
+  # ===========================================================================
+  # Ollama - Local LLM Server
+  # No API key required. Models are downloaded on first use.
+  # ===========================================================================
+  ollama:
+    image: ollama/ollama:latest
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:11434:11434"
+    volumes:
+      - ollama-data:/root/.ollama
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:11434"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 20s
+    # --- GPU Acceleration (optional, uncomment to enable) ---
+    # Enables faster inference on NVIDIA GPUs.
+    # Requires: nvidia-container-toolkit installed on your host.
+    #
+    # deploy:
+    #   resources:
+    #     reservations:
+    #       devices:
+    #         - driver: nvidia
+    #           count: all
+    #           capabilities: [gpu]
+
+  # ===========================================================================
+  # PostgreSQL - Database
+  # ===========================================================================
+  postgres:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: dryade
+      POSTGRES_USER: dryade
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-dryade_dev}
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U dryade -d dryade"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+
+  # ===========================================================================
+  # Dryade API - FastAPI Backend
+  # ===========================================================================
+  dryade-api:
+    image: ghcr.io/dryade/dryade-api:latest
+    build:
+      context: .
+      dockerfile: deploy/backend/Dockerfile
+    restart: unless-stopped
+    depends_on:
+      ollama:
+        condition: service_healthy
+      postgres:
+        condition: service_healthy
+    environment:
+      # Core settings
+      DRYADE_HOST: "0.0.0.0"
+      DRYADE_PORT: "8080"
+      DRYADE_ENV: "${DRYADE_ENV:-development}"
+      DRYADE_DEBUG: "${DRYADE_DEBUG:-false}"
+      DRYADE_LOG_LEVEL: "${DRYADE_LOG_LEVEL:-INFO}"
+
+      # LLM Configuration — Ollama by default (no API key needed)
+      DRYADE_LLM_MODE: "${DRYADE_LLM_MODE:-ollama}"
+      DRYADE_LLM_MODEL: "${DRYADE_LLM_MODEL:-llama3.2:3b}"
+      DRYADE_LLM_BASE_URL: "${DRYADE_LLM_BASE_URL:-http://ollama:11434}"
+      DRYADE_LLM_TIMEOUT: "${DRYADE_LLM_TIMEOUT:-120}"
+
+      # Database — PostgreSQL
+      DRYADE_DATABASE_URL: "${DRYADE_DATABASE_URL:-postgresql+psycopg://dryade:dryade_dev@postgres:5432/dryade}"
+
+      # Security — auth disabled for quickstart simplicity
+      # Enable DRYADE_AUTH_ENABLED=true for production use
+      DRYADE_AUTH_ENABLED: "${DRYADE_AUTH_ENABLED:-false}"
+      DRYADE_JWT_SECRET: "${DRYADE_JWT_SECRET:-quickstart-change-me-in-production}"
+      DRYADE_CORS_ORIGINS: "${DRYADE_CORS_ORIGINS:-http://localhost:3000,http://127.0.0.1:3000}"
+
+      # Optional integrations (leave blank to disable)
+      GITHUB_TOKEN: "${GITHUB_TOKEN:-}"
+      LINEAR_API_KEY: "${LINEAR_API_KEY:-}"
+    ports:
+      - "${DRYADE_PORT:-8080}:8080"
+    volumes:
+      - dryade-data:/app/data
+      - dryade-uploads:/app/uploads
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/api/health"]
+      interval: 30s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+
+  # ===========================================================================
+  # Dryade Workbench - React Frontend
+  # ===========================================================================
+  dryade-frontend:
+    image: ghcr.io/dryade/dryade-frontend:latest
+    build:
+      context: .
+      dockerfile: deploy/frontend/Dockerfile
+      args:
+        NEXT_PUBLIC_FASTAPI_URL: "${NEXT_PUBLIC_FASTAPI_URL:-http://localhost:8080}"
+    restart: unless-stopped
+    environment:
+      NEXT_PUBLIC_FASTAPI_URL: "${NEXT_PUBLIC_FASTAPI_URL:-http://localhost:8080}"
+      NODE_ENV: production
+      NEXT_TELEMETRY_DISABLED: "1"
+    depends_on:
+      dryade-api:
+        condition: service_healthy
+    ports:
+      - "${FRONTEND_PORT:-3000}:3000"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3000"]
+      interval: 30s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+
+# =============================================================================
+# Named Volumes
+# =============================================================================
+volumes:
+  postgres-data:
+    name: dryade-quickstart-postgres
+  dryade-data:
+    name: dryade-quickstart-data
+  dryade-uploads:
+    name: dryade-quickstart-uploads
+  ollama-data:
+    name: dryade-quickstart-ollama
+
+# =============================================================================
+# Network Configuration
+# =============================================================================
+networks:
+  default:
+    name: dryade-quickstart
+
+# =============================================================================
+# --- To use OpenAI instead of Ollama ---
+# 1. Set these in your .env file:
+#   DRYADE_LLM_MODE=openai
+#   DRYADE_LLM_MODEL=gpt-4o
+#   DRYADE_LLM_BASE_URL=https://api.openai.com/v1
+#   DRYADE_LLM_API_KEY=sk-your-key-here
+# 2. You can then stop the ollama service:
+#   docker compose -f docker-compose.quickstart.yml stop ollama
+# =============================================================================

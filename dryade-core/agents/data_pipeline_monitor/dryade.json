@@ -1,0 +1,11 @@
+{
+  "name": "data_pipeline_monitor",
+  "framework": "langchain",
+  "description": "Real-time data pipeline monitoring agent that watches ETL jobs, detects anomalies in data quality and throughput, and triggers corrective actions when pipelines degrade or fail.",
+  "version": "1.0.0",
+  "factory_created": true,
+  "entry_point": "__init__.py",
+  "run_function": "run",
+  "mcp_servers": ["postgres-mcp-server", "prometheus-mcp-server", "slack-mcp-server"],
+  "capabilities": ["Pipeline health monitoring with configurable SLA thresholds for latency, throughput, and error rates", "Data quality validation including schema drift detection, null rate anomalies, and distribution shifts", "Automatic root cause analysis correlating pipeline failures with upstream dependency changes", "Alert deduplication and intelligent grouping to reduce notification fatigue", "Self-healing actions for common failures: retry stale jobs, clear poison queues, restart stuck workers", "Historical trend analysis comparing current run metrics against rolling 7-day baselines", "Cost attribution per pipeline stage with anomaly detection on compute spend"]
+}

@@ -1,0 +1,68 @@
+{
+  "greeting": {
+    "morning": "Good morning",
+    "afternoon": "Good afternoon",
+    "evening": "Good evening"
+  },
+  "subtitle": "Here's what's happening today",
+  "stats": {
+    "totalRequests": "Total Requests",
+    "successRate": "Success Rate",
+    "activeAgents": "Active Agents",
+    "queueStatus": "Queue Status",
+    "workflows": "Workflows"
+  },
+  "sections": {
+    "recentRequests": "Recent Requests",
+    "workflowTemplates": "Workflow Templates",
+    "systemStatus": "System Status",
+    "quickAccess": "Quick Access"
+  },
+  "status": {
+    "operational": "Operational",
+    "degraded": "Degraded",
+    "unhealthy": "Unhealthy",
+    "disconnected": "Disconnected",
+    "unknown": "Unknown",
+    "registered": "Registered",
+    "empty": "Empty",
+    "pending": "Pending",
+    "stable": "Stable"
+  },
+  "quickActions": {
+    "newChat": "New Chat",
+    "newChatDesc": "Start a conversation",
+    "createWorkflow": "Create Workflow",
+    "createWorkflowDesc": "Build automation",
+    "newPlan": "New Plan",
+    "newPlanDesc": "AI-generated plans",
+    "upload": "Upload",
+    "uploadDesc": "Add documents",
+    "chatWithAgent": "Chat with Agent",
+    "newConversation": "New Conversation"
+  },
+  "disconnected": {
+    "title": "Backend unreachable",
+    "message": "The API server is not responding. Dashboard will show empty data until connection is restored."
+  },
+  "empty": {
+    "noRequests": "No recent activity",
+    "noRequestsDescription": "Request activity will appear here once you start using the platform.",
+    "noWorkflows": "No workflows yet",
+    "noWorkflowsDescription": "Create a plan from chat or build a workflow to get started."
+  },
+  "labels": {
+    "api": "API",
+    "agents": "Agents",
+    "queue": "Queue",
+    "viewMetrics": "View metrics",
+    "viewAllWorkflows": "View all workflows",
+    "viewSystemHealth": "View system health →",
+    "fromTarget": "from target",
+    "recent": "recent",
+    "total": "Total",
+    "request": "request",
+    "completed": "completed",
+    "failed": "failed"
+  }
+}

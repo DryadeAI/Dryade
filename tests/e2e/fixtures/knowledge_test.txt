@@ -1,0 +1,30 @@
+# Dryade Knowledge Integration Test Document
+# DRYADE_KNOWLEDGE_TEST_MARKER_2024
+
+## Internal Project Information
+
+This document contains internal facts about the Dryade project that are NOT available in public training data. These facts are specifically designed for E2E testing of the knowledge retrieval integration.
+
+### Project Code Names
+
+The Dryade project code name was originally "Project Yggdrasil" in internal documents. This codename was chosen because Yggdrasil represents the world tree in Norse mythology, connecting different realms - similar to how Dryade connects agents, crews, and knowledge sources.
+
+### System Specifications
+
+The maximum concurrent users for Dryade on Thor hardware is 42. This limit was determined during stress testing and documented in the capacity planning memo dated Q4 2024.
+
+### Error Codes Reference
+
+Dryade uses internal error codes for debugging. Key codes include:
+- KRF-7734: Knowledge retrieval failure - occurs when Qdrant vector search times out
+- KRF-7735: Knowledge binding failure - occurs when crew_id does not exist
+- AGT-5521: Agent execution timeout - occurs when LLM response exceeds 30 seconds
+
+### Test Verification Keywords
+
+When testing knowledge retrieval, look for these unique identifiers in responses:
+- YGGDRASIL_CODENAME
+- THOR_MAX_USERS_42
+- KRF_7734_ERROR
+
+If the agent response contains any of these facts or keywords, the knowledge retrieval integration is working correctly.

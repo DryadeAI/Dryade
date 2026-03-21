@@ -1,0 +1,58 @@
+# Dryade Documentation CI/CD Pipeline
+#
+# Builds the Docusaurus docs site and deploys to Cloudflare Pages.
+# Uses pre-generated OpenAPI schema (no Python export step needed).
+#
+# Required secrets:
+#   CLOUDFLARE_API_TOKEN  - Cloudflare API token with Pages edit permission
+#   CLOUDFLARE_ACCOUNT_ID - Cloudflare account identifier
+#
+name: Documentation
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'docs-site/**'
+      - '.github/workflows/docs.yml'
+  pull_request:
+    branches: [main]
+    paths:
+      - 'docs-site/**'
+      - '.github/workflows/docs.yml'
+  workflow_dispatch:
+
+concurrency:
+  group: docs-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # Node.js setup + Docusaurus build
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+          cache-dependency-path: docs-site/package-lock.json
+
+      - name: Install npm dependencies
+        working-directory: docs-site
+        run: npm ci
+
+      - name: Generate API docs from OpenAPI
+        working-directory: docs-site
+        run: npx docusaurus gen-api-docs all
+
+      - name: Build Docusaurus site
+        working-directory: docs-site
+        continue-on-error: true
+        run: npm run build
+
+      # Docs site build verification complete.
+      # Deploy is handled separately (not part of community CI).

@@ -1,0 +1,253 @@
+{
+  "app": {
+    "name": "DryadeApp",
+    "tagline": "주권 AI 오케스트레이션 플랫폼",
+    "airGapped": "에어갭 • 표준 네이티브 • 주권"
+  },
+  "nav": {
+    "chat": "채팅",
+    "dashboard": "대시보드",
+    "agents": "에이전트",
+    "workflows": "워크플로",
+    "knowledge": "지식",
+    "factory": "팩토리",
+    "loops": "반복 일정",
+    "health": "상태",
+    "metrics": "지표",
+    "plugins": "플러그인",
+    "costTracker": "비용 추적",
+    "clarifyPreferences": "환경설정",
+    "settings": "설정"
+  },
+  "sections": {
+    "observability": "관측성",
+    "account": "계정",
+    "plugins": "플러그인"
+  },
+  "actions": {
+    "signOut": "로그아웃",
+    "save": "저장",
+    "cancel": "취소",
+    "delete": "삭제",
+    "confirm": "확인",
+    "search": "검색",
+    "close": "닫기",
+    "retry": "재시도",
+    "refresh": "새로고침",
+    "loading": "로딩 중...",
+    "collapse": "사이드바 접기",
+    "expand": "사이드바 펼치기",
+    "openMenu": "메뉴 열기",
+    "closeMenu": "메뉴 닫기",
+    "tryAgain": "다시 시도",
+    "previous": "이전",
+    "next": "다음",
+    "edit": "편집"
+  },
+  "status": {
+    "loadingPlugins": "플러그인 로딩 중..."
+  },
+  "clarify": {
+    "title": "명확화 환경설정",
+    "subtitle": "명확화 질문에 대한 저장된 답변을 관리합니다. 양식에 자동으로 입력됩니다.",
+    "includeGlobal": "전역 포함",
+    "preferenceCount": "환경설정 {{count}}개",
+    "stats": {
+      "total": "전체 환경설정",
+      "global": "전역",
+      "projectSpecific": "프로젝트별"
+    },
+    "empty": {
+      "noMatch": "일치하는 환경설정이 없습니다",
+      "noMatchDescription": "다른 키워드를 사용하거나 검색을 초기화하십시오.",
+      "noPreferences": "저장된 환경설정이 아직 없습니다",
+      "noPreferencesDescription": "명확화 질문에 답변하면 환경설정이 자동으로 저장됩니다."
+    },
+    "answer": "답변: ",
+    "usedCount": "사용: {{count}}회",
+    "threshold": "임계값:",
+    "deleteTitle": "환경설정 삭제",
+    "deleteDescription": "이 환경설정을 삭제하시겠습니까? 이 작업은 취소할 수 없습니다.",
+    "searchPlaceholder": "환경설정 검색...",
+    "toast": {
+      "deleted": "환경설정이 삭제되었습니다",
+      "deleteFailed": "환경설정 삭제에 실패했습니다",
+      "thresholdFailed": "임계값 업데이트에 실패했습니다"
+    }
+  },
+  "costTracker": {
+    "title": "비용 추적",
+    "subtitle": "LLM 사용량 및 지출을 모니터링합니다",
+    "stats": {
+      "totalCost": "총 비용",
+      "totalTokens": "총 토큰 수",
+      "requests": "요청 수",
+      "avgPerRequest": "요청당 평균"
+    },
+    "live": "실시간",
+    "tabs": {
+      "overview": "개요",
+      "byModel": "모델별",
+      "byAgent": "에이전트별",
+      "records": "기록",
+      "pricing": "가격"
+    },
+    "empty": {
+      "title": "비용 데이터가 아직 없습니다",
+      "description": "플랫폼을 통해 LLM 요청이 이루어지면 비용 기록이 여기에 표시됩니다.",
+      "noModelData": "모델 데이터 없음",
+      "noModelDataDescription": "요청 처리 후 모델별 비용 분석이 표시됩니다.",
+      "noAgentData": "에이전트 데이터 없음",
+      "noAgentDataDescription": "요청 처리 후 에이전트별 비용 분석이 표시됩니다.",
+      "noRecords": "기록 없음",
+      "noRecordsDescription": "LLM 요청이 이루어지면 사용 기록이 여기에 표시됩니다.",
+      "noPricing": "가격 데이터 없음",
+      "noPricingDescription": "'LiteLLM에서 새로고침'을 클릭하여 모델 가격을 로드하십시오."
+    },
+    "costByModel": "모델별 비용",
+    "costByAgent": "에이전트별 비용",
+    "table": {
+      "model": "모델",
+      "totalCost": "총 비용",
+      "requests": "요청 수",
+      "avgPerRequest": "요청당 평균",
+      "timestamp": "타임스탬프",
+      "agent": "에이전트",
+      "inputTokens": "입력",
+      "outputTokens": "출력",
+      "cost": "비용",
+      "provider": "제공업체",
+      "inputPrice": "입력 $/1M",
+      "outputPrice": "출력 $/1M",
+      "source": "소스",
+      "updated": "업데이트"
+    },
+    "period": {
+      "last24h": "최근 24시간",
+      "last7d": "최근 7일",
+      "last30d": "최근 30일",
+      "last90d": "최근 90일"
+    },
+    "refreshFromLitellm": "LiteLLM에서 새로고침",
+    "addModel": "모델 추가",
+    "addModelPricing": "모델 가격 추가",
+    "pricing": {
+      "modelName": "모델 이름",
+      "inputPrice": "입력 $/1M 토큰",
+      "outputPrice": "출력 $/1M 토큰"
+    },
+    "pagination": {
+      "showing": "{{total}}개 중 {{start}}-{{end}}개 표시",
+      "previous": "이전",
+      "next": "다음"
+    },
+    "searchModelsPlaceholder": "모델 검색...",
+    "toast": {
+      "updateFailed": "가격 업데이트에 실패했습니다"
+    }
+  },
+  "loops": {
+    "title": "반복 일정",
+    "subtitle": "워크플로, 에이전트, 스킬 및 작업의 자동 실행을 예약합니다.",
+    "newLoop": "새 반복 일정",
+    "empty": {
+      "title": "예약된 반복 일정이 없습니다",
+      "description": "반복 일정을 만들어 워크플로, 에이전트, 스킬 또는 작업을 정기적으로 자동 실행하십시오."
+    },
+    "deleteTitle": "반복 일정을 삭제하시겠습니까?",
+    "deleteDescription": "이 반복 일정과 모든 실행 기록이 영구적으로 삭제됩니다. 이 작업은 취소할 수 없습니다.",
+    "noExecutions": "아직 실행 기록이 없습니다.",
+    "recentExecutions": "최근 실행 (총 {{total}}회)",
+    "targetTypes": {
+      "all": "모든 유형",
+      "workflow": "워크플로",
+      "agent": "에이전트",
+      "skill": "스킬",
+      "orchestratorTask": "오케스트레이터 작업"
+    },
+    "enabledStates": {
+      "all": "모든 상태",
+      "active": "활성",
+      "paused": "일시 중지"
+    },
+    "tableHeaders": {
+      "name": "이름",
+      "target": "대상",
+      "schedule": "일정",
+      "status": "상태",
+      "actions": "작업"
+    },
+    "actions": {
+      "triggerNow": "지금 실행",
+      "pause": "일시 중지",
+      "resume": "재개"
+    },
+    "placeholders": {
+      "targetType": "대상 유형",
+      "state": "상태"
+    },
+    "toast": {
+      "triggered": "반복 일정 \"{{name}}\"이(가) 실행되었습니다.",
+      "triggerFailed": "실행에 실패했습니다.",
+      "paused": "반복 일정 \"{{name}}\"이(가) 일시 중지되었습니다.",
+      "resumed": "반복 일정 \"{{name}}\"이(가) 재개되었습니다.",
+      "failed": "실패했습니다.",
+      "deleted": "반복 일정 \"{{name}}\"이(가) 삭제되었습니다.",
+      "deleteFailed": "삭제에 실패했습니다."
+    }
+  },
+  "notFound": {
+    "title": "페이지를 찾을 수 없습니다",
+    "message": "숲에는 여기로 가는 길이 없습니다.",
+    "returnHome": "홈으로 돌아가기"
+  },
+  "errors": {
+    "forbidden": {
+      "title": "접근이 거부되었습니다",
+      "message": "이 리소스에 접근할 권한이 없습니다.",
+      "hint": "오류라고 생각되시면 관리자에게 문의하십시오.",
+      "resource": "리소스:",
+      "requiredRole": "필요한 역할:",
+      "requestAccess": "접근 요청"
+    },
+    "unauthorized": {
+      "title": "로그인이 필요합니다",
+      "message": "이 페이지에 접근하려면 로그인해야 합니다.",
+      "sessionExpired": "세션이 만료되었을 수 있습니다.",
+      "logIn": "로그인",
+      "returnHome": "홈으로 돌아가기"
+    },
+    "server": {
+      "title": "문제가 발생했습니다",
+      "message": "요청을 처리하는 중에 문제가 발생했습니다.",
+      "hint": "팀에 알림이 전달되었으며 해결 중입니다.",
+      "errorDetails": "오류 상세 정보",
+      "errorId": "오류 ID:",
+      "timestamp": "타임스탬프:",
+      "tryAgain": "다시 시도",
+      "reportIssue": "문제 신고",
+      "optionalDescription": "선택 사항 설명",
+      "descriptionPlaceholder": "이 문제가 발생했을 때 무엇을 하고 계셨습니까?",
+      "submitReport": "신고 제출",
+      "reportSubmitted": "신고가 제출되었습니다"
+    },
+    "network": {
+      "title": "인터넷 연결 없음",
+      "message": "연결을 확인하고 다시 시도하십시오.",
+      "checking": "확인 중...",
+      "autoRecover": "연결이 복구되면 이 페이지가 자동으로 복구됩니다.",
+      "connectionRestored": "연결이 복구되었습니다!",
+      "stillOffline": "여전히 오프라인입니다"
+    },
+    "goToDashboard": "대시보드로 이동"
+  },
+  "timeAgo": {
+    "unknown": "알 수 없음",
+    "secondsAgo": "{{n}}초 전",
+    "minutesAgo": "{{n}}분 전",
+    "hoursAgo": "{{n}}시간 전",
+    "daysAgo": "{{n}}일 전"
+  },
+  "theme": "테마",
+  "language": "언어"
+}

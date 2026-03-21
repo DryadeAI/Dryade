@@ -1,0 +1,254 @@
+{
+  "app": {
+    "name": "DryadeApp",
+    "tagline": "Sovereign AI Orchestration Platform",
+    "airGapped": "Air-gapped • Standards-native • Sovereign"
+  },
+  "nav": {
+    "chat": "Chat",
+    "dashboard": "Dashboard",
+    "agents": "Agents",
+    "workflows": "Workflows",
+    "knowledge": "Knowledge",
+    "factory": "Factory",
+    "loops": "Loops",
+    "health": "Health",
+    "metrics": "Metrics",
+    "plugins": "Plugins",
+    "costTracker": "Cost Tracker",
+    "clarifyPreferences": "Preferences",
+    "settings": "Settings",
+    "admin": "Admin"
+  },
+  "sections": {
+    "observability": "Observability",
+    "account": "Account",
+    "plugins": "Plugins"
+  },
+  "actions": {
+    "signOut": "Sign out",
+    "save": "Save",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "confirm": "Confirm",
+    "search": "Search",
+    "close": "Close",
+    "retry": "Retry",
+    "refresh": "Refresh",
+    "loading": "Loading...",
+    "collapse": "Collapse sidebar",
+    "expand": "Expand sidebar",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu",
+    "tryAgain": "Try Again",
+    "previous": "Previous",
+    "next": "Next",
+    "edit": "Edit"
+  },
+  "status": {
+    "loadingPlugins": "Loading plugins..."
+  },
+  "clarify": {
+    "title": "Clarification Preferences",
+    "subtitle": "Manage saved answers for clarification questions. These prefill forms automatically.",
+    "includeGlobal": "Include global",
+    "preferenceCount": "{{count}} preference(s)",
+    "stats": {
+      "total": "Total Preferences",
+      "global": "Global",
+      "projectSpecific": "Project-specific"
+    },
+    "empty": {
+      "noMatch": "No matching preferences",
+      "noMatchDescription": "Try different keywords or clear your search.",
+      "noPreferences": "No saved preferences yet",
+      "noPreferencesDescription": "Preferences will be saved automatically when you answer clarification questions."
+    },
+    "answer": "Answer: ",
+    "usedCount": "Used: {{count}}x",
+    "threshold": "Threshold:",
+    "deleteTitle": "Delete Preference",
+    "deleteDescription": "Are you sure you want to delete this preference? This action cannot be undone.",
+    "searchPlaceholder": "Search preferences...",
+    "toast": {
+      "deleted": "Preference deleted",
+      "deleteFailed": "Failed to delete preference",
+      "thresholdFailed": "Failed to update threshold"
+    }
+  },
+  "costTracker": {
+    "title": "Cost Tracking",
+    "subtitle": "Monitor LLM usage and spending",
+    "stats": {
+      "totalCost": "Total Cost",
+      "totalTokens": "Total Tokens",
+      "requests": "Requests",
+      "avgPerRequest": "Avg per Request"
+    },
+    "live": "Live",
+    "tabs": {
+      "overview": "Overview",
+      "byModel": "By Model",
+      "byAgent": "By Agent",
+      "records": "Records",
+      "pricing": "Pricing"
+    },
+    "empty": {
+      "title": "No cost data yet",
+      "description": "Cost records will appear here once LLM requests are made through the platform.",
+      "noModelData": "No model data",
+      "noModelDataDescription": "Model cost breakdowns will appear after processing requests.",
+      "noAgentData": "No agent data",
+      "noAgentDataDescription": "Agent cost breakdowns will appear after processing requests.",
+      "noRecords": "No records",
+      "noRecordsDescription": "Usage records will appear here once LLM requests are made.",
+      "noPricing": "No pricing data",
+      "noPricingDescription": "Click 'Refresh from LiteLLM' to load model pricing."
+    },
+    "costByModel": "Cost by Model",
+    "costByAgent": "Cost by Agent",
+    "table": {
+      "model": "Model",
+      "totalCost": "Total Cost",
+      "requests": "Requests",
+      "avgPerRequest": "Avg/Request",
+      "timestamp": "Timestamp",
+      "agent": "Agent",
+      "inputTokens": "Input",
+      "outputTokens": "Output",
+      "cost": "Cost",
+      "provider": "Provider",
+      "inputPrice": "Input $/1M",
+      "outputPrice": "Output $/1M",
+      "source": "Source",
+      "updated": "Updated"
+    },
+    "period": {
+      "last24h": "Last 24 hours",
+      "last7d": "Last 7 days",
+      "last30d": "Last 30 days",
+      "last90d": "Last 90 days"
+    },
+    "refreshFromLitellm": "Refresh from LiteLLM",
+    "addModel": "Add Model",
+    "addModelPricing": "Add Model Pricing",
+    "pricing": {
+      "modelName": "Model Name",
+      "inputPrice": "Input $/1M tokens",
+      "outputPrice": "Output $/1M tokens"
+    },
+    "pagination": {
+      "showing": "Showing {{start}}-{{end}} of {{total}}",
+      "previous": "Previous",
+      "next": "Next"
+    },
+    "searchModelsPlaceholder": "Search models...",
+    "toast": {
+      "updateFailed": "Failed to update pricing"
+    }
+  },
+  "loops": {
+    "title": "Scheduled Loops",
+    "subtitle": "Schedule workflows, agents, skills, and tasks to run automatically.",
+    "newLoop": "New Loop",
+    "empty": {
+      "title": "No scheduled loops",
+      "description": "Create a loop to schedule workflows, agents, skills, or tasks to run on a recurring schedule."
+    },
+    "deleteTitle": "Delete loop?",
+    "deleteDescription": "This will permanently delete this loop and all its execution history. This action cannot be undone.",
+    "noExecutions": "No executions yet.",
+    "recentExecutions": "Recent Executions ({{total}} total)",
+    "targetTypes": {
+      "all": "All types",
+      "workflow": "Workflow",
+      "agent": "Agent",
+      "skill": "Skill",
+      "orchestratorTask": "Orchestrator Task"
+    },
+    "enabledStates": {
+      "all": "All states",
+      "active": "Active",
+      "paused": "Paused"
+    },
+    "tableHeaders": {
+      "name": "Name",
+      "target": "Target",
+      "schedule": "Schedule",
+      "status": "Status",
+      "actions": "Actions"
+    },
+    "actions": {
+      "triggerNow": "Trigger now",
+      "pause": "Pause",
+      "resume": "Resume"
+    },
+    "placeholders": {
+      "targetType": "Target type",
+      "state": "State"
+    },
+    "toast": {
+      "triggered": "Loop \"{{name}}\" triggered.",
+      "triggerFailed": "Trigger failed.",
+      "paused": "Loop \"{{name}}\" paused.",
+      "resumed": "Loop \"{{name}}\" resumed.",
+      "failed": "Failed.",
+      "deleted": "Loop \"{{name}}\" deleted.",
+      "deleteFailed": "Delete failed."
+    }
+  },
+  "notFound": {
+    "title": "Page Not Found",
+    "message": "The forest has no path here.",
+    "returnHome": "Return to the clearing"
+  },
+  "errors": {
+    "forbidden": {
+      "title": "Access Denied",
+      "message": "You don't have permission to access this resource.",
+      "hint": "Contact your administrator if you believe this is a mistake.",
+      "resource": "Resource:",
+      "requiredRole": "Required role:",
+      "requestAccess": "Request Access"
+    },
+    "unauthorized": {
+      "title": "Please Log In",
+      "message": "You need to be logged in to access this page.",
+      "sessionExpired": "Your session may have expired.",
+      "logIn": "Log In",
+      "returnHome": "Return to Home"
+    },
+    "server": {
+      "title": "Something Went Wrong",
+      "message": "We're having trouble processing your request.",
+      "hint": "Our team has been notified and is working on it.",
+      "errorDetails": "Error details",
+      "errorId": "Error ID:",
+      "timestamp": "Timestamp:",
+      "tryAgain": "Try Again",
+      "reportIssue": "Report Issue",
+      "optionalDescription": "Optional Description",
+      "descriptionPlaceholder": "What were you doing when this happened?",
+      "submitReport": "Submit Report",
+      "reportSubmitted": "Report Submitted"
+    },
+    "network": {
+      "title": "No Internet Connection",
+      "message": "Please check your connection and try again.",
+      "checking": "Checking...",
+      "autoRecover": "This page will auto-recover when connection is restored.",
+      "connectionRestored": "Connection Restored!",
+      "stillOffline": "Still Offline"
+    },
+    "goToDashboard": "Go to Dashboard"
+  },
+  "timeAgo": {
+    "unknown": "unknown",
+    "secondsAgo": "{{n}}s ago",
+    "minutesAgo": "{{n}}m ago",
+    "hoursAgo": "{{n}}h ago",
+    "daysAgo": "{{n}}d ago"
+  },
+  "theme": "Theme",
+  "language": "Language"
+}

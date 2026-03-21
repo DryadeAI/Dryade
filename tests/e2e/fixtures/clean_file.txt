@@ -1,0 +1,8 @@
+This is a clean test file for scanning validation.
+
+It contains only benign text content and should pass both ClamAV and YARA scans.
+This file is used by the E2E test suite to verify that clean files are correctly
+identified as safe by the file scanning system.
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor
+incididunt ut labore et dolore magna aliqua.

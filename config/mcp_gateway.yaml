@@ -1,0 +1,95 @@
+# =============================================================================
+# MCP Gateway Configuration
+# Centralized MCP server management with resource isolation
+# =============================================================================
+
+gateway:
+  host: 0.0.0.0
+  port: 8090
+  log_level: info
+
+  # Network configuration
+  network:
+    name: mcp-servers
+    driver: bridge
+
+  # Health check settings
+  healthcheck:
+    interval: 30s
+    timeout: 10s
+    retries: 3
+
+# Default resource limits for MCP server containers
+resource_defaults:
+  # CPU limit (number of cores)
+  cpu_limit: 1
+  # Memory limit
+  memory_limit: 2g
+  # Memory reservation (soft limit)
+  memory_reservation: 512m
+  # No swap allowed
+  memory_swap: 2g
+  # CPU shares (relative weight)
+  cpu_shares: 1024
+  # Pids limit (process count)
+  pids_limit: 100
+
+# Security settings
+security:
+  # Read-only root filesystem
+  read_only_rootfs: true
+  # Drop all capabilities by default
+  cap_drop:
+    - ALL
+  # No new privileges
+  no_new_privileges: true
+  # Seccomp profile
+  seccomp_profile: /app/config/seccomp-mcp.json
+
+# Mount configurations
+mounts:
+  # Model files (read-only)
+  models:
+    source: /models
+    target: /models
+    read_only: true
+  # Temporary data (per-server)
+  tmp:
+    type: tmpfs
+    target: /tmp
+    tmpfs_size: 100m
+
+# Server templates for common MCP server types
+server_templates:
+  # Standard Python MCP server
+  python:
+    image: python:3.11-slim
+    command: ["python", "-m", "mcp_server"]
+    env:
+      PYTHONUNBUFFERED: "1"
+    resources:
+      cpu_limit: 1
+      memory_limit: 2g
+
+  # Node.js MCP server
+  nodejs:
+    image: node:20-slim
+    command: ["node", "server.js"]
+    resources:
+      cpu_limit: 1
+      memory_limit: 1g
+
+  # Custom server from Dockerfile
+  custom:
+    build_context: required
+    resources:
+      cpu_limit: 1
+      memory_limit: 2g
+
+# Logging configuration
+logging:
+  # Container log driver
+  driver: json-file
+  options:
+    max-size: 10m
+    max-file: "3"

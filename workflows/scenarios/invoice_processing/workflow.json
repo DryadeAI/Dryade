@@ -1,0 +1,108 @@
+{
+  "version": "1.0.0",
+  "metadata": {
+    "name": "invoice_processing",
+    "description": "Process invoices with OCR extraction, validation, and error handling",
+    "domain": "finance"
+  },
+  "nodes": [
+    {
+      "id": "start",
+      "type": "start",
+      "position": {"x": 0, "y": 200}
+    },
+    {
+      "id": "extract_invoice",
+      "type": "task",
+      "data": {
+        "agent": "document_processor",
+        "task": "Extract invoice data: vendor name, invoice number, date, line items, amounts, tax, total. Output structured JSON.",
+        "context": {"extraction_mode": "invoice"}
+      },
+      "position": {"x": 200, "y": 200}
+    },
+    {
+      "id": "validate_extraction",
+      "type": "router",
+      "data": {
+        "condition": "Extraction quality and completeness",
+        "branches": [
+          {"condition": "all required fields present AND confidence > 0.8", "target": "verify_against_db"},
+          {"condition": "missing fields OR confidence < 0.5", "target": "retry_extraction"},
+          {"condition": "confidence between 0.5 and 0.8", "target": "flag_for_review"}
+        ]
+      },
+      "position": {"x": 400, "y": 200}
+    },
+    {
+      "id": "retry_extraction",
+      "type": "task",
+      "data": {
+        "agent": "document_processor",
+        "task": "Retry extraction with enhanced OCR settings and alternate parsing strategy. Focus on previously missing fields.",
+        "context": {"requires": ["extract_invoice.output"], "retry_mode": true}
+      },
+      "position": {"x": 400, "y": 50}
+    },
+    {
+      "id": "retry_check",
+      "type": "router",
+      "data": {
+        "condition": "Retry extraction result",
+        "branches": [
+          {"condition": "success", "target": "verify_against_db"},
+          {"condition": "failure", "target": "escalate_manual"}
+        ]
+      },
+      "position": {"x": 550, "y": 50}
+    },
+    {
+      "id": "flag_for_review",
+      "type": "task",
+      "data": {
+        "agent": "project_manager",
+        "task": "Create review task for invoice with medium confidence extraction. Include extracted data and confidence scores.",
+        "context": {"requires": ["extract_invoice.output"]}
+      },
+      "position": {"x": 400, "y": 350}
+    },
+    {
+      "id": "verify_against_db",
+      "type": "task",
+      "data": {
+        "agent": "database_analyst",
+        "task": "Verify invoice against vendor database: check vendor exists, validate amounts against PO if available, check for duplicates.",
+        "context": {"requires": ["extract_invoice.output"]}
+      },
+      "position": {"x": 700, "y": 200}
+    },
+    {
+      "id": "escalate_manual",
+      "type": "task",
+      "data": {
+        "agent": "project_manager",
+        "task": "Create high-priority manual review task in Linear. Invoice extraction failed after retry. Attach original document and extraction attempts.",
+        "context": {"requires": ["extract_invoice.output", "retry_extraction.output"]}
+      },
+      "position": {"x": 700, "y": 50}
+    },
+    {
+      "id": "complete",
+      "type": "end",
+      "position": {"x": 900, "y": 200}
+    }
+  ],
+  "edges": [
+    {"id": "e1", "source": "start", "target": "extract_invoice"},
+    {"id": "e2", "source": "extract_invoice", "target": "validate_extraction"},
+    {"id": "e3", "source": "validate_extraction", "target": "verify_against_db", "data": {"condition": "success"}},
+    {"id": "e4", "source": "validate_extraction", "target": "retry_extraction", "data": {"condition": "retry"}},
+    {"id": "e5", "source": "validate_extraction", "target": "flag_for_review", "data": {"condition": "review"}},
+    {"id": "e6", "source": "retry_extraction", "target": "retry_check"},
+    {"id": "e7", "source": "retry_check", "target": "verify_against_db", "data": {"condition": "success"}},
+    {"id": "e8", "source": "retry_check", "target": "escalate_manual", "data": {"condition": "failure"}},
+    {"id": "e9", "source": "verify_against_db", "target": "complete"},
+    {"id": "e10", "source": "flag_for_review", "target": "complete"},
+    {"id": "e11", "source": "escalate_manual", "target": "complete"}
+  ]
+}

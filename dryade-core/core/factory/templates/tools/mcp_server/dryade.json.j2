@@ -1,0 +1,16 @@
+{
+  "name": "{{ name }}",
+  "framework": "mcp_server",
+  "description": "{{ description }}",
+  "version": "{{ version | default('1.0.0') }}",
+  "factory_created": true,
+  "entry_point": "__init__.py",
+  "server_name": "{{ server_name | default(name) }}"{{ "," if auth_config is defined else "" }}
+{% if auth_config is defined %}
+  "auth_config": {
+    "type": "{{ auth_config.type | default('env_vars') }}",
+    "env_vars": {{ auth_config.env_vars | default([]) | tojson }},
+    "instructions": "{{ auth_config.instructions | default('') }}"
+  }
+{% endif %}
+}

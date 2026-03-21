@@ -1,0 +1,55 @@
+name: refactoring_plan
+description: Plan and execute code refactoring
+category: refactoring
+parameters:
+  - name: target_file
+    type: string
+    required: true
+    description: "Path to file to refactor"
+  - name: refactoring_goals
+    type: array
+    required: false
+    default: ["reduce_complexity", "improve_readability", "remove_duplication"]
+    description: "Refactoring objectives"
+  - name: preserve_behavior
+    type: boolean
+    required: false
+    default: true
+    description: "Ensure behavior preservation"
+
+nodes:
+  - id: assess_current_state
+    agent: code_analyzer
+    task: "Assess current code quality and identify issues in {target_file}"
+    depends_on: []
+    expected_output: "Current state assessment"
+
+  - id: plan_refactoring
+    agent: code_refactorer
+    task: "Plan refactoring steps for {target_file} with goals: {refactoring_goals}"
+    depends_on: ["assess_current_state"]
+    expected_output: "Detailed refactoring plan"
+
+  - id: apply_refactoring
+    agent: code_generator
+    task: "Apply planned refactorings to {target_file}"
+    depends_on: ["plan_refactoring"]
+    expected_output: "Refactored code"
+
+  - id: verify_changes
+    agent: test_runner
+    task: "Verify refactored code maintains original behavior"
+    depends_on: ["apply_refactoring"]
+    expected_output: "Verification results"
+
+edges:
+  - source: assess_current_state
+    target: plan_refactoring
+  - source: plan_refactoring
+    target: apply_refactoring
+  - source: apply_refactoring
+    target: verify_changes
+
+metadata:
+  estimated_duration_seconds: 120
+  cost_estimate_usd: 0.04

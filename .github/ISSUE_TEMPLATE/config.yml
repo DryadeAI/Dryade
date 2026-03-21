@@ -1,0 +1,14 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Discord Community
+    url: https://discord.gg/bvCPwqmu
+    about: Join our Discord for questions, discussions, and community support
+  - name: GitHub Discussions
+    url: https://github.com/DryadeAI/Dryade/discussions
+    about: Ask questions, share ideas, and get help from the community
+  - name: Documentation
+    url: https://dryade.ai/docs
+    about: Check our documentation for setup help and guides
+  - name: Security Vulnerability
+    url: https://github.com/DryadeAI/Dryade/blob/main/SECURITY.md
+    about: Report security vulnerabilities privately following SECURITY.md (do not open a public issue)

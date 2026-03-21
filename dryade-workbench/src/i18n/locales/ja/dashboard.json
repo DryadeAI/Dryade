@@ -1,0 +1,68 @@
+{
+  "greeting": {
+    "morning": "おはようございます",
+    "afternoon": "こんにちは",
+    "evening": "こんばんは"
+  },
+  "subtitle": "今日の状況です",
+  "stats": {
+    "totalRequests": "総リクエスト数",
+    "successRate": "成功率",
+    "activeAgents": "アクティブエージェント",
+    "queueStatus": "キュー状態",
+    "workflows": "ワークフロー"
+  },
+  "sections": {
+    "recentRequests": "最近のリクエスト",
+    "workflowTemplates": "ワークフローテンプレート",
+    "systemStatus": "システム状態",
+    "quickAccess": "クイックアクセス"
+  },
+  "quickActions": {
+    "newChat": "新しいチャット",
+    "newChatDesc": "会話を開始",
+    "createWorkflow": "ワークフロー作成",
+    "createWorkflowDesc": "自動化を構築",
+    "newPlan": "新しいプラン",
+    "newPlanDesc": "AI生成プラン",
+    "upload": "アップロード",
+    "uploadDesc": "ドキュメントを追加",
+    "chatWithAgent": "エージェントとチャット",
+    "newConversation": "新しい会話"
+  },
+  "status": {
+    "operational": "正常稼働",
+    "degraded": "パフォーマンス低下",
+    "unhealthy": "異常",
+    "disconnected": "切断",
+    "unknown": "不明",
+    "registered": "登録済み",
+    "empty": "空",
+    "pending": "保留中",
+    "stable": "安定"
+  },
+  "disconnected": {
+    "title": "バックエンドに接続できません",
+    "message": "APIサーバーが応答していません。接続が復旧するまで、ダッシュボードには空のデータが表示されます。"
+  },
+  "empty": {
+    "noRequests": "最近のアクティビティなし",
+    "noWorkflows": "ワークフローがまだありません。チャットからプランを作成するか、ワークフローを構築してください。",
+    "noRequestsDescription": "プラットフォームの使用を開始すると、リクエストアクティビティがここに表示されます。",
+    "noWorkflowsDescription": "チャットからプランを作成するか、ワークフローを構築して始めましょう。"
+  },
+  "labels": {
+    "api": "API",
+    "agents": "エージェント",
+    "queue": "キュー",
+    "viewMetrics": "メトリクスを表示",
+    "viewAllWorkflows": "すべてのワークフローを表示",
+    "viewSystemHealth": "システムヘルスを表示 →",
+    "fromTarget": "目標から",
+    "recent": "最近",
+    "total": "合計",
+    "request": "リクエスト",
+    "completed": "完了",
+    "failed": "失敗"
+  }
+}

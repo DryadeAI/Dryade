@@ -1,0 +1,17 @@
+{
+  "manifest_version": "1.0",
+  "type": "agent",
+  "name": "database_analyst",
+  "version": "1.0.0",
+  "description": "Query and analyze databases with natural language",
+  "author": "Dryade",
+  "framework": "langchain",
+  "created_by": "manual",
+  "required_servers": ["dbhub", "grafana"],
+  "capabilities": [
+    "Execute SQL queries",
+    "List and describe tables",
+    "Query Prometheus metrics",
+    "Analyze query results"
+  ]
+}

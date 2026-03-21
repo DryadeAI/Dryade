@@ -1,0 +1,253 @@
+{
+  "app": {
+    "name": "DryadeApp",
+    "tagline": "منصة تنسيق الذكاء الاصطناعي السيادية",
+    "airGapped": "معزولة • معايير أصلية • سيادية"
+  },
+  "nav": {
+    "chat": "محادثة",
+    "dashboard": "لوحة القيادة",
+    "agents": "الوكلاء",
+    "workflows": "سير العمل",
+    "knowledge": "المعرفة",
+    "factory": "المصنع",
+    "loops": "المهام المجدولة",
+    "health": "الصحة",
+    "metrics": "المقاييس",
+    "plugins": "الإضافات",
+    "costTracker": "تتبع التكاليف",
+    "clarifyPreferences": "التفضيلات",
+    "settings": "الإعدادات"
+  },
+  "sections": {
+    "observability": "المراقبة",
+    "account": "الحساب",
+    "plugins": "الإضافات"
+  },
+  "actions": {
+    "signOut": "تسجيل الخروج",
+    "save": "حفظ",
+    "cancel": "إلغاء",
+    "delete": "حذف",
+    "confirm": "تأكيد",
+    "search": "بحث",
+    "close": "إغلاق",
+    "retry": "إعادة المحاولة",
+    "refresh": "تحديث",
+    "loading": "جار التحميل...",
+    "collapse": "طي الشريط الجانبي",
+    "expand": "توسيع الشريط الجانبي",
+    "openMenu": "فتح القائمة",
+    "closeMenu": "إغلاق القائمة",
+    "tryAgain": "حاول مرة أخرى",
+    "previous": "السابق",
+    "next": "التالي",
+    "edit": "تعديل"
+  },
+  "status": {
+    "loadingPlugins": "جارٍ تحميل الإضافات..."
+  },
+  "clarify": {
+    "title": "تفضيلات التوضيح",
+    "subtitle": "إدارة الإجابات المحفوظة لأسئلة التوضيح. يتم ملء النماذج تلقائياً بناءً عليها.",
+    "includeGlobal": "تضمين العامة",
+    "preferenceCount": "{{count}} تفضيل(ات)",
+    "stats": {
+      "total": "إجمالي التفضيلات",
+      "global": "عامة",
+      "projectSpecific": "خاصة بالمشروع"
+    },
+    "empty": {
+      "noMatch": "لا توجد تفضيلات مطابقة",
+      "noMatchDescription": "جرّب كلمات مفتاحية مختلفة أو امسح البحث.",
+      "noPreferences": "لا توجد تفضيلات محفوظة بعد",
+      "noPreferencesDescription": "سيتم حفظ التفضيلات تلقائياً عند إجابتك على أسئلة التوضيح."
+    },
+    "answer": "الإجابة: ",
+    "usedCount": "الاستخدام: {{count}} مرة",
+    "threshold": "الحد الأدنى:",
+    "deleteTitle": "حذف التفضيل",
+    "deleteDescription": "هل أنت متأكد من حذف هذا التفضيل؟ لا يمكن التراجع عن هذا الإجراء.",
+    "searchPlaceholder": "البحث في التفضيلات...",
+    "toast": {
+      "deleted": "تم حذف التفضيل",
+      "deleteFailed": "فشل حذف التفضيل",
+      "thresholdFailed": "فشل تحديث الحد الأدنى"
+    }
+  },
+  "costTracker": {
+    "title": "تتبع التكاليف",
+    "subtitle": "مراقبة استخدام نماذج اللغة والإنفاق",
+    "stats": {
+      "totalCost": "التكلفة الإجمالية",
+      "totalTokens": "إجمالي الرموز",
+      "requests": "الطلبات",
+      "avgPerRequest": "المتوسط لكل طلب"
+    },
+    "live": "مباشر",
+    "tabs": {
+      "overview": "نظرة عامة",
+      "byModel": "حسب النموذج",
+      "byAgent": "حسب الوكيل",
+      "records": "السجلات",
+      "pricing": "التسعير"
+    },
+    "empty": {
+      "title": "لا توجد بيانات تكاليف بعد",
+      "description": "ستظهر سجلات التكاليف هنا بمجرد إجراء طلبات عبر المنصة.",
+      "noModelData": "لا توجد بيانات نماذج",
+      "noModelDataDescription": "ستظهر تفاصيل تكاليف النماذج بعد معالجة الطلبات.",
+      "noAgentData": "لا توجد بيانات وكلاء",
+      "noAgentDataDescription": "ستظهر تفاصيل تكاليف الوكلاء بعد معالجة الطلبات.",
+      "noRecords": "لا توجد سجلات",
+      "noRecordsDescription": "ستظهر سجلات الاستخدام هنا بمجرد إجراء طلبات.",
+      "noPricing": "لا توجد بيانات تسعير",
+      "noPricingDescription": "انقر على 'تحديث من LiteLLM' لتحميل أسعار النماذج."
+    },
+    "costByModel": "التكلفة حسب النموذج",
+    "costByAgent": "التكلفة حسب الوكيل",
+    "table": {
+      "model": "النموذج",
+      "totalCost": "التكلفة الإجمالية",
+      "requests": "الطلبات",
+      "avgPerRequest": "المتوسط/طلب",
+      "timestamp": "الطابع الزمني",
+      "agent": "الوكيل",
+      "inputTokens": "الإدخال",
+      "outputTokens": "الإخراج",
+      "cost": "التكلفة",
+      "provider": "المزود",
+      "inputPrice": "إدخال $/1M",
+      "outputPrice": "إخراج $/1M",
+      "source": "المصدر",
+      "updated": "التحديث"
+    },
+    "period": {
+      "last24h": "آخر 24 ساعة",
+      "last7d": "آخر 7 أيام",
+      "last30d": "آخر 30 يوماً",
+      "last90d": "آخر 90 يوماً"
+    },
+    "refreshFromLitellm": "تحديث من LiteLLM",
+    "addModel": "إضافة نموذج",
+    "addModelPricing": "إضافة تسعير نموذج",
+    "pricing": {
+      "modelName": "اسم النموذج",
+      "inputPrice": "إدخال $/1M رمز",
+      "outputPrice": "إخراج $/1M رمز"
+    },
+    "pagination": {
+      "showing": "عرض {{start}}-{{end}} من {{total}}",
+      "previous": "السابق",
+      "next": "التالي"
+    },
+    "searchModelsPlaceholder": "البحث في النماذج...",
+    "toast": {
+      "updateFailed": "فشل تحديث التسعير"
+    }
+  },
+  "loops": {
+    "title": "المهام المجدولة",
+    "subtitle": "جدولة سير العمل والوكلاء والمهارات والمهام للتشغيل تلقائياً.",
+    "newLoop": "مهمة جديدة",
+    "empty": {
+      "title": "لا توجد مهام مجدولة",
+      "description": "أنشئ مهمة لجدولة سير العمل أو الوكلاء أو المهارات أو المهام للتشغيل بشكل دوري."
+    },
+    "deleteTitle": "حذف المهمة؟",
+    "deleteDescription": "سيؤدي هذا إلى حذف المهمة نهائياً وجميع سجلات تنفيذها. لا يمكن التراجع عن هذا الإجراء.",
+    "noExecutions": "لا توجد عمليات تنفيذ بعد.",
+    "recentExecutions": "عمليات التنفيذ الأخيرة ({{total}} إجمالاً)",
+    "targetTypes": {
+      "all": "جميع الأنواع",
+      "workflow": "سير عمل",
+      "agent": "وكيل",
+      "skill": "مهارة",
+      "orchestratorTask": "مهمة المنسق"
+    },
+    "enabledStates": {
+      "all": "جميع الحالات",
+      "active": "نشطة",
+      "paused": "متوقفة"
+    },
+    "tableHeaders": {
+      "name": "الاسم",
+      "target": "الهدف",
+      "schedule": "الجدولة",
+      "status": "الحالة",
+      "actions": "الإجراءات"
+    },
+    "actions": {
+      "triggerNow": "تشغيل الآن",
+      "pause": "إيقاف",
+      "resume": "استئناف"
+    },
+    "placeholders": {
+      "targetType": "نوع الهدف",
+      "state": "الحالة"
+    },
+    "toast": {
+      "triggered": "تم تشغيل المهمة \"{{name}}\".",
+      "triggerFailed": "فشل التشغيل.",
+      "paused": "تم إيقاف المهمة \"{{name}}\".",
+      "resumed": "تم استئناف المهمة \"{{name}}\".",
+      "failed": "فشلت العملية.",
+      "deleted": "تم حذف المهمة \"{{name}}\".",
+      "deleteFailed": "فشل الحذف."
+    }
+  },
+  "notFound": {
+    "title": "الصفحة غير موجودة",
+    "message": "لا يوجد مسار في الغابة هنا.",
+    "returnHome": "العودة إلى الصفحة الرئيسية"
+  },
+  "errors": {
+    "forbidden": {
+      "title": "تم رفض الوصول",
+      "message": "ليس لديك صلاحية للوصول إلى هذا المورد.",
+      "hint": "تواصل مع المسؤول إذا كنت تعتقد أن هذا خطأ.",
+      "resource": "المورد:",
+      "requiredRole": "الدور المطلوب:",
+      "requestAccess": "طلب الوصول"
+    },
+    "unauthorized": {
+      "title": "يرجى تسجيل الدخول",
+      "message": "يجب تسجيل الدخول للوصول إلى هذه الصفحة.",
+      "sessionExpired": "ربما انتهت صلاحية جلستك.",
+      "logIn": "تسجيل الدخول",
+      "returnHome": "العودة إلى الرئيسية"
+    },
+    "server": {
+      "title": "حدث خطأ ما",
+      "message": "نواجه مشكلة في معالجة طلبك.",
+      "hint": "تم إخطار فريقنا وهو يعمل على حل المشكلة.",
+      "errorDetails": "تفاصيل الخطأ",
+      "errorId": "معرّف الخطأ:",
+      "timestamp": "الطابع الزمني:",
+      "tryAgain": "حاول مرة أخرى",
+      "reportIssue": "الإبلاغ عن مشكلة",
+      "optionalDescription": "وصف اختياري",
+      "descriptionPlaceholder": "ماذا كنت تفعل عندما حدث هذا؟",
+      "submitReport": "إرسال البلاغ",
+      "reportSubmitted": "تم إرسال البلاغ"
+    },
+    "network": {
+      "title": "لا يوجد اتصال بالإنترنت",
+      "message": "يرجى التحقق من اتصالك والمحاولة مرة أخرى.",
+      "checking": "جارٍ التحقق...",
+      "autoRecover": "ستتعافى هذه الصفحة تلقائياً عند استعادة الاتصال.",
+      "connectionRestored": "تم استعادة الاتصال!",
+      "stillOffline": "لا يزال غير متصل"
+    },
+    "goToDashboard": "الانتقال إلى لوحة القيادة"
+  },
+  "timeAgo": {
+    "unknown": "غير معروف",
+    "secondsAgo": "منذ {{n}} ثانية",
+    "minutesAgo": "منذ {{n}} دقيقة",
+    "hoursAgo": "منذ {{n}} ساعة",
+    "daysAgo": "منذ {{n}} يوم"
+  },
+  "theme": "المظهر",
+  "language": "اللغة"
+}

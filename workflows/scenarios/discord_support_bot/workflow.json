@@ -1,0 +1,64 @@
+{
+  "version": "1.0.0",
+  "metadata": {
+    "name": "discord_support_bot",
+    "description": "Discord support workflow: classify, search, compose, and route",
+    "domain": "support",
+    "difficulty": "intermediate"
+  },
+  "nodes": [
+    {
+      "id": "start",
+      "type": "start",
+      "position": {"x": 0, "y": 100}
+    },
+    {
+      "id": "classify_query",
+      "type": "task",
+      "data": {
+        "agent": "support_agent",
+        "task": "Classify the incoming support query into: FAQ, Bug Report, Feature Request, Account Issue, Billing, General Question. Extract key entities (product area, error messages, versions mentioned). Assess sentiment (positive/neutral/negative). Output structured classification.",
+        "context": {
+          "query": "{query}",
+          "user_context": "{user_context}"
+        }
+      },
+      "position": {"x": 200, "y": 100}
+    },
+    {
+      "id": "search_knowledge",
+      "type": "task",
+      "data": {
+        "agent": "support_agent",
+        "task": "Search the knowledge base for relevant FAQ entries, documentation, and past resolved tickets matching the classified intent. Return top 3 matches with relevance scores.",
+        "context": {
+          "requires": ["classify_query.output"]
+        }
+      },
+      "position": {"x": 400, "y": 100}
+    },
+    {
+      "id": "compose_response",
+      "type": "task",
+      "data": {
+        "agent": "document_processor",
+        "task": "Based on the classification and knowledge base results: If FAQ match (confidence > 0.8): compose a direct answer citing the FAQ source. If Bug Report: draft a ticket JSON {title, description, severity, labels, reproduction_steps}. If no confident match: compose a polite acknowledgment and flag for human escalation with reason.",
+        "context": {
+          "requires": ["classify_query.output", "search_knowledge.output"]
+        }
+      },
+      "position": {"x": 600, "y": 100}
+    },
+    {
+      "id": "end",
+      "type": "end",
+      "position": {"x": 800, "y": 100}
+    }
+  ],
+  "edges": [
+    {"id": "e1", "source": "start", "target": "classify_query"},
+    {"id": "e2", "source": "classify_query", "target": "search_knowledge"},
+    {"id": "e3", "source": "search_knowledge", "target": "compose_response"},
+    {"id": "e4", "source": "compose_response", "target": "end"}
+  ]
+}

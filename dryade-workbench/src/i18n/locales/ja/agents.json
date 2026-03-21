@@ -1,0 +1,49 @@
+{
+  "page": {
+    "title": "Agents",
+    "subtitle": "Browse and execute AI agents from multiple frameworks"
+  },
+  "error": {
+    "loadFailed": "Failed to load agents. Please check your connection and try again.",
+    "somethingWentWrong": "Something went wrong",
+    "loadAgentFailed": "Failed to load agent",
+    "executionFailed": "Execution failed"
+  },
+  "empty": {
+    "noAgentsTitle": "No agents registered",
+    "noAgentsDescription": "Configure adapters in settings to register agents from CrewAI, LangChain, ADK, A2A, MCP, or custom frameworks.",
+    "goToSettings": "Go to Settings",
+    "noMatchTitle": "No agents match your search",
+    "noMatchDescription": "Try different keywords or clear filters",
+    "clearFilters": "Clear filters"
+  },
+  "detail": {
+    "notFoundTitle": "Agent Not Found",
+    "notFoundDescription": "The agent \"{{name}}\" does not exist.",
+    "backToAgents": "Back to Agents",
+    "breadcrumbAgents": "Agents",
+    "noDescription": "No description",
+    "execute": "Execute",
+    "configure": "Configure",
+    "executeAgent": "Execute Agent",
+    "runWithTask": "Run this agent with a task",
+    "executionResult": "Execution Result",
+    "executionCompleted": "Agent execution completed",
+    "toolsTab": "Tools ({{count}})",
+    "documentationTab": "Documentation",
+    "availableTools": "Available Tools",
+    "toolsDescription": "Tools this agent can use during execution",
+    "noToolsConfigured": "No tools configured",
+    "documentationTitle": "Documentation",
+    "documentationDescription": "Agent configuration and usage guide",
+    "overview": "Overview",
+    "overviewText": "This agent is built using the <strong>{{framework}}</strong> framework and can be invoked via the API or through this interface.",
+    "apiEndpoint": "API Endpoint",
+    "configuration": "Configuration",
+    "version": "Version: <code>{{version}}</code>",
+    "toolsCount": "Tools: {{count}} configured"
+  },
+  "actions": {
+    "retry": "Retry"
+  }
+}

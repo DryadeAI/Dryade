@@ -1,0 +1,38 @@
+name: skills_example
+display_name: "Agent Skills Composition Reference"
+description: "Developer reference template demonstrating how to compose agent skills — shows a single agent using multiple capabilities (file reading, analysis, writing) in a coordinated sequence"
+domain: dev
+difficulty: beginner
+version: "1.0.0"
+template_ref: "_templates/linear-3task"
+
+triggers:
+  chat_command: "/skills-demo"
+  api_endpoint: "/workflow-scenarios/skills_example/trigger"
+  ui_button:
+    label: "Run Skills Demo"
+    location: "developer_page"
+
+inputs:
+  - name: input_file
+    type: file
+    required: true
+    description: "File to process"
+  - name: output_format
+    type: string
+    required: false
+    description: "Desired output format: markdown, json, or table"
+    default: "markdown"
+
+outputs:
+  - name: processed_output
+    type: markdown
+  - name: skills_used
+    type: json
+
+required_agents:
+  - document_processor
+
+observability:
+  metrics_enabled: true
+  log_tool_calls: true

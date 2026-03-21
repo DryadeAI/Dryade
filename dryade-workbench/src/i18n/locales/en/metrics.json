@@ -1,0 +1,108 @@
+{
+  "pageTitle": "Metrics",
+  "lastUpdated": "Last updated: {{time}}",
+  "dateRange": {
+    "lastHour": "Last hour",
+    "last24h": "Last 24h"
+  },
+  "autoRefresh": {
+    "on": "Auto-refresh on",
+    "off": "Auto-refresh off"
+  },
+  "exportCSV": "Export CSV",
+  "refresh": "Refresh",
+  "retry": "Retry",
+  "error": {
+    "failedToLoad": "Failed to load metrics"
+  },
+  "live": "Live",
+  "total": "Total",
+  "latencyCards": {
+    "avgLatency": "Avg Latency",
+    "p50Latency": "P50 Latency",
+    "p95Latency": "P95 Latency",
+    "ttftStreaming": "TTFT (Streaming)"
+  },
+  "tabs": {
+    "overview": "Overview",
+    "queue": "Queue"
+  },
+  "charts": {
+    "latencyTrend": "Latency Trend",
+    "latencyTrendDescription": "Derived from recent requests",
+    "requestsByMode": "Requests by Mode",
+    "requestsByModeDescription": "Performance comparison across modes",
+    "noRecentData": "No recent request data available",
+    "requestVolume": "Request Volume",
+    "requestsOverTime": "Requests over time"
+  },
+  "tooltip": {
+    "avgLatency": "Avg Latency",
+    "requests": "Requests",
+    "time": "Time: {{label}}",
+    "mode": "Mode: {{label}}"
+  },
+  "donut": {
+    "title": "Request Distribution",
+    "description": "Success vs error breakdown",
+    "success": "Success",
+    "errors": "Errors"
+  },
+  "radar": {
+    "title": "Performance Radar",
+    "description": "Multi-axis mode comparison",
+    "latency": "Latency",
+    "requests": "Requests",
+    "errorRate": "Error Rate",
+    "totalRequests": "Total Requests",
+    "avgLatency": "Avg Latency",
+    "topModes": "Top Modes"
+  },
+  "recentRequests": {
+    "title": "Recent Requests",
+    "countSummary": "{{filtered}} of {{total}} requests",
+    "filterAll": "All",
+    "filterSuccess": "Success",
+    "filterError": "Error",
+    "allModes": "All modes",
+    "searchPlaceholder": "Search ID or error\u2026",
+    "noMatchingRequests": "No requests match your filters.",
+    "summary": {
+      "total": "Total",
+      "success": "Success",
+      "errors": "Errors",
+      "avg": "Avg"
+    },
+    "table": {
+      "time": "Time",
+      "mode": "Mode",
+      "latency": "Latency",
+      "tokens": "Tokens",
+      "status": "Status"
+    },
+    "statusSuccess": "Success",
+    "statusError": "Error",
+    "pagination": {
+      "showing": "Showing {{start}}\u2013{{end}} of {{total}}",
+      "previous": "Previous",
+      "next": "Next"
+    }
+  },
+  "queue": {
+    "title": "Queue Status",
+    "description": "Real-time processing queue",
+    "noData": "No queue data available",
+    "noDataDescription": "Queue status could not be loaded. Try refreshing.",
+    "status": "Status",
+    "active": "Active",
+    "queued": "Queued"
+  },
+  "requestDetail": {
+    "title": "Request Details",
+    "timestamp": "Timestamp",
+    "mode": "Mode",
+    "latency": "Latency",
+    "tokens": "Tokens",
+    "error": "Error"
+  }
+}

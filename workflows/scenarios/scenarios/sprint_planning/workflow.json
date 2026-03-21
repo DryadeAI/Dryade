@@ -1,0 +1,176 @@
+{
+  "version": "1.0.0",
+  "metadata": {
+    "name": "sprint_planning",
+    "description": "Comprehensive sprint planning with velocity analysis, backlog grooming, and resource allocation",
+    "domain": "dev"
+  },
+  "nodes": [
+    {
+      "id": "start",
+      "type": "start",
+      "position": {"x": 0, "y": 300}
+    },
+    {
+      "id": "load_context",
+      "type": "task",
+      "data": {
+        "agent": "project_manager",
+        "task": "Load sprint context: team capacity, sprint duration, any pre-committed items. Store in workflow state.",
+        "context": {}
+      },
+      "position": {"x": 150, "y": 300}
+    },
+    {
+      "id": "gather_velocity",
+      "type": "task",
+      "data": {
+        "agent": "database_analyst",
+        "task": "Query velocity metrics for last 4 sprints: points completed, points planned, completion rate. Calculate average velocity and trend.",
+        "context": {"requires": ["load_context.output"]}
+      },
+      "position": {"x": 350, "y": 100}
+    },
+    {
+      "id": "gather_backlog",
+      "type": "task",
+      "data": {
+        "agent": "project_manager",
+        "task": "Fetch prioritized backlog from Linear. Get top 30 items with priority, estimate, dependencies, and assignee preferences.",
+        "context": {"requires": ["load_context.output"]}
+      },
+      "position": {"x": 350, "y": 300}
+    },
+    {
+      "id": "gather_tech_debt",
+      "type": "task",
+      "data": {
+        "agent": "code_reviewer",
+        "task": "Analyze codebase for tech debt items: deprecated dependencies, code quality issues, security vulnerabilities. Prioritize by severity.",
+        "context": {"requires": ["load_context.output"]}
+      },
+      "position": {"x": 350, "y": 500}
+    },
+    {
+      "id": "analyze_dependencies",
+      "type": "task",
+      "data": {
+        "agent": "research_assistant",
+        "task": "Map dependencies between backlog items. Identify blocking chains and suggest sequencing. Flag external dependencies.",
+        "context": {"requires": ["gather_backlog.output"]}
+      },
+      "position": {"x": 550, "y": 200}
+    },
+    {
+      "id": "estimate_capacity",
+      "type": "task",
+      "data": {
+        "agent": "database_analyst",
+        "task": "Calculate available capacity: team members * sprint days * focus factor. Account for PTO, meetings, on-call rotation.",
+        "context": {"requires": ["load_context.output", "gather_velocity.output"]}
+      },
+      "position": {"x": 550, "y": 400}
+    },
+    {
+      "id": "draft_sprint_plan",
+      "type": "task",
+      "data": {
+        "agent": "project_manager",
+        "task": "Create draft sprint plan: select items from backlog fitting capacity, respect dependencies, balance feature work and tech debt (80/20 rule).",
+        "context": {"requires": ["gather_backlog.output", "gather_tech_debt.output", "analyze_dependencies.output", "estimate_capacity.output"]}
+      },
+      "position": {"x": 750, "y": 300}
+    },
+    {
+      "id": "validate_plan",
+      "type": "router",
+      "data": {
+        "condition": "Sprint plan validation",
+        "branches": [
+          {"condition": "capacity utilized 70-100% AND no dependency conflicts", "target": "assign_items"},
+          {"condition": "capacity underutilized OR dependency conflicts", "target": "adjust_plan"}
+        ]
+      },
+      "position": {"x": 950, "y": 300}
+    },
+    {
+      "id": "adjust_plan",
+      "type": "task",
+      "data": {
+        "agent": "project_manager",
+        "task": "Adjust sprint plan: add items if under capacity, resolve dependency conflicts, rebalance if needed.",
+        "context": {"requires": ["draft_sprint_plan.output"]}
+      },
+      "position": {"x": 1050, "y": 150}
+    },
+    {
+      "id": "adjust_check",
+      "type": "router",
+      "data": {
+        "condition": "Adjustment validation",
+        "branches": [
+          {"condition": "adjustments successful", "target": "assign_items"},
+          {"condition": "cannot resolve conflicts", "target": "escalate_planning"}
+        ]
+      },
+      "position": {"x": 1200, "y": 150}
+    },
+    {
+      "id": "escalate_planning",
+      "type": "task",
+      "data": {
+        "agent": "project_manager",
+        "task": "Create planning issue in Linear. Sprint plan cannot be auto-balanced. Requires manual intervention for dependency or capacity conflicts.",
+        "context": {"requires": ["draft_sprint_plan.output", "adjust_plan.output"]}
+      },
+      "position": {"x": 1350, "y": 50}
+    },
+    {
+      "id": "assign_items",
+      "type": "task",
+      "data": {
+        "agent": "project_manager",
+        "task": "Assign sprint items to team members based on skills, preferences, and load balancing. Create assignments in Linear.",
+        "context": {"requires": ["draft_sprint_plan.output", "load_context.output"]}
+      },
+      "position": {"x": 1350, "y": 300}
+    },
+    {
+      "id": "generate_summary",
+      "type": "task",
+      "data": {
+        "agent": "project_manager",
+        "task": "Generate sprint planning summary: sprint goals, committed items, capacity allocation, risks, and success metrics. Format as sprint kickoff document.",
+        "context": {"requires": ["assign_items.output", "draft_sprint_plan.output", "gather_velocity.output"]}
+      },
+      "position": {"x": 1550, "y": 300}
+    },
+    {
+      "id": "end",
+      "type": "end",
+      "position": {"x": 1750, "y": 300}
+    }
+  ],
+  "edges": [
+    {"id": "e1", "source": "start", "target": "load_context"},
+    {"id": "e2", "source": "load_context", "target": "gather_velocity"},
+    {"id": "e3", "source": "load_context", "target": "gather_backlog"},
+    {"id": "e4", "source": "load_context", "target": "gather_tech_debt"},
+    {"id": "e5", "source": "gather_backlog", "target": "analyze_dependencies"},
+    {"id": "e6", "source": "gather_velocity", "target": "estimate_capacity"},
+    {"id": "e7", "source": "load_context", "target": "estimate_capacity"},
+    {"id": "e8", "source": "gather_backlog", "target": "draft_sprint_plan"},
+    {"id": "e9", "source": "gather_tech_debt", "target": "draft_sprint_plan"},
+    {"id": "e10", "source": "analyze_dependencies", "target": "draft_sprint_plan"},
+    {"id": "e11", "source": "estimate_capacity", "target": "draft_sprint_plan"},
+    {"id": "e12", "source": "draft_sprint_plan", "target": "validate_plan"},
+    {"id": "e13", "source": "validate_plan", "target": "assign_items", "data": {"condition": "valid"}},
+    {"id": "e14", "source": "validate_plan", "target": "adjust_plan", "data": {"condition": "adjust"}},
+    {"id": "e15", "source": "adjust_plan", "target": "adjust_check"},
+    {"id": "e16", "source": "adjust_check", "target": "assign_items", "data": {"condition": "success"}},
+    {"id": "e17", "source": "adjust_check", "target": "escalate_planning", "data": {"condition": "failure"}},
+    {"id": "e18", "source": "assign_items", "target": "generate_summary"},
+    {"id": "e19", "source": "generate_summary", "target": "end"},
+    {"id": "e20", "source": "escalate_planning", "target": "end"}
+  ]
+}

@@ -1,0 +1,1046 @@
+[
+  {
+    "id": "qwen2.5-1.5b-instruct",
+    "name": "Qwen 2.5 1.5B Instruct",
+    "params_b": 1.5,
+    "family": "qwen",
+    "backends": [
+      "ollama",
+      "vllm"
+    ],
+    "ollama_tag": "qwen2.5:1.5b",
+    "hf_repo": "Qwen/Qwen2.5-1.5B-Instruct",
+    "memory": {
+      "vllm_bfloat16_gb": 3.4,
+      "vllm_fp8_gb": 1.7,
+      "ollama_q4km_gb": 0.9,
+      "ollama_q8_gb": 1.7
+    },
+    "capabilities": {
+      "tool_calling": true,
+      "vision": false,
+      "context_window": 32768
+    },
+    "speed_tier": "fast",
+    "notes": "Known strong tool calling — validated in Dryade"
+  },
+  {
+    "id": "qwen2.5-3b-instruct",
+    "name": "Qwen 2.5 3B Instruct",
+    "params_b": 3.1,
+    "family": "qwen",
+    "backends": [
+      "ollama",
+      "vllm"
+    ],
+    "ollama_tag": "qwen2.5:3b",
+    "hf_repo": "Qwen/Qwen2.5-3B-Instruct",
+    "memory": {
+      "vllm_bfloat16_gb": 6.9,
+      "vllm_fp8_gb": 3.5,
+      "ollama_q4km_gb": 1.9,
+      "ollama_q8_gb": 3.5
+    },
+    "capabilities": {
+      "tool_calling": true,
+      "vision": false,
+      "context_window": 32768
+    },
+    "speed_tier": "fast",
+    "notes": "Known strong tool calling — validated in Dryade"
+  },
+  {
+    "id": "qwen2.5-7b-instruct",
+    "name": "Qwen 2.5 7B Instruct",
+    "params_b": 7.6,
+    "family": "qwen",
+    "backends": [
+      "ollama",
+      "vllm"
+    ],
+    "ollama_tag": "qwen2.5:7b",
+    "hf_repo": "Qwen/Qwen2.5-7B-Instruct",
+    "memory": {
+      "vllm_bfloat16_gb": 17.0,
+      "vllm_fp8_gb": 8.5,
+      "ollama_q4km_gb": 4.8,
+      "ollama_q8_gb": 8.5
+    },
+    "capabilities": {
+      "tool_calling": true,
+      "vision": false,
+      "context_window": 32768
+    },
+    "speed_tier": "fast",
+    "notes": "Known strong tool calling — validated in Dryade"
+  },
+  {
+    "id": "qwen2.5-14b-instruct",
+    "name": "Qwen 2.5 14B Instruct",
+    "params_b": 14.8,
+    "family": "qwen",
+    "backends": [
+      "ollama",
+      "vllm"
+    ],
+    "ollama_tag": "qwen2.5:14b",
+    "hf_repo": "Qwen/Qwen2.5-14B-Instruct",
+    "memory": {
+      "vllm_bfloat16_gb": 33.1,
+      "vllm_fp8_gb": 16.5,
+      "ollama_q4km_gb": 9.3,
+      "ollama_q8_gb": 16.5
+    },
+    "capabilities": {
+      "tool_calling": true,
+      "vision": false,
+      "context_window": 131072
+    },
+    "speed_tier": "medium",
+    "notes": "Known strong tool calling — validated in Dryade"
+  },
+  {
+    "id": "qwen2.5-32b-instruct",
+    "name": "Qwen 2.5 32B Instruct",
+    "params_b": 32.5,
+    "family": "qwen",
+    "backends": [
+      "ollama",
+      "vllm"
+    ],
+    "ollama_tag": "qwen2.5:32b",
+    "hf_repo": "Qwen/Qwen2.5-32B-Instruct",
+    "memory": {
+      "vllm_bfloat16_gb": 72.6,
+      "vllm_fp8_gb": 36.3,
+      "ollama_q4km_gb": 20.4,
+      "ollama_q8_gb": 36.3
+    },
+    "capabilities": {
+      "tool_calling": true,
+      "vision": false,
+      "context_window": 131072
+    },
+    "speed_tier": "slow",
+    "notes": "Known strong tool calling — validated in Dryade"
+  },
+  {
+    "id": "qwen2.5-72b-instruct",
+    "name": "Qwen 2.5 72B Instruct",
+    "params_b": 72.7,
+    "family": "qwen",
+    "backends": [
+      "ollama",
+      "vllm"
+    ],
+    "ollama_tag": "qwen2.5:72b",
+    "hf_repo": "Qwen/Qwen2.5-72B-Instruct",
+    "memory": {
+      "vllm_bfloat16_gb": 162.5,
+      "vllm_fp8_gb": 81.2,
+      "ollama_q4km_gb": 45.7,
+      "ollama_q8_gb": 81.2
+    },
+    "capabilities": {
+      "tool_calling": true,
+      "vision": false,
+      "context_window": 32768
+    },
+    "speed_tier": "slow",
+    "notes": "Known strong tool calling — validated in Dryade"
+  },
+  {
+    "id": "qwen3-8b",
+    "name": "Qwen3 8B",
+    "params_b": 8.2,
+    "family": "qwen",
+    "backends": [
+      "ollama",
+      "vllm"
+    ],
+    "ollama_tag": "qwen3:8b",
+    "hf_repo": "Qwen/Qwen3-8B",
+    "memory": {
+      "vllm_bfloat16_gb": 18.3,
+      "vllm_fp8_gb": 9.2,
+      "ollama_q4km_gb": 5.2,
+      "ollama_q8_gb": 9.2
+    },
+    "capabilities": {
+      "tool_calling": true,
+      "vision": false,
+      "context_window": 131072
+    },
+    "speed_tier": "medium",
+    "notes": "Known strong tool calling — validated in Dryade"
+  },
+  {
+    "id": "qwen3-14b",
+    "name": "Qwen3 14B",
+    "params_b": 14.8,
+    "family": "qwen",
+    "backends": [
+      "ollama",
+      "vllm"
+    ],
+    "ollama_tag": "qwen3:14b",
+    "hf_repo": "Qwen/Qwen3-14B",
+    "memory": {
+      "vllm_bfloat16_gb": 33.1,
+      "vllm_fp8_gb": 16.5,
+      "ollama_q4km_gb": 9.3,
+      "ollama_q8_gb": 16.5
+    },
+    "capabilities": {
+      "tool_calling": true,
+      "vision": false,
+      "context_window": 131072
+    },
+    "speed_tier": "medium",
+    "notes": ""
+  },
+  {
+    "id": "qwen3-32b",
+    "name": "Qwen3 32B",
+    "params_b": 32.8,
+    "family": "qwen",
+    "backends": [
+      "ollama",
+      "vllm"
+    ],
+    "ollama_tag": "qwen3:32b",
+    "hf_repo": "Qwen/Qwen3-32B",
+    "memory": {
+      "vllm_bfloat16_gb": 73.3,
+      "vllm_fp8_gb": 36.7,
+      "ollama_q4km_gb": 20.6,
+      "ollama_q8_gb": 36.7
+    },
+    "capabilities": {
+      "tool_calling": true,
+      "vision": false,
+      "context_window": 131072
+    },
+    "speed_tier": "slow",
+    "notes": ""
+  },
+  {
+    "id": "qwen2.5-coder-7b-instruct",
+    "name": "Qwen 2.5 Coder 7B Instruct",
+    "params_b": 7.6,
+    "family": "qwen",
+    "backends": [
+      "ollama",
+      "vllm"
+    ],
+    "ollama_tag": "qwen2.5-coder:7b",
+    "hf_repo": "Qwen/Qwen2.5-Coder-7B-Instruct",
+    "memory": {
+      "vllm_bfloat16_gb": 17.0,
+      "vllm_fp8_gb": 8.5,
+      "ollama_q4km_gb": 4.8,
+      "ollama_q8_gb": 8.5
+    },
+    "capabilities": {
+      "tool_calling": true,
+      "vision": false,
+      "context_window": 32768
+    },
+    "speed_tier": "fast",
+    "notes": ""
+  },
+  {
+    "id": "qwen2.5-coder-14b-instruct",
+    "name": "Qwen 2.5 Coder 14B Instruct",
+    "params_b": 14.8,
+    "family": "qwen",
+    "backends": [
+      "ollama",
+      "vllm"
+    ],
+    "ollama_tag": "qwen2.5-coder:14b",
+    "hf_repo": "Qwen/Qwen2.5-Coder-14B-Instruct",
+    "memory": {
+      "vllm_bfloat16_gb": 33.1,
+      "vllm_fp8_gb": 16.5,
+      "ollama_q4km_gb": 9.3,
+      "ollama_q8_gb": 16.5
+    },
+    "capabilities": {
+      "tool_calling": true,
+      "vision": false,
+      "context_window": 32768
+    },
+    "speed_tier": "medium",
+    "notes": ""
+  },
+  {
+    "id": "qwen2.5-coder-32b-instruct",
+    "name": "Qwen 2.5 Coder 32B Instruct",
+    "params_b": 32.8,
+    "family": "qwen",
+    "backends": [
+      "ollama",
+      "vllm"
+    ],
+    "ollama_tag": "qwen2.5-coder:32b",
+    "hf_repo": "Qwen/Qwen2.5-Coder-32B-Instruct",
+    "memory": {
+      "vllm_bfloat16_gb": 73.3,
+      "vllm_fp8_gb": 36.7,
+      "ollama_q4km_gb": 20.6,
+      "ollama_q8_gb": 36.7
+    },
+    "capabilities": {
+      "tool_calling": true,
+      "vision": false,
+      "context_window": 32768
+    },
+    "speed_tier": "slow",
+    "notes": ""
+  },
+  {
+    "id": "ministral-3b-instruct",
+    "name": "Ministral 3B Instruct 2410",
+    "params_b": 3.0,
+    "family": "mistral",
+    "backends": [
+      "ollama",
+      "vllm"
+    ],
+    "ollama_tag": "mistral:ministral-3b",
+    "hf_repo": "mistralai/Ministral-3B-Instruct-2410",
+    "memory": {
+      "vllm_bfloat16_gb": 6.7,
+      "vllm_fp8_gb": 3.4,
+      "ollama_q4km_gb": 1.9,
+      "ollama_q8_gb": 3.4
+    },
+    "capabilities": {
+      "tool_calling": true,
+      "vision": false,
+      "context_window": 131072
+    },
+    "speed_tier": "fast",
+    "notes": "Known strong tool calling — validated in Dryade"
+  },
+  {
+    "id": "ministral-8b-instruct",
+    "name": "Ministral 8B Instruct 2410",
+    "params_b": 8.0,
+    "family": "mistral",
+    "backends": [
+      "ollama",
+      "vllm"
+    ],
+    "ollama_tag": "mistral:ministral-8b",
+    "hf_repo": "mistralai/Ministral-8B-Instruct-2410",
+    "memory": {
+      "vllm_bfloat16_gb": 17.9,
+      "vllm_fp8_gb": 8.9,
+      "ollama_q4km_gb": 5.0,
+      "ollama_q8_gb": 8.9
+    },
+    "capabilities": {
+      "tool_calling": true,
+      "vision": false,
+      "context_window": 32768
+    },
+    "speed_tier": "fast",
+    "notes": "Known strong tool calling — validated in Dryade"
+  },
+  {
+    "id": "mistral-7b-instruct-v0.3",
+    "name": "Mistral 7B Instruct v0.3",
+    "params_b": 7.2,
+    "family": "mistral",
+    "backends": [
+      "ollama",
+      "vllm"
+    ],
+    "ollama_tag": "mistral:7b",
+    "hf_repo": "mistralai/Mistral-7B-Instruct-v0.3",
+    "memory": {
+      "vllm_bfloat16_gb": 16.1,
+      "vllm_fp8_gb": 8.0,
+      "ollama_q4km_gb": 4.5,
+      "ollama_q8_gb": 8.0
+    },
+    "capabilities": {
+      "tool_calling": true,
+      "vision": false,
+      "context_window": 32768
+    },
+    "speed_tier": "fast",
+    "notes": ""
+  },
+  {
+    "id": "mistral-nemo-instruct-2407",
+    "name": "Mistral Nemo 12B Instruct",
+    "params_b": 12.2,
+    "family": "mistral",
+    "backends": [
+      "ollama",
+      "vllm"
+    ],
+    "ollama_tag": "mistral-nemo",
+    "hf_repo": "mistralai/Mistral-Nemo-Instruct-2407",
+    "memory": {
+      "vllm_bfloat16_gb": 27.3,
+      "vllm_fp8_gb": 13.6,
+      "ollama_q4km_gb": 7.7,
+      "ollama_q8_gb": 13.6
+    },
+    "capabilities": {
+      "tool_calling": true,
+      "vision": false,
+      "context_window": 131072
+    },
+    "speed_tier": "medium",
+    "notes": ""
+  },
+  {
+    "id": "mistral-small-24b-instruct",
+    "name": "Mistral Small 24B Instruct 2501",
+    "params_b": 24.0,
+    "family": "mistral",
+    "backends": [
+      "ollama",
+      "vllm"
+    ],
+    "ollama_tag": "mistral-small",
+    "hf_repo": "mistralai/Mistral-Small-24B-Instruct-2501",
+    "memory": {
+      "vllm_bfloat16_gb": 53.6,
+      "vllm_fp8_gb": 26.8,
+      "ollama_q4km_gb": 15.1,
+      "ollama_q8_gb": 26.8
+    },
+    "capabilities": {
+      "tool_calling": true,
+      "vision": false,
+      "context_window": 32768
+    },
+    "speed_tier": "medium",
+    "notes": ""
+  },
+  {
+    "id": "mixtral-8x7b-instruct",
+    "name": "Mixtral 8x7B Instruct v0.1",
+    "params_b": 46.7,
+    "family": "mistral",
+    "backends": [
+      "ollama",
+      "vllm"
+    ],
+    "ollama_tag": "mixtral:8x7b",
+    "hf_repo": "mistralai/Mixtral-8x7B-Instruct-v0.1",
+    "memory": {
+      "vllm_bfloat16_gb": 104.4,
+      "vllm_fp8_gb": 52.2,
+      "ollama_q4km_gb": 29.4,
+      "ollama_q8_gb": 52.2
+    },
+    "capabilities": {
+      "tool_calling": true,
+      "vision": false,
+      "context_window": 32768
+    },
+    "speed_tier": "slow",
+    "notes": ""
+  },
+  {
+    "id": "llama-3.1-8b-instruct",
+    "name": "Llama 3.1 8B Instruct",
+    "params_b": 8.0,
+    "family": "llama",
+    "backends": [
+      "ollama",
+      "vllm"
+    ],
+    "ollama_tag": "llama3.1:8b",
+    "hf_repo": "meta-llama/Llama-3.1-8B-Instruct",
+    "memory": {
+      "vllm_bfloat16_gb": 17.9,
+      "vllm_fp8_gb": 8.9,
+      "ollama_q4km_gb": 5.0,
+      "ollama_q8_gb": 8.9
+    },
+    "capabilities": {
+      "tool_calling": true,
+      "vision": false,
+      "context_window": 131072
+    },
+    "speed_tier": "fast",
+    "notes": ""
+  },
+  {
+    "id": "llama-3.1-70b-instruct",
+    "name": "Llama 3.1 70B Instruct",
+    "params_b": 70.6,
+    "family": "llama",
+    "backends": [
+      "ollama",
+      "vllm"
+    ],
+    "ollama_tag": "llama3.1:70b",
+    "hf_repo": "meta-llama/Llama-3.1-70B-Instruct",
+    "memory": {
+      "vllm_bfloat16_gb": 157.8,
+      "vllm_fp8_gb": 78.9,
+      "ollama_q4km_gb": 44.4,
+      "ollama_q8_gb": 78.9
+    },
+    "capabilities": {
+      "tool_calling": true,
+      "vision": false,
+      "context_window": 131072
+    },
+    "speed_tier": "slow",
+    "notes": ""
+  },
+  {
+    "id": "llama-3.2-1b-instruct",
+    "name": "Llama 3.2 1B Instruct",
+    "params_b": 1.2,
+    "family": "llama",
+    "backends": [
+      "ollama",
+      "vllm"
+    ],
+    "ollama_tag": "llama3.2:1b",
+    "hf_repo": "meta-llama/Llama-3.2-1B-Instruct",
+    "memory": {
+      "vllm_bfloat16_gb": 2.7,
+      "vllm_fp8_gb": 1.3,
+      "ollama_q4km_gb": 0.8,
+      "ollama_q8_gb": 1.3
+    },
+    "capabilities": {
+      "tool_calling": true,
+      "vision": false,
+      "context_window": 131072
+    },
+    "speed_tier": "fast",
+    "notes": ""
+  },
+  {
+    "id": "llama-3.2-3b-instruct",
+    "name": "Llama 3.2 3B Instruct",
+    "params_b": 3.2,
+    "family": "llama",
+    "backends": [
+      "ollama",
+      "vllm"
+    ],
+    "ollama_tag": "llama3.2:3b",
+    "hf_repo": "meta-llama/Llama-3.2-3B-Instruct",
+    "memory": {
+      "vllm_bfloat16_gb": 7.2,
+      "vllm_fp8_gb": 3.6,
+      "ollama_q4km_gb": 2.0,
+      "ollama_q8_gb": 3.6
+    },
+    "capabilities": {
+      "tool_calling": true,
+      "vision": false,
+      "context_window": 131072
+    },
+    "speed_tier": "fast",
+    "notes": ""
+  },
+  {
+    "id": "llama-3.2-11b-vision-instruct",
+    "name": "Llama 3.2 11B Vision Instruct",
+    "params_b": 11.0,
+    "family": "llama",
+    "backends": [
+      "ollama",
+      "vllm"
+    ],
+    "ollama_tag": "llama3.2:11b",
+    "hf_repo": "meta-llama/Llama-3.2-11B-Vision-Instruct",
+    "memory": {
+      "vllm_bfloat16_gb": 24.6,
+      "vllm_fp8_gb": 12.3,
+      "ollama_q4km_gb": 6.9,
+      "ollama_q8_gb": 12.3
+    },
+    "capabilities": {
+      "tool_calling": true,
+      "vision": true,
+      "context_window": 131072
+    },
+    "speed_tier": "medium",
+    "notes": ""
+  },
+  {
+    "id": "llama-3.3-70b-instruct",
+    "name": "Llama 3.3 70B Instruct",
+    "params_b": 70.6,
+    "family": "llama",
+    "backends": [
+      "ollama",
+      "vllm"
+    ],
+    "ollama_tag": "llama3.3:70b",
+    "hf_repo": "meta-llama/Llama-3.3-70B-Instruct",
+    "memory": {
+      "vllm_bfloat16_gb": 157.8,
+      "vllm_fp8_gb": 78.9,
+      "ollama_q4km_gb": 44.4,
+      "ollama_q8_gb": 78.9
+    },
+    "capabilities": {
+      "tool_calling": true,
+      "vision": false,
+      "context_window": 131072
+    },
+    "speed_tier": "slow",
+    "notes": ""
+  },
+  {
+    "id": "deepseek-r1-distill-qwen-7b",
+    "name": "DeepSeek R1 Distill Qwen 7B",
+    "params_b": 7.6,
+    "family": "deepseek",
+    "backends": [
+      "ollama",
+      "vllm"
+    ],
+    "ollama_tag": "deepseek-r1:7b",
+    "hf_repo": "deepseek-ai/DeepSeek-R1-Distill-Qwen-7B",
+    "memory": {
+      "vllm_bfloat16_gb": 17.0,
+      "vllm_fp8_gb": 8.5,
+      "ollama_q4km_gb": 4.8,
+      "ollama_q8_gb": 8.5
+    },
+    "capabilities": {
+      "tool_calling": true,
+      "vision": false,
+      "context_window": 131072
+    },
+    "speed_tier": "fast",
+    "notes": ""
+  },
+  {
+    "id": "deepseek-r1-distill-qwen-14b",
+    "name": "DeepSeek R1 Distill Qwen 14B",
+    "params_b": 14.8,
+    "family": "deepseek",
+    "backends": [
+      "ollama",
+      "vllm"
+    ],
+    "ollama_tag": "deepseek-r1:14b",
+    "hf_repo": "deepseek-ai/DeepSeek-R1-Distill-Qwen-14B",
+    "memory": {
+      "vllm_bfloat16_gb": 33.1,
+      "vllm_fp8_gb": 16.5,
+      "ollama_q4km_gb": 9.3,
+      "ollama_q8_gb": 16.5
+    },
+    "capabilities": {
+      "tool_calling": true,
+      "vision": false,
+      "context_window": 131072
+    },
+    "speed_tier": "medium",
+    "notes": ""
+  },
+  {
+    "id": "deepseek-r1-distill-qwen-32b",
+    "name": "DeepSeek R1 Distill Qwen 32B",
+    "params_b": 32.8,
+    "family": "deepseek",
+    "backends": [
+      "ollama",
+      "vllm"
+    ],
+    "ollama_tag": "deepseek-r1:32b",
+    "hf_repo": "deepseek-ai/DeepSeek-R1-Distill-Qwen-32B",
+    "memory": {
+      "vllm_bfloat16_gb": 73.3,
+      "vllm_fp8_gb": 36.7,
+      "ollama_q4km_gb": 20.6,
+      "ollama_q8_gb": 36.7
+    },
+    "capabilities": {
+      "tool_calling": true,
+      "vision": false,
+      "context_window": 131072
+    },
+    "speed_tier": "slow",
+    "notes": ""
+  },
+  {
+    "id": "deepseek-v3",
+    "name": "DeepSeek V3 685B",
+    "params_b": 685.0,
+    "family": "deepseek",
+    "backends": [
+      "vllm"
+    ],
+    "ollama_tag": null,
+    "hf_repo": "deepseek-ai/DeepSeek-V3",
+    "memory": {
+      "vllm_bfloat16_gb": 1531.1,
+      "vllm_fp8_gb": 765.5,
+      "ollama_q4km_gb": 430.6,
+      "ollama_q8_gb": 765.5
+    },
+    "capabilities": {
+      "tool_calling": true,
+      "vision": false,
+      "context_window": 131072
+    },
+    "speed_tier": "slow",
+    "notes": "Known strong tool calling — validated in Dryade. Requires multi-GPU."
+  },
+  {
+    "id": "deepseek-v3.2",
+    "name": "DeepSeek V3.2 685B",
+    "params_b": 685.4,
+    "family": "deepseek",
+    "backends": [
+      "vllm"
+    ],
+    "ollama_tag": null,
+    "hf_repo": "deepseek-ai/DeepSeek-V3.2",
+    "memory": {
+      "vllm_bfloat16_gb": 1532.0,
+      "vllm_fp8_gb": 766.0,
+      "ollama_q4km_gb": 430.9,
+      "ollama_q8_gb": 766.0
+    },
+    "capabilities": {
+      "tool_calling": true,
+      "vision": false,
+      "context_window": 163840
+    },
+    "speed_tier": "slow",
+    "notes": "Known strong tool calling — validated in Dryade. Requires multi-GPU."
+  },
+  {
+    "id": "gemma-2-2b-it",
+    "name": "Gemma 2 2B IT",
+    "params_b": 2.6,
+    "family": "gemma",
+    "backends": [
+      "ollama",
+      "vllm"
+    ],
+    "ollama_tag": "gemma2:2b",
+    "hf_repo": "google/gemma-2-2b-it",
+    "memory": {
+      "vllm_bfloat16_gb": 5.8,
+      "vllm_fp8_gb": 2.9,
+      "ollama_q4km_gb": 1.6,
+      "ollama_q8_gb": 2.9
+    },
+    "capabilities": {
+      "tool_calling": false,
+      "vision": false,
+      "context_window": 8192
+    },
+    "speed_tier": "fast",
+    "notes": ""
+  },
+  {
+    "id": "gemma-2-9b-it",
+    "name": "Gemma 2 9B IT",
+    "params_b": 9.2,
+    "family": "gemma",
+    "backends": [
+      "ollama",
+      "vllm"
+    ],
+    "ollama_tag": "gemma2:9b",
+    "hf_repo": "google/gemma-2-9b-it",
+    "memory": {
+      "vllm_bfloat16_gb": 20.6,
+      "vllm_fp8_gb": 10.3,
+      "ollama_q4km_gb": 5.8,
+      "ollama_q8_gb": 10.3
+    },
+    "capabilities": {
+      "tool_calling": false,
+      "vision": false,
+      "context_window": 8192
+    },
+    "speed_tier": "medium",
+    "notes": ""
+  },
+  {
+    "id": "gemma-2-27b-it",
+    "name": "Gemma 2 27B IT",
+    "params_b": 27.2,
+    "family": "gemma",
+    "backends": [
+      "ollama",
+      "vllm"
+    ],
+    "ollama_tag": "gemma2:27b",
+    "hf_repo": "google/gemma-2-27b-it",
+    "memory": {
+      "vllm_bfloat16_gb": 60.8,
+      "vllm_fp8_gb": 30.4,
+      "ollama_q4km_gb": 17.1,
+      "ollama_q8_gb": 30.4
+    },
+    "capabilities": {
+      "tool_calling": false,
+      "vision": false,
+      "context_window": 8192
+    },
+    "speed_tier": "medium",
+    "notes": ""
+  },
+  {
+    "id": "gemma-3-12b-it",
+    "name": "Gemma 3 12B IT",
+    "params_b": 12.0,
+    "family": "gemma",
+    "backends": [
+      "ollama",
+      "vllm"
+    ],
+    "ollama_tag": "gemma3:12b",
+    "hf_repo": "google/gemma-3-12b-it",
+    "memory": {
+      "vllm_bfloat16_gb": 26.8,
+      "vllm_fp8_gb": 13.4,
+      "ollama_q4km_gb": 7.5,
+      "ollama_q8_gb": 13.4
+    },
+    "capabilities": {
+      "tool_calling": false,
+      "vision": false,
+      "context_window": 131072
+    },
+    "speed_tier": "medium",
+    "notes": ""
+  },
+  {
+    "id": "phi-3.5-mini-instruct",
+    "name": "Phi 3.5 Mini Instruct",
+    "params_b": 3.8,
+    "family": "phi",
+    "backends": [
+      "ollama",
+      "vllm"
+    ],
+    "ollama_tag": "phi3.5:mini",
+    "hf_repo": "microsoft/Phi-3.5-mini-instruct",
+    "memory": {
+      "vllm_bfloat16_gb": 8.5,
+      "vllm_fp8_gb": 4.2,
+      "ollama_q4km_gb": 2.4,
+      "ollama_q8_gb": 4.2
+    },
+    "capabilities": {
+      "tool_calling": true,
+      "vision": false,
+      "context_window": 131072
+    },
+    "speed_tier": "fast",
+    "notes": ""
+  },
+  {
+    "id": "phi-3-medium-14b-instruct",
+    "name": "Phi 3 Medium 14B Instruct",
+    "params_b": 14.0,
+    "family": "phi",
+    "backends": [
+      "ollama",
+      "vllm"
+    ],
+    "ollama_tag": "phi3:medium",
+    "hf_repo": "microsoft/Phi-3-medium-14b-instruct",
+    "memory": {
+      "vllm_bfloat16_gb": 31.3,
+      "vllm_fp8_gb": 15.6,
+      "ollama_q4km_gb": 8.8,
+      "ollama_q8_gb": 15.6
+    },
+    "capabilities": {
+      "tool_calling": true,
+      "vision": false,
+      "context_window": 4096
+    },
+    "speed_tier": "medium",
+    "notes": ""
+  },
+  {
+    "id": "phi-4",
+    "name": "Phi 4 14B",
+    "params_b": 14.0,
+    "family": "phi",
+    "backends": [
+      "ollama",
+      "vllm"
+    ],
+    "ollama_tag": "phi4",
+    "hf_repo": "microsoft/phi-4",
+    "memory": {
+      "vllm_bfloat16_gb": 31.3,
+      "vllm_fp8_gb": 15.6,
+      "ollama_q4km_gb": 8.8,
+      "ollama_q8_gb": 15.6
+    },
+    "capabilities": {
+      "tool_calling": true,
+      "vision": false,
+      "context_window": 16384
+    },
+    "speed_tier": "medium",
+    "notes": ""
+  },
+  {
+    "id": "nomic-embed-text-v1.5",
+    "name": "Nomic Embed Text v1.5",
+    "params_b": 0.137,
+    "family": "nomic",
+    "backends": [
+      "ollama"
+    ],
+    "ollama_tag": "nomic-embed-text",
+    "hf_repo": "nomic-ai/nomic-embed-text-v1.5",
+    "memory": {
+      "vllm_bfloat16_gb": 0.3,
+      "vllm_fp8_gb": 0.2,
+      "ollama_q4km_gb": 0.1,
+      "ollama_q8_gb": 0.2
+    },
+    "capabilities": {
+      "tool_calling": false,
+      "vision": false,
+      "context_window": 8192
+    },
+    "speed_tier": "fast",
+    "notes": "Embedding model — not for text generation"
+  },
+  {
+    "id": "mxbai-embed-large-v1",
+    "name": "MXBai Embed Large v1",
+    "params_b": 0.335,
+    "family": "mxbai",
+    "backends": [
+      "ollama"
+    ],
+    "ollama_tag": "mxbai-embed-large",
+    "hf_repo": "mixedbread-ai/mxbai-embed-large-v1",
+    "memory": {
+      "vllm_bfloat16_gb": 0.7,
+      "vllm_fp8_gb": 0.4,
+      "ollama_q4km_gb": 0.2,
+      "ollama_q8_gb": 0.4
+    },
+    "capabilities": {
+      "tool_calling": false,
+      "vision": false,
+      "context_window": 512
+    },
+    "speed_tier": "fast",
+    "notes": "Embedding model — not for text generation"
+  },
+  {
+    "id": "hermes-3-llama-3.1-8b",
+    "name": "Hermes 3 Llama 3.1 8B",
+    "params_b": 8.0,
+    "family": "llama",
+    "backends": [
+      "ollama",
+      "vllm"
+    ],
+    "ollama_tag": "hermes3:8b",
+    "hf_repo": "NousResearch/Hermes-3-Llama-3.1-8B",
+    "memory": {
+      "vllm_bfloat16_gb": 17.9,
+      "vllm_fp8_gb": 8.9,
+      "ollama_q4km_gb": 5.0,
+      "ollama_q8_gb": 8.9
+    },
+    "capabilities": {
+      "tool_calling": true,
+      "vision": false,
+      "context_window": 131072
+    },
+    "speed_tier": "fast",
+    "notes": "Hermes prompt format; reliable tool calling via Hermes parser"
+  },
+  {
+    "id": "qwq-32b",
+    "name": "QwQ 32B",
+    "params_b": 32.8,
+    "family": "qwen",
+    "backends": [
+      "ollama",
+      "vllm"
+    ],
+    "ollama_tag": "qwq:32b",
+    "hf_repo": "Qwen/QwQ-32B",
+    "memory": {
+      "vllm_bfloat16_gb": 73.3,
+      "vllm_fp8_gb": 36.7,
+      "ollama_q4km_gb": 20.6,
+      "ollama_q8_gb": 36.7
+    },
+    "capabilities": {
+      "tool_calling": true,
+      "vision": false,
+      "context_window": 40960
+    },
+    "speed_tier": "slow",
+    "notes": "Reasoning model — extended thinking before answering"
+  },
+  {
+    "id": "deepseek-r1-0528-qwen3-8b",
+    "name": "DeepSeek R1 0528 Qwen3 8B",
+    "params_b": 8.2,
+    "family": "deepseek",
+    "backends": [
+      "vllm"
+    ],
+    "ollama_tag": null,
+    "hf_repo": "deepseek-ai/DeepSeek-R1-0528-Qwen3-8B",
+    "memory": {
+      "vllm_bfloat16_gb": 18.3,
+      "vllm_fp8_gb": 9.2,
+      "ollama_q4km_gb": 5.2,
+      "ollama_q8_gb": 9.2
+    },
+    "capabilities": {
+      "tool_calling": true,
+      "vision": false,
+      "context_window": 131072
+    },
+    "speed_tier": "medium",
+    "notes": "Latest R1 distill on Qwen3-8B base"
+  },
+  {
+    "id": "deepseek-r1-0528",
+    "name": "DeepSeek R1 0528 671B",
+    "params_b": 684.5,
+    "family": "deepseek",
+    "backends": [
+      "vllm"
+    ],
+    "ollama_tag": null,
+    "hf_repo": "deepseek-ai/DeepSeek-R1-0528",
+    "memory": {
+      "vllm_bfloat16_gb": 1530.0,
+      "vllm_fp8_gb": 765.0,
+      "ollama_q4km_gb": 430.3,
+      "ollama_q8_gb": 765.0
+    },
+    "capabilities": {
+      "tool_calling": true,
+      "vision": false,
+      "context_window": 163840
+    },
+    "speed_tier": "slow",
+    "notes": "Full R1 reasoning model. Requires multi-GPU cluster."
+  }
+]

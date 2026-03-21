@@ -1,0 +1,27 @@
+# {{ name | title | replace('_', '') }} Agent Configuration
+# CrewAI-based agent - factory generated
+
+name: {{ name }}
+version: "{{ version | default('1.0.0') }}"
+description: "{{ description }}"
+
+# Framework type - CrewAI multi-tool agent
+framework: crewai
+
+# Required MCP servers for operation
+mcp_servers:
+{% for server in mcp_servers %}
+  - {{ server }}
+{% endfor %}
+
+# Agent persona configuration
+persona:
+  role: "{{ role }}"
+  goal: "{{ goal }}"
+  backstory: "{{ backstory }}"
+
+# Capabilities exposed by this agent
+capabilities:
+{% for cap in capabilities | default([]) %}
+  - {{ cap }}
+{% endfor %}

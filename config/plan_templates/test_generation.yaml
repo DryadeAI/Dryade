@@ -1,0 +1,55 @@
+name: test_generation
+description: Generate comprehensive tests for code
+category: testing
+parameters:
+  - name: source_file
+    type: string
+    required: true
+    description: "Path to source code file"
+  - name: test_framework
+    type: string
+    required: false
+    default: "pytest"
+    description: "Testing framework to use (pytest, unittest, jest)"
+  - name: coverage_target
+    type: integer
+    required: false
+    default: 80
+    description: "Target code coverage percentage"
+
+nodes:
+  - id: analyze_code
+    agent: code_analyzer
+    task: "Analyze code structure and functions in {source_file}"
+    depends_on: []
+    expected_output: "Code structure analysis"
+
+  - id: identify_test_cases
+    agent: test_generator
+    task: "Identify test cases for {source_file} targeting {coverage_target}% coverage"
+    depends_on: ["analyze_code"]
+    expected_output: "List of test scenarios"
+
+  - id: generate_tests
+    agent: code_generator
+    task: "Generate {test_framework} tests for {source_file}"
+    depends_on: ["identify_test_cases"]
+    expected_output: "Complete test file"
+
+  - id: review_tests
+    agent: code_reviewer
+    task: "Review generated tests for completeness and quality"
+    depends_on: ["generate_tests"]
+    expected_output: "Test review with suggestions"
+
+edges:
+  - source: analyze_code
+    target: identify_test_cases
+  - source: identify_test_cases
+    target: generate_tests
+  - source: generate_tests
+    target: review_tests
+
+metadata:
+  estimated_duration_seconds: 90
+  cost_estimate_usd: 0.04

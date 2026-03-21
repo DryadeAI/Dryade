@@ -1,0 +1,11 @@
+{
+  "name": "data-processor",
+  "framework": "custom",
+  "description": "A simple data processing agent that can transform CSV data",
+  "version": "1.0.0",
+  "factory_created": true,
+  "entry_point": "__init__.py",
+  "run_function": "run",
+  "mcp_servers": [],
+  "capabilities": []
+}

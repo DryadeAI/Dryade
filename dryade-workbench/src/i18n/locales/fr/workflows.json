@@ -1,0 +1,72 @@
+{
+  "deletePlan": {
+    "title": "Supprimer le plan",
+    "description": "Êtes-vous sûr de vouloir supprimer «\u00a0{{name}}\u00a0» ? Cette action est irréversible et supprimera définitivement le plan de la base de données.",
+    "cancel": "Annuler",
+    "deleting": "Suppression...",
+    "delete": "Supprimer"
+  },
+  "createDialog": {
+    "title": "Créer un nouveau workflow",
+    "description": "Créez un workflow personnalisé avec un canevas visuel. Vous pourrez ajouter des nœuds et des connexions après la création.",
+    "nameLabel": "Nom",
+    "namePlaceholder": "Mon workflow",
+    "descriptionLabel": "Description (optionnelle)",
+    "descriptionPlaceholder": "Que fait ce workflow ?",
+    "cancel": "Annuler",
+    "creating": "Création...",
+    "create": "Créer"
+  },
+  "shareDialog": {
+    "title": "Partager le workflow",
+    "description": "Partagez ce workflow avec d'autres utilisateurs. Ils pourront le consulter ou le modifier selon les permissions accordées.",
+    "userIdLabel": "Identifiant utilisateur",
+    "userIdPlaceholder": "Saisir l'identifiant...",
+    "permissionView": "Lecture",
+    "permissionEdit": "Modification",
+    "shareButton": "Partager",
+    "currentShares": "Partages actuels",
+    "notSharedYet": "Pas encore partagé avec qui que ce soit.",
+    "close": "Fermer"
+  },
+  "flowDetail": {
+    "flowNotFound": "Flow introuvable",
+    "flowNotFoundDescription": "Le flow que vous recherchez n'existe pas.",
+    "backToWorkflows": "Retour aux workflows",
+    "breadcrumbWorkflows": "Workflows",
+    "noDescription": "Aucune description",
+    "stop": "Arrêter",
+    "execute": "Exécuter",
+    "configure": "Configurer",
+    "executionInProgress": "Exécution en cours...",
+    "nodesTab": "Nœuds ({{count}})",
+    "executionsTab": "Exécutions",
+    "checkpointsTab": "Points de contrôle",
+    "flowNodes": "Nœuds du flow",
+    "stepsInFlow": "Étapes de ce flow",
+    "noNodes": "Aucun nœud dans ce flow",
+    "executionHistory": "Historique d'exécution",
+    "recentExecutions": "Exécutions récentes de ce flow",
+    "duration": "Durée : {{seconds}}s",
+    "noExecutionsYet": "Aucune exécution pour l'instant",
+    "noExecutionsHint": "Cliquez sur «\u00a0Exécuter\u00a0» ci-dessus pour lancer ce flow pour la première fois.",
+    "checkpointsTitle": "Points de contrôle",
+    "checkpointsDescription": "États sauvegardés pour la restauration",
+    "restore": "Restaurer",
+    "noCheckpoints": "Aucun point de contrôle disponible",
+    "status": {
+      "complete": "Terminé",
+      "running": "En cours",
+      "error": "Erreur",
+      "pending": "En attente"
+    },
+    "toast": {
+      "loadFailed": "Échec du chargement du flow",
+      "executeSuccess": "Exécution du flow lancée",
+      "executeFailed": "Échec du lancement du flow",
+      "stopSuccess": "Exécution arrêtée",
+      "stopFailed": "Échec de l'arrêt de l'exécution"
+    }
+  },
+  "defaultWorkflowName": "workflow"
+}

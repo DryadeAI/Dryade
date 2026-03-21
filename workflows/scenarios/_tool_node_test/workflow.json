@@ -1,0 +1,41 @@
+{
+  "version": "1.0.0",
+  "metadata": { "name": "_tool_node_test", "description": "Synthetic tool node test — start → task → tool → task → end" },
+  "nodes": [
+    { "id": "start", "type": "start", "position": { "x": 0, "y": 0 }, "data": {} },
+    {
+      "id": "setup_task",
+      "type": "task",
+      "position": { "x": 200, "y": 0 },
+      "data": {
+        "agent": "developer",
+        "task": "Set up test data for tool call"
+      }
+    },
+    {
+      "id": "tool_call",
+      "type": "tool",
+      "position": { "x": 400, "y": 0 },
+      "data": {
+        "tool": "filesystem.list_directory",
+        "parameters": { "path": "/tmp" }
+      }
+    },
+    {
+      "id": "verify_task",
+      "type": "task",
+      "position": { "x": 600, "y": 0 },
+      "data": {
+        "agent": "developer",
+        "task": "Verify the tool output from previous node"
+      }
+    },
+    { "id": "end", "type": "end", "position": { "x": 800, "y": 0 }, "data": {} }
+  ],
+  "edges": [
+    { "id": "e1", "source": "start", "target": "setup_task" },
+    { "id": "e2", "source": "setup_task", "target": "tool_call" },
+    { "id": "e3", "source": "tool_call", "target": "verify_task" },
+    { "id": "e4", "source": "verify_task", "target": "end" }
+  ]
+}

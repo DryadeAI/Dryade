@@ -1,0 +1,53 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+.eggs/
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Testing
+.coverage
+.pytest_cache/
+htmlcov/
+coverage.xml
+coverage.json
+
+# Type checking
+.mypy_cache/
+.ruff_cache/
+
+# IDEs
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Runtime
+*.db
+*.db-shm
+*.db-wal
+*.log
+uploads/
+qdrant_storage/
+config/cache/
+
+# Secrets (never commit)
+.env
+.env.*
+!.env.example
+config/secret_key
+**/*.pem
+**/*.key
+
+# Test-generated agent artifacts
+agents/deep-test-*/
+agents/agent_nonexistent*/

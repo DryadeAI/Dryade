@@ -1,0 +1,46 @@
+{
+  "version": "1.0.0",
+  "metadata": {
+    "name": "document_qa",
+    "description": "Ask questions about an uploaded document and get accurate answers with citations",
+    "domain": "productivity",
+    "difficulty": "beginner"
+  },
+  "nodes": [
+    {
+      "id": "start",
+      "type": "start",
+      "position": {"x": 0, "y": 100}
+    },
+    {
+      "id": "parse_document",
+      "type": "task",
+      "data": {
+        "agent": "document_processor",
+        "task": "Parse the uploaded document and extract all text content, preserving section structure",
+        "context": {"output_format": "structured_text"}
+      },
+      "position": {"x": 200, "y": 100}
+    },
+    {
+      "id": "answer_question",
+      "type": "task",
+      "data": {
+        "agent": "document_processor",
+        "task": "Answer the user's question using only information from the parsed document. Include page/section citations for each claim",
+        "context": {"requires": ["parse_document.output"]}
+      },
+      "position": {"x": 400, "y": 100}
+    },
+    {
+      "id": "end",
+      "type": "end",
+      "position": {"x": 600, "y": 100}
+    }
+  ],
+  "edges": [
+    {"id": "e1", "source": "start", "target": "parse_document"},
+    {"id": "e2", "source": "parse_document", "target": "answer_question"},
+    {"id": "e3", "source": "answer_question", "target": "end"}
+  ]
+}

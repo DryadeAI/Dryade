@@ -1,0 +1,134 @@
+@layer base {
+  /* -------------------------------------------------------------------------
+     CSS Reset
+     ------------------------------------------------------------------------- */
+
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    border-width: 0;
+    border-style: solid;
+    border-color: hsl(var(--border, 0 0% 80%));
+  }
+
+  /* -------------------------------------------------------------------------
+     Document
+     ------------------------------------------------------------------------- */
+
+  html {
+    font-family: var(--font-sans, 'Inter', ui-sans-serif, system-ui, -apple-system, sans-serif);
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-text-size-adjust: 100%;
+    tab-size: 4;
+    color-scheme: light dark;
+  }
+
+  body {
+    margin: 0;
+    min-height: 100vh;
+    background: hsl(var(--background, 0 0% 100%));
+    color: hsl(var(--foreground, 0 0% 10%));
+    line-height: inherit;
+    font-family: inherit;
+  }
+
+  /* -------------------------------------------------------------------------
+     Typography (system fonts -- no external CDN)
+     ------------------------------------------------------------------------- */
+
+  h1, h2, h3, h4, h5, h6 {
+    font-size: inherit;
+    font-weight: inherit;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: inherit;
+  }
+
+  code, kbd, samp, pre {
+    font-family: var(--font-mono, 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace);
+    font-size: 1em;
+  }
+
+  /* -------------------------------------------------------------------------
+     Media
+     ------------------------------------------------------------------------- */
+
+  img, svg, video, canvas, audio, iframe, embed, object {
+    display: block;
+    vertical-align: middle;
+  }
+
+  img, video {
+    max-width: 100%;
+    height: auto;
+  }
+
+  /* -------------------------------------------------------------------------
+     Forms
+     ------------------------------------------------------------------------- */
+
+  button, input, optgroup, select, textarea {
+    font-family: inherit;
+    font-feature-settings: inherit;
+    font-variation-settings: inherit;
+    font-size: 100%;
+    font-weight: inherit;
+    line-height: inherit;
+    color: inherit;
+  }
+
+  button, [role="button"] {
+    cursor: pointer;
+  }
+
+  :disabled {
+    cursor: default;
+  }
+
+  /* -------------------------------------------------------------------------
+     Focus
+     ------------------------------------------------------------------------- */
+
+  :focus-visible {
+    outline: 2px solid hsl(var(--ring, 127 60% 35%));
+    outline-offset: 2px;
+  }
+
+  /* -------------------------------------------------------------------------
+     Plugin Root
+     ------------------------------------------------------------------------- */
+
+  #plugin-root {
+    width: 100%;
+    min-height: 100vh;
+  }
+
+  /* -------------------------------------------------------------------------
+     Scrollbar
+     ------------------------------------------------------------------------- */
+
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: hsl(var(--background, 0 0% 100%));
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: hsl(var(--muted, 0 0% 90%));
+    border-radius: 4px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: hsl(var(--muted-foreground, 0 0% 50%));
+  }
+}

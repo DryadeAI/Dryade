@@ -1,0 +1,29 @@
+title: "[Q&A] "
+labels: ["question"]
+body:
+  - type: markdown
+    attributes:
+      value: "Ask a question about Dryade! Check existing discussions first — your question may already be answered."
+  - type: textarea
+    id: question
+    attributes:
+      label: Your Question
+      description: What would you like to know?
+    validations:
+      required: true
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      options:
+        - Installation & Setup
+        - Agents & Workflows
+        - API & Integration
+        - Plugins
+        - Performance
+        - Other
+  - type: textarea
+    id: context
+    attributes:
+      label: What Have You Tried?
+      description: Share any troubleshooting steps you've already taken

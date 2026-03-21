@@ -1,0 +1,68 @@
+{
+  "version": "1.0.0",
+  "metadata": {
+    "name": "_templates/linear-support",
+    "description": "Canonical 4-task support template: start → intake → process → resolve → followup → end",
+    "domain": "support",
+    "difficulty": "intermediate"
+  },
+  "nodes": [
+    {
+      "id": "start",
+      "type": "start",
+      "position": {"x": 0, "y": 0}
+    },
+    {
+      "id": "intake",
+      "type": "task",
+      "data": {
+        "agent": "research_assistant",
+        "task": "Receive and classify request: intake the incoming request, identify type and priority, and route appropriately",
+        "context": {}
+      },
+      "position": {"x": 200, "y": 0}
+    },
+    {
+      "id": "process",
+      "type": "task",
+      "data": {
+        "agent": "research_assistant",
+        "task": "Research and draft response: look up relevant knowledge, policies, and prior cases to draft a response",
+        "context": {"requires": ["intake.output"]}
+      },
+      "position": {"x": 400, "y": 0}
+    },
+    {
+      "id": "resolve",
+      "type": "task",
+      "data": {
+        "agent": "research_assistant",
+        "task": "Finalize and deliver: refine the drafted response and deliver it to the requester",
+        "context": {"requires": ["process.output"]}
+      },
+      "position": {"x": 600, "y": 0}
+    },
+    {
+      "id": "followup",
+      "type": "task",
+      "data": {
+        "agent": "research_assistant",
+        "task": "Log and follow up: record the resolution outcome, update ticket status, and schedule follow-up if needed",
+        "context": {"requires": ["resolve.output"]}
+      },
+      "position": {"x": 800, "y": 0}
+    },
+    {
+      "id": "end",
+      "type": "end",
+      "position": {"x": 1000, "y": 0}
+    }
+  ],
+  "edges": [
+    {"id": "e1", "source": "start", "target": "intake"},
+    {"id": "e2", "source": "intake", "target": "process"},
+    {"id": "e3", "source": "process", "target": "resolve"},
+    {"id": "e4", "source": "resolve", "target": "followup"},
+    {"id": "e5", "source": "followup", "target": "end"}
+  ]
+}

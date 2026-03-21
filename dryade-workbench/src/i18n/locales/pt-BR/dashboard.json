@@ -1,0 +1,68 @@
+{
+  "greeting": {
+    "morning": "Bom dia",
+    "afternoon": "Boa tarde",
+    "evening": "Boa noite"
+  },
+  "subtitle": "Veja o que está acontecendo hoje",
+  "stats": {
+    "totalRequests": "Total de requisições",
+    "successRate": "Taxa de sucesso",
+    "activeAgents": "Agentes ativos",
+    "queueStatus": "Status da fila",
+    "workflows": "Fluxos"
+  },
+  "sections": {
+    "recentRequests": "Requisições recentes",
+    "workflowTemplates": "Modelos de fluxo",
+    "systemStatus": "Status do sistema",
+    "quickAccess": "Acesso rápido"
+  },
+  "quickActions": {
+    "newChat": "Novo chat",
+    "newChatDesc": "Iniciar uma conversa",
+    "createWorkflow": "Criar fluxo",
+    "createWorkflowDesc": "Construir automação",
+    "newPlan": "Novo plano",
+    "newPlanDesc": "Planos gerados por IA",
+    "upload": "Enviar",
+    "uploadDesc": "Adicionar documentos",
+    "chatWithAgent": "Conversar com agente",
+    "newConversation": "Nova conversa"
+  },
+  "status": {
+    "operational": "Operacional",
+    "degraded": "Degradado",
+    "unhealthy": "Com problemas",
+    "disconnected": "Desconectado",
+    "unknown": "Desconhecido",
+    "registered": "Registrados",
+    "empty": "Vazia",
+    "pending": "Pendentes",
+    "stable": "Estável"
+  },
+  "disconnected": {
+    "title": "Backend inacessível",
+    "message": "O servidor API não está respondendo. O painel mostrará dados vazios até que a conexão seja restaurada."
+  },
+  "empty": {
+    "noRequests": "Sem atividade recente",
+    "noWorkflows": "Nenhum fluxo ainda. Crie um plano pelo chat ou construa um fluxo.",
+    "noRequestsDescription": "A atividade de requisições aparecerá aqui quando você começar a usar a plataforma.",
+    "noWorkflowsDescription": "Crie um plano pelo chat ou construa um fluxo para começar."
+  },
+  "labels": {
+    "api": "API",
+    "agents": "Agentes",
+    "queue": "Fila",
+    "viewMetrics": "Ver métricas",
+    "viewAllWorkflows": "Ver todos os fluxos",
+    "viewSystemHealth": "Ver saúde do sistema →",
+    "fromTarget": "do alvo",
+    "recent": "recentes",
+    "total": "Total",
+    "request": "requisição",
+    "completed": "concluída",
+    "failed": "falhada"
+  }
+}

@@ -1,0 +1,4 @@
+{
+  "groups": { "account": "ACCOUNT", "workspace": "AREA DI LAVORO", "advanced": "AVANZATO" },
+  "tabs": { "profile": "Profilo", "profileDesc": "Gestisci le tue informazioni personali", "appearance": "Aspetto", "appearanceDesc": "Personalizza l'aspetto", "notifications": "Notifiche", "notificationsDesc": "Configura le preferenze di notifica", "chat": "Chat e Agenti", "chatDesc": "Configura il comportamento di chat e agenti", "models": "Modelli", "modelsDesc": "Configura i fornitori di modelli IA", "apiKeys": "Chiavi API", "apiKeysDesc": "Gestisci chiavi e credenziali", "factory": "Fabbrica", "factoryDesc": "Configura la creazione di artefatti", "data": "Dati e Privacy", "dataDesc": "Salvataggio automatico, esportazione e gestione account" }
+}

@@ -1,0 +1,37 @@
+name: document_qa
+display_name: "Document Q&A"
+description: "Ask questions about an uploaded document and get accurate answers with citations"
+domain: productivity
+difficulty: beginner
+version: "1.0.0"
+template_ref: "_templates/linear-2task"
+
+triggers:
+  chat_command: "/ask-document"
+  api_endpoint: "/workflow-scenarios/document_qa/trigger"
+  ui_button:
+    label: "Ask Document"
+    location: "documents_page"
+
+inputs:
+  - name: document
+    type: file
+    required: true
+    description: "Document to query (PDF, Word, text)"
+  - name: question
+    type: string
+    required: true
+    description: "Question to answer using the document content"
+
+outputs:
+  - name: answer
+    type: markdown
+  - name: citations
+    type: json
+
+required_agents:
+  - document_processor
+
+observability:
+  metrics_enabled: true
+  log_tool_calls: true

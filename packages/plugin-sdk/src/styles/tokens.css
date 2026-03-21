@@ -1,0 +1,130 @@
+@layer tokens {
+  /* -------------------------------------------------------------------------
+     Theme Token Fallbacks (Dark theme default)
+     These are overridden by the host workbench at runtime.
+     ------------------------------------------------------------------------- */
+
+  :root {
+    /* Forest palette — must match workbench index.css forest/emerald tokens */
+    --background: 96 26% 4%;
+    --foreground: 110 6% 80%;
+    --card: 108 19% 5%;
+    --card-foreground: 110 6% 80%;
+    --popover: 102 10% 20%;
+    --popover-foreground: 110 6% 80%;
+    --primary: 116 66% 83%;
+    --primary-foreground: 96 26% 4%;
+    --secondary: 102 10% 20%;
+    --secondary-foreground: 110 6% 80%;
+    --muted: 105 18% 10%;
+    --muted-foreground: 95 6% 45%;
+    --accent: 117 60% 75%;
+    --accent-foreground: 96 26% 4%;
+    --destructive: 0 72% 56%;
+    --destructive-foreground: 0 85% 97%;
+    --success: 127 55% 32%;
+    --success-foreground: 107 4% 90%;
+    --warning: 38 92% 50%;
+    --warning-foreground: 96 26% 4%;
+    --info: 199 89% 48%;
+    --info-foreground: 0 0% 100%;
+    --border: 102 10% 20%;
+    --input: 105 18% 10%;
+    --ring: 100 7% 32%;
+    --radius: 0.5rem;
+    --radius-lg: var(--radius);
+    --radius-md: calc(var(--radius) - 2px);
+    --radius-sm: calc(var(--radius) - 4px);
+    --radius-xl: calc(var(--radius) + 4px);
+
+    /* Font families — match workbench Tailwind theme */
+    --font-sans: 'Inter', ui-sans-serif, system-ui, -apple-system, sans-serif;
+    --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+
+    /* Extended accents */
+    --accent-secondary: 250 60% 55%;
+    --accent-secondary-foreground: 0 0% 100%;
+    --accent-tertiary: 38 95% 55%;
+    --accent-tertiary-foreground: 96 26% 4%;
+
+    /* Glass / shadows — match core glassmorphism */
+    --glass-bg: 96 26% 4% / 0.55;
+    --glass-border: 127 55% 32% / 0.2;
+    --glass-glow: 118 55% 65% / 0.1;
+    --shadow-glow: 0 0 30px -5px hsl(118 55% 65% / 0.25);
+    --shadow-glow-sm: 0 0 15px -3px hsl(118 55% 65% / 0.2);
+    --shadow-card: 0 4px 24px -4px hsl(96 26% 1% / 0.6);
+    --shadow-elevated: 0 8px 32px -8px hsl(96 26% 1% / 0.8);
+    --shadow-glow-secondary: 0 0 20px -5px hsl(250 60% 55% / 0.2);
+    --shadow-glow-tertiary: 0 0 20px -5px hsl(38 95% 55% / 0.2);
+
+    /* Animation durations */
+    --duration-fast: 150ms;
+    --duration-normal: 250ms;
+    --duration-slow: 400ms;
+
+    /* Node colors */
+    --node-input: 200 80% 55%;
+    --node-process: 127 60% 45%;
+    --node-output: 280 65% 55%;
+    --node-decision: 38 90% 50%;
+    --node-default: 155 20% 40%;
+  }
+
+  /* -------------------------------------------------------------------------
+     Light Theme Overrides
+     ------------------------------------------------------------------------- */
+
+  .light {
+    /* Light theme — match workbench index.css .light overrides */
+    --background: 107 4% 96%;
+    --foreground: 108 19% 13%;
+    --card: 0 0% 100%;
+    --card-foreground: 108 19% 13%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 108 19% 13%;
+    --primary: 116 66% 83%;
+    --primary-foreground: 96 26% 4%;
+    --secondary: 105 8% 92%;
+    --secondary-foreground: 108 19% 13%;
+    --muted: 105 6% 90%;
+    --muted-foreground: 100 8% 45%;
+    --accent: 127 55% 43%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 72% 56%;
+    --destructive-foreground: 0 0% 100%;
+    --success: 127 55% 32%;
+    --success-foreground: 0 0% 100%;
+    --warning: 38 92% 50%;
+    --warning-foreground: 108 19% 13%;
+    --info: 199 89% 48%;
+    --info-foreground: 0 0% 100%;
+    --border: 105 12% 78%;
+    --input: 105 8% 90%;
+    --ring: 116 66% 83%;
+    --glass-bg: 107 4% 90% / 0.9;
+    --glass-border: 101 8% 27% / 0.25;
+    --glass-glow: 127 55% 32% / 0.06;
+    --shadow-glow: 0 0 30px -5px hsl(127 55% 32% / 0.15);
+    --shadow-glow-sm: 0 0 15px -3px hsl(127 55% 32% / 0.1);
+    --shadow-card: 0 4px 24px -4px hsl(105 12% 50% / 0.1);
+    --shadow-elevated: 0 8px 32px -8px hsl(105 12% 50% / 0.15);
+  }
+
+  /* -------------------------------------------------------------------------
+     Semantic Aliases
+     Convenience aliases for common usage patterns.
+     ------------------------------------------------------------------------- */
+
+  :root {
+    --dui-text: var(--foreground);
+    --dui-bg: var(--background);
+    --dui-text-muted: var(--muted-foreground);
+    --dui-bg-muted: var(--muted);
+    --dui-text-primary: var(--primary);
+    --dui-bg-primary: var(--primary);
+    --dui-border: var(--border);
+    --dui-ring: var(--ring);
+    --dui-radius: var(--radius);
+  }
+}

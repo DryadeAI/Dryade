@@ -1,0 +1,57 @@
+{
+  "version": "1.0.0",
+  "metadata": {
+    "name": "data_pipeline",
+    "description": "Extract, transform, and analyze data from multiple sources into a structured report",
+    "domain": "dev",
+    "difficulty": "intermediate"
+  },
+  "nodes": [
+    {
+      "id": "start",
+      "type": "start",
+      "position": {"x": 0, "y": 100}
+    },
+    {
+      "id": "extract_data",
+      "type": "task",
+      "data": {
+        "agent": "database_analyst",
+        "task": "Extract and parse data from the uploaded source. Identify column types, missing values, and basic statistics. Output as structured JSON with schema",
+        "context": {"output_format": "structured_json"}
+      },
+      "position": {"x": 200, "y": 100}
+    },
+    {
+      "id": "analyze_patterns",
+      "type": "task",
+      "data": {
+        "agent": "database_analyst",
+        "task": "Perform the requested analysis type on the extracted data. For trends: time series decomposition. For anomalies: statistical outlier detection. For summary: descriptive statistics and distributions",
+        "context": {"requires": ["extract_data.output"]}
+      },
+      "position": {"x": 400, "y": 100}
+    },
+    {
+      "id": "generate_report",
+      "type": "task",
+      "data": {
+        "agent": "document_processor",
+        "task": "Generate a markdown report combining the analysis results. Include data tables, key findings, and actionable insights. Format for executive readability",
+        "context": {"requires": ["extract_data.output", "analyze_patterns.output"]}
+      },
+      "position": {"x": 600, "y": 100}
+    },
+    {
+      "id": "end",
+      "type": "end",
+      "position": {"x": 800, "y": 100}
+    }
+  ],
+  "edges": [
+    {"id": "e1", "source": "start", "target": "extract_data"},
+    {"id": "e2", "source": "extract_data", "target": "analyze_patterns"},
+    {"id": "e3", "source": "analyze_patterns", "target": "generate_report"},
+    {"id": "e4", "source": "generate_report", "target": "end"}
+  ]
+}

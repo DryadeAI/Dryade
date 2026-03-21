@@ -1,0 +1,7 @@
+# Traefik TLS file provider for air-gapped / enterprise environments.
+# Activated by setting TRAEFIK_CUSTOM_CERT_FILE and TRAEFIK_CUSTOM_KEY_FILE in .env
+# See .env.example for documentation.
+tls:
+  certificates:
+    - certFile: /certs/cert.pem
+      keyFile: /certs/key.pem

@@ -1,0 +1,4 @@
+{
+  "groups": { "account": "账户", "workspace": "工作区", "advanced": "高级" },
+  "tabs": { "profile": "个人资料", "profileDesc": "管理个人信息", "appearance": "外观", "appearanceDesc": "自定义外观", "notifications": "通知", "notificationsDesc": "配置通知偏好", "chat": "聊天与代理", "chatDesc": "配置聊天和代理行为", "models": "模型", "modelsDesc": "设置AI模型提供商", "apiKeys": "API密钥", "apiKeysDesc": "管理访问密钥和凭证", "factory": "工厂", "factoryDesc": "配置制品创建行为", "data": "数据与隐私", "dataDesc": "自动保存、导出和账户管理" }
+}

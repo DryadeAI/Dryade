@@ -1,0 +1,40 @@
+name: invoice_processing
+display_name: "Invoice Processing Pipeline"
+description: "Process invoices with OCR extraction, validation, retry handling, and database verification"
+domain: finance
+version: "1.0.0"
+
+triggers:
+  chat_command: "/process-invoice"
+  api_endpoint: "/workflow-scenarios/invoice_processing/trigger"
+  ui_button:
+    label: "Process Invoice"
+    location: "documents_page"
+
+inputs:
+  - name: invoice_file
+    type: file
+    required: true
+    description: "Invoice PDF or image file"
+  - name: vendor_id
+    type: string
+    required: false
+    description: "Known vendor ID for faster verification"
+
+outputs:
+  - name: extracted_data
+    type: json
+  - name: verification_result
+    type: json
+  - name: processing_status
+    type: json
+
+required_agents:
+  - document_processor
+  - database_analyst
+  - project_manager
+
+observability:
+  metrics_enabled: true
+  log_tool_calls: true
+  track_costs: true

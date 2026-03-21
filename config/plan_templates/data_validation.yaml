@@ -1,0 +1,47 @@
+name: data_validation
+description: Validate data against schema and business rules
+category: data_quality
+parameters:
+  - name: data_file
+    type: string
+    required: true
+    description: "Path to data file to validate"
+  - name: schema_file
+    type: string
+    required: false
+    default: null
+    description: "Path to schema file (optional)"
+  - name: validation_rules
+    type: array
+    required: false
+    default: ["format", "completeness", "consistency"]
+    description: "Types of validation to perform"
+
+nodes:
+  - id: load_data
+    agent: file_reader
+    task: "Load data from {data_file}"
+    depends_on: []
+    expected_output: "Parsed data structure"
+
+  - id: validate_format
+    agent: data_analyzer
+    task: "Validate data format and structure from {data_file} using rules: {validation_rules}"
+    depends_on: ["load_data"]
+    expected_output: "Format validation results"
+
+  - id: generate_report
+    agent: report_generator
+    task: "Generate validation report for {data_file} with issues and recommendations"
+    depends_on: ["validate_format"]
+    expected_output: "Validation report with pass/fail status"
+
+edges:
+  - source: load_data
+    target: validate_format
+  - source: validate_format
+    target: generate_report
+
+metadata:
+  estimated_duration_seconds: 30
+  cost_estimate_usd: 0.03

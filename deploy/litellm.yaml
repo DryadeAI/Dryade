@@ -1,0 +1,83 @@
+model_list:
+  # NOTE: LiteLLM is fronting a vLLM OpenAI-compatible server.
+  # The upstream "model" MUST match vLLM's served model id (e.g. --served-model-name local-llm),
+  # while "model_name" is the alias clients/apps use when calling LiteLLM.
+  - model_name: mistralai/Ministral-3-3B-Reasoning-2512       # client-facing alias
+    litellm_params:
+      model: local-llm                                           # vLLM served model id
+      api_base: http://host.docker.internal:8000/v1
+      #api_base: http://vllm:8000/v1
+      api_key: not-needed
+      custom_llm_provider: openai
+
+  - model_name: local-llm                     # bare model name (for direct calls)
+    litellm_params:
+      model: local-llm            
+      api_base: http://host.docker.internal:8000/v1
+      #api_base: http://vllm:8000/v1
+      api_key: not-needed
+      custom_llm_provider: openai
+
+  - model_name: Qwen3                  # optional alias for clients
+    litellm_params:
+      model: local-llm                 # still the served id
+      api_base: http://host.docker.internal:8000/v1
+      #api_base: http://vllm:8000/v1
+      api_key: not-needed
+      custom_llm_provider: openai
+
+  # ============================================================
+  # Cloud Providers (uncomment and configure as needed)
+  # Set API keys via environment variables in .env
+  # ============================================================
+
+  # --- OpenAI ---
+  # - model_name: gpt-4o
+  #   litellm_params:
+  #     model: openai/gpt-4o
+  #     api_key: os.environ/OPENAI_API_KEY
+
+  # - model_name: gpt-4o-mini
+  #   litellm_params:
+  #     model: openai/gpt-4o-mini
+  #     api_key: os.environ/OPENAI_API_KEY
+
+  # --- Anthropic ---
+  # - model_name: claude-3-7-sonnet
+  #   litellm_params:
+  #     model: anthropic/claude-3-7-sonnet-20250219
+  #     api_key: os.environ/ANTHROPIC_API_KEY
+
+  # - model_name: claude-3-5-haiku
+  #   litellm_params:
+  #     model: anthropic/claude-3-5-haiku-20241022
+  #     api_key: os.environ/ANTHROPIC_API_KEY
+
+  # --- Mistral AI ---
+  # - model_name: mistral-large
+  #   litellm_params:
+  #     model: mistral/mistral-large-latest
+  #     api_key: os.environ/MISTRAL_API_KEY
+
+  # --- Groq (fast inference) ---
+  # - model_name: llama3-70b
+  #   litellm_params:
+  #     model: groq/llama3-70b-8192
+  #     api_key: os.environ/GROQ_API_KEY
+
+router_settings:
+  enable_pre_call_checks: false
+  num_retries: 3
+  timeout: 300
+  # Map all supported models to the served model name (removed openai/ prefix)
+  model_alias_map:
+    "local-llm": "local-llm"
+    "mistralai/Ministral-3-3B-Reasoning-2512": "local-llm"
+    "unsloth/Qwen2.5-14B-Instruct-bnb-4bit": "local-llm"
+    "unsloth/Qwen3-14B-unsloth-bnb-4bit": "local-llm"
+    "unsloth/gpt-oss-20b-unsloth-bnb-4bit": "local-llm"
+    "unsloth/gpt-oss-120b-unsloth-bnb-4bit": "local-llm"
+
+general_settings:
+  telemetry: false
+  disable_spend_logs: true             # correct key

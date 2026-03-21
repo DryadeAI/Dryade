@@ -1,0 +1,253 @@
+{
+  "app": {
+    "name": "DryadeApp",
+    "tagline": "Piattaforma di orchestrazione IA sovrana",
+    "airGapped": "Air-gapped • Standard nativi • Sovrana"
+  },
+  "nav": {
+    "chat": "Chat",
+    "dashboard": "Pannello",
+    "agents": "Agenti",
+    "workflows": "Flussi di lavoro",
+    "knowledge": "Conoscenza",
+    "factory": "Fabbrica",
+    "loops": "Cicli",
+    "health": "Salute",
+    "metrics": "Metriche",
+    "plugins": "Plugin",
+    "costTracker": "Monitoraggio costi",
+    "clarifyPreferences": "Preferenze",
+    "settings": "Impostazioni"
+  },
+  "sections": {
+    "observability": "Osservabilità",
+    "account": "Account",
+    "plugins": "Plugin"
+  },
+  "actions": {
+    "signOut": "Esci",
+    "save": "Salva",
+    "cancel": "Annulla",
+    "delete": "Elimina",
+    "confirm": "Conferma",
+    "search": "Cerca",
+    "close": "Chiudi",
+    "retry": "Riprova",
+    "refresh": "Aggiorna",
+    "loading": "Caricamento...",
+    "collapse": "Comprimi barra laterale",
+    "expand": "Espandi barra laterale",
+    "openMenu": "Apri menu",
+    "closeMenu": "Chiudi menu",
+    "tryAgain": "Riprova",
+    "previous": "Precedente",
+    "next": "Successivo",
+    "edit": "Modifica"
+  },
+  "status": {
+    "loadingPlugins": "Caricamento plugin..."
+  },
+  "clarify": {
+    "title": "Preferenze di chiarimento",
+    "subtitle": "Gestisci le risposte salvate per le domande di chiarimento. Vengono precompilate automaticamente.",
+    "includeGlobal": "Includi globali",
+    "preferenceCount": "{{count}} preferenza/e",
+    "stats": {
+      "total": "Preferenze totali",
+      "global": "Globali",
+      "projectSpecific": "Specifiche per progetto"
+    },
+    "empty": {
+      "noMatch": "Nessuna preferenza corrispondente",
+      "noMatchDescription": "Prova parole chiave diverse o cancella la ricerca.",
+      "noPreferences": "Nessuna preferenza salvata",
+      "noPreferencesDescription": "Le preferenze verranno salvate automaticamente quando rispondi alle domande di chiarimento."
+    },
+    "answer": "Risposta: ",
+    "usedCount": "Usata: {{count}}x",
+    "threshold": "Soglia:",
+    "deleteTitle": "Elimina preferenza",
+    "deleteDescription": "Sei sicuro di voler eliminare questa preferenza? Questa azione non può essere annullata.",
+    "searchPlaceholder": "Cerca preferenze...",
+    "toast": {
+      "deleted": "Preferenza eliminata",
+      "deleteFailed": "Eliminazione della preferenza non riuscita",
+      "thresholdFailed": "Aggiornamento della soglia non riuscito"
+    }
+  },
+  "costTracker": {
+    "title": "Monitoraggio costi",
+    "subtitle": "Monitora l'utilizzo e la spesa dei modelli LLM",
+    "stats": {
+      "totalCost": "Costo totale",
+      "totalTokens": "Token totali",
+      "requests": "Richieste",
+      "avgPerRequest": "Media per richiesta"
+    },
+    "live": "In tempo reale",
+    "tabs": {
+      "overview": "Panoramica",
+      "byModel": "Per modello",
+      "byAgent": "Per agente",
+      "records": "Cronologia",
+      "pricing": "Prezzi"
+    },
+    "empty": {
+      "title": "Nessun dato sui costi",
+      "description": "I record dei costi appariranno qui quando verranno effettuate richieste LLM tramite la piattaforma.",
+      "noModelData": "Nessun dato per modello",
+      "noModelDataDescription": "La ripartizione dei costi per modello apparirà dopo l'elaborazione delle richieste.",
+      "noAgentData": "Nessun dato per agente",
+      "noAgentDataDescription": "La ripartizione dei costi per agente apparirà dopo l'elaborazione delle richieste.",
+      "noRecords": "Nessun record",
+      "noRecordsDescription": "I record di utilizzo appariranno qui quando verranno effettuate richieste LLM.",
+      "noPricing": "Nessun dato sui prezzi",
+      "noPricingDescription": "Clicca 'Aggiorna da LiteLLM' per caricare i prezzi dei modelli."
+    },
+    "costByModel": "Costi per modello",
+    "costByAgent": "Costi per agente",
+    "table": {
+      "model": "Modello",
+      "totalCost": "Costo totale",
+      "requests": "Richieste",
+      "avgPerRequest": "Media/Richiesta",
+      "timestamp": "Data e ora",
+      "agent": "Agente",
+      "inputTokens": "Input",
+      "outputTokens": "Output",
+      "cost": "Costo",
+      "provider": "Provider",
+      "inputPrice": "Input $/1M",
+      "outputPrice": "Output $/1M",
+      "source": "Fonte",
+      "updated": "Aggiornato"
+    },
+    "period": {
+      "last24h": "Ultime 24 ore",
+      "last7d": "Ultimi 7 giorni",
+      "last30d": "Ultimi 30 giorni",
+      "last90d": "Ultimi 90 giorni"
+    },
+    "refreshFromLitellm": "Aggiorna da LiteLLM",
+    "addModel": "Aggiungi modello",
+    "addModelPricing": "Aggiungi prezzo modello",
+    "pricing": {
+      "modelName": "Nome modello",
+      "inputPrice": "Input $/1M token",
+      "outputPrice": "Output $/1M token"
+    },
+    "pagination": {
+      "showing": "Visualizzazione {{start}}-{{end}} di {{total}}",
+      "previous": "Precedente",
+      "next": "Successivo"
+    },
+    "searchModelsPlaceholder": "Cerca modelli...",
+    "toast": {
+      "updateFailed": "Aggiornamento dei prezzi non riuscito"
+    }
+  },
+  "loops": {
+    "title": "Cicli programmati",
+    "subtitle": "Programma flussi di lavoro, agenti, competenze e attività per l'esecuzione automatica.",
+    "newLoop": "Nuovo ciclo",
+    "empty": {
+      "title": "Nessun ciclo programmato",
+      "description": "Crea un ciclo per programmare flussi di lavoro, agenti, competenze o attività con esecuzione ricorrente."
+    },
+    "deleteTitle": "Eliminare il ciclo?",
+    "deleteDescription": "Questa azione eliminerà definitivamente il ciclo e tutta la cronologia delle esecuzioni. Non può essere annullata.",
+    "noExecutions": "Nessuna esecuzione ancora.",
+    "recentExecutions": "Esecuzioni recenti ({{total}} totali)",
+    "targetTypes": {
+      "all": "Tutti i tipi",
+      "workflow": "Flusso di lavoro",
+      "agent": "Agente",
+      "skill": "Competenza",
+      "orchestratorTask": "Attività orchestratore"
+    },
+    "enabledStates": {
+      "all": "Tutti gli stati",
+      "active": "Attivo",
+      "paused": "In pausa"
+    },
+    "tableHeaders": {
+      "name": "Nome",
+      "target": "Obiettivo",
+      "schedule": "Programmazione",
+      "status": "Stato",
+      "actions": "Azioni"
+    },
+    "actions": {
+      "triggerNow": "Esegui ora",
+      "pause": "Pausa",
+      "resume": "Riprendi"
+    },
+    "placeholders": {
+      "targetType": "Tipo obiettivo",
+      "state": "Stato"
+    },
+    "toast": {
+      "triggered": "Ciclo \"{{name}}\" avviato.",
+      "triggerFailed": "Avvio non riuscito.",
+      "paused": "Ciclo \"{{name}}\" in pausa.",
+      "resumed": "Ciclo \"{{name}}\" ripreso.",
+      "failed": "Non riuscito.",
+      "deleted": "Ciclo \"{{name}}\" eliminato.",
+      "deleteFailed": "Eliminazione non riuscita."
+    }
+  },
+  "notFound": {
+    "title": "Pagina non trovata",
+    "message": "La foresta non ha un sentiero qui.",
+    "returnHome": "Torna alla home"
+  },
+  "errors": {
+    "forbidden": {
+      "title": "Accesso negato",
+      "message": "Non hai i permessi per accedere a questa risorsa.",
+      "hint": "Contatta il tuo amministratore se ritieni che si tratti di un errore.",
+      "resource": "Risorsa:",
+      "requiredRole": "Ruolo richiesto:",
+      "requestAccess": "Richiedi accesso"
+    },
+    "unauthorized": {
+      "title": "Effettua l'accesso",
+      "message": "Devi effettuare l'accesso per visualizzare questa pagina.",
+      "sessionExpired": "La tua sessione potrebbe essere scaduta.",
+      "logIn": "Accedi",
+      "returnHome": "Torna alla home"
+    },
+    "server": {
+      "title": "Qualcosa è andato storto",
+      "message": "Si è verificato un problema nell'elaborazione della tua richiesta.",
+      "hint": "Il nostro team è stato avvisato e sta lavorando alla risoluzione.",
+      "errorDetails": "Dettagli errore",
+      "errorId": "ID errore:",
+      "timestamp": "Data e ora:",
+      "tryAgain": "Riprova",
+      "reportIssue": "Segnala problema",
+      "optionalDescription": "Descrizione facoltativa",
+      "descriptionPlaceholder": "Cosa stavi facendo quando è successo?",
+      "submitReport": "Invia segnalazione",
+      "reportSubmitted": "Segnalazione inviata"
+    },
+    "network": {
+      "title": "Nessuna connessione Internet",
+      "message": "Controlla la tua connessione e riprova.",
+      "checking": "Verifica in corso...",
+      "autoRecover": "Questa pagina si ripristinerà automaticamente quando la connessione sarà ristabilita.",
+      "connectionRestored": "Connessione ristabilita!",
+      "stillOffline": "Ancora offline"
+    },
+    "goToDashboard": "Vai alla dashboard"
+  },
+  "timeAgo": {
+    "unknown": "sconosciuto",
+    "secondsAgo": "{{n}}s fa",
+    "minutesAgo": "{{n}} min fa",
+    "hoursAgo": "{{n}} ore fa",
+    "daysAgo": "{{n}}g fa"
+  },
+  "theme": "Tema",
+  "language": "Lingua"
+}

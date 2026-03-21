@@ -1,0 +1,81 @@
+{
+  "version": "1.0.0",
+  "metadata": {
+    "name": "multi_agent_research",
+    "description": "Multi-agent research: web browsing, synthesis, and polished report generation",
+    "domain": "dev",
+    "difficulty": "advanced"
+  },
+  "nodes": [
+    {
+      "id": "start",
+      "type": "start",
+      "position": {"x": 0, "y": 100}
+    },
+    {
+      "id": "web_research",
+      "type": "task",
+      "data": {
+        "agent": "research_assistant",
+        "task": "Search the web for comprehensive information about {topic}. Browse at least 5 different sources. For each source: navigate to the page, extract key facts, store each finding as an entity in the knowledge graph with source URL. Take screenshots of key pages for visual reference.",
+        "context": {
+          "depth": "{depth}",
+          "output_format": "structured_findings"
+        }
+      },
+      "position": {"x": 200, "y": 100}
+    },
+    {
+      "id": "deep_search",
+      "type": "task",
+      "data": {
+        "agent": "research_assistant",
+        "task": "Based on initial findings, identify knowledge gaps and perform targeted deep searches. Follow interesting leads from the initial research. Store all new findings and link related findings in the knowledge graph.",
+        "context": {
+          "requires": ["web_research.output"],
+          "depth": "{depth}"
+        }
+      },
+      "position": {"x": 400, "y": 100}
+    },
+    {
+      "id": "synthesize",
+      "type": "task",
+      "data": {
+        "agent": "analyst",
+        "task": "Analyze all research findings stored in the knowledge graph. Identify patterns, contradictions, and key themes across sources. Score confidence for each major finding. Create a structured analysis with: key themes, supporting evidence, contradictions found, confidence scores, and knowledge gaps remaining.",
+        "context": {
+          "requires": ["web_research.output", "deep_search.output"],
+          "output_format": "structured_json"
+        }
+      },
+      "position": {"x": 600, "y": 100}
+    },
+    {
+      "id": "write_report",
+      "type": "task",
+      "data": {
+        "agent": "writer",
+        "task": "Generate a comprehensive markdown research report. Structure: Executive Summary (3-5 key findings), Detailed Analysis (organized by theme), Source Analysis (credibility assessment), Methodology (what was searched and how), Recommendations (actionable next steps). Save to {output_path}.",
+        "context": {
+          "requires": ["synthesize.output"],
+          "output_path": "{output_path}",
+          "format": "markdown"
+        }
+      },
+      "position": {"x": 800, "y": 100}
+    },
+    {
+      "id": "end",
+      "type": "end",
+      "position": {"x": 1000, "y": 100}
+    }
+  ],
+  "edges": [
+    {"id": "e1", "source": "start", "target": "web_research"},
+    {"id": "e2", "source": "web_research", "target": "deep_search"},
+    {"id": "e3", "source": "deep_search", "target": "synthesize"},
+    {"id": "e4", "source": "synthesize", "target": "write_report"},
+    {"id": "e5", "source": "write_report", "target": "end"}
+  ]
+}

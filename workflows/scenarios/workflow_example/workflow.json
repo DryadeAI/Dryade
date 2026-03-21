@@ -1,0 +1,68 @@
+{
+  "version": "1.0.0",
+  "metadata": {
+    "name": "workflow_example",
+    "description": "Developer reference template demonstrating Dryade workflow patterns: conditional branching, parallel execution, and error handling",
+    "domain": "dev",
+    "difficulty": "intermediate"
+  },
+  "nodes": [
+    {
+      "id": "start",
+      "type": "start",
+      "position": {"x": 0, "y": 100}
+    },
+    {
+      "id": "classify_task",
+      "type": "task",
+      "data": {
+        "agent": "document_processor",
+        "task": "Classify the incoming task by type and priority. Determine if it requires research, document processing, or both. Output a structured classification with routing recommendation",
+        "context": {"output_format": "structured_json"}
+      },
+      "position": {"x": 200, "y": 100}
+    },
+    {
+      "id": "execute_task",
+      "type": "task",
+      "data": {
+        "agent": "research_assistant",
+        "task": "Execute the classified task. If research type: search and gather information. If document type: process and transform content. Log each step for the execution trace",
+        "context": {"requires": ["classify_task.output"]}
+      },
+      "position": {"x": 400, "y": 100}
+    },
+    {
+      "id": "validate_output",
+      "type": "task",
+      "data": {
+        "agent": "document_processor",
+        "task": "Validate the task output for completeness and quality. Check that all requested elements are present. If validation fails, note what needs to be re-done",
+        "context": {"requires": ["execute_task.output"]}
+      },
+      "position": {"x": 600, "y": 100}
+    },
+    {
+      "id": "format_result",
+      "type": "task",
+      "data": {
+        "agent": "document_processor",
+        "task": "Format the validated output into a polished result with execution trace summary showing each workflow step, timing, and agent used",
+        "context": {"requires": ["classify_task.output", "execute_task.output", "validate_output.output"]}
+      },
+      "position": {"x": 800, "y": 100}
+    },
+    {
+      "id": "end",
+      "type": "end",
+      "position": {"x": 1000, "y": 100}
+    }
+  ],
+  "edges": [
+    {"id": "e1", "source": "start", "target": "classify_task"},
+    {"id": "e2", "source": "classify_task", "target": "execute_task"},
+    {"id": "e3", "source": "execute_task", "target": "validate_output"},
+    {"id": "e4", "source": "validate_output", "target": "format_result"},
+    {"id": "e5", "source": "format_result", "target": "end"}
+  ]
+}

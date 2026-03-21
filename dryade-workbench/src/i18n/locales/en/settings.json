@@ -1,0 +1,25 @@
+{
+  "groups": {
+    "account": "ACCOUNT",
+    "workspace": "WORKSPACE",
+    "advanced": "ADVANCED"
+  },
+  "tabs": {
+    "profile": "Profile",
+    "profileDesc": "Manage your personal information",
+    "appearance": "Appearance",
+    "appearanceDesc": "Customize the look and feel",
+    "notifications": "Notifications",
+    "notificationsDesc": "Configure notification preferences",
+    "chat": "Chat & Agents",
+    "chatDesc": "Configure chat and agent behavior",
+    "models": "Models",
+    "modelsDesc": "Set up AI model providers",
+    "apiKeys": "API Keys",
+    "apiKeysDesc": "Manage access keys and credentials",
+    "factory": "Factory",
+    "factoryDesc": "Configure artifact creation behavior",
+    "data": "Data & Privacy",
+    "dataDesc": "Auto-save, export, and account management"
+  }
+}

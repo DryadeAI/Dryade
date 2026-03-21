@@ -1,0 +1,17 @@
+{
+  "manifest_version": "1.0",
+  "type": "agent",
+  "name": "research_assistant",
+  "version": "1.0.0",
+  "description": "Research topics via web browsing with persistent knowledge",
+  "author": "Dryade",
+  "framework": "langchain",
+  "created_by": "manual",
+  "required_servers": ["playwright", "memory", "filesystem"],
+  "capabilities": [
+    "Browse web pages",
+    "Store research findings",
+    "Link related findings",
+    "Generate research reports"
+  ]
+}

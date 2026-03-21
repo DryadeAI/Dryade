@@ -1,0 +1,68 @@
+{
+  "greeting": {
+    "morning": "Buongiorno",
+    "afternoon": "Buon pomeriggio",
+    "evening": "Buonasera"
+  },
+  "subtitle": "Ecco cosa succede oggi",
+  "stats": {
+    "totalRequests": "Richieste totali",
+    "successRate": "Tasso di successo",
+    "activeAgents": "Agenti attivi",
+    "queueStatus": "Stato coda",
+    "workflows": "Flussi di lavoro"
+  },
+  "sections": {
+    "recentRequests": "Richieste recenti",
+    "workflowTemplates": "Modelli di flusso",
+    "systemStatus": "Stato del sistema",
+    "quickAccess": "Accesso rapido"
+  },
+  "quickActions": {
+    "newChat": "Nuovo chat",
+    "newChatDesc": "Avvia una conversazione",
+    "createWorkflow": "Crea flusso",
+    "createWorkflowDesc": "Costruisci automazione",
+    "newPlan": "Nuovo piano",
+    "newPlanDesc": "Piani generati da IA",
+    "upload": "Carica",
+    "uploadDesc": "Aggiungi documenti",
+    "chatWithAgent": "Chatta con agente",
+    "newConversation": "Nuova conversazione"
+  },
+  "status": {
+    "operational": "Operativo",
+    "degraded": "Degradato",
+    "unhealthy": "Anomalo",
+    "disconnected": "Disconnesso",
+    "unknown": "Sconosciuto",
+    "registered": "Registrati",
+    "empty": "Vuota",
+    "pending": "In attesa",
+    "stable": "Stabile"
+  },
+  "disconnected": {
+    "title": "Backend irraggiungibile",
+    "message": "Il server API non risponde. Il pannello mostrerà dati vuoti fino al ripristino della connessione."
+  },
+  "empty": {
+    "noRequests": "Nessuna attività recente",
+    "noWorkflows": "Nessun flusso ancora. Crea un piano dal chat o costruisci un flusso di lavoro.",
+    "noRequestsDescription": "Le attività di richiesta appariranno qui una volta iniziato a utilizzare la piattaforma.",
+    "noWorkflowsDescription": "Crea un piano dalla chat o costruisci un flusso di lavoro per iniziare."
+  },
+  "labels": {
+    "api": "API",
+    "agents": "Agenti",
+    "queue": "Coda",
+    "viewMetrics": "Vedi metriche",
+    "viewAllWorkflows": "Vedi tutti i flussi",
+    "viewSystemHealth": "Vedi salute sistema →",
+    "fromTarget": "dall'obiettivo",
+    "recent": "recenti",
+    "total": "Totale",
+    "request": "richiesta",
+    "completed": "completata",
+    "failed": "fallita"
+  }
+}

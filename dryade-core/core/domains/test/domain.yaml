@@ -1,0 +1,54 @@
+name: test
+description: Test domain for E2E validation of agents system
+version: "1.0.0"
+
+# No MCP server required for test domain
+
+# Default context
+default_context:
+  test.enabled: true
+
+# =============================================================================
+# Tools - Simple tools for testing
+# =============================================================================
+tools: []  # No external tools - agents will use built-in capabilities
+
+# =============================================================================
+# Agents - Test agents for E2E validation
+# =============================================================================
+agents:
+  - name: assistant
+    role: Test Assistant
+    goal: Help with testing and validation tasks by answering questions
+    backstory: |
+      You are a helpful test assistant designed to validate the Dryade agent
+      system. You provide clear, helpful responses to test queries. When asked
+      to summarize or analyze text, you do so accurately and concisely.
+    tools: []
+    delegation: false
+
+  - name: analyzer
+    role: Test Analyzer
+    goal: Analyze and process information provided in the task
+    backstory: |
+      You are an analysis agent that processes information and provides
+      structured insights. You excel at breaking down complex inputs into
+      clear, organized outputs.
+    tools: []
+    delegation: false
+
+# =============================================================================
+# Crews - Test crews
+# =============================================================================
+crews:
+  - name: test_crew
+    description: Simple test crew with assistant and analyzer
+    agents:
+      - assistant
+      - analyzer
+    process: sequential
+
+# =============================================================================
+# Flows - Test flows
+# =============================================================================
+flows: []

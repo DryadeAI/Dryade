@@ -1,0 +1,44 @@
+name: prospect_research
+display_name: "Prospect Research Report"
+description: "Comprehensive prospect research with company analysis, people research, and personalized outreach brief"
+domain: sales
+version: "1.0.0"
+
+triggers:
+  chat_command: "/research-prospect"
+  api_endpoint: "/workflow-scenarios/prospect_research/trigger"
+  ui_button:
+    label: "Research Prospect"
+    location: "sales_page"
+
+inputs:
+  - name: company_name
+    type: string
+    required: true
+    description: "Company name to research"
+  - name: company_domain
+    type: string
+    required: false
+    description: "Company website domain (e.g., example.com)"
+  - name: target_contacts
+    type: json
+    required: false
+    description: "List of contact names/titles to research"
+    default: []
+
+outputs:
+  - name: prospect_profile
+    type: json
+  - name: outreach_brief
+    type: markdown
+  - name: talking_points
+    type: json
+
+required_agents:
+  - sales_intelligence
+  - database_analyst
+
+observability:
+  metrics_enabled: true
+  log_tool_calls: true
+  track_costs: true

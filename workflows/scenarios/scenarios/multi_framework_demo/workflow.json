@@ -1,0 +1,112 @@
+{
+  "version": "1.0.0",
+  "metadata": {
+    "name": "multi_framework_demo",
+    "description": "Demonstrates seamless orchestration across CrewAI, LangChain, and ADK frameworks in a single workflow",
+    "domain": "cross-framework"
+  },
+  "nodes": [
+    {
+      "id": "start",
+      "type": "start",
+      "position": {"x": 0, "y": 200}
+    },
+    {
+      "id": "analyze_data_crewai",
+      "type": "task",
+      "data": {
+        "agent": "excel_analyst",
+        "task": "Analyze the provided data file using CrewAI. Extract key metrics, identify trends, calculate summary statistics. Output as structured JSON with metrics, trends, and anomalies sections.",
+        "context": {"framework": "crewai", "output_format": "structured_json"}
+      },
+      "metadata": {
+        "label": "Data Analysis (CrewAI)",
+        "description": "Excel Analyst agent using CrewAI framework for spreadsheet analysis"
+      },
+      "position": {"x": 200, "y": 200}
+    },
+    {
+      "id": "monitor_metrics_langchain",
+      "type": "task",
+      "data": {
+        "agent": "kpi_monitor",
+        "task": "Using LangChain, correlate the analyzed metrics with live monitoring data. Query Prometheus for related system metrics, detect anomalies, and assess operational health implications.",
+        "context": {"framework": "langchain", "requires": ["analyze_data_crewai.output"]}
+      },
+      "metadata": {
+        "label": "Metrics Correlation (LangChain)",
+        "description": "KPI Monitor agent using LangChain framework for real-time monitoring"
+      },
+      "position": {"x": 400, "y": 200}
+    },
+    {
+      "id": "assess_impact",
+      "type": "router",
+      "data": {
+        "condition": "Operational impact assessment",
+        "branches": [
+          {"condition": "no significant anomalies", "target": "generate_report_adk"},
+          {"condition": "anomalies require attention", "target": "create_tasks_adk"}
+        ]
+      },
+      "position": {"x": 600, "y": 200}
+    },
+    {
+      "id": "create_tasks_adk",
+      "type": "task",
+      "data": {
+        "agent": "project_manager",
+        "task": "Using ADK, create action items for detected anomalies. Create Linear issues with appropriate priority, assign to relevant teams, link to monitoring data.",
+        "context": {"framework": "adk", "requires": ["monitor_metrics_langchain.output"]}
+      },
+      "metadata": {
+        "label": "Task Creation (ADK)",
+        "description": "Project Manager agent using ADK framework for task management"
+      },
+      "position": {"x": 700, "y": 50}
+    },
+    {
+      "id": "generate_report_adk",
+      "type": "task",
+      "data": {
+        "agent": "project_manager",
+        "task": "Using ADK, generate comprehensive status report combining data analysis and metrics correlation. Store in memory for future reference. Format as executive summary.",
+        "context": {"framework": "adk", "requires": ["analyze_data_crewai.output", "monitor_metrics_langchain.output"]}
+      },
+      "metadata": {
+        "label": "Report Generation (ADK)",
+        "description": "Project Manager agent using ADK framework for reporting"
+      },
+      "position": {"x": 800, "y": 200}
+    },
+    {
+      "id": "store_knowledge",
+      "type": "task",
+      "data": {
+        "agent": "research_assistant",
+        "task": "Store workflow outputs in knowledge graph. Link data analysis, metrics, and report for future retrieval. Create entity relationships between findings.",
+        "context": {"framework": "langchain", "requires": ["generate_report_adk.output"]}
+      },
+      "metadata": {
+        "label": "Knowledge Storage (LangChain)",
+        "description": "Research Assistant using LangChain for persistent storage"
+      },
+      "position": {"x": 1000, "y": 200}
+    },
+    {
+      "id": "end",
+      "type": "end",
+      "position": {"x": 1200, "y": 200}
+    }
+  ],
+  "edges": [
+    {"id": "e1", "source": "start", "target": "analyze_data_crewai"},
+    {"id": "e2", "source": "analyze_data_crewai", "target": "monitor_metrics_langchain"},
+    {"id": "e3", "source": "monitor_metrics_langchain", "target": "assess_impact"},
+    {"id": "e4", "source": "assess_impact", "target": "generate_report_adk", "data": {"condition": "normal"}},
+    {"id": "e5", "source": "assess_impact", "target": "create_tasks_adk", "data": {"condition": "anomaly"}},
+    {"id": "e6", "source": "create_tasks_adk", "target": "generate_report_adk"},
+    {"id": "e7", "source": "generate_report_adk", "target": "store_knowledge"},
+    {"id": "e8", "source": "store_knowledge", "target": "end"}
+  ]
+}

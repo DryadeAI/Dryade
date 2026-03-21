@@ -1,0 +1,17 @@
+{
+  "manifest_version": "1.0",
+  "type": "agent",
+  "name": "project_manager",
+  "version": "1.0.0",
+  "description": "Creates tasks and manages escalations for review issues",
+  "author": "Dryade",
+  "framework": "mcp",
+  "created_by": "manual",
+  "required_servers": ["github"],
+  "capabilities": [
+    "Create escalation tasks",
+    "Post review comments",
+    "Track issue status",
+    "Notify team members"
+  ]
+}

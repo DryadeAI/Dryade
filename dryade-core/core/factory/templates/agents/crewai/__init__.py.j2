@@ -1,0 +1,217 @@
+"""{{ name }} Agent - CrewAI Implementation.
+
+{{ description }}
+
+Factory-generated CrewAI agent with MCP tool integration.
+
+Usage:
+    from agents.{{ name }} import {{ name | replace('_', ' ') | title | replace(' ', '') }}Agent, create_crew
+
+    agent = create_crew()
+    result = await agent.execute("Your task here")
+"""
+
+from __future__ import annotations
+
+import logging
+from pathlib import Path
+from typing import Any
+
+import yaml
+
+from core.adapters.crewai_adapter import CrewAIAgentAdapter
+from core.adapters.protocol import AgentResult
+from core.mcp.tool_wrapper import MCPToolWrapper
+
+logger = logging.getLogger(__name__)
+
+
+# Load agent configuration
+def _load_config() -> dict[str, Any]:
+    """Load agent configuration from YAML file."""
+    config_path = Path(__file__).parent / "config.yaml"
+    if config_path.exists():
+        with open(config_path) as f:
+            return yaml.safe_load(f)
+    return {}
+
+
+# ============================================================================
+# MCP Tool Wrappers
+# ============================================================================
+
+{% for tool in tools -%}
+_{{ tool.tool | replace('-', '_') }}_wrapper = MCPToolWrapper("{{ tool.server }}", "{{ tool.tool }}", "{{ tool.description }}")
+{% endfor %}
+
+# ============================================================================
+# CrewAI Tool Implementations
+# ============================================================================
+
+
+def _create_crewai_tools() -> list[Any]:
+    """Create CrewAI BaseTool subclasses for MCP tools.
+
+    Returns:
+        List of CrewAI tool instances.
+
+    Note:
+        Returns empty list if crewai is not installed.
+    """
+    try:
+        from crewai.tools import BaseTool
+    except ImportError:
+        logger.warning("CrewAI not installed - tools will not be available")
+        return []
+
+    tools: list[Any] = []
+
+{% for tool in tools %}
+    class {{ tool.tool | replace('-', ' ') | replace('_', ' ') | title | replace(' ', '') }}Tool(BaseTool):
+        """{{ tool.description }}"""
+
+        name: str = "{{ tool.tool }}"
+        description: str = "{{ tool.description }}"
+
+        def _run(self, **kwargs: Any) -> str:
+            """Execute the tool."""
+            try:
+                return _{{ tool.tool | replace('-', '_') }}_wrapper.call(**kwargs)
+            except Exception as e:
+                logger.warning(f"{{ tool.tool }} error: {e}")
+                return f"[Error] {{ tool.tool }} failed: {e}"
+
+    tools.append({{ tool.tool | replace('-', ' ') | replace('_', ' ') | title | replace(' ', '') }}Tool())
+{% endfor %}
+    return tools
+
+
+# ============================================================================
+# {{ name | replace('_', ' ') | title | replace(' ', '') }} Agent
+# ============================================================================
+
+
+class {{ name | replace('_', ' ') | title | replace(' ', '') }}Agent:
+    """CrewAI-based {{ name }} agent with graceful fallback.
+
+    Attributes:
+        name: Agent name for identification.
+        description: Human-readable description.
+    """
+
+    def __init__(self, config: dict[str, Any] | None = None) -> None:
+        """Initialize the {{ name }} agent."""
+        self._config = config or _load_config()
+        self.name = self._config.get("name", "{{ name }}")
+        self.description = self._config.get("description", "{{ description }}")
+        self._adapter: CrewAIAgentAdapter | None = None
+        self._tools: list[Any] = []
+        self._init_error: str | None = None
+        self._init_agent()
+
+    def _init_agent(self) -> None:
+        """Initialize the CrewAI agent and adapter."""
+        try:
+            from crewai import Agent, LLM
+        except ImportError:
+            self._init_error = "CrewAI not installed. Install with: pip install crewai"
+            logger.warning("CrewAI not installed - agent will run in degraded mode")
+            return
+
+        self._tools = _create_crewai_tools()
+
+        try:
+            placeholder_llm = LLM(
+                model="openai/gpt-4o",
+                api_key="placeholder-replaced-at-runtime",
+            )
+
+            crewai_agent = Agent(
+                role="{{ role }}",
+                goal="{{ goal }}",
+                backstory="{{ backstory }}",
+                tools=self._tools,
+                llm=placeholder_llm,
+                verbose=False,
+                allow_delegation={{ allow_delegation | default(false) | lower }},
+                max_iter={{ max_iter | default(25) }},
+            )
+
+            self._adapter = CrewAIAgentAdapter(crewai_agent, name=self.name)
+        except Exception as e:
+            self._init_error = f"CrewAI agent initialization failed: {e}"
+            logger.warning(f"CrewAI agent init failed - running in degraded mode: {e}")
+
+    async def execute(
+        self,
+        task: str,
+        context: dict[str, Any] | None = None,
+    ) -> AgentResult:
+        """Execute a task with graceful fallback.
+
+        Args:
+            task: Natural language task description.
+            context: Optional execution context.
+
+        Returns:
+            AgentResult with status and result.
+        """
+        if not self._adapter:
+            error_msg = self._init_error or "CrewAI not available"
+            return AgentResult(
+                result=None,
+                status="error",
+                error=f"{error_msg}. Required MCP servers: {{ mcp_servers | join(', ') }}",
+                metadata={
+                    "recoverable": True,
+                    "required_servers": {{ mcp_servers | tojson }},
+                    "agent": self.name,
+                },
+            )
+
+        try:
+            return await self._adapter.execute(task, context or {})
+        except Exception as e:
+            logger.error(f"Execution failed: {e}")
+            return AgentResult(
+                result=None,
+                status="error",
+                error=f"Execution failed: {e}",
+                metadata={
+                    "recoverable": True,
+                    "required_servers": {{ mcp_servers | tojson }},
+                    "agent": self.name,
+                },
+            )
+
+    def supports_streaming(self) -> bool:
+        """Check if agent supports streaming."""
+        return False
+
+
+def create_crew(config: dict[str, Any] | None = None) -> {{ name | replace('_', ' ') | title | replace(' ', '') }}Agent:
+    """Factory function to create the {{ name }} agent.
+
+    Args:
+        config: Optional configuration override.
+
+    Returns:
+        Configured {{ name | replace('_', ' ') | title | replace(' ', '') }}Agent instance.
+    """
+    return {{ name | replace('_', ' ') | title | replace(' ', '') }}Agent(config=config)
+
+
+async def run(task: str, **kwargs) -> str:
+    """Entry point declared in dryade.json run_function."""
+    agent = create_crew()
+    result = await agent.execute(task, context=kwargs)
+    if result.status == "ok":
+        return str(result.result) if result.result is not None else ""
+    raise RuntimeError(result.error or "Execution failed")
+
+
+__all__ = [
+    "{{ name | replace('_', ' ') | title | replace(' ', '') }}Agent",
+    "create_crew",
+    "run",
+]

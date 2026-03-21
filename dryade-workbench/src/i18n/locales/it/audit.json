@@ -1,0 +1,39 @@
+{
+  "page": {
+    "back": "Back",
+    "errorLoading": "Error Loading Execution",
+    "notFound": "Execution Not Found",
+    "notFoundDescription": "No execution found with ID: {{id}}",
+    "retry": "Retry",
+    "inputs": "Inputs",
+    "finalResult": "Final Result",
+    "executionError": "Execution Error"
+  },
+  "header": {
+    "breadcrumb": {
+      "dashboard": "Dashboard",
+      "executions": "Executions"
+    },
+    "viewTimeline": "Timeline",
+    "viewGraph": "Graph",
+    "runAgain": "Run Again",
+    "download": "Download",
+    "downloadJSON": "JSON",
+    "downloadMarkdown": "Markdown",
+    "status": {
+      "running": "Running",
+      "completed": "Completed",
+      "failed": "Failed",
+      "cancelled": "Cancelled"
+    }
+  },
+  "timeline": {
+    "title": "Execution Timeline",
+    "expandAll": "Expand All",
+    "collapseAll": "Collapse All",
+    "error": "Error"
+  },
+  "graph": {
+    "noNodes": "No execution nodes to display"
+  }
+}

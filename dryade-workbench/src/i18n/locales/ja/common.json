@@ -1,0 +1,253 @@
+{
+  "app": {
+    "name": "DryadeApp",
+    "tagline": "ソブリンAIオーケストレーションプラットフォーム",
+    "airGapped": "エアギャップ • 標準ネイティブ • ソブリン"
+  },
+  "nav": {
+    "chat": "チャット",
+    "dashboard": "ダッシュボード",
+    "agents": "エージェント",
+    "workflows": "ワークフロー",
+    "knowledge": "ナレッジ",
+    "factory": "ファクトリー",
+    "loops": "ループ",
+    "health": "ヘルス",
+    "metrics": "メトリクス",
+    "plugins": "プラグイン",
+    "costTracker": "コスト追跡",
+    "clarifyPreferences": "設定",
+    "settings": "設定"
+  },
+  "sections": {
+    "observability": "可観測性",
+    "account": "アカウント",
+    "plugins": "プラグイン"
+  },
+  "actions": {
+    "signOut": "ログアウト",
+    "save": "保存",
+    "cancel": "キャンセル",
+    "delete": "削除",
+    "confirm": "確認",
+    "search": "検索",
+    "close": "閉じる",
+    "retry": "再試行",
+    "refresh": "更新",
+    "loading": "読み込み中...",
+    "collapse": "サイドバーを折りたたむ",
+    "expand": "サイドバーを展開",
+    "openMenu": "メニューを開く",
+    "closeMenu": "メニューを閉じる",
+    "tryAgain": "再試行",
+    "previous": "前へ",
+    "next": "次へ",
+    "edit": "編集"
+  },
+  "status": {
+    "loadingPlugins": "プラグインを読み込み中..."
+  },
+  "clarify": {
+    "title": "明確化の設定",
+    "subtitle": "明確化の質問に対する保存済みの回答を管理します。これらはフォームに自動的に入力されます。",
+    "includeGlobal": "グローバルを含む",
+    "preferenceCount": "{{count}}件の設定",
+    "stats": {
+      "total": "設定の合計",
+      "global": "グローバル",
+      "projectSpecific": "プロジェクト固有"
+    },
+    "empty": {
+      "noMatch": "一致する設定がありません",
+      "noMatchDescription": "別のキーワードを試すか、検索をクリアしてください。",
+      "noPreferences": "保存済みの設定はまだありません",
+      "noPreferencesDescription": "明確化の質問に回答すると、設定が自動的に保存されます。"
+    },
+    "answer": "回答：",
+    "usedCount": "使用回数：{{count}}回",
+    "threshold": "しきい値：",
+    "deleteTitle": "設定を削除",
+    "deleteDescription": "この設定を削除してもよろしいですか？この操作は元に戻せません。",
+    "searchPlaceholder": "設定を検索...",
+    "toast": {
+      "deleted": "設定を削除しました",
+      "deleteFailed": "設定の削除に失敗しました",
+      "thresholdFailed": "しきい値の更新に失敗しました"
+    }
+  },
+  "costTracker": {
+    "title": "コスト追跡",
+    "subtitle": "LLMの使用量と支出を監視します",
+    "stats": {
+      "totalCost": "合計コスト",
+      "totalTokens": "合計トークン数",
+      "requests": "リクエスト数",
+      "avgPerRequest": "リクエストあたりの平均"
+    },
+    "live": "ライブ",
+    "tabs": {
+      "overview": "概要",
+      "byModel": "モデル別",
+      "byAgent": "エージェント別",
+      "records": "履歴",
+      "pricing": "料金"
+    },
+    "empty": {
+      "title": "コストデータはまだありません",
+      "description": "プラットフォームを通じてLLMリクエストが行われると、コスト記録がここに表示されます。",
+      "noModelData": "モデルデータなし",
+      "noModelDataDescription": "リクエスト処理後にモデルごとのコスト内訳が表示されます。",
+      "noAgentData": "エージェントデータなし",
+      "noAgentDataDescription": "リクエスト処理後にエージェントごとのコスト内訳が表示されます。",
+      "noRecords": "記録なし",
+      "noRecordsDescription": "LLMリクエストが行われると、使用記録がここに表示されます。",
+      "noPricing": "料金データなし",
+      "noPricingDescription": "「LiteLLMから更新」をクリックしてモデル料金を読み込んでください。"
+    },
+    "costByModel": "モデル別コスト",
+    "costByAgent": "エージェント別コスト",
+    "table": {
+      "model": "モデル",
+      "totalCost": "合計コスト",
+      "requests": "リクエスト数",
+      "avgPerRequest": "平均/リクエスト",
+      "timestamp": "タイムスタンプ",
+      "agent": "エージェント",
+      "inputTokens": "入力",
+      "outputTokens": "出力",
+      "cost": "コスト",
+      "provider": "プロバイダー",
+      "inputPrice": "入力 $/1M",
+      "outputPrice": "出力 $/1M",
+      "source": "ソース",
+      "updated": "更新日"
+    },
+    "period": {
+      "last24h": "過去24時間",
+      "last7d": "過去7日間",
+      "last30d": "過去30日間",
+      "last90d": "過去90日間"
+    },
+    "refreshFromLitellm": "LiteLLMから更新",
+    "addModel": "モデルを追加",
+    "addModelPricing": "モデル料金を追加",
+    "pricing": {
+      "modelName": "モデル名",
+      "inputPrice": "入力 $/1Mトークン",
+      "outputPrice": "出力 $/1Mトークン"
+    },
+    "pagination": {
+      "showing": "{{total}}件中 {{start}}-{{end}}件を表示",
+      "previous": "前へ",
+      "next": "次へ"
+    },
+    "searchModelsPlaceholder": "モデルを検索...",
+    "toast": {
+      "updateFailed": "料金の更新に失敗しました"
+    }
+  },
+  "loops": {
+    "title": "スケジュールループ",
+    "subtitle": "ワークフロー、エージェント、スキル、タスクを自動実行するようにスケジュールします。",
+    "newLoop": "新しいループ",
+    "empty": {
+      "title": "スケジュールされたループはありません",
+      "description": "ワークフロー、エージェント、スキル、またはタスクを定期的に実行するループを作成してください。"
+    },
+    "deleteTitle": "ループを削除しますか？",
+    "deleteDescription": "このループとすべての実行履歴が完全に削除されます。この操作は元に戻せません。",
+    "noExecutions": "まだ実行されていません。",
+    "recentExecutions": "最近の実行（合計{{total}}件）",
+    "targetTypes": {
+      "all": "すべてのタイプ",
+      "workflow": "ワークフロー",
+      "agent": "エージェント",
+      "skill": "スキル",
+      "orchestratorTask": "オーケストレータータスク"
+    },
+    "enabledStates": {
+      "all": "すべての状態",
+      "active": "アクティブ",
+      "paused": "一時停止"
+    },
+    "tableHeaders": {
+      "name": "名前",
+      "target": "ターゲット",
+      "schedule": "スケジュール",
+      "status": "ステータス",
+      "actions": "アクション"
+    },
+    "actions": {
+      "triggerNow": "今すぐ実行",
+      "pause": "一時停止",
+      "resume": "再開"
+    },
+    "placeholders": {
+      "targetType": "ターゲットタイプ",
+      "state": "状態"
+    },
+    "toast": {
+      "triggered": "ループ「{{name}}」を実行しました。",
+      "triggerFailed": "実行に失敗しました。",
+      "paused": "ループ「{{name}}」を一時停止しました。",
+      "resumed": "ループ「{{name}}」を再開しました。",
+      "failed": "失敗しました。",
+      "deleted": "ループ「{{name}}」を削除しました。",
+      "deleteFailed": "削除に失敗しました。"
+    }
+  },
+  "notFound": {
+    "title": "ページが見つかりません",
+    "message": "森にはここに道がありません。",
+    "returnHome": "ホームに戻る"
+  },
+  "errors": {
+    "forbidden": {
+      "title": "アクセスが拒否されました",
+      "message": "このリソースにアクセスする権限がありません。",
+      "hint": "誤りだと思われる場合は、管理者にお問い合わせください。",
+      "resource": "リソース：",
+      "requiredRole": "必要なロール：",
+      "requestAccess": "アクセスをリクエスト"
+    },
+    "unauthorized": {
+      "title": "ログインしてください",
+      "message": "このページにアクセスするにはログインが必要です。",
+      "sessionExpired": "セッションが期限切れの可能性があります。",
+      "logIn": "ログイン",
+      "returnHome": "ホームに戻る"
+    },
+    "server": {
+      "title": "問題が発生しました",
+      "message": "リクエストの処理中に問題が発生しました。",
+      "hint": "チームに通知済みで、対応中です。",
+      "errorDetails": "エラー詳細",
+      "errorId": "エラーID：",
+      "timestamp": "タイムスタンプ：",
+      "tryAgain": "再試行",
+      "reportIssue": "問題を報告",
+      "optionalDescription": "説明（任意）",
+      "descriptionPlaceholder": "この問題が発生したとき、何をしていましたか？",
+      "submitReport": "レポートを送信",
+      "reportSubmitted": "レポートが送信されました"
+    },
+    "network": {
+      "title": "インターネット接続がありません",
+      "message": "接続を確認してもう一度お試しください。",
+      "checking": "確認中...",
+      "autoRecover": "接続が復旧すると、このページは自動的に回復します。",
+      "connectionRestored": "接続が復旧しました！",
+      "stillOffline": "まだオフラインです"
+    },
+    "goToDashboard": "ダッシュボードへ"
+  },
+  "timeAgo": {
+    "unknown": "不明",
+    "secondsAgo": "{{n}}秒前",
+    "minutesAgo": "{{n}}分前",
+    "hoursAgo": "{{n}}時間前",
+    "daysAgo": "{{n}}日前"
+  },
+  "theme": "テーマ",
+  "language": "言語"
+}

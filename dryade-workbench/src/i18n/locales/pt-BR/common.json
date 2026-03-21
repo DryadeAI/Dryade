@@ -1,0 +1,253 @@
+{
+  "app": {
+    "name": "DryadeApp",
+    "tagline": "Plataforma de orquestração IA soberana",
+    "airGapped": "Air-gapped • Padrões nativos • Soberana"
+  },
+  "nav": {
+    "chat": "Chat",
+    "dashboard": "Painel",
+    "agents": "Agentes",
+    "workflows": "Fluxos",
+    "knowledge": "Conhecimento",
+    "factory": "Fábrica",
+    "loops": "Loops",
+    "health": "Saúde",
+    "metrics": "Métricas",
+    "plugins": "Plugins",
+    "costTracker": "Rastreamento de custos",
+    "clarifyPreferences": "Preferências",
+    "settings": "Configurações"
+  },
+  "sections": {
+    "observability": "Observabilidade",
+    "account": "Conta",
+    "plugins": "Plugins"
+  },
+  "actions": {
+    "signOut": "Sair",
+    "save": "Salvar",
+    "cancel": "Cancelar",
+    "delete": "Excluir",
+    "confirm": "Confirmar",
+    "search": "Buscar",
+    "close": "Fechar",
+    "retry": "Tentar novamente",
+    "refresh": "Atualizar",
+    "loading": "Carregando...",
+    "collapse": "Recolher barra lateral",
+    "expand": "Expandir barra lateral",
+    "openMenu": "Abrir menu",
+    "closeMenu": "Fechar menu",
+    "tryAgain": "Tentar novamente",
+    "previous": "Anterior",
+    "next": "Próximo",
+    "edit": "Editar"
+  },
+  "status": {
+    "loadingPlugins": "Carregando plugins..."
+  },
+  "clarify": {
+    "title": "Preferências de esclarecimento",
+    "subtitle": "Gerencie respostas salvas para perguntas de esclarecimento. Elas preenchem formulários automaticamente.",
+    "includeGlobal": "Incluir globais",
+    "preferenceCount": "{{count}} preferência(s)",
+    "stats": {
+      "total": "Total de preferências",
+      "global": "Globais",
+      "projectSpecific": "Específicas do projeto"
+    },
+    "empty": {
+      "noMatch": "Nenhuma preferência encontrada",
+      "noMatchDescription": "Tente palavras-chave diferentes ou limpe sua busca.",
+      "noPreferences": "Nenhuma preferência salva ainda",
+      "noPreferencesDescription": "As preferências serão salvas automaticamente quando você responder a perguntas de esclarecimento."
+    },
+    "answer": "Resposta: ",
+    "usedCount": "Usado: {{count}}x",
+    "threshold": "Limite:",
+    "deleteTitle": "Excluir preferência",
+    "deleteDescription": "Tem certeza de que deseja excluir esta preferência? Esta ação não pode ser desfeita.",
+    "searchPlaceholder": "Buscar preferências...",
+    "toast": {
+      "deleted": "Preferência excluída",
+      "deleteFailed": "Falha ao excluir preferência",
+      "thresholdFailed": "Falha ao atualizar limite"
+    }
+  },
+  "costTracker": {
+    "title": "Rastreamento de custos",
+    "subtitle": "Monitore o uso e gastos com LLM",
+    "stats": {
+      "totalCost": "Custo total",
+      "totalTokens": "Tokens totais",
+      "requests": "Requisições",
+      "avgPerRequest": "Média por requisição"
+    },
+    "live": "Ao vivo",
+    "tabs": {
+      "overview": "Visão geral",
+      "byModel": "Por modelo",
+      "byAgent": "Por agente",
+      "records": "Histórico",
+      "pricing": "Preços"
+    },
+    "empty": {
+      "title": "Sem dados de custo ainda",
+      "description": "Os registros de custo aparecerão aqui quando requisições LLM forem feitas pela plataforma.",
+      "noModelData": "Sem dados de modelo",
+      "noModelDataDescription": "Os detalhes de custo por modelo aparecerão após o processamento de requisições.",
+      "noAgentData": "Sem dados de agente",
+      "noAgentDataDescription": "Os detalhes de custo por agente aparecerão após o processamento de requisições.",
+      "noRecords": "Sem registros",
+      "noRecordsDescription": "Os registros de uso aparecerão aqui quando requisições LLM forem feitas.",
+      "noPricing": "Sem dados de preço",
+      "noPricingDescription": "Clique em 'Atualizar do LiteLLM' para carregar os preços dos modelos."
+    },
+    "costByModel": "Custo por modelo",
+    "costByAgent": "Custo por agente",
+    "table": {
+      "model": "Modelo",
+      "totalCost": "Custo total",
+      "requests": "Requisições",
+      "avgPerRequest": "Média/Requisição",
+      "timestamp": "Data/Hora",
+      "agent": "Agente",
+      "inputTokens": "Entrada",
+      "outputTokens": "Saída",
+      "cost": "Custo",
+      "provider": "Provedor",
+      "inputPrice": "Entrada $/1M",
+      "outputPrice": "Saída $/1M",
+      "source": "Fonte",
+      "updated": "Atualizado"
+    },
+    "period": {
+      "last24h": "Últimas 24 horas",
+      "last7d": "Últimos 7 dias",
+      "last30d": "Últimos 30 dias",
+      "last90d": "Últimos 90 dias"
+    },
+    "refreshFromLitellm": "Atualizar do LiteLLM",
+    "addModel": "Adicionar modelo",
+    "addModelPricing": "Adicionar preço do modelo",
+    "pricing": {
+      "modelName": "Nome do modelo",
+      "inputPrice": "Entrada $/1M tokens",
+      "outputPrice": "Saída $/1M tokens"
+    },
+    "pagination": {
+      "showing": "Exibindo {{start}}-{{end}} de {{total}}",
+      "previous": "Anterior",
+      "next": "Próximo"
+    },
+    "searchModelsPlaceholder": "Buscar modelos...",
+    "toast": {
+      "updateFailed": "Falha ao atualizar preços"
+    }
+  },
+  "loops": {
+    "title": "Loops agendados",
+    "subtitle": "Agende fluxos, agentes, habilidades e tarefas para execução automática.",
+    "newLoop": "Novo loop",
+    "empty": {
+      "title": "Nenhum loop agendado",
+      "description": "Crie um loop para agendar fluxos, agentes, habilidades ou tarefas em uma programação recorrente."
+    },
+    "deleteTitle": "Excluir loop?",
+    "deleteDescription": "Isso excluirá permanentemente este loop e todo o seu histórico de execução. Esta ação não pode ser desfeita.",
+    "noExecutions": "Nenhuma execução ainda.",
+    "recentExecutions": "Execuções recentes ({{total}} no total)",
+    "targetTypes": {
+      "all": "Todos os tipos",
+      "workflow": "Fluxo",
+      "agent": "Agente",
+      "skill": "Habilidade",
+      "orchestratorTask": "Tarefa do orquestrador"
+    },
+    "enabledStates": {
+      "all": "Todos os estados",
+      "active": "Ativo",
+      "paused": "Pausado"
+    },
+    "tableHeaders": {
+      "name": "Nome",
+      "target": "Alvo",
+      "schedule": "Agendamento",
+      "status": "Status",
+      "actions": "Ações"
+    },
+    "actions": {
+      "triggerNow": "Executar agora",
+      "pause": "Pausar",
+      "resume": "Retomar"
+    },
+    "placeholders": {
+      "targetType": "Tipo de alvo",
+      "state": "Estado"
+    },
+    "toast": {
+      "triggered": "Loop \"{{name}}\" executado.",
+      "triggerFailed": "Falha ao executar.",
+      "paused": "Loop \"{{name}}\" pausado.",
+      "resumed": "Loop \"{{name}}\" retomado.",
+      "failed": "Falhou.",
+      "deleted": "Loop \"{{name}}\" excluído.",
+      "deleteFailed": "Falha ao excluir."
+    }
+  },
+  "notFound": {
+    "title": "Página não encontrada",
+    "message": "A floresta não tem caminho aqui.",
+    "returnHome": "Voltar ao início"
+  },
+  "errors": {
+    "forbidden": {
+      "title": "Acesso negado",
+      "message": "Você não tem permissão para acessar este recurso.",
+      "hint": "Entre em contato com o administrador se acredita que isso é um erro.",
+      "resource": "Recurso:",
+      "requiredRole": "Função necessária:",
+      "requestAccess": "Solicitar acesso"
+    },
+    "unauthorized": {
+      "title": "Faça login",
+      "message": "Você precisa estar conectado para acessar esta página.",
+      "sessionExpired": "Sua sessão pode ter expirado.",
+      "logIn": "Entrar",
+      "returnHome": "Voltar ao início"
+    },
+    "server": {
+      "title": "Algo deu errado",
+      "message": "Estamos com dificuldades para processar sua requisição.",
+      "hint": "Nossa equipe foi notificada e está trabalhando nisso.",
+      "errorDetails": "Detalhes do erro",
+      "errorId": "ID do erro:",
+      "timestamp": "Data/Hora:",
+      "tryAgain": "Tentar novamente",
+      "reportIssue": "Reportar problema",
+      "optionalDescription": "Descrição opcional",
+      "descriptionPlaceholder": "O que você estava fazendo quando isso aconteceu?",
+      "submitReport": "Enviar relatório",
+      "reportSubmitted": "Relatório enviado"
+    },
+    "network": {
+      "title": "Sem conexão com a Internet",
+      "message": "Verifique sua conexão e tente novamente.",
+      "checking": "Verificando...",
+      "autoRecover": "Esta página será recuperada automaticamente quando a conexão for restaurada.",
+      "connectionRestored": "Conexão restaurada!",
+      "stillOffline": "Ainda offline"
+    },
+    "goToDashboard": "Ir para o painel"
+  },
+  "timeAgo": {
+    "unknown": "desconhecido",
+    "secondsAgo": "Há {{n}}s",
+    "minutesAgo": "Há {{n}} min",
+    "hoursAgo": "Há {{n}} h",
+    "daysAgo": "Há {{n}} dias"
+  },
+  "theme": "Tema",
+  "language": "Idioma"
+}

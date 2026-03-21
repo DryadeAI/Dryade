@@ -1,0 +1,56 @@
+{
+  "title": "Knowledge Base",
+  "sourcesCount": "{{count}} sources",
+  "search": "Search",
+  "semanticSearch": "Semantic Search",
+  "searchPlaceholder": "Search knowledge base...",
+  "threshold": "Threshold",
+  "showingResults": "Showing {{shown}} of {{total}} results",
+  "noResultsTitle": "No results found",
+  "noResultsDescription": "Try different keywords or adjust the threshold",
+  "showMoreResults": "Show more results",
+  "unknownSource": "Unknown source",
+  "relevance": {
+    "high": "High",
+    "medium": "Medium",
+    "low": "Low"
+  },
+  "tabs": {
+    "sources": "Sources",
+    "upload": "Upload",
+    "advanced": "Advanced"
+  },
+  "emptyState": {
+    "title": "No sources yet",
+    "description": "Upload documents to build your knowledge base",
+    "action": "Upload Document"
+  },
+  "upload": {
+    "complete": "Complete",
+    "dragAndDrop": "Drag & drop files here",
+    "browseFiles": "Browse Files",
+    "supportedFormats": "Supports PDF, Markdown, TXT, DOCX",
+    "success": "Document uploaded successfully",
+    "failed": "Upload failed"
+  },
+  "source": {
+    "deleted": "Source deleted",
+    "deleteFailed": "Failed to delete source",
+    "bindingsUpdated": "Bindings updated"
+  },
+  "searchFailed": "Search failed",
+  "advanced": {
+    "queryPlaceholder": "Test advanced RAG query...",
+    "searchButton": "Search",
+    "multiQuery": "Multi-Query",
+    "hyde": "HyDE",
+    "reranking": "Reranking",
+    "queryVariants": "Query Variants:",
+    "noResultsTitle": "No results",
+    "noResultsDescription": "Try different keywords or toggle features",
+    "score": "Score: {{score}}",
+    "page": "Page: {{page}}",
+    "searchFailed": "Advanced search failed. Is the advanced knowledge plugin enabled?"
+  },
+  "searchResult": "Search Result"
+}

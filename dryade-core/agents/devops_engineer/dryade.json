@@ -1,0 +1,16 @@
+{
+  "manifest_version": "1.0",
+  "type": "agent",
+  "name": "devops_engineer",
+  "version": "1.0.0",
+  "description": "DevOps automation via git, filesystem, and GitHub MCP tools",
+  "author": "Dryade",
+  "framework": "mcp",
+  "created_by": "manual",
+  "required_servers": ["git", "filesystem"],
+  "capabilities": [
+    "Git repository operations",
+    "File system read operations",
+    "GitHub repository operations"
+  ]
+}

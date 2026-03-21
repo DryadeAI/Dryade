@@ -1,0 +1,25 @@
+name: _templates/linear-2task
+display_name: "Linear 2-Task Template"
+description: "Canonical template: start → task1 → task2 → end. Structural archetype for document QA and email summarization flows."
+domain: dev
+difficulty: beginner
+version: "1.0.0"
+
+triggers:
+  chat_command: "/template-linear-2"
+  api_endpoint: "/workflow-scenarios/_templates/linear-2task/trigger"
+  ui_button:
+    label: "Linear 2-Task"
+    location: "template_page"
+
+inputs: []
+
+outputs:
+  - name: result
+    type: markdown
+
+required_agents: []
+
+observability:
+  metrics_enabled: true
+  log_tool_calls: true

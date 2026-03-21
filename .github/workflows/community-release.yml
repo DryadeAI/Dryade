@@ -1,0 +1,41 @@
+# =============================================================================
+# Community Release -- Automated GitHub Release from version tags
+# =============================================================================
+# Creates a GitHub Release with auto-generated changelog when a version tag
+# (v*.*.*) is pushed. Uses git-cliff for conventional commit changelog.
+#
+# Security review: No untrusted input used in run: blocks. Version is
+# extracted from the git tag ref only.
+
+name: Release
+
+on:
+  push:
+    tags: ["v*.*.*"]
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    name: Create Release
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Generate changelog
+        id: changelog
+        uses: orhun/git-cliff-action@v4
+        with:
+          config: cliff.toml
+          args: --latest --strip header
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          body: ${{ steps.changelog.outputs.content }}
+          draft: false
+          prerelease: ${{ contains(github.ref, 'beta') || contains(github.ref, 'alpha') }}

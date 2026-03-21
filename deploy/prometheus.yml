@@ -1,0 +1,34 @@
+# Prometheus configuration for Dryade observability stack
+global:
+  scrape_interval: 15s
+  evaluation_interval: 15s
+
+# Alert rules for compliance monitoring (SOC 2)
+rule_files:
+  - '/etc/prometheus/rules.yml'
+
+# AlertManager integration
+alerting:
+  alertmanagers:
+    - static_configs:
+        - targets: ['alertmanager:9093']
+
+scrape_configs:
+  # Backend API metrics
+  - job_name: 'dryade-backend'
+    static_configs:
+      - targets: ['dryade-core:8080']
+    metrics_path: '/metrics'
+    scrape_interval: 10s
+
+  # LiteLLM metrics (if exposed)
+  - job_name: 'litellm'
+    static_configs:
+      - targets: ['litellm:4000']
+    metrics_path: '/metrics'
+    scrape_interval: 30s
+
+  # Prometheus self-monitoring
+  - job_name: 'prometheus'
+    static_configs:
+      - targets: ['localhost:9090']

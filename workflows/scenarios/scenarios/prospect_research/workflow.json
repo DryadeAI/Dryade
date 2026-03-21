@@ -1,0 +1,91 @@
+{
+  "version": "1.0.0",
+  "metadata": {
+    "name": "prospect_research",
+    "description": "Comprehensive prospect research with parallel data gathering and synthesized outreach brief",
+    "domain": "sales"
+  },
+  "nodes": [
+    {
+      "id": "start",
+      "type": "start",
+      "position": {"x": 0, "y": 200}
+    },
+    {
+      "id": "plan_research",
+      "type": "task",
+      "data": {
+        "agent": "sales_intelligence",
+        "task": "Create research plan: identify key data points needed (company info, decision makers, recent news, tech stack, funding). Store prospect in knowledge graph.",
+        "context": {}
+      },
+      "position": {"x": 200, "y": 200}
+    },
+    {
+      "id": "research_company",
+      "type": "task",
+      "data": {
+        "agent": "sales_intelligence",
+        "task": "Research company: website analysis, LinkedIn company page, Crunchbase funding data, recent press releases. Extract company size, industry, and key metrics.",
+        "context": {"requires": ["plan_research.output"]}
+      },
+      "position": {"x": 400, "y": 100}
+    },
+    {
+      "id": "research_people",
+      "type": "task",
+      "data": {
+        "agent": "sales_intelligence",
+        "task": "Research key decision makers: LinkedIn profiles, recent posts, speaking engagements, published content. Identify pain points and interests.",
+        "context": {"requires": ["plan_research.output"]}
+      },
+      "position": {"x": 400, "y": 200}
+    },
+    {
+      "id": "research_internal",
+      "type": "task",
+      "data": {
+        "agent": "database_analyst",
+        "task": "Query internal data: past interactions, CRM history, any previous deals or conversations. Check for existing relationships.",
+        "context": {"requires": ["plan_research.output"]}
+      },
+      "position": {"x": 400, "y": 300}
+    },
+    {
+      "id": "synthesize_findings",
+      "type": "task",
+      "data": {
+        "agent": "sales_intelligence",
+        "task": "Synthesize all research into prospect profile. Identify key talking points, potential pain points, and recommended approach. Store relationships in knowledge graph.",
+        "context": {"requires": ["research_company.output", "research_people.output", "research_internal.output"]}
+      },
+      "position": {"x": 600, "y": 200}
+    },
+    {
+      "id": "generate_outreach",
+      "type": "task",
+      "data": {
+        "agent": "sales_intelligence",
+        "task": "Generate personalized outreach brief: email template, call script talking points, LinkedIn message draft. Tailor to identified pain points and interests.",
+        "context": {"requires": ["synthesize_findings.output"]}
+      },
+      "position": {"x": 800, "y": 200}
+    },
+    {
+      "id": "end",
+      "type": "end",
+      "position": {"x": 1000, "y": 200}
+    }
+  ],
+  "edges": [
+    {"id": "e1", "source": "start", "target": "plan_research"},
+    {"id": "e2", "source": "plan_research", "target": "research_company"},
+    {"id": "e3", "source": "plan_research", "target": "research_people"},
+    {"id": "e4", "source": "plan_research", "target": "research_internal"},
+    {"id": "e5", "source": "research_company", "target": "synthesize_findings"},
+    {"id": "e6", "source": "research_people", "target": "synthesize_findings"},
+    {"id": "e7", "source": "research_internal", "target": "synthesize_findings"},
+    {"id": "e8", "source": "synthesize_findings", "target": "generate_outreach"},
+    {"id": "e9", "source": "generate_outreach", "target": "end"}
+  ]
+}

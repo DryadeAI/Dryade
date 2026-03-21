@@ -1,0 +1,50 @@
+name: devops_deployment
+display_name: "DevOps Deployment Pipeline"
+description: "Automated deployment with pre-flight checks, canary release, and automatic rollback"
+domain: operations
+version: "1.0.0"
+
+triggers:
+  chat_command: "/deploy"
+  api_endpoint: "/workflow-scenarios/devops_deployment/trigger"
+  ui_button:
+    label: "Deploy"
+    location: "deployments_page"
+
+inputs:
+  - name: environment
+    type: string
+    required: true
+    description: "Target environment (staging, production)"
+  - name: version
+    type: string
+    required: true
+    description: "Version or commit SHA to deploy"
+  - name: canary_percentage
+    type: number
+    required: false
+    description: "Percentage of traffic for canary (default 10)"
+    default: 10
+  - name: skip_canary
+    type: boolean
+    required: false
+    description: "Skip canary phase (not recommended for production)"
+    default: false
+
+outputs:
+  - name: deployment_status
+    type: json
+  - name: health_report
+    type: json
+  - name: metrics_summary
+    type: markdown
+
+required_agents:
+  - devops_engineer
+  - kpi_monitor
+  - project_manager
+
+observability:
+  metrics_enabled: true
+  log_tool_calls: true
+  track_costs: true

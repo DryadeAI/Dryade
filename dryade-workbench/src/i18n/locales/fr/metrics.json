@@ -1,0 +1,108 @@
+{
+  "pageTitle": "Métriques",
+  "lastUpdated": "Dernière mise à jour : {{time}}",
+  "dateRange": {
+    "lastHour": "Dernière heure",
+    "last24h": "Dernières 24h"
+  },
+  "autoRefresh": {
+    "on": "Actualisation auto activée",
+    "off": "Actualisation auto désactivée"
+  },
+  "exportCSV": "Exporter CSV",
+  "refresh": "Actualiser",
+  "retry": "Réessayer",
+  "error": {
+    "failedToLoad": "Échec du chargement des métriques"
+  },
+  "live": "En direct",
+  "total": "Total",
+  "latencyCards": {
+    "avgLatency": "Latence moy.",
+    "p50Latency": "Latence P50",
+    "p95Latency": "Latence P95",
+    "ttftStreaming": "TTFT (Streaming)"
+  },
+  "tabs": {
+    "overview": "Vue d'ensemble",
+    "queue": "File d'attente"
+  },
+  "charts": {
+    "latencyTrend": "Tendance de latence",
+    "latencyTrendDescription": "Dérivé des requêtes récentes",
+    "requestsByMode": "Requêtes par mode",
+    "requestsByModeDescription": "Comparaison des performances par mode",
+    "noRecentData": "Aucune donnée de requête récente disponible",
+    "requestVolume": "Volume de requêtes",
+    "requestsOverTime": "Requêtes dans le temps"
+  },
+  "tooltip": {
+    "avgLatency": "Latence moy.",
+    "requests": "Requêtes",
+    "time": "Heure : {{label}}",
+    "mode": "Mode : {{label}}"
+  },
+  "donut": {
+    "title": "Distribution des requêtes",
+    "description": "Répartition succès / erreurs",
+    "success": "Succès",
+    "errors": "Erreurs"
+  },
+  "radar": {
+    "title": "Radar de performance",
+    "description": "Comparaison multi-axe par mode",
+    "latency": "Latence",
+    "requests": "Requêtes",
+    "errorRate": "Taux d'erreur",
+    "totalRequests": "Total des requêtes",
+    "avgLatency": "Latence moy.",
+    "topModes": "Modes principaux"
+  },
+  "recentRequests": {
+    "title": "Requêtes récentes",
+    "countSummary": "{{filtered}} sur {{total}} requêtes",
+    "filterAll": "Toutes",
+    "filterSuccess": "Succès",
+    "filterError": "Erreur",
+    "allModes": "Tous les modes",
+    "searchPlaceholder": "Rechercher ID ou erreur\u2026",
+    "noMatchingRequests": "Aucune requête ne correspond à vos filtres.",
+    "summary": {
+      "total": "Total",
+      "success": "Succès",
+      "errors": "Erreurs",
+      "avg": "Moy."
+    },
+    "table": {
+      "time": "Heure",
+      "mode": "Mode",
+      "latency": "Latence",
+      "tokens": "Tokens",
+      "status": "Statut"
+    },
+    "statusSuccess": "Succès",
+    "statusError": "Erreur",
+    "pagination": {
+      "showing": "Affichage de {{start}}\u2013{{end}} sur {{total}}",
+      "previous": "Précédent",
+      "next": "Suivant"
+    }
+  },
+  "queue": {
+    "title": "État de la file d'attente",
+    "description": "File de traitement en temps réel",
+    "noData": "Aucune donnée de file disponible",
+    "noDataDescription": "L'état de la file n'a pas pu être chargé. Essayez d'actualiser.",
+    "status": "Statut",
+    "active": "Actif",
+    "queued": "En attente"
+  },
+  "requestDetail": {
+    "title": "Détails de la requête",
+    "timestamp": "Horodatage",
+    "mode": "Mode",
+    "latency": "Latence",
+    "tokens": "Tokens",
+    "error": "Erreur"
+  }
+}

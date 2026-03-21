@@ -1,0 +1,114 @@
+{
+  "version": "1.0.0",
+  "metadata": {
+    "name": "customer_onboarding",
+    "description": "Structured customer onboarding with contract processing, account setup, and training coordination",
+    "domain": "sales"
+  },
+  "nodes": [
+    {
+      "id": "start",
+      "type": "start",
+      "position": {"x": 0, "y": 200}
+    },
+    {
+      "id": "process_contract",
+      "type": "task",
+      "data": {
+        "agent": "document_processor",
+        "task": "Process signed contract: extract customer details, contract terms, subscription tier, start date, and any special provisions.",
+        "context": {}
+      },
+      "position": {"x": 200, "y": 200}
+    },
+    {
+      "id": "create_account",
+      "type": "task",
+      "data": {
+        "agent": "project_manager",
+        "task": "Create customer account in system: set up organization, configure subscription tier, generate admin credentials, set billing parameters.",
+        "context": {"requires": ["process_contract.output"]}
+      },
+      "position": {"x": 400, "y": 200}
+    },
+    {
+      "id": "setup_integrations",
+      "type": "task",
+      "data": {
+        "agent": "devops_engineer",
+        "task": "Set up technical integrations: API keys, SSO configuration, webhook endpoints, data sync channels per contract requirements.",
+        "context": {"requires": ["create_account.output"]}
+      },
+      "position": {"x": 600, "y": 200}
+    },
+    {
+      "id": "verify_setup",
+      "type": "router",
+      "data": {
+        "condition": "Integration verification",
+        "branches": [
+          {"condition": "all integrations verified", "target": "schedule_training"},
+          {"condition": "integration issues", "target": "escalate_technical"}
+        ]
+      },
+      "position": {"x": 800, "y": 200}
+    },
+    {
+      "id": "escalate_technical",
+      "type": "task",
+      "data": {
+        "agent": "project_manager",
+        "task": "Create technical escalation ticket. Document integration issues, assign to engineering team, notify customer success manager.",
+        "context": {"requires": ["setup_integrations.output"]}
+      },
+      "position": {"x": 900, "y": 50}
+    },
+    {
+      "id": "schedule_training",
+      "type": "task",
+      "data": {
+        "agent": "project_manager",
+        "task": "Schedule customer training sessions: identify training needs based on tier, coordinate calendars, send invitations with preparation materials.",
+        "context": {"requires": ["create_account.output"]}
+      },
+      "position": {"x": 1000, "y": 200}
+    },
+    {
+      "id": "send_welcome",
+      "type": "task",
+      "data": {
+        "agent": "sales_intelligence",
+        "task": "Generate and send welcome package: personalized welcome email, quick start guide, support contact information, scheduled meeting links.",
+        "context": {"requires": ["schedule_training.output", "create_account.output"]}
+      },
+      "position": {"x": 1200, "y": 200}
+    },
+    {
+      "id": "store_customer_record",
+      "type": "task",
+      "data": {
+        "agent": "sales_intelligence",
+        "task": "Store complete customer record in knowledge graph: contract details, setup status, training schedule, key contacts. Link to prospect research if exists.",
+        "context": {"requires": ["send_welcome.output"]}
+      },
+      "position": {"x": 1400, "y": 200}
+    },
+    {
+      "id": "end",
+      "type": "end",
+      "position": {"x": 1600, "y": 200}
+    }
+  ],
+  "edges": [
+    {"id": "e1", "source": "start", "target": "process_contract"},
+    {"id": "e2", "source": "process_contract", "target": "create_account"},
+    {"id": "e3", "source": "create_account", "target": "setup_integrations"},
+    {"id": "e4", "source": "setup_integrations", "target": "verify_setup"},
+    {"id": "e5", "source": "verify_setup", "target": "schedule_training", "data": {"condition": "verified"}},
+    {"id": "e6", "source": "verify_setup", "target": "escalate_technical", "data": {"condition": "issues"}},
+    {"id": "e7", "source": "escalate_technical", "target": "schedule_training"},
+    {"id": "e8", "source": "schedule_training", "target": "send_welcome"},
+    {"id": "e9", "source": "send_welcome", "target": "store_customer_record"},
+    {"id": "e10", "source": "store_customer_record", "target": "end"}
+  ]
+}

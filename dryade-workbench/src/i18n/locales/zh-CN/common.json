@@ -1,0 +1,253 @@
+{
+  "app": {
+    "name": "DryadeApp",
+    "tagline": "主权AI编排平台",
+    "airGapped": "气隙隔离 • 标准原生 • 主权"
+  },
+  "nav": {
+    "chat": "聊天",
+    "dashboard": "仪表板",
+    "agents": "代理",
+    "workflows": "工作流",
+    "knowledge": "知识",
+    "factory": "工厂",
+    "loops": "定时循环",
+    "health": "运行状况",
+    "metrics": "指标",
+    "plugins": "插件",
+    "costTracker": "成本追踪",
+    "clarifyPreferences": "偏好设置",
+    "settings": "设置"
+  },
+  "sections": {
+    "observability": "可观测性",
+    "account": "账户",
+    "plugins": "插件"
+  },
+  "actions": {
+    "signOut": "退出",
+    "save": "保存",
+    "cancel": "取消",
+    "delete": "删除",
+    "confirm": "确认",
+    "search": "搜索",
+    "close": "关闭",
+    "retry": "重试",
+    "refresh": "刷新",
+    "loading": "加载中...",
+    "collapse": "折叠侧边栏",
+    "expand": "展开侧边栏",
+    "openMenu": "打开菜单",
+    "closeMenu": "关闭菜单",
+    "tryAgain": "重试",
+    "previous": "上一步",
+    "next": "下一步",
+    "edit": "编辑"
+  },
+  "status": {
+    "loadingPlugins": "正在加载插件..."
+  },
+  "clarify": {
+    "title": "偏好设置",
+    "subtitle": "管理已保存的澄清问题答案。这些答案会自动填充表单。",
+    "includeGlobal": "包含全局",
+    "preferenceCount": "{{count}}个偏好",
+    "stats": {
+      "total": "偏好总数",
+      "global": "全局",
+      "projectSpecific": "项目特定"
+    },
+    "empty": {
+      "noMatch": "没有匹配的偏好",
+      "noMatchDescription": "请尝试其他关键词或清除搜索。",
+      "noPreferences": "尚无已保存的偏好",
+      "noPreferencesDescription": "当您回答澄清问题时，偏好会自动保存。"
+    },
+    "answer": "答案：",
+    "usedCount": "已使用：{{count}}次",
+    "threshold": "阈值：",
+    "deleteTitle": "删除偏好",
+    "deleteDescription": "您确定要删除此偏好吗？此操作无法撤销。",
+    "searchPlaceholder": "搜索偏好...",
+    "toast": {
+      "deleted": "偏好已删除",
+      "deleteFailed": "删除偏好失败",
+      "thresholdFailed": "更新阈值失败"
+    }
+  },
+  "costTracker": {
+    "title": "成本追踪",
+    "subtitle": "监控LLM使用量和支出",
+    "stats": {
+      "totalCost": "总成本",
+      "totalTokens": "总令牌数",
+      "requests": "请求数",
+      "avgPerRequest": "每次请求平均"
+    },
+    "live": "实时",
+    "tabs": {
+      "overview": "概览",
+      "byModel": "按模型",
+      "byAgent": "按代理",
+      "records": "记录",
+      "pricing": "定价"
+    },
+    "empty": {
+      "title": "暂无成本数据",
+      "description": "通过平台发出LLM请求后，成本记录将显示在此处。",
+      "noModelData": "暂无模型数据",
+      "noModelDataDescription": "处理请求后，模型成本明细将显示在此处。",
+      "noAgentData": "暂无代理数据",
+      "noAgentDataDescription": "处理请求后，代理成本明细将显示在此处。",
+      "noRecords": "暂无记录",
+      "noRecordsDescription": "发出LLM请求后，使用记录将显示在此处。",
+      "noPricing": "暂无定价数据",
+      "noPricingDescription": "点击「从LiteLLM刷新」以加载模型定价。"
+    },
+    "costByModel": "按模型成本",
+    "costByAgent": "按代理成本",
+    "table": {
+      "model": "模型",
+      "totalCost": "总成本",
+      "requests": "请求数",
+      "avgPerRequest": "平均/请求",
+      "timestamp": "时间戳",
+      "agent": "代理",
+      "inputTokens": "输入",
+      "outputTokens": "输出",
+      "cost": "成本",
+      "provider": "提供商",
+      "inputPrice": "输入 $/1M",
+      "outputPrice": "输出 $/1M",
+      "source": "来源",
+      "updated": "更新时间"
+    },
+    "period": {
+      "last24h": "最近24小时",
+      "last7d": "最近7天",
+      "last30d": "最近30天",
+      "last90d": "最近90天"
+    },
+    "refreshFromLitellm": "从LiteLLM刷新",
+    "addModel": "添加模型",
+    "addModelPricing": "添加模型定价",
+    "pricing": {
+      "modelName": "模型名称",
+      "inputPrice": "输入 $/1M令牌",
+      "outputPrice": "输出 $/1M令牌"
+    },
+    "pagination": {
+      "showing": "显示第{{start}}-{{end}}条，共{{total}}条",
+      "previous": "上一页",
+      "next": "下一页"
+    },
+    "searchModelsPlaceholder": "搜索模型...",
+    "toast": {
+      "updateFailed": "更新定价失败"
+    }
+  },
+  "loops": {
+    "title": "定时循环",
+    "subtitle": "调度工作流、代理、技能和任务自动运行。",
+    "newLoop": "新建循环",
+    "empty": {
+      "title": "暂无定时循环",
+      "description": "创建循环以调度工作流、代理、技能或任务按计划自动运行。"
+    },
+    "deleteTitle": "删除循环？",
+    "deleteDescription": "此操作将永久删除此循环及其所有执行历史。此操作无法撤销。",
+    "noExecutions": "尚无执行记录。",
+    "recentExecutions": "最近执行（共{{total}}次）",
+    "targetTypes": {
+      "all": "所有类型",
+      "workflow": "工作流",
+      "agent": "代理",
+      "skill": "技能",
+      "orchestratorTask": "编排器任务"
+    },
+    "enabledStates": {
+      "all": "所有状态",
+      "active": "活跃",
+      "paused": "已暂停"
+    },
+    "tableHeaders": {
+      "name": "名称",
+      "target": "目标",
+      "schedule": "调度",
+      "status": "状态",
+      "actions": "操作"
+    },
+    "actions": {
+      "triggerNow": "立即触发",
+      "pause": "暂停",
+      "resume": "恢复"
+    },
+    "placeholders": {
+      "targetType": "目标类型",
+      "state": "状态"
+    },
+    "toast": {
+      "triggered": "循环「{{name}}」已触发。",
+      "triggerFailed": "触发失败。",
+      "paused": "循环「{{name}}」已暂停。",
+      "resumed": "循环「{{name}}」已恢复。",
+      "failed": "操作失败。",
+      "deleted": "循环「{{name}}」已删除。",
+      "deleteFailed": "删除失败。"
+    }
+  },
+  "notFound": {
+    "title": "页面未找到",
+    "message": "森林中此处没有道路。",
+    "returnHome": "返回首页"
+  },
+  "errors": {
+    "forbidden": {
+      "title": "访问被拒绝",
+      "message": "您没有访问此资源的权限。",
+      "hint": "如果您认为这是错误，请联系管理员。",
+      "resource": "资源：",
+      "requiredRole": "所需角色：",
+      "requestAccess": "请求访问"
+    },
+    "unauthorized": {
+      "title": "请登录",
+      "message": "您需要登录才能访问此页面。",
+      "sessionExpired": "您的会话可能已过期。",
+      "logIn": "登录",
+      "returnHome": "返回首页"
+    },
+    "server": {
+      "title": "出了点问题",
+      "message": "我们在处理您的请求时遇到问题。",
+      "hint": "我们的团队已收到通知并正在处理。",
+      "errorDetails": "错误详情",
+      "errorId": "错误ID：",
+      "timestamp": "时间戳：",
+      "tryAgain": "重试",
+      "reportIssue": "报告问题",
+      "optionalDescription": "可选描述",
+      "descriptionPlaceholder": "发生此问题时您在做什么？",
+      "submitReport": "提交报告",
+      "reportSubmitted": "报告已提交"
+    },
+    "network": {
+      "title": "无网络连接",
+      "message": "请检查网络连接后重试。",
+      "checking": "检查中...",
+      "autoRecover": "连接恢复后此页面将自动恢复。",
+      "connectionRestored": "连接已恢复！",
+      "stillOffline": "仍然离线"
+    },
+    "goToDashboard": "前往仪表板"
+  },
+  "timeAgo": {
+    "unknown": "未知",
+    "secondsAgo": "{{n}}秒前",
+    "minutesAgo": "{{n}}分钟前",
+    "hoursAgo": "{{n}}小时前",
+    "daysAgo": "{{n}}天前"
+  },
+  "theme": "主题",
+  "language": "语言"
+}

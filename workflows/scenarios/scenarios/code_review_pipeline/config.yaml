@@ -1,0 +1,41 @@
+name: code_review_pipeline
+display_name: "Automated Code Review Pipeline"
+description: "Review PRs for security and quality, auto-approve or route based on score"
+domain: dev
+version: "1.0.0"
+
+triggers:
+  chat_command: "/review-pr"
+  api_endpoint: "/workflow-scenarios/code_review_pipeline/trigger"
+  ui_button:
+    label: "Review PR"
+    location: "github_page"
+
+inputs:
+  - name: pr_url
+    type: string
+    required: true
+    description: "GitHub PR URL (e.g., https://github.com/owner/repo/pull/123)"
+  - name: auto_merge_enabled
+    type: boolean
+    required: false
+    description: "Allow automatic merge on approval"
+    default: false
+
+outputs:
+  - name: review_result
+    type: json
+  - name: security_report
+    type: markdown
+  - name: action_taken
+    type: json
+
+required_agents:
+  - code_reviewer
+  - devops_engineer
+  - project_manager
+
+observability:
+  metrics_enabled: true
+  log_tool_calls: true
+  track_costs: true

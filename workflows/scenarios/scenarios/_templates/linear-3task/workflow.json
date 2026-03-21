@@ -1,0 +1,57 @@
+{
+  "version": "1.0.0",
+  "metadata": {
+    "name": "_templates/linear-3task",
+    "description": "Canonical 3-task linear template: start → task_1 → task_2 → task_3 → end",
+    "domain": "dev",
+    "difficulty": "intermediate"
+  },
+  "nodes": [
+    {
+      "id": "start",
+      "type": "start",
+      "position": {"x": 0, "y": 0}
+    },
+    {
+      "id": "task_1",
+      "type": "task",
+      "data": {
+        "agent": "research_assistant",
+        "task": "Extract and gather: collect and ingest all required data sources for processing",
+        "context": {}
+      },
+      "position": {"x": 200, "y": 0}
+    },
+    {
+      "id": "task_2",
+      "type": "task",
+      "data": {
+        "agent": "research_assistant",
+        "task": "Transform and process: apply domain logic to structure and enrich the gathered data",
+        "context": {"requires": ["task_1.output"]}
+      },
+      "position": {"x": 400, "y": 0}
+    },
+    {
+      "id": "task_3",
+      "type": "task",
+      "data": {
+        "agent": "research_assistant",
+        "task": "Analyze and output: synthesize processed data into final analysis and deliverable response",
+        "context": {"requires": ["task_2.output"]}
+      },
+      "position": {"x": 600, "y": 0}
+    },
+    {
+      "id": "end",
+      "type": "end",
+      "position": {"x": 800, "y": 0}
+    }
+  ],
+  "edges": [
+    {"id": "e1", "source": "start", "target": "task_1"},
+    {"id": "e2", "source": "task_1", "target": "task_2"},
+    {"id": "e3", "source": "task_2", "target": "task_3"},
+    {"id": "e4", "source": "task_3", "target": "end"}
+  ]
+}

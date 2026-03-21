@@ -1,0 +1,34 @@
+{
+  "version": "1.0.0",
+  "metadata": { "name": "_approval_node_test", "description": "Synthetic approval node test — start → task → approval → end" },
+  "nodes": [
+    { "id": "start", "type": "start", "position": { "x": 0, "y": 0 }, "data": {} },
+    {
+      "id": "setup_task",
+      "type": "task",
+      "position": { "x": 200, "y": 0 },
+      "data": {
+        "agent": "developer",
+        "task": "Prepare data for approval review"
+      }
+    },
+    {
+      "id": "approval_gate",
+      "type": "approval",
+      "position": { "x": 400, "y": 0 },
+      "data": {
+        "prompt": "Approve test step?",
+        "approver": "owner",
+        "timeout_minutes": 1,
+        "timeout_action": "reject"
+      }
+    },
+    { "id": "end", "type": "end", "position": { "x": 600, "y": 0 }, "data": {} }
+  ],
+  "edges": [
+    { "id": "e1", "source": "start", "target": "setup_task" },
+    { "id": "e2", "source": "setup_task", "target": "approval_gate" },
+    { "id": "e3", "source": "approval_gate", "target": "end", "data": { "condition": "approved" } },
+    { "id": "e4", "source": "approval_gate", "target": "end", "data": { "condition": "rejected" } }
+  ]
+}

@@ -1,0 +1,114 @@
+{
+  "version": "1.0.0",
+  "metadata": {
+    "name": "compliance_audit",
+    "description": "Enterprise compliance audit with policy scanning, evidence collection, and report generation",
+    "domain": "operations"
+  },
+  "nodes": [
+    {
+      "id": "start",
+      "type": "start",
+      "position": {"x": 0, "y": 200}
+    },
+    {
+      "id": "load_audit_scope",
+      "type": "task",
+      "data": {
+        "agent": "compliance_auditor",
+        "task": "Load audit scope and parameters: compliance framework (SOC2, GDPR, HIPAA), audit period, systems in scope. Initialize audit tracking.",
+        "context": {}
+      },
+      "position": {"x": 200, "y": 200}
+    },
+    {
+      "id": "scan_policies",
+      "type": "task",
+      "data": {
+        "agent": "compliance_auditor",
+        "task": "Scan policy documents for requirements relevant to compliance framework. Extract MUST/SHALL statements and map to control categories.",
+        "context": {"requires": ["load_audit_scope.output"]}
+      },
+      "position": {"x": 400, "y": 200}
+    },
+    {
+      "id": "gather_evidence",
+      "type": "task",
+      "data": {
+        "agent": "research_assistant",
+        "task": "Gather evidence artifacts: configuration files, access logs, approval records. Cross-reference against policy requirements.",
+        "context": {"requires": ["scan_policies.output"]}
+      },
+      "position": {"x": 600, "y": 200}
+    },
+    {
+      "id": "assess_compliance",
+      "type": "task",
+      "data": {
+        "agent": "compliance_auditor",
+        "task": "Assess compliance for each control: Compliant, Non-Compliant, Partial, or Not Applicable. Record findings with evidence references.",
+        "context": {"requires": ["gather_evidence.output", "scan_policies.output"]}
+      },
+      "position": {"x": 800, "y": 200}
+    },
+    {
+      "id": "check_findings",
+      "type": "router",
+      "data": {
+        "condition": "Severity of non-compliance findings",
+        "branches": [
+          {"condition": "no critical findings", "target": "generate_report"},
+          {"condition": "critical findings present", "target": "escalate_critical"}
+        ]
+      },
+      "position": {"x": 1000, "y": 200}
+    },
+    {
+      "id": "escalate_critical",
+      "type": "task",
+      "data": {
+        "agent": "project_manager",
+        "task": "Create urgent remediation tasks for critical findings. Notify compliance officer and system owners. Set remediation deadlines.",
+        "context": {"requires": ["assess_compliance.output"]}
+      },
+      "position": {"x": 1100, "y": 50}
+    },
+    {
+      "id": "generate_report",
+      "type": "task",
+      "data": {
+        "agent": "compliance_auditor",
+        "task": "Generate compliance audit report: executive summary, control assessment table, findings detail, recommendations, and remediation plan.",
+        "context": {"requires": ["assess_compliance.output", "gather_evidence.output"]}
+      },
+      "position": {"x": 1200, "y": 200}
+    },
+    {
+      "id": "store_audit_record",
+      "type": "task",
+      "data": {
+        "agent": "compliance_auditor",
+        "task": "Store audit record in knowledge graph for historical reference. Link findings to previous audits for trend analysis.",
+        "context": {"requires": ["generate_report.output"]}
+      },
+      "position": {"x": 1400, "y": 200}
+    },
+    {
+      "id": "end",
+      "type": "end",
+      "position": {"x": 1600, "y": 200}
+    }
+  ],
+  "edges": [
+    {"id": "e1", "source": "start", "target": "load_audit_scope"},
+    {"id": "e2", "source": "load_audit_scope", "target": "scan_policies"},
+    {"id": "e3", "source": "scan_policies", "target": "gather_evidence"},
+    {"id": "e4", "source": "gather_evidence", "target": "assess_compliance"},
+    {"id": "e5", "source": "assess_compliance", "target": "check_findings"},
+    {"id": "e6", "source": "check_findings", "target": "generate_report", "data": {"condition": "no_critical"}},
+    {"id": "e7", "source": "check_findings", "target": "escalate_critical", "data": {"condition": "critical"}},
+    {"id": "e8", "source": "escalate_critical", "target": "generate_report"},
+    {"id": "e9", "source": "generate_report", "target": "store_audit_record"},
+    {"id": "e10", "source": "store_audit_record", "target": "end"}
+  ]
+}

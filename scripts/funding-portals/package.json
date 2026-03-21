@@ -1,0 +1,16 @@
+{
+  "name": "funding-portal-automation",
+  "version": "1.0.0",
+  "description": "Playwright scripts for navigating funding portal applications and capturing screenshots",
+  "private": true,
+  "scripts": {
+    "nvidia": "npx playwright test nvidia-inception.ts",
+    "bpi-fte": "npx playwright test bpi-fte.ts",
+    "bpi-pionniers": "npx playwright test bpi-pionniers-ia.ts",
+    "eic": "npx playwright test eic-accelerator.ts",
+    "all": "npx playwright test"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.49.0"
+  }
+}

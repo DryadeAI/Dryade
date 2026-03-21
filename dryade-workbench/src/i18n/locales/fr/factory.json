@@ -1,0 +1,48 @@
+{
+  "title": "Fabrique",
+  "subtitle": "Gérer les agents, outils et compétences créés par la fabrique",
+  "createArtifact": "Créer un artefact",
+  "searchPlaceholder": "Rechercher des artefacts...",
+  "typeFilter": {
+    "all": "Tous",
+    "agent": "Agent",
+    "tool": "Outil",
+    "skill": "Compétence"
+  },
+  "statusFilter": {
+    "allStatuses": "Tous les statuts"
+  },
+  "emptyState": {
+    "title": "Aucun artefact factory pour l'instant",
+    "description": "Créez des agents, des outils et des compétences à partir d'objectifs en langage naturel.",
+    "noMatchTitle": "Aucun artefact ne correspond à vos filtres",
+    "noMatchDescription": "Essayez d'autres mots-clés ou supprimez vos filtres",
+    "clearFilters": "Effacer les filtres"
+  },
+  "toast": {
+    "loadFailed": "Échec du chargement des artefacts factory",
+    "deleted": "Artefact «\u00a0{{name}}\u00a0» supprimé",
+    "deleteFailed": "Échec de la suppression de l'artefact",
+    "updated": "Artefact «\u00a0{{name}}\u00a0» mis à jour",
+    "updateFailed": "Échec de la mise à jour de l'artefact",
+    "rolledBack": "Artefact «\u00a0{{name}}\u00a0» restauré à la v{{version}}",
+    "rollbackFailed": "Échec du retour arrière de l'artefact"
+  },
+  "detail": {
+    "type": "Type",
+    "framework": "Framework",
+    "version": "Version",
+    "trigger": "Déclencheur",
+    "triggerManual": "manuel",
+    "created": "Créé",
+    "updated": "Mis à jour",
+    "testResults": "Résultats des tests",
+    "testPassed": "Réussi",
+    "testFailed": "Échoué",
+    "iteration": "{{count}} itération",
+    "iterations": "{{count}} itérations",
+    "configuration": "Configuration",
+    "artifactPath": "Chemin de l'artefact",
+    "tags": "Étiquettes"
+  }
+}

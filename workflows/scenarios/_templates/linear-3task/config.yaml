@@ -1,0 +1,25 @@
+name: _templates/linear-3task
+display_name: "Linear 3-Task Template"
+description: "Canonical template: start → task1 → task2 → task3 → end. Structural archetype for data pipelines, RAG queries, and skills demos."
+domain: dev
+difficulty: intermediate
+version: "1.0.0"
+
+triggers:
+  chat_command: "/template-linear-3"
+  api_endpoint: "/workflow-scenarios/_templates/linear-3task/trigger"
+  ui_button:
+    label: "Linear 3-Task"
+    location: "template_page"
+
+inputs: []
+
+outputs:
+  - name: result
+    type: markdown
+
+required_agents: []
+
+observability:
+  metrics_enabled: true
+  log_tool_calls: true

@@ -1,0 +1,25 @@
+name: _approval_node_test
+display_name: "Approval Node Test (Synthetic)"
+description: "Synthetic workflow testing approval node pause/resume lifecycle"
+domain: testing
+difficulty: beginner
+version: "1.0.0"
+
+triggers:
+  chat_command: "/test-approval-node"
+  api_endpoint: "/workflow-scenarios/_approval_node_test/trigger"
+  ui_button:
+    label: "Test Approval Node"
+    location: "test_page"
+
+inputs: []
+outputs:
+  - name: result
+    type: json
+
+required_agents:
+  - developer
+
+observability:
+  metrics_enabled: true
+  log_tool_calls: false

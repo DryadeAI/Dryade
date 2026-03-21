@@ -1,0 +1,11 @@
+{
+  "name": "code_review_assistant",
+  "framework": "crewai",
+  "description": "Automated code review agent that analyzes pull requests for bugs, security vulnerabilities, performance issues, and style violations. Provides actionable inline feedback with severity levels and suggested fixes.",
+  "version": "1.0.0",
+  "factory_created": true,
+  "entry_point": "__init__.py",
+  "run_function": "run",
+  "mcp_servers": ["github-mcp-server", "filesystem-mcp-server"],
+  "capabilities": ["Pull request diff analysis with line-level annotation and severity classification (critical/warning/info)", "Security vulnerability detection covering OWASP Top 10 patterns and common injection vectors", "Performance bottleneck identification including N+1 queries, memory leaks, and blocking I/O", "Code style and convention enforcement based on project-specific linting rules", "Dependency audit for known CVEs and license compliance issues", "Test coverage gap analysis highlighting untested code paths in changed files", "Complexity metrics (cyclomatic, cognitive) with refactoring suggestions for high-complexity functions", "Duplicate code detection across the changeset and existing codebase"]
+}

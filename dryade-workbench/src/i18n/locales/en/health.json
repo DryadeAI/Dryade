@@ -1,0 +1,30 @@
+{
+  "title": "System Health",
+  "subtitle": "Monitor system dependencies and operational status",
+  "status": {
+    "healthy": "System Healthy",
+    "degraded": "System Degraded",
+    "unhealthy": "System Unhealthy"
+  },
+  "uptime": "Uptime: {{time}}",
+  "updatedAgo": "Updated {{seconds}}s ago",
+  "refresh": "Refresh",
+  "refreshCooldown": "{{seconds}}s",
+  "errorTitle": "Failed to load health status",
+  "retry": "Retry",
+  "componentStatus": {
+    "healthy": "healthy",
+    "degraded": "degraded",
+    "unhealthy": "unhealthy"
+  },
+  "latency": "Latency: {{value}}",
+  "attentionBanner": {
+    "singular": "{{count}} component needs attention",
+    "plural": "{{count}} components need attention"
+  },
+  "categories": {
+    "critical": "Critical",
+    "important": "Important",
+    "optional": "Optional"
+  }
+}

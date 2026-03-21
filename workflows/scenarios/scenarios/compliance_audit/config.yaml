@@ -1,0 +1,49 @@
+name: compliance_audit
+display_name: "Compliance Audit Workflow"
+description: "Automated compliance audit with policy scanning, evidence collection, and report generation"
+domain: operations
+version: "1.0.0"
+
+triggers:
+  chat_command: "/run-audit"
+  api_endpoint: "/workflow-scenarios/compliance_audit/trigger"
+  ui_button:
+    label: "Run Compliance Audit"
+    location: "compliance_page"
+
+inputs:
+  - name: framework
+    type: string
+    required: true
+    description: "Compliance framework (SOC2, GDPR, HIPAA, ISO27001)"
+  - name: audit_period_start
+    type: string
+    required: true
+    description: "Audit period start date (YYYY-MM-DD)"
+  - name: audit_period_end
+    type: string
+    required: true
+    description: "Audit period end date (YYYY-MM-DD)"
+  - name: systems_in_scope
+    type: json
+    required: false
+    description: "List of systems to audit"
+    default: []
+
+outputs:
+  - name: audit_report
+    type: markdown
+  - name: findings_summary
+    type: json
+  - name: remediation_plan
+    type: json
+
+required_agents:
+  - compliance_auditor
+  - research_assistant
+  - project_manager
+
+observability:
+  metrics_enabled: true
+  log_tool_calls: true
+  track_costs: true

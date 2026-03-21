@@ -1,0 +1,28 @@
+---
+name: {{ skill_name }}
+description: {{ description }}
+metadata:
+  dryade:
+    emoji: "{{ emoji | default('wrench') }}"
+    category: {{ category | default('general') }}
+{% if user_invocable is defined %}
+    user-invocable: {{ user_invocable | lower }}
+{% endif %}
+{% if disable_model_invocation is defined %}
+    disable-model-invocation: {{ disable_model_invocation | lower }}
+{% endif %}
+    requires:
+{% if requires is defined %}
+      bins: {{ requires.bins | default([]) | tojson }}
+      env: {{ requires.env | default([]) | tojson }}
+      config: {{ requires.config | default([]) | tojson }}
+{% else %}
+      bins: []
+      env: []
+      config: []
+{% endif %}
+---
+
+# {{ name | title | replace('_', ' ') }}
+
+{{ instructions | default('Instructions for this skill.') }}

@@ -1,0 +1,55 @@
+# Database Analyst Agent Configuration
+# LangChain/LangGraph-based agent for database analysis
+
+name: database_analyst
+version: "1.0.0"
+description: "Query and analyze databases with natural language"
+
+# Framework type - LangChain with LangGraph
+framework: langchain
+
+# Required MCP servers for operation
+mcp_servers:
+  - dbhub
+  - grafana
+
+# Capabilities exposed by this agent
+capabilities:
+  - Execute SQL queries
+  - List and describe tables
+  - Query Prometheus metrics
+  - Analyze query results
+
+# Streaming support
+streaming: true
+
+# Agent persona configuration
+persona:
+  role: "Database Analyst"
+  system_prompt: "You are a database analyst expert. Help users query databases and analyze data."
+
+# SQL safety configuration
+sql_safety:
+  read_only_mode: true
+  blocked_operations:
+    - DROP
+    - TRUNCATE
+    - DELETE (without WHERE)
+    - UPDATE (without WHERE)
+    - ALTER DROP
+
+# Tool routing keywords
+routing:
+  query_database:
+    keywords: ["query", "select", "sql", "run query"]
+  list_tables:
+    keywords: ["list tables", "show tables", "what tables"]
+  describe_table:
+    keywords: ["describe", "schema", "columns", "structure"]
+  query_prometheus:
+    keywords: ["prometheus", "metrics", "grafana", "monitoring"]
+
+# Default context values
+defaults:
+  database: "default"
+  time_range: "1h"

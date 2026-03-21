@@ -1,0 +1,302 @@
+"""{{ name }} Agent - LangGraph Implementation.
+
+{{ description }}
+
+Factory-generated LangGraph agent with MCP tool integration.
+
+Usage:
+    from agents.{{ name }} import {{ name | replace('_', ' ') | title | replace(' ', '') }}Agent, create_graph
+
+    agent = create_graph()
+    result = await agent.execute("Your task here")
+"""
+
+from __future__ import annotations
+
+import logging
+from pathlib import Path
+from typing import Any
+
+import yaml
+
+from core.adapters.langchain_adapter import LangChainAgentAdapter
+from core.adapters.protocol import (
+    AgentCapability,
+    AgentCard,
+    AgentFramework,
+    AgentResult,
+)
+from core.mcp.tool_wrapper import MCPToolWrapper
+
+logger = logging.getLogger(__name__)
+
+
+# Load agent configuration
+def _load_config() -> dict[str, Any]:
+    """Load agent configuration from YAML file."""
+    config_path = Path(__file__).parent / "config.yaml"
+    if config_path.exists():
+        with open(config_path) as f:
+            return yaml.safe_load(f)
+    return {}
+
+
+# ============================================================================
+# MCP Tool Wrappers
+# ============================================================================
+
+{% for tool in tools -%}
+_{{ tool.tool | replace('-', '_') }}_wrapper = MCPToolWrapper("{{ tool.server }}", "{{ tool.tool }}", "{{ tool.description }}")
+{% endfor %}
+
+# ============================================================================
+# LangChain Tool Definitions
+# ============================================================================
+
+
+def _create_langchain_tools() -> list[Any]:
+    """Create @tool decorated functions for LangChain.
+
+    Returns:
+        List of LangChain tool functions.
+
+    Note:
+        Returns empty list if langchain_core is not installed.
+    """
+    try:
+        from langchain_core.tools import tool as langchain_tool
+    except ImportError:
+        logger.warning("LangChain not installed - tools will not be available")
+        return []
+
+    tools: list[Any] = []
+
+{% for tool in tools %}
+    @langchain_tool
+    def {{ tool.tool | replace('-', '_') }}(**kwargs: Any) -> str:
+        """{{ tool.description }}"""
+        try:
+            return _{{ tool.tool | replace('-', '_') }}_wrapper.call(**kwargs)
+        except Exception as e:
+            logger.warning(f"{{ tool.tool }} error: {e}")
+            return f"[Error] {{ tool.tool }} failed: {e}"
+
+    tools.append({{ tool.tool | replace('-', '_') }})
+{% endfor %}
+    return tools
+
+
+# ============================================================================
+# {{ name | replace('_', ' ') | title | replace(' ', '') }} Agent
+# ============================================================================
+
+
+class {{ name | replace('_', ' ') | title | replace(' ', '') }}Agent:
+    """LangGraph-based {{ name }} agent with graceful fallback.
+
+    Attributes:
+        name: Agent name for identification.
+        description: Human-readable description.
+    """
+
+    def __init__(self, config: dict[str, Any] | None = None) -> None:
+        """Initialize the {{ name }} agent."""
+        self._config = config or _load_config()
+        self.name = self._config.get("name", "{{ name }}")
+        self.description = self._config.get("description", "{{ description }}")
+        self._adapter: LangChainAgentAdapter | None = None
+        self._tools: list[Any] = []
+        self._init_error: str | None = None
+        self._init_agent()
+
+    def _init_agent(self) -> None:
+        """Initialize the LangGraph agent and adapter."""
+        self._tools = _create_langchain_tools()
+
+        if not self._tools:
+            self._init_error = (
+                "LangChain not installed. Install with: pip install langchain langchain-core"
+            )
+            return
+
+        {% if use_prebuilt | default(true) %}
+        try:
+            from langgraph.prebuilt import create_react_agent
+        except ImportError:
+            self._init_error = (
+                "LangGraph not installed. Install with: pip install langgraph"
+            )
+            logger.warning("LangGraph not installed - agent will run in degraded mode")
+            return
+
+        try:
+            from core.providers.langchain_adapter import get_langchain_llm
+
+            llm = get_langchain_llm()
+
+            agent = create_react_agent(
+                llm,
+                self._tools,
+                {% if system_prompt %}prompt="{{ system_prompt }}",{% endif %}
+            )
+
+            self._adapter = LangChainAgentAdapter(
+                agent, name=self.name, description=self.description
+            )
+        except Exception as e:
+            self._init_error = f"LangGraph agent initialization failed: {e}"
+            logger.warning(
+                f"LangGraph agent init failed - running in degraded mode: {e}"
+            )
+        {% else %}
+        try:
+            from langgraph.graph import END, StateGraph
+            from langchain_core.messages import HumanMessage
+        except ImportError:
+            self._init_error = (
+                "LangGraph not installed. Install with: pip install langgraph langchain-core"
+            )
+            logger.warning("LangGraph not installed - agent will run in degraded mode")
+            return
+
+        try:
+            from core.providers.langchain_adapter import get_langchain_llm
+            from typing import TypedDict, Annotated
+            from operator import add
+
+            llm = get_langchain_llm()
+
+            # State definition with optional extra fields
+            class AgentState(TypedDict):
+                messages: Annotated[list, add]
+                {% for field_name, field_type in (extra_state_fields | default({})).items() %}
+                {{ field_name }}: {{ field_type }}
+                {% endfor %}
+
+            # Build the state graph
+            graph_builder = StateGraph(AgentState)
+
+            # Default agent node: call LLM with tools
+            def _call_model(state: AgentState) -> dict:
+                bound = llm.bind_tools(self._tools) if self._tools else llm
+                response = bound.invoke(state["messages"])
+                return {"messages": [response]}
+
+            # Default tool node
+            def _call_tools(state: AgentState) -> dict:
+                from langgraph.prebuilt import ToolNode
+                tool_node = ToolNode(self._tools)
+                return tool_node.invoke(state)
+
+            # Router: check if LLM wants to call tools
+            def _should_continue(state: AgentState) -> str:
+                last_msg = state["messages"][-1]
+                if hasattr(last_msg, "tool_calls") and last_msg.tool_calls:
+                    return "tools"
+                return END
+
+            graph_builder.add_node("agent", _call_model)
+            graph_builder.add_node("tools", _call_tools)
+            graph_builder.set_entry_point("agent")
+            graph_builder.add_conditional_edges("agent", _should_continue, {"tools": "tools", END: END})
+            graph_builder.add_edge("tools", "agent")
+
+            {% for node in custom_nodes | default([]) %}
+            # Custom node: {{ node.name }}
+            {{ node.implementation | indent(12) }}
+            graph_builder.add_node("{{ node.name }}", {{ node.function_name }})
+            {% endfor %}
+
+            {% for edge in custom_edges | default([]) %}
+            {% if edge.conditional | default(false) %}
+            graph_builder.add_conditional_edges("{{ edge.source }}", {{ edge.router_function }}, {{ edge.path_map | tojson }})
+            {% else %}
+            graph_builder.add_edge("{{ edge.source }}", "{{ edge.target }}")
+            {% endif %}
+            {% endfor %}
+
+            agent = graph_builder.compile()
+
+            self._adapter = LangChainAgentAdapter(
+                agent, name=self.name, description=self.description
+            )
+        except Exception as e:
+            self._init_error = f"LangGraph StateGraph initialization failed: {e}"
+            logger.warning(
+                f"LangGraph StateGraph init failed - running in degraded mode: {e}"
+            )
+        {% endif %}
+
+    async def execute(
+        self,
+        task: str,
+        context: dict[str, Any] | None = None,
+    ) -> AgentResult:
+        """Execute a task with graceful fallback.
+
+        Args:
+            task: Natural language task description.
+            context: Optional execution context.
+
+        Returns:
+            AgentResult with status and result.
+        """
+        if not self._adapter:
+            error_msg = self._init_error or "LangGraph not available"
+            return AgentResult(
+                result=None,
+                status="error",
+                error=f"{error_msg}. Required MCP servers: {{ mcp_servers | join(', ') }}",
+                metadata={
+                    "recoverable": True,
+                    "required_servers": {{ mcp_servers | tojson }},
+                    "agent": self.name,
+                },
+            )
+
+        try:
+            return await self._adapter.execute(task, context or {})
+        except Exception as e:
+            logger.error(f"Execution failed: {e}")
+            return AgentResult(
+                result=None,
+                status="error",
+                error=f"Execution failed: {e}",
+                metadata={
+                    "recoverable": True,
+                    "required_servers": {{ mcp_servers | tojson }},
+                    "agent": self.name,
+                },
+            )
+
+    def supports_streaming(self) -> bool:
+        """Check if agent supports streaming."""
+        return {{ streaming | default(true) | lower }}
+
+
+def create_graph(config: dict[str, Any] | None = None) -> {{ name | replace('_', ' ') | title | replace(' ', '') }}Agent:
+    """Factory function to create the {{ name }} agent.
+
+    Args:
+        config: Optional configuration override.
+
+    Returns:
+        Configured {{ name | replace('_', ' ') | title | replace(' ', '') }}Agent instance.
+    """
+    return {{ name | replace('_', ' ') | title | replace(' ', '') }}Agent(config=config)
+
+
+async def run(task: str, **kwargs) -> str:
+    """Entry point declared in dryade.json run_function."""
+    agent = create_graph()
+    result = await agent.execute(task, context=kwargs)
+    if result.status == "ok":
+        return str(result.result) if result.result is not None else ""
+    raise RuntimeError(result.error or "Execution failed")
+
+
+__all__ = [
+    "{{ name | replace('_', ' ') | title | replace(' ', '') }}Agent",
+    "create_graph",
+    "run",
+]

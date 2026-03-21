@@ -1,0 +1,49 @@
+name: sprint_planning
+display_name: "Sprint Planning Workflow"
+description: "Comprehensive sprint planning with velocity analysis, backlog grooming, dependency mapping, and resource allocation"
+domain: dev
+version: "1.0.0"
+
+triggers:
+  chat_command: "/plan-sprint"
+  api_endpoint: "/workflow-scenarios/sprint_planning/trigger"
+  ui_button:
+    label: "Plan Sprint"
+    location: "project_page"
+
+inputs:
+  - name: team_id
+    type: string
+    required: true
+    description: "Linear team ID for the sprint"
+  - name: sprint_duration
+    type: number
+    required: false
+    description: "Sprint duration in days"
+    default: 14
+  - name: tech_debt_percentage
+    type: number
+    required: false
+    description: "Target percentage of capacity for tech debt"
+    default: 20
+
+outputs:
+  - name: sprint_summary
+    type: markdown
+  - name: sprint_items
+    type: json
+  - name: capacity_report
+    type: json
+  - name: velocity_analysis
+    type: markdown
+
+required_agents:
+  - project_manager
+  - database_analyst
+  - code_reviewer
+  - research_assistant
+
+observability:
+  metrics_enabled: true
+  log_tool_calls: true
+  track_costs: true

@@ -1,0 +1,68 @@
+{
+  "greeting": {
+    "morning": "早上好",
+    "afternoon": "下午好",
+    "evening": "晚上好"
+  },
+  "subtitle": "以下是今天的动态",
+  "stats": {
+    "totalRequests": "总请求数",
+    "successRate": "成功率",
+    "activeAgents": "活跃代理",
+    "queueStatus": "队列状态",
+    "workflows": "工作流"
+  },
+  "sections": {
+    "recentRequests": "最近请求",
+    "workflowTemplates": "工作流模板",
+    "systemStatus": "系统状态",
+    "quickAccess": "快速访问"
+  },
+  "quickActions": {
+    "newChat": "新聊天",
+    "newChatDesc": "开始对话",
+    "createWorkflow": "创建工作流",
+    "createWorkflowDesc": "构建自动化",
+    "newPlan": "新计划",
+    "newPlanDesc": "AI生成计划",
+    "upload": "上传",
+    "uploadDesc": "添加文档",
+    "chatWithAgent": "与代理聊天",
+    "newConversation": "新对话"
+  },
+  "status": {
+    "operational": "运行正常",
+    "degraded": "性能下降",
+    "unhealthy": "异常",
+    "disconnected": "已断开",
+    "unknown": "未知",
+    "registered": "已注册",
+    "empty": "空",
+    "pending": "等待中",
+    "stable": "稳定"
+  },
+  "disconnected": {
+    "title": "后端不可达",
+    "message": "API服务器无响应。在连接恢复之前，仪表板将显示空数据。"
+  },
+  "empty": {
+    "noRequests": "没有近期活动",
+    "noWorkflows": "还没有工作流。从聊天创建计划或构建工作流。",
+    "noRequestsDescription": "开始使用平台后，请求活动将显示在此处。",
+    "noWorkflowsDescription": "从聊天创建计划或构建工作流以开始使用。"
+  },
+  "labels": {
+    "api": "API",
+    "agents": "代理",
+    "queue": "队列",
+    "viewMetrics": "查看指标",
+    "viewAllWorkflows": "查看所有工作流",
+    "viewSystemHealth": "查看系统健康 →",
+    "fromTarget": "距目标",
+    "recent": "最近",
+    "total": "总计",
+    "request": "请求",
+    "completed": "已完成",
+    "failed": "失败"
+  }
+}

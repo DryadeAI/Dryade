@@ -1,0 +1,94 @@
+{
+  "version": "1.0.0",
+  "metadata": {
+    "name": "code_review_pipeline",
+    "description": "Automated code review with quality gates and routing based on review score",
+    "domain": "dev"
+  },
+  "nodes": [
+    {
+      "id": "start",
+      "type": "start",
+      "position": {"x": 0, "y": 200}
+    },
+    {
+      "id": "fetch_pr",
+      "type": "task",
+      "data": {
+        "agent": "code_reviewer",
+        "task": "Fetch PR details including diff, description, and commit history. Identify files changed and scope of modifications.",
+        "context": {"output_format": "structured"}
+      },
+      "position": {"x": 200, "y": 200}
+    },
+    {
+      "id": "security_review",
+      "type": "task",
+      "data": {
+        "agent": "code_reviewer",
+        "task": "Analyze code for security vulnerabilities: injection risks, authentication issues, sensitive data exposure, dependency vulnerabilities. Output security score 0-100.",
+        "context": {"requires": ["fetch_pr.output"], "review_type": "security"}
+      },
+      "position": {"x": 400, "y": 200}
+    },
+    {
+      "id": "quality_check",
+      "type": "router",
+      "data": {
+        "condition": "Combined review score (security + quality)",
+        "branches": [
+          {"condition": "score >= 80 AND no critical issues", "target": "auto_approve"},
+          {"condition": "score >= 50 AND no security critical", "target": "request_changes"},
+          {"condition": "score < 50 OR security critical", "target": "escalate_review"}
+        ]
+      },
+      "position": {"x": 600, "y": 200}
+    },
+    {
+      "id": "auto_approve",
+      "type": "task",
+      "data": {
+        "agent": "devops_engineer",
+        "task": "Approve PR and trigger merge. Add approval comment with summary of automated checks passed.",
+        "context": {"requires": ["security_review.output"]}
+      },
+      "position": {"x": 800, "y": 50}
+    },
+    {
+      "id": "request_changes",
+      "type": "task",
+      "data": {
+        "agent": "code_reviewer",
+        "task": "Generate detailed feedback for PR author. List specific issues, suggested fixes, and code examples. Request changes on PR.",
+        "context": {"requires": ["security_review.output"]}
+      },
+      "position": {"x": 800, "y": 200}
+    },
+    {
+      "id": "escalate_review",
+      "type": "task",
+      "data": {
+        "agent": "project_manager",
+        "task": "Create high-priority review task in Linear for senior developer review. Include security concerns and risk assessment.",
+        "context": {"requires": ["security_review.output"]}
+      },
+      "position": {"x": 800, "y": 350}
+    },
+    {
+      "id": "end",
+      "type": "end",
+      "position": {"x": 1000, "y": 200}
+    }
+  ],
+  "edges": [
+    {"id": "e1", "source": "start", "target": "fetch_pr"},
+    {"id": "e2", "source": "fetch_pr", "target": "security_review"},
+    {"id": "e3", "source": "security_review", "target": "quality_check"},
+    {"id": "e4", "source": "quality_check", "target": "auto_approve", "data": {"condition": "approve"}},
+    {"id": "e5", "source": "quality_check", "target": "request_changes", "data": {"condition": "changes"}},
+    {"id": "e6", "source": "quality_check", "target": "escalate_review", "data": {"condition": "escalate"}},
+    {"id": "e7", "source": "auto_approve", "target": "end"},
+    {"id": "e8", "source": "request_changes", "target": "end"},
+    {"id": "e9", "source": "escalate_review", "target": "end"}
+  ]
+}

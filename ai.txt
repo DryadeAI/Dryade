@@ -1,0 +1,10 @@
+# ai.txt - AI Training Opt-Out
+# See: https://site.spawning.ai/spawning-ai-txt
+
+# Dryade does not consent to AI model training on this codebase.
+# This code is licensed under the Dryade Source Use License (DSUL),
+# which does not grant rights for AI training or dataset creation.
+
+User-Agent: *
+Disallow: AI-Training
+Disallow: AI-Dataset-Creation

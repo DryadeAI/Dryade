@@ -1,0 +1,56 @@
+{
+  "title": "Base de connaissances",
+  "sourcesCount": "{{count}} sources",
+  "search": "Rechercher",
+  "semanticSearch": "Recherche sémantique",
+  "searchPlaceholder": "Rechercher dans la base de connaissances...",
+  "threshold": "Seuil",
+  "showingResults": "Affichage de {{shown}} sur {{total}} résultats",
+  "noResultsTitle": "Aucun résultat trouvé",
+  "noResultsDescription": "Essayez d'autres mots-clés ou ajustez le seuil",
+  "showMoreResults": "Afficher plus de résultats",
+  "unknownSource": "Source inconnue",
+  "relevance": {
+    "high": "Élevée",
+    "medium": "Moyenne",
+    "low": "Faible"
+  },
+  "tabs": {
+    "sources": "Sources",
+    "upload": "Importer",
+    "advanced": "Avancé"
+  },
+  "emptyState": {
+    "title": "Aucune source pour l'instant",
+    "description": "Importez des documents pour construire votre base de connaissances",
+    "action": "Importer un document"
+  },
+  "upload": {
+    "complete": "Terminé",
+    "dragAndDrop": "Glissez et déposez vos fichiers ici",
+    "browseFiles": "Parcourir les fichiers",
+    "supportedFormats": "Formats acceptés : PDF, Markdown, TXT, DOCX",
+    "success": "Document importé avec succès",
+    "failed": "Échec de l'import"
+  },
+  "source": {
+    "deleted": "Source supprimée",
+    "deleteFailed": "Échec de la suppression de la source",
+    "bindingsUpdated": "Liaisons mises à jour"
+  },
+  "searchFailed": "Échec de la recherche",
+  "advanced": {
+    "queryPlaceholder": "Tester une requête RAG avancée...",
+    "searchButton": "Rechercher",
+    "multiQuery": "Multi-requête",
+    "hyde": "HyDE",
+    "reranking": "Reclassement",
+    "queryVariants": "Variantes de requête :",
+    "noResultsTitle": "Aucun résultat",
+    "noResultsDescription": "Essayez d'autres mots-clés ou activez/désactivez des fonctionnalités",
+    "score": "Score : {{score}}",
+    "page": "Page : {{page}}",
+    "searchFailed": "Échec de la recherche avancée. Le plugin de connaissances avancées est-il activé ?"
+  },
+  "searchResult": "Résultat de recherche"
+}

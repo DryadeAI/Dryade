@@ -1,0 +1,78 @@
+{
+  "header": {
+    "thinkingEnabled": "Raisonnement activé",
+    "enableReasoning": "Activer le raisonnement (pour les modèles de réflexion)",
+    "search": "Rechercher (Ctrl+F)",
+    "exportConversation": "Exporter la conversation",
+    "share": "Partager",
+    "searchPlaceholder": "Rechercher des messages...",
+    "found": "{{count}} trouvé(s)",
+    "showAllDetails": "Afficher tous les détails",
+    "hideDetails": "Masquer les détails"
+  },
+  "messages": {
+    "thinking": "Réflexion en cours...",
+    "thinkingLabel": "Réflexion",
+    "agentCount": "{{count}} agent",
+    "agentCount_other": "{{count}} agents",
+    "responseFailed": "Échec de la réponse",
+    "retry": "Réessayer",
+    "cancel": "Annuler",
+    "save": "Enregistrer",
+    "goodResponse": "Bonne réponse",
+    "badResponse": "Mauvaise réponse",
+    "copied": "Copié !",
+    "copy": "Copier",
+    "edit": "Modifier",
+    "regenerate": "Régénérer",
+    "delete": "Supprimer",
+    "renderedView": "Vue rendue",
+    "rawView": "Vue brute",
+    "toolOutput": "Sortie de l'outil",
+    "agent": "Agent",
+    "justNow": "à l'instant"
+  },
+  "sidebar": {
+    "menu": "Menu",
+    "chat": "Chat",
+    "newChat": "Nouvelle conversation",
+    "searchPlaceholder": "Rechercher des conversations...",
+    "today": "Aujourd'hui",
+    "yesterday": "Hier",
+    "thisWeek": "Cette semaine",
+    "older": "Plus ancien",
+    "noConversationsFound": "Aucune conversation trouvée",
+    "noConversationsYet": "Aucune conversation pour l'instant",
+    "messageCount": "{{count}} messages",
+    "theme": "Thème"
+  },
+  "input": {
+    "placeholder": "Écrivez à Dryade... (/ pour les commandes)",
+    "defaultPlaceholder": "Tapez / pour les commandes...",
+    "attachFile": "Joindre un fichier",
+    "fileAttachmentComingSoon": "Pièces jointes bientôt disponibles",
+    "noCommandsFound": "Aucune commande trouvée",
+    "commandNotFound": "Commande \"{{name}}\" introuvable",
+    "didYouMean": "Vouliez-vous dire : {{suggestions}} ?",
+    "typeSlashForCommands": "Tapez / pour voir les commandes disponibles",
+    "tabComplete": "compléter",
+    "enterSelect": "sélectionner",
+    "escCancel": "annuler"
+  },
+  "page": {
+    "howCanIHelp": "Comment puis-je vous aider ?",
+    "emptyStateDescription": "Créez des workflows, configurez des agents, analysez des données ou posez des questions.",
+    "scrollToLatest": "Aller au dernier message",
+    "streamError": "Erreur de flux",
+    "failedToSend": "Échec de l'envoi du message",
+    "connectionError": "Veuillez vérifier votre connexion et réessayer.",
+    "userRole": "Utilisateur",
+    "agentRole": "Agent"
+  },
+  "escalation": {
+    "needHelp": "**J'ai besoin de votre aide :**",
+    "howToProceed": "Comment souhaitez-vous procéder ?",
+    "autoFixHint": "Tapez **oui** pour appliquer ce correctif automatiquement, ou **non** pour passer.",
+    "suggestedFix": "_Correctif suggéré : {{description}}_"
+  }
+}

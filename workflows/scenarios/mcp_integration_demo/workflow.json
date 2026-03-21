@@ -1,0 +1,68 @@
+{
+  "version": "1.0.0",
+  "metadata": {
+    "name": "mcp_integration_demo",
+    "description": "MCP tool integration demo: browse, store, analyze, and save using MCP servers",
+    "domain": "dev",
+    "difficulty": "intermediate"
+  },
+  "nodes": [
+    {
+      "id": "start",
+      "type": "start",
+      "position": {"x": 0, "y": 100}
+    },
+    {
+      "id": "browse_page",
+      "type": "task",
+      "data": {
+        "agent": "research_assistant",
+        "task": "Navigate to {url} using the Playwright MCP server. Take a screenshot. Extract the page title, main content, and any relevant data. Store each key finding as an entity in the memory knowledge graph.",
+        "context": {
+          "url": "{url}",
+          "mcp_servers": ["playwright", "memory"]
+        }
+      },
+      "position": {"x": 200, "y": 100}
+    },
+    {
+      "id": "analyze_and_store",
+      "type": "task",
+      "data": {
+        "agent": "research_assistant",
+        "task": "Analyze the extracted content based on the task: '{task}'. Identify key information, summarize findings, and create relationships between entities in the knowledge graph. Search for any related existing findings.",
+        "context": {
+          "requires": ["browse_page.output"],
+          "task": "{task}",
+          "mcp_servers": ["memory"]
+        }
+      },
+      "position": {"x": 400, "y": 100}
+    },
+    {
+      "id": "save_report",
+      "type": "task",
+      "data": {
+        "agent": "research_assistant",
+        "task": "Generate a markdown summary combining all findings. Save the report to /tmp/mcp_demo_report.md using the filesystem MCP server. Include: Page URL, title, key findings, and task-specific analysis.",
+        "context": {
+          "requires": ["browse_page.output", "analyze_and_store.output"],
+          "output_path": "/tmp/mcp_demo_report.md",
+          "mcp_servers": ["filesystem"]
+        }
+      },
+      "position": {"x": 600, "y": 100}
+    },
+    {
+      "id": "end",
+      "type": "end",
+      "position": {"x": 800, "y": 100}
+    }
+  ],
+  "edges": [
+    {"id": "e1", "source": "start", "target": "browse_page"},
+    {"id": "e2", "source": "browse_page", "target": "analyze_and_store"},
+    {"id": "e3", "source": "analyze_and_store", "target": "save_report"},
+    {"id": "e4", "source": "save_report", "target": "end"}
+  ]
+}

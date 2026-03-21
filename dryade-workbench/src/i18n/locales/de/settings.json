@@ -1,0 +1,13 @@
+{
+  "groups": { "account": "KONTO", "workspace": "ARBEITSBEREICH", "advanced": "ERWEITERT" },
+  "tabs": {
+    "profile": "Profil", "profileDesc": "Persönliche Informationen verwalten",
+    "appearance": "Erscheinungsbild", "appearanceDesc": "Aussehen anpassen",
+    "notifications": "Benachrichtigungen", "notificationsDesc": "Benachrichtigungseinstellungen",
+    "chat": "Chat & Agenten", "chatDesc": "Chat- und Agentenverhalten konfigurieren",
+    "models": "Modelle", "modelsDesc": "KI-Modellanbieter einrichten",
+    "apiKeys": "API-Schlüssel", "apiKeysDesc": "Zugriffsschlüssel verwalten",
+    "factory": "Fabrik", "factoryDesc": "Artefakterstellung konfigurieren",
+    "data": "Daten & Datenschutz", "dataDesc": "Automatische Speicherung, Export und Kontoverwaltung"
+  }
+}

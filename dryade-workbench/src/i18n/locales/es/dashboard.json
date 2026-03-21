@@ -1,0 +1,68 @@
+{
+  "greeting": {
+    "morning": "Buenos días",
+    "afternoon": "Buenas tardes",
+    "evening": "Buenas noches"
+  },
+  "subtitle": "Esto es lo que está pasando hoy",
+  "stats": {
+    "totalRequests": "Total de solicitudes",
+    "successRate": "Tasa de éxito",
+    "activeAgents": "Agentes activos",
+    "queueStatus": "Estado de la cola",
+    "workflows": "Flujos de trabajo"
+  },
+  "sections": {
+    "recentRequests": "Solicitudes recientes",
+    "workflowTemplates": "Plantillas de flujo",
+    "systemStatus": "Estado del sistema",
+    "quickAccess": "Acceso rápido"
+  },
+  "quickActions": {
+    "newChat": "Nuevo chat",
+    "newChatDesc": "Iniciar una conversación",
+    "createWorkflow": "Crear flujo de trabajo",
+    "createWorkflowDesc": "Construir automatización",
+    "newPlan": "Nuevo plan",
+    "newPlanDesc": "Planes generados por IA",
+    "upload": "Subir",
+    "uploadDesc": "Agregar documentos",
+    "chatWithAgent": "Chatear con agente",
+    "newConversation": "Nueva conversación"
+  },
+  "status": {
+    "operational": "Operativo",
+    "degraded": "Degradado",
+    "unhealthy": "En mal estado",
+    "disconnected": "Desconectado",
+    "unknown": "Desconocido",
+    "registered": "Registrados",
+    "empty": "Vacía",
+    "pending": "Pendientes",
+    "stable": "Estable"
+  },
+  "disconnected": {
+    "title": "Backend inalcanzable",
+    "message": "El servidor API no responde. El panel mostrará datos vacíos hasta que se restablezca la conexión."
+  },
+  "empty": {
+    "noRequests": "Sin actividad reciente",
+    "noWorkflows": "Aún no hay flujos. Crea un plan desde el chat o construye un flujo de trabajo.",
+    "noRequestsDescription": "La actividad de solicitudes aparecerá aquí una vez que comiences a usar la plataforma.",
+    "noWorkflowsDescription": "Crea un plan desde el chat o construye un flujo de trabajo para comenzar."
+  },
+  "labels": {
+    "api": "API",
+    "agents": "Agentes",
+    "queue": "Cola",
+    "viewMetrics": "Ver métricas",
+    "viewAllWorkflows": "Ver todos los flujos",
+    "viewSystemHealth": "Ver salud del sistema →",
+    "fromTarget": "del objetivo",
+    "recent": "recientes",
+    "total": "Total",
+    "request": "solicitud",
+    "completed": "completada",
+    "failed": "fallida"
+  }
+}

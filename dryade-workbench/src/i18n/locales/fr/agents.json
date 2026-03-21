@@ -1,0 +1,49 @@
+{
+  "page": {
+    "title": "Agents",
+    "subtitle": "Parcourir et exécuter des agents IA issus de multiples frameworks"
+  },
+  "error": {
+    "loadFailed": "Échec du chargement des agents. Veuillez vérifier votre connexion et réessayer.",
+    "somethingWentWrong": "Une erreur s'est produite",
+    "loadAgentFailed": "Échec du chargement de l'agent",
+    "executionFailed": "Échec de l'exécution"
+  },
+  "empty": {
+    "noAgentsTitle": "Aucun agent enregistré",
+    "noAgentsDescription": "Configurez des adaptateurs dans les paramètres pour enregistrer des agents issus de CrewAI, LangChain, ADK, A2A, MCP ou de frameworks personnalisés.",
+    "goToSettings": "Aller aux paramètres",
+    "noMatchTitle": "Aucun agent ne correspond à votre recherche",
+    "noMatchDescription": "Essayez d'autres mots-clés ou supprimez les filtres",
+    "clearFilters": "Effacer les filtres"
+  },
+  "detail": {
+    "notFoundTitle": "Agent introuvable",
+    "notFoundDescription": "L'agent «\u00a0{{name}}\u00a0» n'existe pas.",
+    "backToAgents": "Retour aux agents",
+    "breadcrumbAgents": "Agents",
+    "noDescription": "Aucune description",
+    "execute": "Exécuter",
+    "configure": "Configurer",
+    "executeAgent": "Exécuter l'agent",
+    "runWithTask": "Lancer cet agent avec une tâche",
+    "executionResult": "Résultat d'exécution",
+    "executionCompleted": "Exécution de l'agent terminée",
+    "toolsTab": "Outils ({{count}})",
+    "documentationTab": "Documentation",
+    "availableTools": "Outils disponibles",
+    "toolsDescription": "Outils que cet agent peut utiliser lors de l'exécution",
+    "noToolsConfigured": "Aucun outil configuré",
+    "documentationTitle": "Documentation",
+    "documentationDescription": "Guide de configuration et d'utilisation de l'agent",
+    "overview": "Vue d'ensemble",
+    "overviewText": "Cet agent est construit avec le framework <strong>{{framework}}</strong> et peut être invoqué via l'API ou depuis cette interface.",
+    "apiEndpoint": "Point d'accès API",
+    "configuration": "Configuration",
+    "version": "Version : <code>{{version}}</code>",
+    "toolsCount": "Outils : {{count}} configuré(s)"
+  },
+  "actions": {
+    "retry": "Réessayer"
+  }
+}

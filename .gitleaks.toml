@@ -1,0 +1,52 @@
+title = "Dryade Community Gitleaks Config"
+
+[extend]
+useDefault = true
+
+# NOTE: No internal-path-reference rule here.
+# The public repo legitimately references itself. Only detect actual secrets.
+
+[[rules]]
+id = "dryade-encryption-key"
+description = "Dryade encryption key"
+regex = '''DRYADE_ENCRYPTION_KEY\s*=\s*[A-Fa-f0-9]{32,}'''
+tags = ["dryade", "crypto"]
+
+[allowlist]
+  description = "Known safe test fixtures, templates, docs, and type annotations"
+  paths = [
+    '''tests/''',
+    '''dryade-core/tests/''',
+    '''dryade-workbench/e2e/''',
+    '''dryade-workbench/src/__tests__/''',
+    '''\.env\.example''',
+    '''\.env\.quickstart\.example''',
+    '''docs/''',
+    '''docs-site/''',
+    '''examples/''',
+    '''deploy/''',
+    '''\.github/workflows/''',
+    '''dryade-workbench/playwright-report/''',
+  ]
+  regexTarget = "match"
+  regexes = [
+    # Type annotations (crypto key classes) are not secrets
+    '''PrivateKey''',
+    '''PublicKey''',
+    # Placeholder API keys in docs
+    '''sk-your-key-here''',
+    '''sk-ant-your-key-here''',
+    '''ghp_your_token_here''',
+    '''your-grafana-api-key-here''',
+    '''lin_api_your_key''',
+    # CI test secrets (clearly labeled)
+    '''ci-smoke-test-secret''',
+    '''ci-e2e-test-secret''',
+    '''not-for-production''',
+    # Mock JWT tokens in fixtures
+    '''mock-signature''',
+    # Dev fallback keys
+    '''dev-key-change-me''',
+    '''CHANGE_ME''',
+    '''placeholder-replaced-at-runtime''',
+  ]

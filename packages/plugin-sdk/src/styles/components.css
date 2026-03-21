@@ -1,0 +1,505 @@
+@layer components {
+  /* =========================================================================
+     Primitives
+     ========================================================================= */
+
+  .dui-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    border-radius: var(--radius);
+    font-weight: 500;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    cursor: pointer;
+    border: 1px solid transparent;
+    transition: background-color 150ms ease, color 150ms ease, border-color 150ms ease, box-shadow 150ms ease;
+    white-space: nowrap;
+  }
+  .dui-button:disabled { opacity: 0.5; pointer-events: none; }
+  .dui-button:focus-visible { outline: 2px solid hsl(var(--ring)); outline-offset: 2px; }
+  .dui-button--default { background: hsl(var(--primary)); color: hsl(var(--primary-foreground)); }
+  .dui-button--default:hover { background: hsl(var(--primary) / 0.9); }
+  .dui-button--secondary { background: hsl(var(--secondary)); color: hsl(var(--secondary-foreground)); }
+  .dui-button--secondary:hover { background: hsl(var(--secondary) / 0.8); }
+  .dui-button--destructive { background: hsl(var(--destructive)); color: hsl(var(--destructive-foreground)); }
+  .dui-button--destructive:hover { background: hsl(var(--destructive) / 0.9); }
+  .dui-button--outline { border-color: hsl(var(--border)); background: transparent; color: hsl(var(--foreground)); }
+  .dui-button--outline:hover { background: hsl(var(--accent)); color: hsl(var(--accent-foreground)); }
+  .dui-button--ghost { background: transparent; color: hsl(var(--foreground)); }
+  .dui-button--ghost:hover { background: hsl(var(--accent)); color: hsl(var(--accent-foreground)); }
+  .dui-button--link { background: transparent; color: hsl(var(--primary)); text-decoration: underline; }
+  .dui-button--link:hover { text-decoration-thickness: 2px; }
+  .dui-button--sm { height: 2rem; padding: 0 0.75rem; font-size: 0.75rem; }
+  .dui-button--md { height: 2.5rem; padding: 0 1rem; }
+  .dui-button--lg { height: 2.75rem; padding: 0 1.5rem; font-size: 1rem; }
+  .dui-button--icon { height: 2.5rem; width: 2.5rem; padding: 0; }
+
+  .dui-badge {
+    display: inline-flex;
+    align-items: center;
+    border-radius: 9999px;
+    padding: 0.125rem 0.625rem;
+    font-size: 0.75rem;
+    font-weight: 500;
+    line-height: 1;
+    border: 1px solid transparent;
+    transition: background-color 150ms ease;
+  }
+  .dui-badge--default { background: hsl(var(--primary)); color: hsl(var(--primary-foreground)); }
+  .dui-badge--secondary { background: hsl(var(--secondary)); color: hsl(var(--secondary-foreground)); }
+  .dui-badge--destructive { background: hsl(var(--destructive)); color: hsl(var(--destructive-foreground)); }
+  .dui-badge--outline { border-color: hsl(var(--border)); color: hsl(var(--foreground)); background: transparent; }
+  .dui-badge--success { background: hsl(var(--success)); color: hsl(var(--success-foreground)); }
+  .dui-badge--warning { background: hsl(var(--warning)); color: hsl(var(--warning-foreground)); }
+  .dui-badge--info { background: hsl(var(--accent)); color: hsl(var(--accent-foreground)); }
+
+  .dui-label {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: hsl(var(--foreground));
+    display: block;
+    margin-bottom: 0.375rem;
+  }
+  .dui-label-required { color: hsl(var(--destructive)); }
+
+  .dui-input,
+  .dui-select,
+  .dui-textarea {
+    width: 100%;
+    border-radius: var(--radius);
+    border: 1px solid hsl(var(--input));
+    background: transparent;
+    color: hsl(var(--foreground));
+    font-size: 0.875rem;
+    padding: 0.5rem 0.75rem;
+    transition: border-color 150ms ease, box-shadow 150ms ease;
+  }
+  .dui-input:focus, .dui-select:focus, .dui-textarea:focus {
+    outline: none;
+    border-color: hsl(var(--ring));
+    box-shadow: 0 0 0 2px hsl(var(--ring) / 0.2);
+  }
+  .dui-input--error, .dui-select--error, .dui-textarea--error {
+    border-color: hsl(var(--destructive));
+  }
+  .dui-input-wrapper, .dui-select-wrapper, .dui-textarea-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+  .dui-input-description { font-size: 0.75rem; color: hsl(var(--muted-foreground)); margin: 0; }
+  .dui-input-error { font-size: 0.75rem; color: hsl(var(--destructive)); margin: 0; }
+  .dui-textarea { min-height: 5rem; resize: vertical; }
+  .dui-textarea-footer { display: flex; justify-content: space-between; align-items: center; }
+  .dui-textarea-count { font-size: 0.75rem; color: hsl(var(--muted-foreground)); margin-left: auto; }
+
+  .dui-toggle {
+    position: relative;
+    width: 2.75rem;
+    height: 1.5rem;
+    border-radius: 9999px;
+    background: hsl(var(--muted));
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    transition: background-color 150ms ease;
+  }
+  .dui-toggle--checked { background: hsl(var(--primary)); }
+  .dui-toggle--disabled { opacity: 0.5; cursor: not-allowed; }
+  .dui-toggle:focus-visible { outline: 2px solid hsl(var(--ring)); outline-offset: 2px; }
+  .dui-toggle-handle {
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 1.25rem;
+    height: 1.25rem;
+    border-radius: 50%;
+    background: white;
+    transition: transform 150ms ease;
+    box-shadow: 0 1px 3px rgb(0 0 0 / 0.2);
+  }
+  .dui-toggle--checked .dui-toggle-handle { transform: translateX(1.25rem); }
+
+  /* =========================================================================
+     Layout
+     ========================================================================= */
+
+  .dui-card {
+    border-radius: var(--radius);
+    border: 1px solid hsl(var(--border));
+    background: hsl(var(--card));
+    color: hsl(var(--card-foreground));
+    overflow: hidden;
+  }
+  .dui-card--glass,
+  .glass-card {
+    position: relative;
+    overflow: hidden;
+    border-radius: var(--radius-xl, var(--radius));
+    background: linear-gradient(
+      to bottom right,
+      hsl(var(--glass-bg)),
+      hsl(var(--glass-bg)),
+      hsl(var(--background))
+    );
+    border: 1px solid hsl(var(--glass-border));
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    box-shadow:
+      var(--shadow-card),
+      inset 0 1px 1px 0 hsl(0 0% 80% / 0.06);
+  }
+  .glass-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: radial-gradient(ellipse at center top, hsl(var(--glass-glow)), transparent 70%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  .glass-card:hover::before {
+    opacity: 1;
+  }
+  .dui-card--outlined { background: transparent; }
+  .dui-card--elevated { box-shadow: var(--shadow-card); border-color: transparent; }
+  .dui-card-header { padding: 1rem 1.25rem 0; }
+  .dui-card-content { padding: 1rem 1.25rem; }
+  .dui-card-footer { padding: 0 1.25rem 1rem; display: flex; align-items: center; gap: 0.5rem; }
+
+  .dui-page-header { margin-bottom: 1.5rem; }
+  .dui-page-header-breadcrumbs { font-size: 0.75rem; color: hsl(var(--muted-foreground)); margin-bottom: 0.5rem; }
+  .dui-page-header-row { display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem; }
+  .dui-page-header-title { font-size: 1.5rem; font-weight: 700; color: hsl(var(--foreground)); margin: 0; }
+  .dui-page-header-description { font-size: 0.875rem; color: hsl(var(--muted-foreground)); margin: 0.25rem 0 0; }
+  .dui-page-header-actions { display: flex; gap: 0.5rem; flex-shrink: 0; }
+
+  .dui-tabs-list {
+    display: flex;
+    border-bottom: 1px solid hsl(var(--border));
+    gap: 0;
+  }
+  .dui-tab {
+    padding: 0.5rem 1rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: hsl(var(--muted-foreground));
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid transparent;
+    cursor: pointer;
+    transition: color 150ms ease, border-color 150ms ease;
+    margin-bottom: -1px;
+  }
+  .dui-tab:hover { color: hsl(var(--foreground)); }
+  .dui-tab--active { color: hsl(var(--primary)); border-bottom-color: hsl(var(--primary)); }
+  .dui-tab:disabled { opacity: 0.5; cursor: not-allowed; }
+  .dui-tab-panel { padding: 1rem 0; }
+
+  .dui-modal::backdrop { background: rgb(0 0 0 / 0.5); }
+  .dui-modal {
+    border: 1px solid hsl(var(--border));
+    border-radius: var(--radius);
+    background: hsl(var(--card));
+    color: hsl(var(--card-foreground));
+    padding: 0;
+    max-height: 85vh;
+    overflow: auto;
+  }
+  .dui-modal--sm { width: min(24rem, 90vw); }
+  .dui-modal--md { width: min(32rem, 90vw); }
+  .dui-modal--lg { width: min(48rem, 90vw); }
+  .dui-modal--full { width: 90vw; height: 85vh; }
+  .dui-modal-content { display: flex; flex-direction: column; }
+  .dui-modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 1.25rem;
+    border-bottom: 1px solid hsl(var(--border));
+  }
+  .dui-modal-title { font-size: 1.125rem; font-weight: 600; margin: 0; }
+  .dui-modal-close {
+    background: transparent; border: none; font-size: 1.25rem; cursor: pointer;
+    color: hsl(var(--muted-foreground)); padding: 0.25rem;
+  }
+  .dui-modal-close:hover { color: hsl(var(--foreground)); }
+  .dui-modal-body { padding: 1.25rem; }
+
+  .dui-popover {
+    position: absolute;
+    top: 100%;
+    margin-top: 0.5rem;
+    z-index: 50;
+    background: hsl(var(--popover));
+    color: hsl(var(--popover-foreground));
+    border: 1px solid hsl(var(--border));
+    border-radius: var(--radius);
+    padding: 0.75rem;
+    box-shadow: var(--shadow-card);
+    min-width: 12rem;
+  }
+  .dui-popover--start { left: 0; }
+  .dui-popover--center { left: 50%; transform: translateX(-50%); }
+  .dui-popover--end { right: 0; }
+
+  .dui-tooltip {
+    position: absolute;
+    z-index: 50;
+    background: hsl(var(--foreground));
+    color: hsl(var(--background));
+    border-radius: var(--radius);
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    white-space: nowrap;
+    pointer-events: none;
+  }
+  .dui-tooltip--top { bottom: 100%; left: 50%; transform: translateX(-50%); margin-bottom: 0.5rem; }
+  .dui-tooltip--bottom { top: 100%; left: 50%; transform: translateX(-50%); margin-top: 0.5rem; }
+  .dui-tooltip--left { right: 100%; top: 50%; transform: translateY(-50%); margin-right: 0.5rem; }
+  .dui-tooltip--right { left: 100%; top: 50%; transform: translateY(-50%); margin-left: 0.5rem; }
+
+  /* =========================================================================
+     Feedback
+     ========================================================================= */
+
+  .dui-spinner {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .dui-spinner-circle {
+    display: block;
+    border-radius: 50%;
+    border: 2px solid hsl(var(--muted));
+    border-top-color: hsl(var(--primary));
+    animation: spin 0.6s linear infinite;
+  }
+  .dui-spinner--sm .dui-spinner-circle { width: 1rem; height: 1rem; }
+  .dui-spinner--md .dui-spinner-circle { width: 1.5rem; height: 1.5rem; }
+  .dui-spinner--lg .dui-spinner-circle { width: 2rem; height: 2rem; }
+  .dui-spinner--muted .dui-spinner-circle { border-top-color: hsl(var(--muted-foreground)); }
+
+  .dui-skeleton {
+    border-radius: var(--radius);
+    min-height: 1rem;
+  }
+  .dui-skeleton--circle { border-radius: 50%; }
+
+  .dui-empty-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 3rem 1.5rem;
+    text-align: center;
+    gap: 0.75rem;
+  }
+  .dui-empty-state-icon { font-size: 2.5rem; color: hsl(var(--muted-foreground)); }
+  .dui-empty-state-title { font-size: 1rem; font-weight: 600; color: hsl(var(--foreground)); margin: 0; }
+  .dui-empty-state-description { font-size: 0.875rem; color: hsl(var(--muted-foreground)); max-width: 20rem; margin: 0; }
+  .dui-empty-state-action { margin-top: 0.5rem; }
+
+  .dui-loading-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 3rem;
+    gap: 0.75rem;
+  }
+  .dui-loading-state--inline { flex-direction: row; padding: 0.5rem; gap: 0.5rem; }
+  .dui-loading-state-text { font-size: 0.875rem; color: hsl(var(--muted-foreground)); margin: 0; }
+
+  .dui-status-dot {
+    display: inline-block;
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 50%;
+    background: hsl(var(--muted-foreground));
+  }
+  .dui-status-dot--success { background: hsl(var(--success)); }
+  .dui-status-dot--warning { background: hsl(var(--warning)); }
+  .dui-status-dot--destructive { background: hsl(var(--destructive)); }
+  .dui-status-dot--muted { background: hsl(var(--muted-foreground)); }
+  .dui-status-dot--info { background: hsl(var(--accent)); }
+  .dui-status-dot--pulse { animation: pulse 2s infinite; }
+
+  .dui-toast-container {
+    position: fixed;
+    bottom: 1rem;
+    right: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    z-index: 100;
+    max-width: 24rem;
+  }
+  .dui-toast {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    padding: 0.75rem 1rem;
+    border-radius: var(--radius);
+    font-size: 0.875rem;
+    animation: slide-up 200ms ease-out;
+    box-shadow: var(--shadow-card);
+  }
+  .dui-toast--default { background: hsl(var(--card)); color: hsl(var(--card-foreground)); border: 1px solid hsl(var(--border)); }
+  .dui-toast--success { background: hsl(var(--success)); color: hsl(var(--success-foreground)); }
+  .dui-toast--destructive { background: hsl(var(--destructive)); color: hsl(var(--destructive-foreground)); }
+  .dui-toast--warning { background: hsl(var(--warning)); color: hsl(var(--warning-foreground)); }
+  .dui-toast-close { background: transparent; border: none; cursor: pointer; color: inherit; font-size: 1.125rem; padding: 0; opacity: 0.7; }
+  .dui-toast-close:hover { opacity: 1; }
+
+  .dui-progress--bar { width: 100%; }
+  .dui-progress--bar .dui-progress-track {
+    width: 100%;
+    height: 0.5rem;
+    border-radius: 9999px;
+    background: hsl(var(--muted));
+    overflow: hidden;
+  }
+  .dui-progress--bar .dui-progress-fill {
+    height: 100%;
+    background: hsl(var(--primary));
+    border-radius: 9999px;
+    transition: width 300ms ease;
+  }
+  .dui-progress--bar .dui-progress--indeterminate {
+    width: 40%;
+    animation: shimmer 1.5s infinite;
+  }
+  .dui-progress--circular { display: inline-flex; align-items: center; gap: 0.5rem; }
+  .dui-progress-svg { width: 2.75rem; height: 2.75rem; transform: rotate(-90deg); }
+  .dui-progress-track { stroke: hsl(var(--muted)); }
+  .dui-progress-fill { stroke: hsl(var(--primary)); transition: stroke-dashoffset 300ms ease; }
+  .dui-progress--circular .dui-progress--indeterminate { animation: spin 1s linear infinite; }
+  .dui-progress-label { font-size: 0.75rem; color: hsl(var(--muted-foreground)); }
+
+  /* =========================================================================
+     Data Components
+     ========================================================================= */
+
+  .dui-table-wrapper { width: 100%; overflow-x: auto; }
+  .dui-table { width: 100%; border-collapse: collapse; font-size: 0.875rem; }
+  .dui-table-header th {
+    text-align: left;
+    padding: 0.75rem;
+    font-weight: 600;
+    color: hsl(var(--muted-foreground));
+    border-bottom: 1px solid hsl(var(--border));
+    background: hsl(var(--card));
+    white-space: nowrap;
+    cursor: default;
+  }
+  .dui-table-header th[data-sortable] { cursor: pointer; user-select: none; }
+  .dui-table-header th[data-sortable]:hover { color: hsl(var(--foreground)); }
+  .dui-table-row td { padding: 0.75rem; border-bottom: 1px solid hsl(var(--border)); }
+  .dui-table-row:hover td { background: hsl(var(--muted) / 0.5); }
+  .dui-table-filter { margin-bottom: 0.75rem; }
+  .dui-table-pagination {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.75rem 0;
+    font-size: 0.75rem;
+    color: hsl(var(--muted-foreground));
+  }
+  .dui-table-pagination-buttons { display: flex; gap: 0.25rem; }
+
+  .dui-stats-card { display: flex; flex-direction: column; gap: 0.5rem; }
+  .dui-stats-card-title { font-size: 0.75rem; font-weight: 500; color: hsl(var(--muted-foreground)); margin: 0; }
+  .dui-stats-card-value { font-size: 1.5rem; font-weight: 700; color: hsl(var(--foreground)); margin: 0; }
+  .dui-stats-card-row { display: flex; align-items: baseline; gap: 0.5rem; }
+  .dui-stats-card-trend { font-size: 0.75rem; font-weight: 500; }
+  .dui-stats-card-trend--up { color: hsl(var(--success)); }
+  .dui-stats-card-trend--down { color: hsl(var(--destructive)); }
+  .dui-stats-card-trend--neutral { color: hsl(var(--muted-foreground)); }
+  .dui-stats-card-description { font-size: 0.75rem; color: hsl(var(--muted-foreground)); margin: 0; }
+
+  .dui-chart { width: 100%; }
+
+  /* =========================================================================
+     Interaction Components
+     ========================================================================= */
+
+  .dui-command-palette {
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding-top: 20vh;
+    background: rgb(0 0 0 / 0.5);
+  }
+  .dui-command-dialog {
+    width: min(32rem, 90vw);
+    background: hsl(var(--popover));
+    color: hsl(var(--popover-foreground));
+    border: 1px solid hsl(var(--border));
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-elevated);
+    overflow: hidden;
+  }
+  .dui-command-input {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: none;
+    border-bottom: 1px solid hsl(var(--border));
+    background: transparent;
+    color: hsl(var(--foreground));
+    font-size: 0.875rem;
+    outline: none;
+  }
+  .dui-command-list { max-height: 20rem; overflow-y: auto; padding: 0.5rem; }
+  .dui-command-group-label { padding: 0.375rem 0.5rem; font-size: 0.75rem; font-weight: 500; color: hsl(var(--muted-foreground)); }
+  .dui-command-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem;
+    border-radius: calc(var(--radius) - 2px);
+    font-size: 0.875rem;
+    cursor: pointer;
+  }
+  .dui-command-item:hover, .dui-command-item[data-selected] {
+    background: hsl(var(--accent));
+    color: hsl(var(--accent-foreground));
+  }
+  .dui-command-shortcut { margin-left: auto; font-size: 0.75rem; color: hsl(var(--muted-foreground)); }
+  .dui-command-empty { padding: 1.5rem; text-align: center; font-size: 0.875rem; color: hsl(var(--muted-foreground)); }
+
+  .dui-sortable-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 0.75rem;
+    border: 1px solid hsl(var(--border));
+    border-radius: var(--radius);
+    background: hsl(var(--card));
+    transition: box-shadow 150ms ease, opacity 150ms ease;
+  }
+  .dui-sortable-item[data-dragging] { opacity: 0.5; box-shadow: var(--shadow-elevated); }
+  .dui-drag-handle { cursor: grab; color: hsl(var(--muted-foreground)); flex-shrink: 0; }
+  .dui-drag-handle:active { cursor: grabbing; }
+
+  .dui-date-picker-trigger {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 0.75rem;
+    border: 1px solid hsl(var(--input));
+    border-radius: var(--radius);
+    font-size: 0.875rem;
+    cursor: pointer;
+    background: transparent;
+    color: hsl(var(--foreground));
+  }
+  .dui-date-picker-trigger:focus-visible { outline: 2px solid hsl(var(--ring)); outline-offset: 2px; }
+  .dui-calendar { padding: 0.75rem; }
+}

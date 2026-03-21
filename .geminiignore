@@ -1,0 +1,12 @@
+# Import .gitignore rules
+.gitignore
+
+# Additional AI-tool specific ignores
+unsloth_compiled_cache/
+.git/
+
+.claude/
+*.lock
+bun.lockb
+uv.lock
+package-lock.json

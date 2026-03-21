@@ -1,0 +1,253 @@
+{
+  "app": {
+    "name": "DryadeApp",
+    "tagline": "Souveräne KI-Orchestrierungsplattform",
+    "airGapped": "Air-gapped • Standards-nativ • Souverän"
+  },
+  "nav": {
+    "chat": "Chat",
+    "dashboard": "Dashboard",
+    "agents": "Agenten",
+    "workflows": "Workflows",
+    "knowledge": "Wissen",
+    "factory": "Fabrik",
+    "loops": "Schleifen",
+    "health": "Systemstatus",
+    "metrics": "Metriken",
+    "plugins": "Plugins",
+    "costTracker": "Kostenübersicht",
+    "clarifyPreferences": "Einstellungen",
+    "settings": "Einstellungen"
+  },
+  "sections": {
+    "observability": "Beobachtbarkeit",
+    "account": "Konto",
+    "plugins": "Plugins"
+  },
+  "actions": {
+    "signOut": "Abmelden",
+    "save": "Speichern",
+    "cancel": "Abbrechen",
+    "delete": "Löschen",
+    "confirm": "Bestätigen",
+    "search": "Suchen",
+    "close": "Schließen",
+    "retry": "Erneut versuchen",
+    "refresh": "Aktualisieren",
+    "loading": "Laden...",
+    "collapse": "Seitenleiste einklappen",
+    "expand": "Seitenleiste ausklappen",
+    "openMenu": "Menü öffnen",
+    "closeMenu": "Menü schließen",
+    "tryAgain": "Erneut versuchen",
+    "previous": "Zurück",
+    "next": "Weiter",
+    "edit": "Bearbeiten"
+  },
+  "status": {
+    "loadingPlugins": "Plugins werden geladen..."
+  },
+  "clarify": {
+    "title": "Klärungseinstellungen",
+    "subtitle": "Verwalten Sie gespeicherte Antworten für Klärungsfragen. Diese füllen Formulare automatisch aus.",
+    "includeGlobal": "Globale einbeziehen",
+    "preferenceCount": "{{count}} Einstellung(en)",
+    "stats": {
+      "total": "Einstellungen gesamt",
+      "global": "Global",
+      "projectSpecific": "Projektspezifisch"
+    },
+    "empty": {
+      "noMatch": "Keine passenden Einstellungen",
+      "noMatchDescription": "Versuchen Sie andere Suchbegriffe oder löschen Sie Ihre Suche.",
+      "noPreferences": "Noch keine gespeicherten Einstellungen",
+      "noPreferencesDescription": "Einstellungen werden automatisch gespeichert, wenn Sie Klärungsfragen beantworten."
+    },
+    "answer": "Antwort: ",
+    "usedCount": "Verwendet: {{count}}x",
+    "threshold": "Schwellenwert:",
+    "deleteTitle": "Einstellung löschen",
+    "deleteDescription": "Möchten Sie diese Einstellung wirklich löschen? Diese Aktion kann nicht rückgängig gemacht werden.",
+    "searchPlaceholder": "Einstellungen durchsuchen...",
+    "toast": {
+      "deleted": "Einstellung gelöscht",
+      "deleteFailed": "Einstellung konnte nicht gelöscht werden",
+      "thresholdFailed": "Schwellenwert konnte nicht aktualisiert werden"
+    }
+  },
+  "costTracker": {
+    "title": "Kostenverfolgung",
+    "subtitle": "LLM-Nutzung und Ausgaben überwachen",
+    "stats": {
+      "totalCost": "Gesamtkosten",
+      "totalTokens": "Tokens gesamt",
+      "requests": "Anfragen",
+      "avgPerRequest": "Durchschnitt pro Anfrage"
+    },
+    "live": "Live",
+    "tabs": {
+      "overview": "Übersicht",
+      "byModel": "Nach Modell",
+      "byAgent": "Nach Agent",
+      "records": "Verlauf",
+      "pricing": "Preise"
+    },
+    "empty": {
+      "title": "Noch keine Kostendaten",
+      "description": "Kostendaten werden hier angezeigt, sobald LLM-Anfragen über die Plattform gestellt werden.",
+      "noModelData": "Keine Modelldaten",
+      "noModelDataDescription": "Kostenaufschlüsselungen nach Modell werden nach der Verarbeitung von Anfragen angezeigt.",
+      "noAgentData": "Keine Agentendaten",
+      "noAgentDataDescription": "Kostenaufschlüsselungen nach Agent werden nach der Verarbeitung von Anfragen angezeigt.",
+      "noRecords": "Keine Einträge",
+      "noRecordsDescription": "Nutzungseinträge werden hier angezeigt, sobald LLM-Anfragen gestellt werden.",
+      "noPricing": "Keine Preisdaten",
+      "noPricingDescription": "Klicken Sie auf 'Von LiteLLM aktualisieren', um Modellpreise zu laden."
+    },
+    "costByModel": "Kosten nach Modell",
+    "costByAgent": "Kosten nach Agent",
+    "table": {
+      "model": "Modell",
+      "totalCost": "Gesamtkosten",
+      "requests": "Anfragen",
+      "avgPerRequest": "Durchschn./Anfrage",
+      "timestamp": "Zeitstempel",
+      "agent": "Agent",
+      "inputTokens": "Eingabe",
+      "outputTokens": "Ausgabe",
+      "cost": "Kosten",
+      "provider": "Anbieter",
+      "inputPrice": "Eingabe $/1M",
+      "outputPrice": "Ausgabe $/1M",
+      "source": "Quelle",
+      "updated": "Aktualisiert"
+    },
+    "period": {
+      "last24h": "Letzte 24 Stunden",
+      "last7d": "Letzte 7 Tage",
+      "last30d": "Letzte 30 Tage",
+      "last90d": "Letzte 90 Tage"
+    },
+    "refreshFromLitellm": "Von LiteLLM aktualisieren",
+    "addModel": "Modell hinzufügen",
+    "addModelPricing": "Modellpreise hinzufügen",
+    "pricing": {
+      "modelName": "Modellname",
+      "inputPrice": "Eingabe $/1M Tokens",
+      "outputPrice": "Ausgabe $/1M Tokens"
+    },
+    "pagination": {
+      "showing": "Anzeige von {{start}}-{{end}} von {{total}}",
+      "previous": "Zurück",
+      "next": "Weiter"
+    },
+    "searchModelsPlaceholder": "Modelle suchen...",
+    "toast": {
+      "updateFailed": "Preise konnten nicht aktualisiert werden"
+    }
+  },
+  "loops": {
+    "title": "Geplante Schleifen",
+    "subtitle": "Planen Sie Workflows, Agenten, Skills und Aufgaben für die automatische Ausführung.",
+    "newLoop": "Neue Schleife",
+    "empty": {
+      "title": "Keine geplanten Schleifen",
+      "description": "Erstellen Sie eine Schleife, um Workflows, Agenten, Skills oder Aufgaben nach einem wiederkehrenden Zeitplan auszuführen."
+    },
+    "deleteTitle": "Schleife löschen?",
+    "deleteDescription": "Diese Schleife und ihr gesamter Ausführungsverlauf werden dauerhaft gelöscht. Diese Aktion kann nicht rückgängig gemacht werden.",
+    "noExecutions": "Noch keine Ausführungen.",
+    "recentExecutions": "Letzte Ausführungen ({{total}} gesamt)",
+    "targetTypes": {
+      "all": "Alle Typen",
+      "workflow": "Workflow",
+      "agent": "Agent",
+      "skill": "Skill",
+      "orchestratorTask": "Orchestrator-Aufgabe"
+    },
+    "enabledStates": {
+      "all": "Alle Zustände",
+      "active": "Aktiv",
+      "paused": "Pausiert"
+    },
+    "tableHeaders": {
+      "name": "Name",
+      "target": "Ziel",
+      "schedule": "Zeitplan",
+      "status": "Status",
+      "actions": "Aktionen"
+    },
+    "actions": {
+      "triggerNow": "Jetzt auslösen",
+      "pause": "Pausieren",
+      "resume": "Fortsetzen"
+    },
+    "placeholders": {
+      "targetType": "Zieltyp",
+      "state": "Zustand"
+    },
+    "toast": {
+      "triggered": "Schleife \"{{name}}\" ausgelöst.",
+      "triggerFailed": "Auslösung fehlgeschlagen.",
+      "paused": "Schleife \"{{name}}\" pausiert.",
+      "resumed": "Schleife \"{{name}}\" fortgesetzt.",
+      "failed": "Fehlgeschlagen.",
+      "deleted": "Schleife \"{{name}}\" gelöscht.",
+      "deleteFailed": "Löschen fehlgeschlagen."
+    }
+  },
+  "notFound": {
+    "title": "Seite nicht gefunden",
+    "message": "Der Wald hat hier keinen Weg.",
+    "returnHome": "Zur Startseite zurückkehren"
+  },
+  "errors": {
+    "forbidden": {
+      "title": "Zugriff verweigert",
+      "message": "Sie haben keine Berechtigung, auf diese Ressource zuzugreifen.",
+      "hint": "Kontaktieren Sie Ihren Administrator, wenn Sie glauben, dass dies ein Fehler ist.",
+      "resource": "Ressource:",
+      "requiredRole": "Erforderliche Rolle:",
+      "requestAccess": "Zugriff anfordern"
+    },
+    "unauthorized": {
+      "title": "Bitte anmelden",
+      "message": "Sie müssen angemeldet sein, um auf diese Seite zuzugreifen.",
+      "sessionExpired": "Ihre Sitzung ist möglicherweise abgelaufen.",
+      "logIn": "Anmelden",
+      "returnHome": "Zur Startseite"
+    },
+    "server": {
+      "title": "Etwas ist schiefgelaufen",
+      "message": "Bei der Verarbeitung Ihrer Anfrage ist ein Problem aufgetreten.",
+      "hint": "Unser Team wurde benachrichtigt und arbeitet daran.",
+      "errorDetails": "Fehlerdetails",
+      "errorId": "Fehler-ID:",
+      "timestamp": "Zeitstempel:",
+      "tryAgain": "Erneut versuchen",
+      "reportIssue": "Problem melden",
+      "optionalDescription": "Optionale Beschreibung",
+      "descriptionPlaceholder": "Was haben Sie getan, als dieser Fehler aufgetreten ist?",
+      "submitReport": "Bericht senden",
+      "reportSubmitted": "Bericht gesendet"
+    },
+    "network": {
+      "title": "Keine Internetverbindung",
+      "message": "Bitte überprüfen Sie Ihre Verbindung und versuchen Sie es erneut.",
+      "checking": "Prüfe...",
+      "autoRecover": "Diese Seite wird automatisch wiederhergestellt, wenn die Verbindung wiederhergestellt ist.",
+      "connectionRestored": "Verbindung wiederhergestellt!",
+      "stillOffline": "Weiterhin offline"
+    },
+    "goToDashboard": "Zum Dashboard"
+  },
+  "timeAgo": {
+    "unknown": "Unbekannt",
+    "secondsAgo": "Vor {{n}}s",
+    "minutesAgo": "Vor {{n}} Min.",
+    "hoursAgo": "Vor {{n}} Std.",
+    "daysAgo": "Vor {{n}} Tagen"
+  },
+  "theme": "Design",
+  "language": "Sprache"
+}

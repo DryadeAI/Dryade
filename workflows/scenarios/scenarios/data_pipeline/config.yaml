@@ -1,0 +1,40 @@
+name: data_pipeline
+display_name: "Data Analysis Pipeline"
+description: "Extract, transform, and analyze data from multiple sources into a structured report"
+domain: dev
+difficulty: intermediate
+version: "1.0.0"
+
+triggers:
+  chat_command: "/analyze-data"
+  api_endpoint: "/workflow-scenarios/data_pipeline/trigger"
+  ui_button:
+    label: "Analyze Data"
+    location: "data_page"
+
+inputs:
+  - name: data_source
+    type: file
+    required: true
+    description: "Data file to analyze (CSV, Excel, JSON)"
+  - name: analysis_type
+    type: string
+    required: true
+    description: "Type of analysis to perform: summary, trends, anomalies, or full"
+    default: "summary"
+
+outputs:
+  - name: report
+    type: markdown
+  - name: data_table
+    type: table
+  - name: visualizations
+    type: json
+
+required_agents:
+  - database_analyst
+  - document_processor
+
+observability:
+  metrics_enabled: true
+  log_tool_calls: true

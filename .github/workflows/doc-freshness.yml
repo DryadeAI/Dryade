@@ -1,0 +1,33 @@
+# Doc Freshness CI — Enforce documentation accuracy on PRs
+#
+# Runs check_doc_freshness.py in check mode on pull requests.
+# Cross-repo dispatch is disabled in the community edition (no plugins dir).
+
+name: Doc Freshness
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - 'dryade-core/core/api/**'
+      - 'docs/**'
+      - 'README.md'
+
+jobs:
+  check-freshness:
+    name: Check Doc Freshness
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install minimal dependencies
+        run: pip install fastapi uvicorn pydantic
+
+      - name: Run freshness checks
+        run: python scripts/check_doc_freshness.py

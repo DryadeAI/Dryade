@@ -1,0 +1,40 @@
+name: rag_pipeline
+display_name: "RAG Knowledge Base Query"
+description: "Build and query a knowledge base from documents using retrieval-augmented generation"
+domain: dev
+difficulty: intermediate
+version: "1.0.0"
+template_ref: "_templates/linear-3task"
+
+triggers:
+  chat_command: "/rag-query"
+  api_endpoint: "/workflow-scenarios/rag_pipeline/trigger"
+  ui_button:
+    label: "Query Knowledge Base"
+    location: "documents_page"
+
+inputs:
+  - name: documents
+    type: file
+    required: true
+    description: "One or more documents to ingest into the knowledge base"
+  - name: query
+    type: string
+    required: true
+    description: "Question or query to answer from the knowledge base"
+
+outputs:
+  - name: answer
+    type: markdown
+  - name: sources
+    type: json
+  - name: confidence_score
+    type: json
+
+required_agents:
+  - research_assistant
+  - document_processor
+
+observability:
+  metrics_enabled: true
+  log_tool_calls: true

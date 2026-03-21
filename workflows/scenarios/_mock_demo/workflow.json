@@ -1,0 +1,22 @@
+{
+  "version": "1.0.0",
+  "metadata": { "name": "_mock_demo", "description": "Mock demo for CI testing" },
+  "nodes": [
+    { "id": "start", "type": "start", "position": { "x": 0, "y": 0 }, "data": {} },
+    {
+      "id": "mock_task",
+      "type": "task",
+      "position": { "x": 200, "y": 0 },
+      "data": {
+        "agent": "mock",
+        "task": "Return mock output for CI testing",
+        "mock_output": "Mock task completed successfully"
+      }
+    },
+    { "id": "end", "type": "end", "position": { "x": 400, "y": 0 }, "data": {} }
+  ],
+  "edges": [
+    { "id": "e1", "source": "start", "target": "mock_task" },
+    { "id": "e2", "source": "mock_task", "target": "end" }
+  ]
+}

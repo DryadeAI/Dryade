@@ -1,0 +1,57 @@
+{
+  "version": "1.0.0",
+  "metadata": {
+    "name": "rag_pipeline",
+    "description": "Build and query a knowledge base from documents using retrieval-augmented generation",
+    "domain": "dev",
+    "difficulty": "intermediate"
+  },
+  "nodes": [
+    {
+      "id": "start",
+      "type": "start",
+      "position": {"x": 0, "y": 100}
+    },
+    {
+      "id": "ingest_documents",
+      "type": "task",
+      "data": {
+        "agent": "document_processor",
+        "task": "Parse and chunk the uploaded documents into semantically meaningful segments. Extract metadata for each chunk",
+        "context": {"output_format": "chunked_json"}
+      },
+      "position": {"x": 200, "y": 100}
+    },
+    {
+      "id": "retrieve_relevant",
+      "type": "task",
+      "data": {
+        "agent": "research_assistant",
+        "task": "Search the knowledge base for chunks most relevant to the user's query. Return top 5 chunks with relevance scores",
+        "context": {"requires": ["ingest_documents.output"]}
+      },
+      "position": {"x": 400, "y": 100}
+    },
+    {
+      "id": "generate_answer",
+      "type": "task",
+      "data": {
+        "agent": "research_assistant",
+        "task": "Generate an answer to the query using the retrieved chunks as context. Cite each source chunk used. Provide a confidence score 0-1",
+        "context": {"requires": ["retrieve_relevant.output"]}
+      },
+      "position": {"x": 600, "y": 100}
+    },
+    {
+      "id": "end",
+      "type": "end",
+      "position": {"x": 800, "y": 100}
+    }
+  ],
+  "edges": [
+    {"id": "e1", "source": "start", "target": "ingest_documents"},
+    {"id": "e2", "source": "ingest_documents", "target": "retrieve_relevant"},
+    {"id": "e3", "source": "retrieve_relevant", "target": "generate_answer"},
+    {"id": "e4", "source": "generate_answer", "target": "end"}
+  ]
+}

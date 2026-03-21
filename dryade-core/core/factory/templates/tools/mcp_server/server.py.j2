@@ -1,0 +1,101 @@
+"""{{ name }} - {{ description }}"""
+
+import os
+from contextlib import asynccontextmanager
+from collections.abc import AsyncIterator
+
+from mcp.server.fastmcp import FastMCP
+
+{% if has_lifespan | default(false) %}
+# --- Lifespan: resource initialization and cleanup ---
+
+@asynccontextmanager
+async def server_lifespan(server: FastMCP) -> AsyncIterator[dict]:
+    """Initialize resources on startup, clean up on shutdown.
+
+    Yields a context dict accessible via server.request_context.lifespan_context.
+    """
+    # Initialize resources (e.g., DB connections, HTTP clients)
+    context: dict = {}
+    {% if lifespan_init is defined %}
+{{ lifespan_init | indent(4, first=True) }}
+    {% else %}
+    # TODO: Add initialization logic
+    pass
+    {% endif %}
+    try:
+        yield context
+    finally:
+        # Cleanup resources
+        {% if lifespan_cleanup is defined %}
+{{ lifespan_cleanup | indent(8, first=True) }}
+        {% else %}
+        # TODO: Add cleanup logic
+        pass
+        {% endif %}
+
+
+mcp = FastMCP("{{ server_name | default(name) }}", lifespan=server_lifespan)
+{% else %}
+mcp = FastMCP("{{ server_name | default(name) }}")
+{% endif %}
+
+{% if auth_config is defined and auth_config.env_vars is defined %}
+# --- Authentication Environment Variables ---
+{% for var in auth_config.env_vars %}
+{{ var }} = os.environ.get("{{ var }}")
+{% endfor %}
+{% endif %}
+
+# --- Tools ---
+
+{% for tool in tools %}
+@mcp.tool()
+def {{ tool.name }}(
+{% for p in tool.params %}
+    {{ p.name }}: {{ p.type }}{{ "," if not loop.last else "" }}
+{% endfor %}
+) -> {{ tool.return_type | default("str") }}:
+    """{{ tool.description }}"""
+{{ tool.implementation | default('# TODO: Implement this tool\nreturn "Not yet implemented"') | indent(4, first=True) }}
+
+
+{% endfor %}
+{% if resources is defined and resources %}
+# --- Resources ---
+
+{% for resource in resources %}
+@mcp.resource("{{ resource.uri }}")
+{% if resource.is_async | default(false) %}
+async def {{ resource.function_name | default(resource.name | replace('-', '_') | replace('/', '_') | replace(':', '_')) }}() -> str:
+{% else %}
+def {{ resource.function_name | default(resource.name | replace('-', '_') | replace('/', '_') | replace(':', '_')) }}() -> str:
+{% endif %}
+    """{{ resource.description | default('Resource: ' + resource.uri) }}"""
+{{ resource.implementation | default('# TODO: Implement this resource\nreturn ""') | indent(4, first=True) }}
+
+
+{% endfor %}
+{% endif %}
+{% if prompts is defined and prompts %}
+# --- Prompts ---
+
+{% for prompt in prompts %}
+@mcp.prompt()
+{% if prompt.is_async | default(false) %}
+async def {{ prompt.name }}(
+{% else %}
+def {{ prompt.name }}(
+{% endif %}
+{% for p in prompt.params | default([]) %}
+    {{ p.name }}: {{ p.type | default("str") }}{{ "," if not loop.last else "" }}
+{% endfor %}
+) -> str:
+    """{{ prompt.description | default('Prompt template: ' + prompt.name) }}"""
+{{ prompt.implementation | default('# TODO: Implement this prompt\nreturn ""') | indent(4, first=True) }}
+
+
+{% endfor %}
+{% endif %}
+if __name__ == "__main__":
+    mcp.run()

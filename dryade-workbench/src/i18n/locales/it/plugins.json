@@ -1,0 +1,85 @@
+{
+  "page": {
+    "title": "Plugins",
+    "subtitle": "Manage installed plugins and discover new ones",
+    "installPackage": "Install Plugin Package"
+  },
+  "tabs": {
+    "plugins": "Plugins",
+    "marketplace": "Marketplace"
+  },
+  "search": {
+    "plugins": "Search plugins...",
+    "marketplace": "Search marketplace..."
+  },
+  "status": {
+    "active": "Active",
+    "inactive": "Inactive",
+    "error": "Error",
+    "installed": "{{count}} installed",
+    "loadingPlugins": "Loading plugins..."
+  },
+  "config": {
+    "pluginEnabled": "Plugin Enabled",
+    "configuration": "Configuration",
+    "autoRestart": "Auto-restart on failure",
+    "debugLogging": "Debug logging",
+    "priority": "Priority"
+  },
+  "actions": {
+    "restart": "Restart",
+    "advanced": "Advanced",
+    "install": "Install",
+    "installing": "Installing..."
+  },
+  "marketplace": {
+    "all": "All",
+    "installed": "Installed",
+    "requires": "Requires {{tier}}",
+    "byAuthor": "by {{author}}",
+    "pluginCount": "{{count}} plugin",
+    "pluginCount_other": "{{count}} plugins",
+    "noPluginsFound": "No plugins found",
+    "noPluginsHint": "Try adjusting your search or category filter."
+  },
+  "empty": {
+    "noPluginsFound": "No plugins found matching your search"
+  },
+  "toast": {
+    "loadFailed": "Failed to load plugins",
+    "statusUpdated": "Plugin status updated",
+    "statusUpdateFailed": "Failed to update plugin status",
+    "marketplaceLoadFailed": "Failed to load marketplace catalog",
+    "installFailed": "Install failed"
+  },
+  "shortcuts": {
+    "title": "Keyboard Shortcuts",
+    "toggleHintPrefix": "Press",
+    "toggleHintSuffix": "to toggle this dialog",
+    "groups": {
+      "global": "Global",
+      "chat": "Chat",
+      "workflow": "Workflow"
+    },
+    "actions": {
+      "commandPalette": "Command palette",
+      "showKeyboardShortcuts": "Show keyboard shortcuts",
+      "toggleSidebar": "Toggle sidebar",
+      "searchMessages": "Search messages",
+      "sendMessage": "Send message",
+      "newLine": "New line",
+      "runWorkflow": "Run workflow",
+      "stopDeselect": "Stop / Deselect",
+      "saveWorkflow": "Save workflow",
+      "undo": "Undo",
+      "redo": "Redo",
+      "selectAllNodes": "Select all nodes",
+      "copySelectedNodes": "Copy selected nodes",
+      "pasteNodes": "Paste nodes",
+      "duplicateNodes": "Duplicate nodes",
+      "resetZoom": "Reset zoom to 100%",
+      "fitView": "Fit view",
+      "deleteSelected": "Delete selected"
+    }
+  }
+}

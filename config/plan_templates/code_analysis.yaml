@@ -1,0 +1,42 @@
+name: code_analysis
+description: Analyze code quality and suggest improvements
+category: code_quality
+parameters:
+  - name: file_path
+    type: string
+    required: true
+    description: "Path to file to analyze"
+  - name: focus_areas
+    type: array
+    required: false
+    default: ["complexity", "duplicates", "security"]
+    description: "Aspects to analyze (complexity, duplicates, security, style)"
+
+nodes:
+  - id: read_code
+    agent: file_reader
+    task: "Read and parse {file_path}"
+    depends_on: []
+    expected_output: "File contents and structure"
+
+  - id: analyze_quality
+    agent: code_analyzer
+    task: "Analyze {focus_areas} in the code from {file_path}"
+    depends_on: ["read_code"]
+    expected_output: "Quality report with issues"
+
+  - id: suggest_improvements
+    agent: code_refactorer
+    task: "Suggest specific improvements for identified issues in {file_path}"
+    depends_on: ["analyze_quality"]
+    expected_output: "Actionable refactoring suggestions"
+
+edges:
+  - source: read_code
+    target: analyze_quality
+  - source: analyze_quality
+    target: suggest_improvements
+
+metadata:
+  estimated_duration_seconds: 60
+  cost_estimate_usd: 0.03

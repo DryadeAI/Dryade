@@ -1,0 +1,46 @@
+{
+  "version": "1.0.0",
+  "metadata": {
+    "name": "email_summarizer",
+    "description": "Summarize a batch of emails into a daily digest with action items",
+    "domain": "productivity",
+    "difficulty": "beginner"
+  },
+  "nodes": [
+    {
+      "id": "start",
+      "type": "start",
+      "position": {"x": 0, "y": 100}
+    },
+    {
+      "id": "extract_key_points",
+      "type": "task",
+      "data": {
+        "agent": "document_processor",
+        "task": "Extract key topics, senders, dates, and action items from the email batch",
+        "context": {"output_format": "structured_json"}
+      },
+      "position": {"x": 200, "y": 100}
+    },
+    {
+      "id": "generate_digest",
+      "type": "task",
+      "data": {
+        "agent": "document_processor",
+        "task": "Create a structured daily digest with sections: Summary, Action Items, Follow-ups, FYI",
+        "context": {"requires": ["extract_key_points.output"]}
+      },
+      "position": {"x": 400, "y": 100}
+    },
+    {
+      "id": "end",
+      "type": "end",
+      "position": {"x": 600, "y": 100}
+    }
+  ],
+  "edges": [
+    {"id": "e1", "source": "start", "target": "extract_key_points"},
+    {"id": "e2", "source": "extract_key_points", "target": "generate_digest"},
+    {"id": "e3", "source": "generate_digest", "target": "end"}
+  ]
+}

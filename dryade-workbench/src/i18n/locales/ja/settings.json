@@ -1,0 +1,4 @@
+{
+  "groups": { "account": "アカウント", "workspace": "ワークスペース", "advanced": "高度な設定" },
+  "tabs": { "profile": "プロフィール", "profileDesc": "個人情報を管理", "appearance": "外観", "appearanceDesc": "見た目をカスタマイズ", "notifications": "通知", "notificationsDesc": "通知設定を構成", "chat": "チャット＆エージェント", "chatDesc": "チャットとエージェントの動作を設定", "models": "モデル", "modelsDesc": "AIモデルプロバイダーを設定", "apiKeys": "APIキー", "apiKeysDesc": "アクセスキーと資格情報を管理", "factory": "ファクトリー", "factoryDesc": "アーティファクト作成を設定", "data": "データとプライバシー", "dataDesc": "自動保存、エクスポート、アカウント管理" }
+}
