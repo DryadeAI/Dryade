@@ -8,6 +8,7 @@ from dataclasses import dataclass, field
 
 from core.providers.capabilities import AuthType, Capability
 
+
 @dataclass
 class ModelMetadata:
     """Metadata for a specific model offered by a provider."""

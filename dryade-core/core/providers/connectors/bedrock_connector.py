@@ -2,6 +2,7 @@
 
 from core.providers.connectors.base import ConnectionTestResult, ProviderConnector
 
+
 class BedrockConnector(ProviderConnector):
     """AWS Bedrock connection testing.
 

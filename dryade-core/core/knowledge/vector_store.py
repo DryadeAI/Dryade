@@ -8,6 +8,7 @@ from __future__ import annotations
 
 from abc import ABC, abstractmethod
 
+
 class VectorStoreBackend(ABC):
     """Abstract base class for vector store backends.
 

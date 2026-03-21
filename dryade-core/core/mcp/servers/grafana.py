@@ -18,6 +18,7 @@ if TYPE_CHECKING:
     from core.mcp.registry import MCPRegistry
 from core.utils.time import utcnow
 
+
 class AlertAccessLevel(Enum):
     """Alert management access level.
 

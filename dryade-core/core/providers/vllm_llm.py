@@ -581,7 +581,7 @@ class VLLMBaseLLM(BaseLLM):
                 and not kwargs.get("_retried_without_tools")
             ):
                 logger.warning(
-                    f"[VLLM] Server rejected tools (HTTP 400). "
+                    "[VLLM] Server rejected tools (HTTP 400). "
                     "Falling back to text-only call."
                 )
                 kwargs["_retried_without_tools"] = True
@@ -746,7 +746,7 @@ class VLLMBaseLLM(BaseLLM):
                 and not kwargs.get("_retried_without_tools")
             ):
                 logger.warning(
-                    f"[VLLM] (async) Server rejected tools (HTTP 400). "
+                    "[VLLM] (async) Server rejected tools (HTTP 400). "
                     "Falling back to text-only call."
                 )
                 kwargs["_retried_without_tools"] = True

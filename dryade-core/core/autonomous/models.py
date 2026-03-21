@@ -7,6 +7,7 @@ from uuid import UUID, uuid4
 
 from pydantic import BaseModel, Field
 
+
 class ActionType(str, Enum):
     """Types of actions the ReAct executor can take.
 

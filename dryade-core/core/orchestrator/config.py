@@ -7,6 +7,7 @@ across observation.py, orchestrator.py, thinking/provider.py, and handlers.
 from pydantic import Field
 from pydantic_settings import BaseSettings
 
+
 class OrchestrationConfig(BaseSettings):
     """Orchestration subsystem configuration.
 

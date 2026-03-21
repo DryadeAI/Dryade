@@ -609,7 +609,6 @@ class OrchestrationThinkingProvider:
             Tuple of (content, reasoning_content).
             reasoning_content is None if no reasoning was provided.
         """
-        import asyncio
 
         from core.extensions.request_queue import get_request_queue
 

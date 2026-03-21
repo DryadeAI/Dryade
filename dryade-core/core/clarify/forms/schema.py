@@ -9,6 +9,7 @@ from typing import Any, Literal
 
 from pydantic import BaseModel, Field, field_validator
 
+
 class ControlType(str, Enum):
     """Form control types with tier requirements.
 

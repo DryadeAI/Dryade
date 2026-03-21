@@ -13,6 +13,7 @@ from cryptography.fernet import Fernet
 
 from core.logs import get_logger
 
+
 @lru_cache
 def get_encryption_key() -> bytes:
     """Get or generate encryption key from Settings.

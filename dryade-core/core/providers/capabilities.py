@@ -6,6 +6,7 @@ String values enable JSON serialization for API responses and configuration.
 
 from enum import Enum
 
+
 class AuthType(Enum):
     """Authentication method required by a provider."""
 

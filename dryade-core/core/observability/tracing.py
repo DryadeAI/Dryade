@@ -12,6 +12,7 @@ from sqlalchemy import func
 
 from core.utils.time import utcnow
 
+
 def _safe_serialize(obj: Any) -> Any:
     """Safely serialize an object to JSON-compatible format.
 

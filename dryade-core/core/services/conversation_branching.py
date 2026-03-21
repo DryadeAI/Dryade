@@ -19,6 +19,7 @@ from typing import Any
 
 from pydantic import BaseModel
 
+
 class ConversationCheckpoint(BaseModel):
     """Snapshot of conversation state at a point in time."""
 

@@ -9,6 +9,7 @@ from pathlib import Path
 
 from pydantic import BaseModel
 
+
 class FileLocator(BaseModel):
     """Locates a file within a logical root directory.
 

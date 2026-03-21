@@ -13,6 +13,7 @@ Target: ~80 LOC
 
 import uuid
 
+
 def cleanup_orphaned_tool_results(messages: list[dict]) -> list[dict]:
     """Remove tool results without matching tool calls.
 

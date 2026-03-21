@@ -8,6 +8,7 @@ import threading
 import time
 from dataclasses import dataclass, field
 
+
 @dataclass
 class ActiveStream:
     """State for a single active streaming conversation."""

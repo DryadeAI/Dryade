@@ -106,6 +106,7 @@ __all__ = [
 import importlib as _importlib
 import warnings as _warnings
 
+
 class _PluginStub:
     """Sentinel for missing plugin symbols.
 

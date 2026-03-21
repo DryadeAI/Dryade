@@ -13,6 +13,7 @@ from core.database.models import User
 from core.database.rls import set_rls_context
 from core.database.session import get_session
 
+
 def get_db():
     """Database session dependency."""
     with get_session() as db:

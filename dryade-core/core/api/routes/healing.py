@@ -21,9 +21,9 @@ from typing import Any
 from fastapi import APIRouter, HTTPException, Path, status
 from pydantic import BaseModel, ConfigDict, Field
 
+import core.extensions as _extensions
 from core.api.models.openapi import response_with_errors
 from core.config import get_settings
-import core.extensions as _extensions
 from core.logs import get_logger
 from core.utils.time import utcnow
 

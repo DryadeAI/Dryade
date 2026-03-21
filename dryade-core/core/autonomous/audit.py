@@ -381,12 +381,13 @@ class AuditLogger:
         breaking the main request path.
         """
         try:
+            from datetime import UTC as _UTC
+            from datetime import datetime as _dt
+
+            from sqlalchemy import text as _text
+
             from core.auth.audit import compute_entry_hash
             from core.database.ai_decision_log import AIDecisionLog
-
-            from datetime import datetime as _dt
-            from datetime import UTC as _UTC
-            from sqlalchemy import text as _text
 
             now = _dt.now(_UTC)
             next_id = db.execute(_text("SELECT nextval('ai_decision_log_id_seq')")).scalar()
@@ -442,12 +443,13 @@ def log_ai_decision(
     Never raises -- logs errors and returns silently (same pattern as log_audit).
     """
     try:
+        from datetime import UTC as _UTC
+        from datetime import datetime as _dt
+
+        from sqlalchemy import text as _text
+
         from core.auth.audit import compute_entry_hash
         from core.database.ai_decision_log import AIDecisionLog
-
-        from datetime import datetime as _dt
-        from datetime import UTC as _UTC
-        from sqlalchemy import text as _text
 
         effective_risk = risk_level or os.environ.get("DRYADE_AI_RISK_LEVEL", "limited")
 

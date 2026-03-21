@@ -12,6 +12,7 @@ from .build_plugins import build_plugins, dev_push
 from .create_plugin import create_plugin
 from .validate_plugin import validate_plugin
 
+
 @click.group()
 @click.version_option(version="1.0.0", prog_name="dryade")
 def main():

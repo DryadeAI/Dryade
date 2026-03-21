@@ -22,10 +22,10 @@ from fastapi import APIRouter, Body, File, HTTPException, UploadFile, status
 from pydantic import BaseModel, ConfigDict, Field
 from sqlalchemy import func
 
+import core.extensions as _extensions
 from core.api.models.openapi import response_with_errors
 from core.database.models import FileScanResult
 from core.database.session import get_session
-import core.extensions as _extensions
 from core.logs import get_logger
 
 router = APIRouter(tags=["files"])

@@ -19,6 +19,7 @@ from core.config import get_settings
 from core.database.models import MFARecoveryCode, User
 from core.ee.allowlist_ee import get_allowlist_path
 
+
 class AuthService:
     """Authentication service for local user management."""
 

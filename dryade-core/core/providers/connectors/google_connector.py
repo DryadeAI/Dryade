@@ -2,6 +2,7 @@
 
 from core.providers.connectors.base import ConnectionTestResult, ProviderConnector
 
+
 class GoogleConnector(ProviderConnector):
     """Google Gemini API connection testing.
 

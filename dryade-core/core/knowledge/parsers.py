@@ -8,6 +8,7 @@ from __future__ import annotations
 
 from pathlib import Path
 
+
 def parse_docx(path: Path) -> str:
     """Parse a DOCX file to plain text.
 

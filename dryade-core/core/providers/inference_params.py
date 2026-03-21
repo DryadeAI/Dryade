@@ -10,6 +10,7 @@ Single source of truth for:
 
 from dataclasses import dataclass
 
+
 @dataclass
 class ParamSpec:
     """Specification for a single inference parameter."""

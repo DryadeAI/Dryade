@@ -6,6 +6,7 @@ This domain provides test agents that don't require any external services.
 
 from pathlib import Path
 
+
 def get_domain_path() -> Path:
     """Get the path to this domain's directory."""
     return Path(__file__).parent

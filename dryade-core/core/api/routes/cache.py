@@ -12,8 +12,8 @@ from typing import Any
 from fastapi import APIRouter, HTTPException, Query, status
 from pydantic import BaseModel, ConfigDict, Field
 
-from core.api.models.openapi import response_with_errors
 import core.extensions as _extensions
+from core.api.models.openapi import response_with_errors
 from core.logs import get_logger
 from core.utils.time import utcnow
 

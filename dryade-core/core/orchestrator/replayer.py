@@ -17,6 +17,7 @@ from enum import Enum
 from pathlib import Path
 from typing import Any
 
+
 class EventType(str, Enum):
     """Types of recorded events."""
 

@@ -11,6 +11,7 @@ from datetime import UTC, datetime
 from enum import Enum
 from typing import Any
 
+
 class ContextScope(str, Enum):
     """Context scope levels (most specific to most general)."""
 

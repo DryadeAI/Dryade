@@ -8,6 +8,7 @@ from dataclasses import dataclass
 
 from core.config import get_settings
 
+
 @dataclass
 class KnowledgeConfig:
     """Configuration for knowledge/RAG pipeline components."""

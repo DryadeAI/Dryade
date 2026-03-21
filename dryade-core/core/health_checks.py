@@ -130,6 +130,7 @@ def get_plugin_health_registry() -> PluginHealthRegistry:
 
 from enum import Enum
 
+
 class HealthStatusLevel(str, Enum):
     """Health status levels for graceful degradation.
 

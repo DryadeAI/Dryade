@@ -7,6 +7,7 @@ import threading
 
 from core.adapters.protocol import AgentCard, AgentFramework, UniversalAgent
 
+
 class AgentRegistry:
     """Central registry for all agents across frameworks.
 

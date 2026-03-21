@@ -8,6 +8,7 @@ from typing import Any
 
 from pydantic import BaseModel, Field
 
+
 class StateMapping(BaseModel):
     """State export/require configuration for a tool."""
 

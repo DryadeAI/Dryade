@@ -2,6 +2,7 @@
 
 from core.providers.connectors.base import ConnectionTestResult, ProviderConnector
 
+
 class MistralConnector(ProviderConnector):
     """Mistral AI API connection testing.
 

@@ -8,6 +8,7 @@ from fastapi import Request
 from starlette.middleware.base import BaseHTTPMiddleware
 from starlette.responses import JSONResponse
 
+
 class RequestSizeMiddleware(BaseHTTPMiddleware):
     """Middleware to enforce maximum request body size."""
 

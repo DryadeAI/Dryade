@@ -30,6 +30,7 @@ from typing import Any
 
 from pydantic import BaseModel, Field
 
+
 class ClarificationRequest(BaseModel):
     """Request for user clarification."""
 

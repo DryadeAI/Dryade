@@ -518,23 +518,6 @@ Generate the execution plan:"""
 
         capabilities = self.get_available_capabilities()
 
-        # Trim capabilities to fit context window (same logic as create_plan)
-        max_context_tokens = 8192
-        try:
-            llm = self.llm
-            for attr in ("_max_model_len", "num_ctx", "context_length"):
-                val = getattr(llm, attr, None)
-                if val and isinstance(val, int) and val > 0:
-                    max_context_tokens = val
-                    break
-            else:
-                if hasattr(llm, "_get_max_model_len"):
-                    val = llm._get_max_model_len()
-                    if val and isinstance(val, int) and val > 0:
-                        max_context_tokens = val
-        except Exception:
-            pass
-
         # For modify_plan: only include agent names and brief descriptions, skip tools
         # This drastically reduces prompt size
         capabilities_brief = [

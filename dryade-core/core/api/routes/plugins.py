@@ -32,6 +32,7 @@ from core.extensions.pipeline import get_extension_registry
 from core.slots import SlotName, slot_registry
 from core.slots.models import SlotRegistration
 
+
 def get_plugin_manager():
     """Get the plugin manager."""
     return _get_plugin_manager()

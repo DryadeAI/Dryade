@@ -24,6 +24,7 @@ from __future__ import annotations
 
 from typing import Any
 
+
 class DryadeError(Exception):
     """Base exception for all Dryade errors.
 

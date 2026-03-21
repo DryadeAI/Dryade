@@ -6,6 +6,7 @@ Used by both event_bridge.py (SSE streaming) and crewai_tracing.py
 
 from typing import Any
 
+
 def extract_agent_name(event: Any) -> str | None:
     """Extract agent name from a CrewAI event object.
 

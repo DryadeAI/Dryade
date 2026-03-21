@@ -20,6 +20,7 @@ from sqlalchemy import (
 
 from core.database.models import Base
 
+
 class AIDecisionLog(Base):
     """EU AI Act transparency log for AI-assisted decisions.
 

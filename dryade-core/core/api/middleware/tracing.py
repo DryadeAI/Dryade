@@ -10,6 +10,7 @@ import uuid
 from fastapi import Request
 from starlette.middleware.base import BaseHTTPMiddleware
 
+
 class TracingMiddleware(BaseHTTPMiddleware):
     """Middleware to add request tracing spans."""
 

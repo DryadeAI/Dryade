@@ -13,6 +13,7 @@ from fastapi import Request
 from starlette.middleware.base import BaseHTTPMiddleware
 from starlette.responses import JSONResponse
 
+
 class RateLimitMiddleware(BaseHTTPMiddleware):
     """In-memory rate limiting middleware."""
 

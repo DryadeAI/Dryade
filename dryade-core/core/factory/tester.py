@@ -299,7 +299,7 @@ async def test_artifact(
 
     # Step 2: SMOKE TEST (only if import passes and not a skill)
     if import_ok and artifact_type != ArtifactType.SKILL:
-        task = test_task or generate_test_task(artifact_type, {})
+        _task = test_task or generate_test_task(artifact_type, {})  # noqa: F841
         parent_dir = str(p.parent)
         module_name = p.name
         smoke_code = (

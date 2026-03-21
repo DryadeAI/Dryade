@@ -5,6 +5,7 @@ import openai
 
 from core.providers.connectors.base import ConnectionTestResult, ProviderConnector
 
+
 class OllamaConnector(ProviderConnector):
     """Connector for Ollama local inference server.
 

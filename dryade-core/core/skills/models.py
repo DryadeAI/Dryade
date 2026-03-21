@@ -7,6 +7,7 @@ from typing import Any
 
 from pydantic import BaseModel, Field
 
+
 class SkillRequirements(BaseModel):
     """Requirements that must be met for a skill to be loaded."""
 

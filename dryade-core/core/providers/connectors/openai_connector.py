@@ -4,6 +4,7 @@ import openai
 
 from core.providers.connectors.base import ConnectionTestResult, ProviderConnector
 
+
 class OpenAIConnector(ProviderConnector):
     """Connector for OpenAI and Azure OpenAI providers.
 

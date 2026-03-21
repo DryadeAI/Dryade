@@ -26,6 +26,7 @@ from core.mcp.registry import get_registry
 from core.observability.metrics import record_mcp_tool_call
 from core.observability.tracing import trace_event
 
+
 def extract_mcp_text(result: MCPToolCallResult) -> str:
     """Extract text content from MCP tool call result.
 

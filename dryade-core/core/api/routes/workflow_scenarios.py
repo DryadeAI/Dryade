@@ -1063,6 +1063,7 @@ from pathlib import Path
 
 from fastapi import File, Form, UploadFile
 
+
 @router.post(
     "/upload-input",
     response_model=UploadResponse,

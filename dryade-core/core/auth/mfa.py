@@ -14,6 +14,7 @@ import qrcode
 import qrcode.image.svg
 from passlib.hash import argon2
 
+
 def generate_totp_secret() -> str:
     """Generate a random base32 TOTP secret."""
     return pyotp.random_base32()

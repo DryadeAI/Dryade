@@ -75,8 +75,9 @@ async def log_audit(
             log_audit, db, user_id, "create", "workflow", str(workflow.id)
         )
     """
+    from datetime import UTC, datetime
+
     from core.database.session import get_session
-    from datetime import datetime, UTC
 
     try:
         with get_session() as session:
@@ -131,8 +132,9 @@ def log_audit_sync(
 
     Uses its own session to avoid poisoning the caller's session on failure.
     """
+    from datetime import UTC, datetime
+
     from core.database.session import get_session
-    from datetime import datetime, UTC
 
     try:
         with get_session() as session:

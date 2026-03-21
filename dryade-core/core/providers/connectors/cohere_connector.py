@@ -2,6 +2,7 @@
 
 from core.providers.connectors.base import ConnectionTestResult, ProviderConnector
 
+
 class CohereConnector(ProviderConnector):
     """Cohere API connection testing.
 

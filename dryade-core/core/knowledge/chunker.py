@@ -10,6 +10,7 @@ from dataclasses import dataclass, field
 
 from core.knowledge.config import KnowledgeConfig
 
+
 @dataclass
 class Chunk:
     """A text chunk with metadata and position index."""

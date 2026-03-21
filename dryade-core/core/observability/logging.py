@@ -17,6 +17,7 @@ except ImportError:
 
 from core.config import get_settings
 
+
 class ColoredFormatter(logging.Formatter):
     """Custom formatter that adds colors to log output."""
 
